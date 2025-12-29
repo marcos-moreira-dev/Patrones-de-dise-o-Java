@@ -157,6 +157,175 @@ Instancia única del Singleton creada.
 
 ---
 
+## ✅ Ejecución de ejemplo (salida real)
+
+Ejemplo ejecutado en **Git Bash (Windows)** desde la raíz del proyecto:
+
+```bash
+rm -rf out
+mkdir out
+find . -name "*.java" -not -path "./.git/*" -print0 | xargs -0 javac -d out
+java -cp out Main
+```
+
+Salida (recortada tal cual, demostrando que compila y corre correctamente):
+
+```text
+=== DEMO DE PATRONES DE DISEÑO ===
+=== ProbarCreacionales ===
+=== ProbarEstructurales ===
+=== ProbarComportamiento ===
+
+==============================
+  MENÚ PRINCIPAL - PATRONES DE DISEÑO
+==============================
+1. Patrones Creacionales
+2. Patrones Estructurales
+3. Patrones de Comportamiento
+0. Salir
+Seleccione una opción: 1
+
+=== PATRONES CREACIONALES ===
+
+[Singleton]
+Singleton Instance: Hello World!
+¿Ambas instancias son iguales? true
+
+[Abstract Factory]
+Guardando datos en base de datos SQL...
+Mapeando datos en formato SQL...
+Guardando datos en base de datos NoSQL...
+Mapeando datos en formato NoSQL...
+
+[Builder]
+Response [statusCode=200, message=Operación exitosa, body={data:'OK'}]
+
+[Factory Method]
+Ejecutando servicio de usuario...
+Ejecutando servicio de pago...
+
+[Prototype]
+Original: Configuration [env=localhost, dbHost=8080]
+Copia: Configuration [env=localhost, dbHost=8080]
+¿Son iguales (misma referencia)? false
+
+... (menú) ...
+
+Seleccione una opción: 2
+
+=== PATRONES ESTRUCTURALES ===
+
+[Adapter]
+Adaptando la solicitud...
+Solicitud específica del proveedor externo.
+
+[Bridge]
+[Sistema de pedidos] Enviando orden al sistema de cocina...
+[Cocina Tradicional] Preparando pedido manualmente.
+[Sistema de pedidos] Enviando orden al sistema de cocina...
+[Cocina Automatizada] Robot preparando pizza con precisión perfecta.
+
+[Composite]
+Combo: Menú Principal
+  - Pizza
+  - Pasta
+
+[Decorator]
+Operación base del componente (ej. pizza simple).
+✅ Se añadió extra de queso (decoración adicional).
+
+[Facade]
+[Subsistema A] Validando pedido: Pizza Napolitana
+[Subsistema B] Preparando Pizza Napolitana
+[Facade] Pedido completado con éxito.
+
+[Flyweight]
+Creando nuevo objeto Flyweight para tipo: Pizza Margherita
+Reutilizando objeto Flyweight existente para tipo: Pizza Margherita
+Creando nuevo objeto Flyweight para tipo: Pizza Pepperoni
+Preparando pizza tipo Pizza Margherita para Mesa 1
+Preparando pizza tipo Pizza Margherita para Mesa 2
+Preparando pizza tipo Pizza Pepperoni para Mesa 3
+¿Son iguales las instancias de Margherita? true
+
+[Proxy]
+[Proxy] Verificando permisos...
+[RealService] Procesando pedido del cliente.
+[Proxy] Verificando permisos...
+[Proxy] Acceso denegado para el usuario: usuarioX
+
+[Iterator] (demo cruzada)
+Iterando: Pedido 1
+Iterando: Pedido 2
+Iterando: Pedido 3
+
+[Observer] (demo cruzada)
+[Cocina] recibió: Estado cambiado: Nuevo pedido recibido
+[Caja] recibió: Estado cambiado: Nuevo pedido recibido
+[Cocina] recibió: Estado cambiado: Pedido listo para entrega
+[Caja] recibió: Estado cambiado: Pedido listo para entrega
+
+... (menú) ...
+
+Seleccione una opción: 3
+
+=== PATRONES DE COMPORTAMIENTO ===
+
+[Strategy]
+Ejecutando estrategia A: aplicando descuento del 10%.
+Ejecutando estrategia B: aplicando descuento del 5%.
+
+[State]
+Estado actual: A
+Cambiando a estado B
+Estado actual: B
+Cambiando a estado A
+Estado actual: A
+Cambiando a estado B
+
+[Chain of Responsibility]
+Recepción: verificando pedido...
+Cocina: preparando pizza.
+Recepción: verificando pedido...
+Cocina: preparando pizza.
+
+[Command]
+Preparando pedido: Pizza Napolitana
+
+[Mediator]
+[Cocina] envió mensaje: Pedido listo para entrega
+[Caja] recibió: Pedido listo para entrega
+[Caja] envió mensaje: Confirmación recibida
+[Cocina] recibió: Confirmación recibida
+
+[Memento]
+Estado actual: Versión 1 - Pedido creado
+Estado actual: Versión 2 - Pedido modificado
+Estado restaurado: Versión 2 - Pedido modificado
+Estado restaurado: Versión 1 - Pedido creado
+
+[Template Method]
+Iniciando proceso base...
+Ejecutando paso 1 de A
+Ejecutando paso 2 de A
+Finalizando proceso base.
+Iniciando proceso base...
+Ejecutando paso 1 de B
+Ejecutando paso 2 de B
+Finalizando proceso base.
+
+[Visitor]
+Visitando A -> Elemento A procesado.
+Visitando B -> Elemento B procesado.
+
+... (menú) ...
+
+Seleccione una opción: 0
+Saliendo del programa...
+```
+
+---
+
 ## 🧠 Buenas prácticas de Git (para este repositorio)
 
 ### Commits
