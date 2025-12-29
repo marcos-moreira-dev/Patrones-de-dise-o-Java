@@ -1,4 +1,4 @@
-package estructurales.Adapter;
+
 
 /**
  * CLASE ADAPTADORA: Adapter

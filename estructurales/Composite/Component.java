@@ -1,4 +1,3 @@
-package estructurales.Composite;
 
 /**
  * PATRÓN: Composite (Compuesto)

@@ -1,4 +1,3 @@
-package estructurales.Decorator;
 
 /**
  * CLASE CONCRETA: ConcreteDecorator

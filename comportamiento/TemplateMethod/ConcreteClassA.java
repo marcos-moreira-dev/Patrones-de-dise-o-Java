@@ -1,4 +1,4 @@
-package comportamiento.TemplateMethod;
+
 
 /**
  * CLASE CONCRETA: ConcreteClassA

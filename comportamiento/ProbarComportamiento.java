@@ -1,4 +1,4 @@
-package comportamiento;
+
 
 import comportamiento.ChainOfResponsibility.*;
 import comportamiento.Command.*;

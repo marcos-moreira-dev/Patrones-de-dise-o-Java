@@ -1,4 +1,3 @@
-package estructurales.Facade;
 
 /**
  * CLASE: SubsystemB

@@ -1,4 +1,3 @@
-package estructurales.Proxy;
 
 /**
  * CLASE CONCRETA: ProxyService

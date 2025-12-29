@@ -1,4 +1,3 @@
-package comportamiento.Iterator;
 
 /**
  * INTERFAZ: Aggregate

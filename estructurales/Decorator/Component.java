@@ -1,4 +1,3 @@
-package estructurales.Decorator;
 
 /**
  * PATRÓN: Decorator (Decorador)

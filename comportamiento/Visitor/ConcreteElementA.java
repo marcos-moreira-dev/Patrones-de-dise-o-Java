@@ -1,4 +1,3 @@
-package comportamiento.Visitor;
 
 /**
  * CLASE CONCRETA: ConcreteElementA

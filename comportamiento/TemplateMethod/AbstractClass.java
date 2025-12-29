@@ -1,4 +1,4 @@
-package comportamiento.TemplateMethod;
+
 
 /**
  * PATRÓN: Template Method

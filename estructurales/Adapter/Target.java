@@ -1,4 +1,3 @@
-package estructurales.Adapter;
 
 /**
  * PATRÓN: Adapter (Adaptador)

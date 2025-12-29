@@ -1,4 +1,3 @@
-package estructurales;
 
 import comportamiento.Iterator.ConcreteAggregate;
 import comportamiento.Iterator.Iterator;

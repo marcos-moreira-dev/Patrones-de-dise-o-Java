@@ -1,4 +1,4 @@
-package creacionales.Prototype;
+
 
 /**
  * PATRÓN: Prototype

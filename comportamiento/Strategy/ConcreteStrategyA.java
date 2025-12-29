@@ -1,4 +1,4 @@
-package comportamiento.Strategy;
+
 
 /**
  * CLASE CONCRETA: ConcreteStrategyA

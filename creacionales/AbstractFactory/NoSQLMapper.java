@@ -1,4 +1,3 @@
-package creacionales.AbstractFactory;
 
 /**
  * CLASE CONCRETA: NoSQLMapper

@@ -1,4 +1,4 @@
-package comportamiento.Visitor;
+
 
 /**
  * CLASE CONCRETA: ConcreteElementB
