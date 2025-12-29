@@ -1,4 +1,4 @@
-
+package comportamiento.State;
 
 /**
  * CLASE CONCRETA: ConcreteStateA

@@ -1,15 +1,50 @@
+package comportamiento;
 
+// Chain of Responsibility
+import comportamiento.ChainOfResponsibility.ConcreteHandlerA;
+import comportamiento.ChainOfResponsibility.ConcreteHandlerB;
+import comportamiento.ChainOfResponsibility.Handler;
 
-import comportamiento.ChainOfResponsibility.*;
-import comportamiento.Command.*;
-import comportamiento.Iterator.*;
-import comportamiento.Mediator.*;
-import comportamiento.Memento.*;
-import comportamiento.Observer.*;
-import comportamiento.State.*;
-import comportamiento.Strategy.*;
-import comportamiento.TemplateMethod.*;
-import comportamiento.Visitor.*;
+// Command
+import comportamiento.Command.Command;
+import comportamiento.Command.ConcreteCommand;
+import comportamiento.Command.Invoker;
+import comportamiento.Command.Receiver;
+
+// Iterator
+import comportamiento.Iterator.ConcreteAggregate;
+import comportamiento.Iterator.Iterator;
+
+// Mediator
+import comportamiento.Mediator.ConcreteComponent;
+import comportamiento.Mediator.ConcreteMediator;
+
+// Memento
+import comportamiento.Memento.Caretaker;
+import comportamiento.Memento.Originator;
+
+// Observer
+import comportamiento.Observer.ConcreteObserver;
+import comportamiento.Observer.ConcreteSubject;
+
+// Strategy
+import comportamiento.Strategy.ConcreteStrategyA;
+import comportamiento.Strategy.ConcreteStrategyB;
+
+// State
+import comportamiento.State.Context;
+
+// Template Method
+import comportamiento.TemplateMethod.AbstractClass;
+import comportamiento.TemplateMethod.ConcreteClassA;
+import comportamiento.TemplateMethod.ConcreteClassB;
+
+// Visitor
+import comportamiento.Visitor.ConcreteElementA;
+import comportamiento.Visitor.ConcreteElementB;
+import comportamiento.Visitor.ConcreteVisitor;
+import comportamiento.Visitor.Element;
+import comportamiento.Visitor.Visitor;
 
 public class ProbarComportamiento {
 
@@ -17,11 +52,27 @@ public class ProbarComportamiento {
         System.out.println("=== ProbarComportamiento ===");
     }
 
+    // Ejecuta todos los ejemplos de comportamiento
+    public void ejecutarTodo() {
+        probarStrategy();
+        probarState();
+        probarChainOfResponsibility();
+        probarCommand();
+        probarIterator();
+        probarObserver();
+        probarMediator();
+        probarMemento();
+        probarTemplateMethod();
+        probarVisitor();
+    }
+
     // ----------- STRATEGY -----------
     public void probarStrategy() {
         System.out.println("\n[Strategy]");
-        comportamiento.Strategy.Context ctx = new comportamiento.Strategy.Context(new ConcreteStrategyA());
+        comportamiento.Strategy.Context ctx =
+                new comportamiento.Strategy.Context(new ConcreteStrategyA());
         ctx.executeStrategy();
+
         ctx.setStrategy(new ConcreteStrategyB());
         ctx.executeStrategy();
     }
@@ -29,7 +80,8 @@ public class ProbarComportamiento {
     // ----------- STATE -----------
     public void probarState() {
         System.out.println("\n[State]");
-        comportamiento.State.Context ctx = new comportamiento.State.Context();
+        Context ctx = new Context();
+        ctx.request();
         ctx.request();
         ctx.request();
     }
@@ -55,10 +107,38 @@ public class ProbarComportamiento {
         inv.executeCommand();
     }
 
+    // ----------- ITERATOR -----------
+    public void probarIterator() {
+        System.out.println("\n[Iterator]");
+        ConcreteAggregate pedidos = new ConcreteAggregate();
+        pedidos.addItem("Pedido #1");
+        pedidos.addItem("Pedido #2");
+        pedidos.addItem("Pedido #3");
+
+        Iterator it = pedidos.createIterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+
+    // ----------- OBSERVER -----------
+    public void probarObserver() {
+        System.out.println("\n[Observer]");
+        ConcreteSubject pedidos = new ConcreteSubject();
+
+        pedidos.attach(new ConcreteObserver("Cocina"));
+        pedidos.attach(new ConcreteObserver("Delivery"));
+        pedidos.attach(new ConcreteObserver("Caja"));
+
+        pedidos.setState("Pedido #101 LISTO");
+        pedidos.setState("Pedido #101 ENVIADO");
+    }
+
     // ----------- MEDIATOR -----------
     public void probarMediator() {
         System.out.println("\n[Mediator]");
         ConcreteMediator mediator = new ConcreteMediator();
+
         ConcreteComponent cocina = new ConcreteComponent("Cocina", mediator);
         ConcreteComponent caja = new ConcreteComponent("Caja", mediator);
 
@@ -77,6 +157,7 @@ public class ProbarComportamiento {
 
         originator.setState("Versión 1 - Pedido creado");
         history.save(originator.createMemento());
+
         originator.setState("Versión 2 - Pedido modificado");
         history.save(originator.createMemento());
 

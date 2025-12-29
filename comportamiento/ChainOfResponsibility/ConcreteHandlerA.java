@@ -1,4 +1,4 @@
-
+package comportamiento.ChainOfResponsibility;
 
 /**
  * CLASE CONCRETA: ConcreteHandlerA

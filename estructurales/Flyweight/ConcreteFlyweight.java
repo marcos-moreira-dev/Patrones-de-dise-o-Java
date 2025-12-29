@@ -1,4 +1,4 @@
-
+package estructurales.Flyweight;
 /**
  * CLASE CONCRETA: ConcreteFlyweight
  *

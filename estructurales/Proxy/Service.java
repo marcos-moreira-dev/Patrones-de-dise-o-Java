@@ -1,4 +1,4 @@
-
+package estructurales.Proxy;
 /**
  * PATRÓN: Proxy (Sustituto o Representante)
  *

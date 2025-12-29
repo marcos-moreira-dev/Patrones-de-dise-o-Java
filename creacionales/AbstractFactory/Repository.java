@@ -1,4 +1,4 @@
-
+package creacionales.AbstractFactory;
 /**
  * INTERFAZ: Repository
  *

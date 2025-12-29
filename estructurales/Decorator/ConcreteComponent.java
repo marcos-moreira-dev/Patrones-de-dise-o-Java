@@ -1,4 +1,4 @@
-
+package estructurales.Decorator;
 /**
  * CLASE CONCRETA: ConcreteComponent
  *

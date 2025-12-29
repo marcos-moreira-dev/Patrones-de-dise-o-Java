@@ -1,4 +1,4 @@
-
+package comportamiento.Memento;
 
 /**
  * CLASE: Originator

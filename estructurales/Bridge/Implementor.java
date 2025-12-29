@@ -1,5 +1,5 @@
 
-
+package estructurales.Bridge;
 /**
  * PATRÓN: Bridge (Puente)
  *

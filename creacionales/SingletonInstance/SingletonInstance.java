@@ -1,4 +1,4 @@
-
+package creacionales.SingletonInstance;
 
 /**
  * PATRÓN: Singleton

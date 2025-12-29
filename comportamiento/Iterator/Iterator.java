@@ -1,5 +1,5 @@
 
-
+package comportamiento.Iterator;
 /**
  * PATRÓN: Iterator
  *

@@ -1,4 +1,4 @@
-
+package estructurales.Facade;
 /**
  * PATRÓN: Facade (Fachada)
  *

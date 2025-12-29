@@ -1,4 +1,4 @@
-
+package comportamiento.ChainOfResponsibility;
 
 /**
  * PATRÓN: Chain of Responsibility (Cadena de Responsabilidad)

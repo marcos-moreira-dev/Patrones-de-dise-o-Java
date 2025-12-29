@@ -1,4 +1,4 @@
-
+package comportamiento.Memento;
 import java.io.*;
 /**
  * PATRÓN: Memento

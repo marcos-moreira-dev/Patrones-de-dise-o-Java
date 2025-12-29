@@ -1,4 +1,4 @@
-
+package comportamiento.Mediator;
 
 /**
  * CLASE CONCRETA: ConcreteComponent

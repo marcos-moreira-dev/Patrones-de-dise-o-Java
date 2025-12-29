@@ -1,21 +1,62 @@
+package estructurales;
 
+// --- Adapter
+import estructurales.Adapter.Adaptee;
+import estructurales.Adapter.Adapter;
+import estructurales.Adapter.Target;
+
+// --- Bridge
+import estructurales.Bridge.Abstraction;
+import estructurales.Bridge.ConcreteImplementorA;
+import estructurales.Bridge.ConcreteImplementorB;
+import estructurales.Bridge.Implementor;
+import estructurales.Bridge.RefinedAbstraction;
+
+// --- Composite
+import estructurales.Composite.Composite;
+import estructurales.Composite.Leaf;
+
+// --- Decorator (ojo con Component: import explícito para este paquete)
+import estructurales.Decorator.Component;
+import estructurales.Decorator.ConcreteComponent;
+import estructurales.Decorator.ConcreteDecorator;
+
+// --- Facade
+import estructurales.Facade.Facade;
+
+// --- Flyweight
+import estructurales.Flyweight.Flyweight;
+import estructurales.Flyweight.FlyweightFactory;
+
+// --- Proxy
+import estructurales.Proxy.ProxyService;
+import estructurales.Proxy.Service;
+
+// --- (Demo cruzada) Iterator / Observer desde comportamiento
 import comportamiento.Iterator.ConcreteAggregate;
 import comportamiento.Iterator.Iterator;
 import comportamiento.Observer.ConcreteObserver;
 import comportamiento.Observer.ConcreteSubject;
 import comportamiento.Observer.Observer;
-import estructurales.Adapter.*;
-import estructurales.Bridge.*;
-import estructurales.Composite.*;
-//import estructurales.Decorator.*;
-import estructurales.Facade.*;
-import estructurales.Flyweight.*;
-import estructurales.Proxy.*;
 
 public class ProbarEstructurales {
 
     public ProbarEstructurales() {
         System.out.println("=== ProbarEstructurales ===");
+    }
+
+    public void ejecutarTodo() {
+        probarAdapter();
+        probarBridge();
+        probarComposite();
+        probarDecorator();
+        probarFacade();
+        probarFlyweight();
+        probarProxy();
+
+        // demos cruzadas
+        probarIterator();
+        probarObserver();
     }
 
     // ----------- ADAPTER -----------
@@ -51,11 +92,11 @@ public class ProbarEstructurales {
 
     // ----------- DECORATOR -----------
     public void probarDecorator() {
-    System.out.println("\n[Decorator]");
-    estructurales.Decorator.Component pizza = new estructurales.Decorator.ConcreteComponent();
-    estructurales.Decorator.Component pizzaConExtra = new estructurales.Decorator.ConcreteDecorator(pizza);
-    pizzaConExtra.operation();
-}
+        System.out.println("\n[Decorator]");
+        Component pizza = new ConcreteComponent();
+        Component pizzaConExtra = new ConcreteDecorator(pizza);
+        pizzaConExtra.operation();
+    }
 
     // ----------- FACADE -----------
     public void probarFacade() {
@@ -84,15 +125,15 @@ public class ProbarEstructurales {
     public void probarProxy() {
         System.out.println("\n[Proxy]");
         Service autorizado = new ProxyService("cliente123", "1234");
-        autorizado.request();
+        autorizado.request(); //autorizado.execute(); // <- si tu interfaz se llama request(), cambia a autorizado.request()
 
         Service denegado = new ProxyService("usuarioX", "0000");
-        denegado.request();
+        denegado.request(); //denegado.execute();   // <- si tu interfaz se llama request(), cambia a denegado.request()
     }
 
-     // ----------- ITERATOR -----------
+    // ----------- ITERATOR (demo cruzada) -----------
     public void probarIterator() {
-        System.out.println("\n[Iterator]");
+        System.out.println("\n[Iterator] (demo cruzada)");
         ConcreteAggregate listaPedidos = new ConcreteAggregate();
         listaPedidos.addItem("Pedido 1");
         listaPedidos.addItem("Pedido 2");
@@ -102,15 +143,11 @@ public class ProbarEstructurales {
         while (iter.hasNext()) {
             System.out.println("Iterando: " + iter.next());
         }
-        // 🔹 Salida esperada:
-        // Iterando: Pedido 1
-        // Iterando: Pedido 2
-        // Iterando: Pedido 3
     }
 
-    // ----------- OBSERVER -----------
+    // ----------- OBSERVER (demo cruzada) -----------
     public void probarObserver() {
-        System.out.println("\n[Observer]");
+        System.out.println("\n[Observer] (demo cruzada)");
         ConcreteSubject subject = new ConcreteSubject();
         Observer obs1 = new ConcreteObserver("Cocina");
         Observer obs2 = new ConcreteObserver("Caja");
@@ -120,10 +157,5 @@ public class ProbarEstructurales {
 
         subject.setState("Nuevo pedido recibido");
         subject.setState("Pedido listo para entrega");
-        // 🔹 Salida esperada:
-        // Notificación a Cocina: Nuevo pedido recibido
-        // Notificación a Caja: Nuevo pedido recibido
-        // Notificación a Cocina: Pedido listo para entrega
-        // Notificación a Caja: Pedido listo para entrega
     }
 }

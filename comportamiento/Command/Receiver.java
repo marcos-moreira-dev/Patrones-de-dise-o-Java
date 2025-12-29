@@ -1,4 +1,4 @@
-
+package comportamiento.Command;
 /**
  * CLASE: Receiver
  *

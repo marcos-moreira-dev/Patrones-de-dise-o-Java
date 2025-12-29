@@ -1,5 +1,5 @@
 
-
+package comportamiento.Strategy;
 /**
  * PATRÓN: Strategy
  *

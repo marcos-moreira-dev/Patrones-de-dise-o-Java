@@ -1,4 +1,4 @@
-
+package comportamiento.Observer;
 
 /**
  * PATRÓN: Observer

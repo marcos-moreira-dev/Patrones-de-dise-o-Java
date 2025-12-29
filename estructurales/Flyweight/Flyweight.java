@@ -1,4 +1,4 @@
-
+package estructurales.Flyweight;
 /**
  * PATRÓN: Flyweight (Peso Ligero)
  *

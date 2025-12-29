@@ -1,4 +1,4 @@
-
+package estructurales.Bridge;
 
 /**
  * CLASE CONCRETA: ConcreteImplementorA

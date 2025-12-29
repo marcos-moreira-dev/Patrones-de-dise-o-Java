@@ -1,4 +1,4 @@
-
+package creacionales.FactoryMethod;
 
 /**
  * PATRÓN: Factory Method
