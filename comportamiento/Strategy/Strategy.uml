@@ -1,0 +1,23 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Strategy {
+    +execute(): void
+}
+
+class Context {
+    -strategy: Strategy
+
+    +setStrategy(Strategy): void
+    +executeStrategy(): void
+}
+
+class ConcreteStrategyA
+class ConcreteStrategyB
+
+Strategy <|.. ConcreteStrategyA
+Strategy <|.. ConcreteStrategyB
+
+Context --> Strategy
+
+@enduml

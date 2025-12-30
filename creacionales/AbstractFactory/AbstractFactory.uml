@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface PersistenceFactory {
+    +createRepository(): Repository
+    +createMapper(): Mapper
+}
+
+class SQLFactory
+class NoSQLFactory
+
+PersistenceFactory <|.. SQLFactory
+PersistenceFactory <|.. NoSQLFactory
+
+interface Repository {
+    +save()
+}
+
+interface Mapper {
+    +map()
+}
+
+class SQLRepository
+class SQLMapper
+class NoSQLRepository
+class NoSQLMapper
+
+Repository <|.. SQLRepository
+Repository <|.. NoSQLRepository
+
+Mapper <|.. SQLMapper
+Mapper <|.. NoSQLMapper
+
+SQLFactory --> SQLRepository : creates
+SQLFactory --> SQLMapper : creates
+
+NoSQLFactory --> NoSQLRepository : creates
+NoSQLFactory --> NoSQLMapper : creates
+@enduml

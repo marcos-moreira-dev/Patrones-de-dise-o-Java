@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' ==== Product ====
+interface Service {
+    +execute()
+}
+
+' ==== Concrete Products ====
+class UserService
+class PaymentService
+
+Service <|.. UserService
+Service <|.. PaymentService
+
+' ==== Creator ====
+interface ServiceFactory {
+    +createService(): Service
+}
+
+' ==== Concrete Creators ====
+class UserServiceFactory
+class PaymentServiceFactory
+
+ServiceFactory <|.. UserServiceFactory
+ServiceFactory <|.. PaymentServiceFactory
+
+UserServiceFactory --> UserService : creates
+PaymentServiceFactory --> PaymentService : creates
+
+@enduml

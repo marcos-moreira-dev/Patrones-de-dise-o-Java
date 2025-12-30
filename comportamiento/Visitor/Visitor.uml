@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Visitor {
+    +visitConcreteElementA(ConcreteElementA): void
+    +visitConcreteElementB(ConcreteElementB): void
+}
+
+interface Element {
+    +accept(Visitor): void
+}
+
+class ConcreteElementA {
+    +operationA(): String
+    +accept(Visitor): void
+}
+
+class ConcreteElementB {
+    +operationB(): String
+    +accept(Visitor): void
+}
+
+class ConcreteVisitor {
+    +visitConcreteElementA(ConcreteElementA): void
+    +visitConcreteElementB(ConcreteElementB): void
+}
+
+Element <|.. ConcreteElementA
+Element <|.. ConcreteElementB
+Visitor <|.. ConcreteVisitor
+
+Element --> Visitor : accepts
+ConcreteVisitor --> ConcreteElementA
+ConcreteVisitor --> ConcreteElementB
+
+@enduml

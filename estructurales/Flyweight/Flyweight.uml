@@ -1,0 +1,25 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Flyweight {
+    +servir(String): void
+}
+
+class ConcreteFlyweight {
+    -tipo: String
+
+    +servir(String): void
+}
+
+class FlyweightFactory {
+    -flyweights: Map<String, Flyweight>
+
+    +getFlyweight(String): Flyweight
+}
+
+Flyweight <|.. ConcreteFlyweight
+
+FlyweightFactory o-- Flyweight : cache
+FlyweightFactory --> Flyweight : returns
+
+@enduml

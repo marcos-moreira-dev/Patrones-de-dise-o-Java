@@ -1,0 +1,23 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface State {
+    +handle(Context): void
+}
+
+class Context {
+    -state: State
+
+    +setState(State): void
+    +request(): void
+}
+
+class ConcreteStateA
+class ConcreteStateB
+
+State <|.. ConcreteStateA
+State <|.. ConcreteStateB
+
+Context --> State
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Cloneable
+
+class Configuration {
+    -name: String
+    -value: String
+
+    +clone(): Configuration
+}
+
+Cloneable <|.. Configuration
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Service {
+    +request(): void
+}
+
+class RealService {
+    +request(): void
+}
+
+class ProxyService {
+    -realService: RealService
+    -user: String
+    -password: String
+
+    +request(): void
+}
+
+Service <|.. RealService
+Service <|.. ProxyService
+
+ProxyService --> RealService : delegates
+
+@enduml

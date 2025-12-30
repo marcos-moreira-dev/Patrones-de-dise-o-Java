@@ -1,0 +1,23 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Component {
+    +operation(): void
+}
+
+abstract class Decorator {
+    -component: Component
+
+    +operation(): void
+}
+
+class ConcreteComponent
+class ConcreteDecorator
+
+Component <|.. ConcreteComponent
+Component <|.. Decorator
+Decorator <|-- ConcreteDecorator
+
+Decorator --> Component : wraps
+
+@enduml

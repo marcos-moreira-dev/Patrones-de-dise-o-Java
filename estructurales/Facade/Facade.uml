@@ -1,0 +1,22 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Facade {
+    -subsistemaA: SubsystemA
+    -subsistemaB: SubsystemB
+
+    +realizarPedido(String): void
+}
+
+class SubsystemA {
+    +validarPedido(String): void
+}
+
+class SubsystemB {
+    +prepararPedido(String): void
+}
+
+Facade --> SubsystemA
+Facade --> SubsystemB
+
+@enduml

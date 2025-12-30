@@ -1,0 +1,30 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Command {
+    +execute(): void
+}
+
+class ConcreteCommand {
+    -receiver: Receiver
+    -pedido: String
+
+    +execute(): void
+}
+
+class Invoker {
+    -command: Command
+
+    +setCommand(Command): void
+    +executeCommand(): void
+}
+
+class Receiver {
+    +action(String): void
+}
+
+Command <|.. ConcreteCommand
+Invoker --> Command
+ConcreteCommand --> Receiver
+
+@enduml

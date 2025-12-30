@@ -1,0 +1,33 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Mediator {
+    +send(String, Component): void
+    +register(Component): void
+}
+
+abstract class Component {
+    -mediator: Mediator
+    -name: String
+
+    +receive(String): void
+    +send(String): void
+    +getName(): String
+}
+
+class ConcreteComponent
+
+class ConcreteMediator {
+    -components: List<Component>
+
+    +send(String, Component): void
+    +register(Component): void
+}
+
+Mediator <|.. ConcreteMediator
+Component <|-- ConcreteComponent
+
+Component --> Mediator
+ConcreteMediator --> Component : manages
+
+@enduml

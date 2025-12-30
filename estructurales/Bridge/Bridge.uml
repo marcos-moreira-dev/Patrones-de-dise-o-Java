@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Implementor {
+    +operationImpl(): void
+}
+
+abstract class Abstraction {
+    -implementor: Implementor
+
+    +realizarOperacion(): void
+}
+
+class RefinedAbstraction
+class ConcreteImplementorA
+class ConcreteImplementorB
+
+Abstraction <|-- RefinedAbstraction
+Implementor <|.. ConcreteImplementorA
+Implementor <|.. ConcreteImplementorB
+
+Abstraction --> Implementor
+
+@enduml

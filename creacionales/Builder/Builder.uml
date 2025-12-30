@@ -1,0 +1,23 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Response {
+    -status: int
+    -message: String
+    -data: Object
+}
+
+class ResponseBuilder {
+    -status: int
+    -message: String
+    -data: Object
+
+    +status(int): ResponseBuilder
+    +message(String): ResponseBuilder
+    +data(Object): ResponseBuilder
+    +build(): Response
+}
+
+ResponseBuilder --> Response : builds
+
+@enduml

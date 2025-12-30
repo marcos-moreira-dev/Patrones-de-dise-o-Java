@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Component {
+    +showDetails(): void
+}
+
+class Composite {
+    -nombre: String
+    -hijos: List<Component>
+
+    +add(Component): void
+    +remove(Component): void
+    +showDetails(): void
+}
+
+class Leaf {
+    -nombre: String
+
+    +showDetails(): void
+}
+
+Component <|.. Composite
+Component <|.. Leaf
+
+Composite o-- Component : children
+
+@enduml

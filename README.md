@@ -393,6 +393,23 @@ git merge feature/observer-pattern
 
 ---
 
+
+## Comando correcto para simular tree y ver árbol de archivos
+
+Usa este comando cuando quieras mostrar solo código fuente:
+
+find . \
+  -path './.git' -prune -o \
+  -path './out' -prune -o \
+  -print
+
+
+📌 Esto excluye:
+
+.git
+
+out
+
 ## 📌 Nota final
 
 Este proyecto está pensado como:
