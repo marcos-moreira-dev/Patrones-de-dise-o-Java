@@ -19,6 +19,14 @@ El proyecto **no utiliza Maven ni Gradle intencionalmente**, para facilitar la c
 
 La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidades, clases abstractas, interfaces (incluida la notación circular), enumeraciones, `record` y el paso del modelo a estructuras Java como `List` y `Map`.
 
+### Microproyectos con arquitectura real
+
+El primer microproyecto es **[Arena Java](proyectos/arena-java/README.md)**:
+un juego pequeño de combate por turnos, con dos escenarios, renderizado ASCII,
+paquetes `dominio`, `aplicacion`, `infraestructura` y `presentacion`, UML
+y pruebas sin dependencias externas. Se compila y ejecuta de forma
+independiente de los ejemplos clásicos.
+
 Los comentarios de clase conservan el contexto del patrón; los comentarios de método priorizan contratos, invariantes y decisiones relevantes. Los ejemplos domésticos, lúdicos o empresariales se utilizan cuando aclaran la idea, no como una plantilla repetitiva.
 
 Cada pull request ejecuta una comprobación automática con **Java 21**: compilación de los ejemplos y generación de Javadoc. El proyecto sigue sin necesitar Maven ni Gradle.
@@ -32,15 +40,17 @@ Patrones-de-dise-o-Java/
 ├── creacionales/
 ├── estructurales/
 ├── comportamiento/
+├── proyectos/
+│   └── arena-java/
 ├── App.java
 ├── Main.java
 ├── README.md
 └── Tree.md
 ```
 
-* Las carpetas se usan **solo como organización visual**.
-* Las clases **no declaran `package`**.
-* `Main.java` actúa como **orquestador** de los ejemplos.
+* En los ejemplos clásicos, las carpetas se usan **solo como organización visual** y las clases no declaran `package`.
+* En Arena Java sí existen paquetes reales para practicar arquitectura.
+* `Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
 
 ---
 
