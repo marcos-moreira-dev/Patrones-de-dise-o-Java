@@ -28,14 +28,20 @@ mkdir -p out/clasicos
 find creacionales estructurales comportamiento -name '*.java' -print0 \
     | xargs -0 javac -encoding UTF-8 -d out/clasicos App.java Main.java
 salida_clasicos="$(printf 'opcion-invalida\n1\n2\n3\n0\n' | java -cp out/clasicos Main)"
-if [[ "$salida_clasicos" != *'Opción inválida'* ]] \
-        || [[ "$salida_clasicos" != *'PATRONES CREACIONALES'* ]] \
-        || [[ "$salida_clasicos" != *'PATRONES ESTRUCTURALES'* ]] \
-        || [[ "$salida_clasicos" != *'PATRONES DE COMPORTAMIENTO'* ]] \
-        || [[ "$salida_clasicos" != *'Saliendo del programa'* ]]; then
-    printf 'ERROR: un patron o la recuperacion ante entradas invalidas no funciono\n' >&2
-    exit 1
-fi
+# Comprobar fragmentos ASCII: la codificacion de stdout puede diferir entre
+# Git Bash/Java en Windows y Bash/Java en Linux, aunque ambos ejecuten bien.
+comprobar_menu() {
+    local texto_esperado="$1"
+    if [[ "$salida_clasicos" != *"$texto_esperado"* ]]; then
+        printf 'ERROR: el menu clasico no mostro el texto esperado: %s\n' "$texto_esperado" >&2
+        exit 1
+    fi
+}
+comprobar_menu 'Escribe 0, 1, 2 o 3.'
+comprobar_menu 'PATRONES CREACIONALES'
+comprobar_menu 'PATRONES ESTRUCTURALES'
+comprobar_menu 'PATRONES DE COMPORTAMIENTO'
+comprobar_menu 'Saliendo del programa'
 
 printf '\n[2/5] Arena Java: compilar, probar y empaquetar\n'
 mvn -B -ntp -f proyectos/arena-java/pom.xml clean verify
