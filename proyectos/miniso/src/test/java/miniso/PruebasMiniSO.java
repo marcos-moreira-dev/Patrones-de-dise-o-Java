@@ -3,8 +3,12 @@ package miniso;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.Scanner;
 import miniso.aplicacion.EventoTick;
 import miniso.aplicacion.PlanificadorCola;
@@ -26,6 +30,7 @@ public final class PruebasMiniSO {
     public static void main(String[] args) {
         colaCircular();
         monticulo();
+        estructurasAleatorias();
         transiciones();
         fcfs();
         roundRobin();
@@ -79,6 +84,46 @@ public final class PruebasMiniSO {
         debeFallar(() -> heap.insertar("ilegal", 10), "prioridad ilegal");
     }
 
+    /**
+     * Pruebas diferenciales: miles de operaciones sobre estructuras propias
+     * se comparan contra estructuras estándar usadas SOLO como oráculo.
+     * La semilla fija hace reproducible cualquier fallo.
+     */
+    private static void estructurasAleatorias() {
+        Random azar = new Random(20261031);
+        ColaCircular<Integer> propia = new ColaCircular<>();
+        ArrayDeque<Integer> referencia = new ArrayDeque<>();
+        for (int i = 0; i < 2000; i++) {
+            if (referencia.isEmpty() || azar.nextBoolean()) {
+                propia.encolar(i);
+                referencia.addLast(i);
+            } else {
+                verificar(propia.desencolar().equals(referencia.removeFirst()), "cola aleatoria " + i);
+            }
+            verificar(propia.cantidad() == referencia.size(), "cantidad de cola " + i);
+        }
+
+        record Referencia(int id, int prioridad) {}
+        PriorityQueue<Referencia> esperados = new PriorityQueue<>(Comparator
+                .comparingInt(Referencia::prioridad).reversed()
+                .thenComparingInt(Referencia::id));
+        MonticuloPrioridad<Integer> heap = new MonticuloPrioridad<>();
+        for (int i = 0; i < 2000; i++) {
+            if (esperados.isEmpty() || azar.nextBoolean()) {
+                int prioridad = azar.nextInt(10);
+                heap.insertar(i, prioridad);
+                esperados.add(new Referencia(i, prioridad));
+            } else {
+                verificar(heap.extraer().equals(esperados.remove().id()), "monticulo aleatorio " + i);
+            }
+            verificar(heap.cantidad() == esperados.size(), "cantidad de monticulo " + i);
+        }
+        while (!esperados.isEmpty()) {
+            verificar(heap.extraer().equals(esperados.remove().id()), "vaciado final del monticulo");
+        }
+        verificar(heap.estaVacio(), "monticulo aleatorio agotado");
+    }
+
     private static void transiciones() {
         Proceso p = new Proceso(1, "prueba", 2, 5, 4);
         verificar(p.estado() == EstadoProceso.NUEVO, "creado nuevo");
@@ -97,6 +142,7 @@ public final class PruebasMiniSO {
         verificar(p.estado() == EstadoProceso.TERMINADO, "terminado");
         debeFallar(p::ponerListo, "no resucitar procesos");
         debeFallar(p::consumirCpu, "no ejecutar terminados");
+        debeFallar(() -> new Proceso(0, "invalido", 1, 1, 1), "PID cero invalido");
     }
 
     private static List<Long> ejecutar(SimuladorSO so, int ticks) {
@@ -185,6 +231,8 @@ public final class PruebasMiniSO {
         verificar(!fs.escribir("/docs//doble", "x").exito(), "no permite //");
         verificar(fs.leer("/docs/java/desconocido").isEmpty(), "archivo ausente");
         verificar(fs.bytesTotales() == 4, "rechazos no corrompen arbol");
+        debeFallar(() -> new miniso.dominio.DirectorioVirtual(".."), "invariante directorio directo");
+        debeFallar(() -> new miniso.dominio.ArchivoVirtual("/escape", "x"), "invariante archivo directo");
     }
 
     private static void consola() {

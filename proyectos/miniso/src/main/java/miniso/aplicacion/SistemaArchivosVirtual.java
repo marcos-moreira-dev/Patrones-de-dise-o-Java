@@ -22,7 +22,7 @@ public final class SistemaArchivosVirtual {
         }
         DirectorioVirtual padre = buscarPadre(segmentos);
         if (padre == null) return ResultadoOperacion.rechazada("Directorio padre inexistente");
-        String nombre = segmentos.getLast();
+        String nombre = segmentos.get(segmentos.size() - 1);
         if (!padre.crearDirectorio(nombre)) {
             return ResultadoOperacion.rechazada("Ya existe una entrada con ese nombre");
         }
@@ -37,7 +37,7 @@ public final class SistemaArchivosVirtual {
         }
         DirectorioVirtual padre = buscarPadre(segmentos);
         if (padre == null) return ResultadoOperacion.rechazada("Directorio padre inexistente");
-        if (!padre.escribirArchivo(segmentos.getLast(), contenido)) {
+        if (!padre.escribirArchivo(segmentos.get(segmentos.size() - 1), contenido)) {
             return ResultadoOperacion.rechazada("La ruta corresponde a un directorio");
         }
         return ResultadoOperacion.aceptada("Archivo guardado en memoria: " + camino);
@@ -48,7 +48,7 @@ public final class SistemaArchivosVirtual {
         List<String> segmentos = segmentos(camino);
         if (segmentos == null || segmentos.isEmpty()) return Optional.empty();
         DirectorioVirtual padre = buscarPadre(segmentos);
-        if (padre != null && padre.buscar(segmentos.getLast()) instanceof ArchivoVirtual archivo) {
+        if (padre != null && padre.buscar(segmentos.get(segmentos.size() - 1)) instanceof ArchivoVirtual archivo) {
             return Optional.of(archivo.contenido());
         }
         return Optional.empty();

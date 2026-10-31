@@ -109,7 +109,7 @@ pero `javac` funciona sin Maven ni descargas.
 | Síntoma | Diagnóstico |
 | --- | --- |
 | `javac` no se encuentra | Falta JDK o su directorio `bin` en `PATH` |
-| `List.getLast()` no existe | Se está compilando con Java anterior a 21 |
+| `release version 21 not supported` | Maven utiliza un JDK anterior a Java 21 |
 | `ClassNotFoundException` | Revisar `-cp`, `-d` y nombre completo de paquete |
 | `UnsupportedClassVersionError` | Ejecutas con un Java más viejo que el compilador |
 | `mvn` usa Java 17 | Revisa `mvn -version` y `JAVA_HOME` |

@@ -65,6 +65,12 @@ espera vuelve a LISTO **al final del tick**, nunca retroactivamente.
 | `estructuras` | Algoritmos reutilizables escritos desde cero | `ColaCircular`, `MonticuloPrioridad` |
 | `presentacion` | Traducir texto y presentar resultados | `ConsolaMiniSO`, `MiniSO` |
 
+No añadimos un paquete `infraestructura` vacío: **no hay adaptadores de red,
+disco, reloj externo o base de datos**. Si algún día conectamos el simulador
+con uno de esos recursos, aparecerá entonces su implementación concreta y
+su contrato de entrada. Una buena arquitectura no obliga a crear capas sin
+responsabilidad real.
+
 `Proceso` **no es un formulario vacío**: controla que un proceso NUEVO no
 ejecute CPU, uno BLOQUEADO no corra mientras espera E/S y uno TERMINADO no
 resucite. `VistaProceso` sí es un `record`, pues solo transporta una foto
@@ -157,7 +163,8 @@ costes y casos límite **sin copiar una biblioteca completa**.
 ## Qué se comprueba y qué no se pretende modelar
 
 Ejecuta `java -cp out miniso.PruebasMiniSO` (o `mvn test`). Las pruebas cubren:
-FIFO tras redimensionar, heap con desempate, ciclos de vida inválidos,
+FIFO tras redimensionar, heap con desempate, **6.000+ comprobaciones**
+deterministas de estructuras propias contra referencias del JDK, ciclos de vida inválidos,
 secuencias FCFS/RR/prioridad, E/S, memoria insuficiente y recuperación,
 rechazos sin cambios laterales, rutas inválidas, recursión y consola.
 
