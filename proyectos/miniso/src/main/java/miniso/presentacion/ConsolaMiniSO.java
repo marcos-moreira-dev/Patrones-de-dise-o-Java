@@ -33,12 +33,8 @@ public final class ConsolaMiniSO {
     public void iniciar() {
         salida.println("MiniSO | simulacion educativa, NO es un SO real");
         salida.println("Planificador: 1=FCFS, 2=Round Robin (q=2), 3=Prioridad");
-        if (!entrada.hasNextLine()) return;
-        Planificador politica = switch (entrada.nextLine().trim()) {
-            case "2" -> PlanificadorCola.roundRobin(2);
-            case "3" -> new PlanificadorPrioridad();
-            default -> PlanificadorCola.fcfs();
-        };
+        Planificador politica = elegirPlanificador();
+        if (politica == null) return;
         SimuladorSO so = new SimuladorSO(politica, 32);
         SistemaArchivosVirtual archivos = new SistemaArchivosVirtual();
         salida.println("Politica: " + so.politica() + "; memoria ficticia: 32 KiB");
@@ -56,6 +52,21 @@ public final class ConsolaMiniSO {
             }
             ejecutar(so, archivos, orden, argumentos);
         }
+    }
+
+    /** Repite la pregunta: una orden de trabajo no puede elegirse como política por accidente. */
+    private Planificador elegirPlanificador() {
+        while (entrada.hasNextLine()) {
+            String eleccion = entrada.nextLine().strip();
+            switch (eleccion) {
+                case "1": return PlanificadorCola.fcfs();
+                case "2": return PlanificadorCola.roundRobin(2);
+                case "3": return new PlanificadorPrioridad();
+                default: salida.println("Opcion invalida: elige 1, 2 o 3 antes de crear procesos.");
+            }
+        }
+        salida.println("Entrada finalizada sin iniciar la simulacion.");
+        return null;
     }
 
     private void ejecutar(SimuladorSO so, SistemaArchivosVirtual archivos, String orden, String args) {

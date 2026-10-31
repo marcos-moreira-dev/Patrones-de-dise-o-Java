@@ -41,19 +41,32 @@ Elige **1 = Arena** o **2 = Bosque**. Después puedes utilizar:
 | Orden | Caso de uso | Acción | Regla observable |
 | --- | --- | --- | --- |
 | 1 | CU-J01 | Atacar | Golpe de 4 a 6 puntos |
-| 2 | CU-J02 | Defender | Reduce en 2 el próximo golpe y recupera 1 energía |
+| 2 | CU-J02 | Defender | Reduce en 2 la respuesta del rival de ese turno y recupera 1 energía |
 | 3 | CU-J03 | Especial | Consume 3 de energía; añade 3 de daño con Decorator |
-| 4 | CU-J04 | Saltar | Solo en bosque: esquiva las raíces cuando aparecen |
+| 4 | CU-J04 | Saltar | Solo en bosque: evita las raíces, pero no el ataque rival |
 | 5 | CU-J05 | Huir | Solo en bosque: termina el encuentro sin victoria |
 | 0 | — | Salir | Detiene la ejecución, sin cerrar procesos externos |
 
 Los códigos CU-J01…05 identifican **intenciones de la persona que juega**,
 no cada método privado que colabora en su implementación.
 
-El adversario responde después de una acción válida, salvo que sea derrotado
-o que el personaje huya. En el bosque, las raíces dañan **cada tercer turno**
-si no saltas. La pantalla avisa cuando el peligro está activo. Una orden
-prohibida o un especial sin energía **no consume turno**.
+El adversario responde después de una acción válida, salvo que sea derrotado,
+que el personaje huya o que las raíces derroten antes al personaje. El orden
+de un turno es: **acción del jugador → comprobar victoria → daño del terreno
+→ respuesta del rival → avanzar turno**, siempre que nadie haya terminado
+antes el encuentro. **Defender** protege frente a esa respuesta, no frente a
+las raíces; **saltar** esquiva el terreno, no la respuesta del rival.
+
+En el bosque, las raíces dañan **cada tercer turno** si no saltas; la pantalla
+avisa cuando el peligro está activo. Saltar consume un turno válido incluso
+cuando no hay raíces. Una orden prohibida o un especial sin energía **no
+consume turno**: el estado no cambia y puedes intentarlo de nuevo.
+
+Una pequeña práctica manual: entra a **Arena** e intenta `4` (Saltar); el
+reglamento lo rechaza sin avanzar el turno. En una sesión nueva de **Bosque**,
+observa el aviso del tercer turno: si eliges Saltar, no te dañan las raíces,
+pero el adversario sigue pudiendo responder. Estas dos situaciones muestran
+por qué las reglas del dominio no son simples opciones del menú.
 
 ## Diseño por responsabilidades
 
@@ -169,6 +182,11 @@ ante llamadas directas al motor—, gasto de energía, daño, defensa, trampas,
 victoria, derrota, huida, eventos Observer tipados, invariantes y la
 presentación ASCII, incluido el fin inesperado de la entrada. GitHub Actions
 las ejecuta con Java 21 en cada pull request, tanto con `javac` como Maven.
+
+Para verificar **todo el laboratorio** con un único comando desde la raíz
+(patrones clásicos, Arena Java y MiniSO), ejecuta `bash scripts/verificar.sh`.
+La rutina de PR y los criterios de aceptación están en
+[CONTRIBUTING.md](../../CONTRIBUTING.md).
 
 ## Qué no incluye
 

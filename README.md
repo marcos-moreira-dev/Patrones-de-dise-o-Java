@@ -49,8 +49,8 @@ siguen sin requerir Maven.
 
 La [guía para contribuir](CONTRIBUTING.md) explica preparación, pruebas,
 revisión de PR y **criterios de terminado**. En Git Bash, desde la raíz del
-repositorio, basta este comando para construir y probar ambos microproyectos
-y comprobar que sus JAR arrancan:
+repositorio, basta este comando para comprobar los patrones clásicos,
+construir y probar ambos microproyectos y comprobar que sus JAR arrancan:
 
 ```bash
 bash scripts/verificar.sh
@@ -78,135 +78,63 @@ Patrones-de-dise-o-Java/
 └── Tree.md
 ```
 
-* En los ejemplos clásicos, las carpetas se usan **solo como organización visual** y las clases no declaran `package`.
-* En ambos microproyectos existen paquetes reales para practicar arquitectura.
+* Los ejemplos clásicos **sí declaran paquetes Java** (`creacionales.SingletonInstance`,
+  `estructurales.Adapter`, etc.); únicamente `App.java` y `Main.java` permanecen
+  en el paquete predeterminado para iniciar el menú.
+* Los microproyectos también tienen paquetes, agrupados por responsabilidades
+  de arquitectura (`dominio`, `aplicacion`, etc.). Ninguno requiere Maven para
+  *definir* esos paquetes.
 * `Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
 
 ---
 
 ## ⚙️ Compilación y ejecución desde consola
 
-### 1️⃣ Compilar archivos dentro de una carpeta
+### Opción recomendada: verificar los tres componentes del laboratorio
+
+Desde la **raíz del repositorio**, en Git Bash (Windows) o Linux:
 
 ```bash
-javac *.java
+bash scripts/verificar.sh
 ```
 
-Ejemplo para compilar los creacionales:
+Compila y ejecuta el menú de patrones clásicos, prueba Arena y MiniSO,
+construye sus dos JAR y verifica que arrancan. Consulta
+[CONTRIBUTING.md](CONTRIBUTING.md) para los criterios de aceptación.
+
+### Compilar solo los patrones clásicos con `javac`
+
+En Git Bash o Linux, desde la **raíz**:
 
 ```bash
-cd creacionales
-javac *.java
+mkdir -p out/clasicos
+find creacionales estructurales comportamiento -name '*.java' -print0 \
+  | xargs -0 javac -encoding UTF-8 -d out/clasicos App.java Main.java
+java -cp out/clasicos Main
 ```
 
----
+En PowerShell, también desde la **raíz**:
 
-### 2️⃣ Ejecutar una clase específica
-
-```bash
-java NombreDeLaClase
+```powershell
+New-Item -ItemType Directory -Force out\clasicos | Out-Null
+$fuentes = Get-ChildItem .\creacionales, .\estructurales, .\comportamiento -Recurse -Filter *.java | ForEach-Object FullName
+javac -encoding UTF-8 -d out\clasicos .\App.java .\Main.java $fuentes
+java -cp out\clasicos Main
 ```
 
-Ejemplo:
+`-d out/clasicos` guarda los `.class` fuera de las carpetas fuente.
+El classpath apunta a **esa raíz**, y Java utiliza el nombre completo de
+cada clase y su paquete. `Main` permanece sin `package`; desde su menú
+selecciona `1` (creacionales), `2` (estructurales), `3` (comportamiento)
+o `0` para salir. Una entrada inválida vuelve a solicitar la opción.
 
-```bash
-java SingletonInstance
-```
+Por ejemplo, `SingletonInstance` está en
+`creacionales/SingletonInstance/SingletonInstance.java` y **no tiene
+`main` propio**: para verlo funcionar, ejecuta `Main` y elige `1`.
+El compilador respeta los paquetes sin necesitar Maven o Gradle.
 
-⚠️ Asegúrate de estar **en la carpeta donde se encuentra el `.class`**.
-
----
-
-### 3️⃣ Compilar todo el proyecto desde la raíz
-
-Desde la carpeta raíz del proyecto:
-
-#### Git Bash / PowerShell / Linux
-
-```bash
-javac App.java Main.java creacionales/**/*.java estructurales/**/*.java comportamiento/**/*.java
-```
-
-#### CMD (Windows clásico)
-
-```cmd
-javac App.java Main.java creacionales\*.java estructurales\*.java comportamiento\*.java
-```
-
----
-
-### ▶️ Ejecutar todo desde el orquestador
-
-Una vez compilado:
-
-```bash
-java Main
-```
-
-`Main.java` se encarga de ejecutar y coordinar los ejemplos de los distintos patrones.
-
----
-
-## 🧼 Compilación más ordenada (opcional)
-
-Para evitar que los `.class` queden mezclados con el código fuente:
-
-```bash
-mkdir out
-javac -d out App.java Main.java creacionales/**/*.java estructurales/**/*.java comportamiento/**/*.java
-java -cp out Main
-```
-
----
-
-## 💡 Recomendaciones de diseño
-
-* Cada patrón debe estar en un archivo con el **mismo nombre que la clase principal**.
-* No es necesario usar `package` si se compila directamente desde consola.
-* Usar un `Main` central facilita:
-
-  * pruebas rápidas
-  * demostraciones
-  * enseñanza
-* Los paquetes son una característica de Java; no dependen de Maven ni Gradle.
-
----
-
-## ✅ Ejemplo rápido
-
-Archivo `creacionales/SingletonInstance.java`:
-
-```java
-public class SingletonInstance {
-    private static SingletonInstance instancia;
-
-    private SingletonInstance() {}
-
-    public static SingletonInstance getInstancia() {
-        if (instancia == null)
-            instancia = new SingletonInstance();
-        return instancia;
-    }
-
-    public void ejecutarFuncionUnica() {
-        System.out.println("Instancia única del Singleton creada.");
-    }
-}
-```
-
-Desde consola:
-
-```bash
-cd creacionales
-javac SingletonInstance.java
-java SingletonInstance
-```
-
-Salida esperada:
-
-```
-Instancia única del Singleton creada.
-```
+Para jugar Arena o usar MiniSO, sigue los READMEs respectivos o ejecuta
+sus JAR después de `bash scripts/verificar.sh`.
 
 ---
 
@@ -215,10 +143,8 @@ Instancia única del Singleton creada.
 Ejemplo ejecutado en **Git Bash (Windows)** desde la raíz del proyecto:
 
 ```bash
-rm -rf out
-mkdir out
-find . -name "*.java" -not -path "./.git/*" -print0 | xargs -0 javac -d out
-java -cp out Main
+bash scripts/verificar.sh
+java -cp out/clasicos Main
 ```
 
 Salida (recortada tal cual, demostrando que compila y corre correctamente):
