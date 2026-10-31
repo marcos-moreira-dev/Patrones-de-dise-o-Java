@@ -8,6 +8,8 @@ Spring Boot, privilegios de administrador ni bibliotecas de ejecución externas.
 
 Sigue [BUILD.md](BUILD.md) para empezar desde cero con JDK, `javac`, Maven,
 classpath, JAR y fases de construcción, como si estuvieras aprendiendo CMake.
+La [guía de contribución](../../CONTRIBUTING.md) incluye el **comando único
+de pruebas** y la lista de comprobación para cada pull request.
 
 ## Un ejemplo que puedes visualizar
 
@@ -28,6 +30,8 @@ tick 2
 estado
 tick 7
 ps
+metricas
+comparar
 mkdir /mis_notas
 write /mis_notas/idea.txt hoy estudie estructuras
 cat /mis_notas/idea.txt
@@ -50,11 +54,55 @@ alterar el estado**, como un resultado normal, no como una excepción.
 | `write /ruta texto` | CU-SO06 | Crear o reemplazar archivo en memoria |
 | `cat /ruta` | CU-SO07 | Leer un archivo virtual |
 | `tree` | CU-SO08 | Recorrer un árbol recursivamente |
+| `metricas` | CU-SO09 | Mostrar CPU, espera en LISTO, E/S, respuesta y retorno por PID |
+| `comparar` | CU-SO10 | Comparar tres políticas con la misma carga de trabajo |
 
 `io` requiere que exista un proceso **en ejecución**: después de `tick 1`,
 si la política no acaba de desalojarlo, puedes ejecutar `io 2`. Durante los
 dos próximos ticks avanza su E/S paralelamente a la CPU; cuando termina la
 espera vuelve a LISTO **al final del tick**, nunca retroactivamente.
+
+### Medir antes de elegir una política
+
+`metricas` presenta una instantánea de **tu sesión actual**. Sus unidades
+son ticks simulados, sin medir tiempo de pared del equipo:
+
+- **Espera en LISTO**: ticks completos esperando CPU. No cuenta E/S.
+- **Respuesta**: ticks desde la admisión hasta recibir CPU por primera vez.
+- **Retorno**: ticks desde la admisión hasta la finalización.
+- **CPU**: ticks útiles ejecutados. **E/S**: ticks esperando el dispositivo
+  ficticio. Los contadores no se confunden entre sí.
+- **Alternancias**: PID distinto entre dos ticks *consecutivos* con CPU
+  ocupada. No equivalen a cambios de contexto medidos en una máquina real.
+
+Un guion sencillo para el laboratorio, en una sesión nueva:
+
+```text
+2
+crear editor 6 2 8
+crear musica 2 9 8
+crear juego 4 5 12
+tick 12
+metricas
+comparar
+salir
+```
+
+El comando `comparar` crea **tres sesiones independientes** con esa misma
+carga, memoria de 32 KiB y llegada en `t=0`, una por política. Sirve para
+comparar decisiones sin alterar tu sesión ni mezclar resultados:
+
+| Política | Espera media | Respuesta media | Retorno medio | Alternancias |
+| --- | ---: | ---: | ---: | ---: |
+| FCFS | 4.67 | 4.67 | 8.67 | 2 |
+| Round Robin (`q=2`) | 4.67 | 2.00 | 8.67 | 5 |
+| Prioridad no expropiativa | 2.67 | 2.67 | 6.67 | 2 |
+
+**La mejor política depende del objetivo**: Round Robin ofrece antes una
+primera respuesta en este ejemplo, pero alterna más veces; prioridad reduce
+la espera media de esta carga, pero puede desatender trabajos de prioridad
+baja ante una sucesión de altas más urgentes. Ninguna cifra es una garantía
+de rendimiento para aplicaciones reales.
 
 ## Arquitectura: dominio frente a reglas de la computadora
 

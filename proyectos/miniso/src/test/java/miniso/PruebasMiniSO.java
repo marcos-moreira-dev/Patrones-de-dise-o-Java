@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.Scanner;
+import miniso.aplicacion.EstadisticaProceso;
 import miniso.aplicacion.EventoTick;
+import miniso.aplicacion.ExperimentoPlanificacion;
 import miniso.aplicacion.PlanificadorCola;
 import miniso.aplicacion.PlanificadorPrioridad;
 import miniso.aplicacion.SimuladorSO;
@@ -36,6 +38,8 @@ public final class PruebasMiniSO {
         roundRobin();
         prioridad();
         entradaSalida();
+        metricas();
+        comparacionJusta();
         memoriaYRechazos();
         arbolVirtual();
         consola();
@@ -194,6 +198,73 @@ public final class PruebasMiniSO {
         verificar(ejecutar(so, 2).equals(List.of(1L, 1L)), "p1 retoma su trabajo");
         verificar(so.memoriaUsadaKiB() == 0, "E/S no produce fuga de memoria");
         verificar(!so.solicitarIo(1).exito(), "no bloquear sin proceso ejecutando");
+        EstadisticaProceso p1 = so.estadisticas().get(0);
+        EstadisticaProceso p2 = so.estadisticas().get(1);
+        verificar(p1.ticksCpu() == 3 && p1.ticksIo() == 2 && p1.ticksListo() == 0,
+                "E/S se contabiliza por separado de LISTO");
+        verificar(p1.respuesta() == 0 && p1.retorno() == 5, "respuesta y retorno con E/S");
+        verificar(p2.ticksListo() == 1 && p2.respuesta() == 1 && p2.retorno() == 2,
+                "segundo proceso espera un tick");
+        verificar(so.cambiosDeProceso() == 1, "ocioso corta la racha entre procesos");
+    }
+
+    private static void metricas() {
+        SimuladorSO so = new SimuladorSO(PlanificadorCola.fcfs(), 16);
+        so.crearProceso("primero", 3, 0, 2);
+        so.crearProceso("segundo", 1, 0, 2);
+        verificar(so.estadisticas().get(0).respuesta() == -1, "sin primera CPU no hay respuesta");
+        verificar(so.estadisticas().get(0).retorno() == -1, "sin fin no hay retorno");
+        ejecutar(so, 4);
+        EstadisticaProceso a = so.estadisticas().get(0);
+        EstadisticaProceso b = so.estadisticas().get(1);
+        verificar(a.ticksListo() == 0 && a.respuesta() == 0 && a.retorno() == 3,
+                "metricas exactas del primer proceso FCFS");
+        verificar(b.ticksListo() == 3 && b.respuesta() == 3 && b.retorno() == 4,
+                "metricas exactas del segundo proceso FCFS");
+        verificar(so.ticksCpuOcupados() == 4 && so.cambiosDeProceso() == 1,
+                "ticks de CPU y alternancias FCFS");
+        so.avanzarTick();
+        verificar(so.ticksCpuOcupados() == 4 && so.cambiosDeProceso() == 1,
+                "tick ocioso no inventa CPU ni alternancias");
+
+        SimuladorSO llegadaTardia = new SimuladorSO(PlanificadorCola.fcfs(), 4);
+        llegadaTardia.avanzarTick();
+        llegadaTardia.crearProceso("tarde", 1, 0, 1);
+        llegadaTardia.avanzarTick();
+        EstadisticaProceso tarde = llegadaTardia.estadisticas().get(0);
+        verificar(tarde.llegada() == 1 && tarde.respuesta() == 0 && tarde.retorno() == 1,
+                "llegada tardia no cuenta ticks anteriores como espera");
+    }
+
+    private static void comparacionJusta() {
+        var resultados = ExperimentoPlanificacion.comparar();
+        verificar(resultados.size() == 3, "se comparan exactamente tres politicas");
+        var fcfs = resultados.get(0);
+        var rr = resultados.get(1);
+        var prioridad = resultados.get(2);
+        verificar(Math.abs(fcfs.esperaMedia() - 14.0 / 3) < 0.001,
+                "espera FCFS calculada a mano");
+        verificar(Math.abs(fcfs.respuestaMedia() - 14.0 / 3) < 0.001,
+                "respuesta FCFS calculada a mano");
+        verificar(Math.abs(fcfs.retornoMedio() - 26.0 / 3) < 0.001,
+                "retorno FCFS calculado a mano");
+        verificar(fcfs.alternancias() == 2, "dos alternancias FCFS");
+        verificar(Math.abs(rr.esperaMedia() - 14.0 / 3) < 0.001,
+                "espera RR calculada a mano");
+        verificar(Math.abs(rr.respuestaMedia() - 2.0) < 0.001,
+                "respuesta RR mejora para el ejemplo");
+        verificar(Math.abs(rr.retornoMedio() - 26.0 / 3) < 0.001,
+                "retorno RR del ejemplo");
+        verificar(rr.alternancias() == 5, "RR tiene mas alternancias");
+        verificar(Math.abs(prioridad.esperaMedia() - 8.0 / 3) < 0.001,
+                "espera prioridad calculada a mano");
+        verificar(Math.abs(prioridad.respuestaMedia() - 8.0 / 3) < 0.001,
+                "respuesta prioridad calculada a mano");
+        verificar(Math.abs(prioridad.retornoMedio() - 20.0 / 3) < 0.001,
+                "retorno prioridad calculado a mano");
+        verificar(prioridad.alternancias() == 2, "alternancias de prioridad");
+        verificar(resultados.stream().allMatch(r -> r.ticksCpu() == 12),
+                "las tres politicas consumen los mismos doce ticks de CPU");
     }
 
     private static void memoriaYRechazos() {
@@ -237,8 +308,8 @@ public final class PruebasMiniSO {
 
     private static void consola() {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        String guion = "2\ncrear uno 3 5 4\nps\ntick 2\nmkdir /docs\nwrite /docs/hola hola mundo\n"
-                + "cat /docs/hola\ntree\nestado\nsalir\n";
+        String guion = "2\ncrear uno 3 5 4\nps\ntick 2\nmetricas\ncomparar\n"
+                + "mkdir /docs\nwrite /docs/hola hola mundo\ncat /docs/hola\ntree\nestado\nsalir\n";
         new ConsolaMiniSO(new Scanner(guion), new PrintStream(bytes, true, StandardCharsets.UTF_8))
                 .iniciar();
         String texto = bytes.toString(StandardCharsets.UTF_8);
@@ -246,6 +317,9 @@ public final class PruebasMiniSO {
         verificar(texto.contains("PID 1 admitido"), "alta por consola");
         verificar(texto.contains("hola mundo"), "archivo por consola");
         verificar(texto.contains("t=2"), "reloj por consola");
+        verificar(texto.contains("1 tick restante"), "singular correcto");
+        verificar(texto.contains("RESPUESTA | RETORNO"), "metricas accesibles por consola");
+        verificar(texto.contains("ESPERA MEDIA | RESPUESTA MEDIA"), "comparacion accesible por consola");
         verificar(texto.contains("Nada del SO anfitrion"), "salida segura");
     }
 }

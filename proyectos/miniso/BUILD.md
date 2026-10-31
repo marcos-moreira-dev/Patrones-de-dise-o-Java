@@ -4,6 +4,17 @@ Esta guía enseña el *proceso de construcción* y no solo comandos para copiar.
 Piensa en CMake: distinguir configuración, compilación, pruebas y producto final
 ayuda a diagnosticar fallos sin depender de un IDE.
 
+Si ya tienes **JDK 21 y Maven**, desde la raíz del repositorio ejecuta
+**una sola orden** en Git Bash para probar Arena y MiniSO, empaquetar sus JAR
+y verificar el arranque:
+
+```bash
+bash scripts/verificar.sh
+```
+
+Consulta [CONTRIBUTING.md](../../CONTRIBUTING.md) para la matriz de pruebas,
+el flujo de PR y el criterio profesional para dar una entrega por terminada.
+
 ## 1. Qué hace cada herramienta
 
 - **Java 21 (JDK)**: aporta el compilador `javac`, la máquina virtual `java`,
