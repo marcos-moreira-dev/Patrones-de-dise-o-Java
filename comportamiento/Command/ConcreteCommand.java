@@ -32,6 +32,12 @@ public class ConcreteCommand implements Command {
     private final Receiver receiver;
     private final String pedido;
 
+    /**
+     * Asocia una solicitud concreta al objeto que sabe realizarla.
+     *
+     * @param receiver receptor que ejecutara la accion
+     * @param pedido contenido capturado al crear el comando
+     */
     public ConcreteCommand(Receiver receiver, String pedido) {
         this.receiver = receiver;
         this.pedido = pedido;

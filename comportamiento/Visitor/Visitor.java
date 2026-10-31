@@ -53,6 +53,17 @@ package comportamiento.Visitor;
     Visitando B → Elemento B procesado.
  */
 public interface Visitor {
+    /**
+     * Procesa especificamente un elemento de tipo A.
+     *
+     * @param elementA elemento visitado
+     */
     void visitConcreteElementA(ConcreteElementA elementA);
+
+    /**
+     * Procesa especificamente un elemento de tipo B.
+     *
+     * @param elementB elemento visitado
+     */
     void visitConcreteElementB(ConcreteElementB elementB);
 }

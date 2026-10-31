@@ -33,10 +33,20 @@ import java.util.Stack;
 public class Caretaker {
     private final Stack<Memento> history = new Stack<>();
 
+    /**
+     * Apila una instantanea sin examinar su estado interno.
+     *
+     * @param memento instantanea que se conserva para una restauracion futura
+     */
     public void save(Memento memento) {
         history.push(memento);
     }
 
+    /**
+     * Recupera la ultima instantanea guardada, como deshacer en un editor.
+     *
+     * @return ultimo memento o null si el historial estaba vacio
+     */
     public Memento undo() {
         if (!history.isEmpty()) {
             return history.pop();

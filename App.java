@@ -18,6 +18,7 @@ public class App {
         comportamiento = new ProbarComportamiento();
     }
 
+    /** Presenta los ejemplos creacionales en la consola principal. */
     public void ejecutarCreacionales() {
         System.out.println("\n=== PATRONES CREACIONALES ===");
         creacionales.probarSingleton();
@@ -27,6 +28,7 @@ public class App {
         creacionales.probarPrototype();
     }
 
+    /** Presenta los ejemplos estructurales en la consola principal. */
     public void ejecutarEstructurales() {
         System.out.println("\n=== PATRONES ESTRUCTURALES ===");
         estructurales.probarAdapter();
@@ -41,6 +43,7 @@ public class App {
         
     }
 
+    /** Presenta los ejemplos de comportamiento en la consola principal. */
     public void ejecutarComportamiento() {
         System.out.println("\n=== PATRONES DE COMPORTAMIENTO ===");
         comportamiento.probarStrategy();
@@ -53,6 +56,7 @@ public class App {
         comportamiento.probarVisitor();
     }
 
+    /** Gestiona el menu de texto hasta que el usuario selecciona salir. */
     public void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
         int opcion;

@@ -20,5 +20,6 @@ package creacionales.AbstractFactory;
  *  repo.save();
  */
 public interface Repository {
+    /** Ejecuta la operacion de guardado de demostracion del repositorio concreto. */
     void save();
 }

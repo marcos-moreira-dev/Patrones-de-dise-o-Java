@@ -27,13 +27,29 @@ public abstract class Component {
     protected Mediator mediator;
     protected String name;
 
+    /**
+     * Vincula este participante al coordinador de mensajes.
+     *
+     * @param name nombre visible del participante
+     * @param mediator coordinador al que se delegaran los envios
+     */
     public Component(String name, Mediator mediator) {
         this.name = name;
         this.mediator = mediator;
     }
 
+    /**
+     * Recibe un mensaje remitido por el mediador.
+     *
+     * @param message contenido entregado al participante
+     */
     public abstract void receive(String message);
 
+    /**
+     * Entrega el mensaje al mediador sin conocer a los demas receptores.
+     *
+     * @param message informacion que se desea comunicar
+     */
     public void send(String message) {
         System.out.println("[" + name + "] envió mensaje: " + message);
         mediator.send(message, this);

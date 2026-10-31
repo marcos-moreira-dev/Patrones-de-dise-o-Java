@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="268" viewBox="0 0 1060 268" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Agregacion de Equipo y Jugador</title>
+  <desc id="descripcion">El rombo blanco esta en Equipo, el todo. Cada equipo tiene cero o muchos jugadores y cada jugador se relaciona con cero o un equipo, segun el dominio propuesto.</desc>
+  <style>
+    .caja { fill: #f0f5ff; stroke: #3972bf; stroke-width: 2; }
+    .division { stroke: #3972bf; stroke-width: 1.4; }
+    .texto { fill: #202936; font: 19px Arial, sans-serif; }
+    .nombre { fill: #152238; font: bold 23px Arial, sans-serif; text-anchor: middle; }
+    .relacion { stroke: #202936; stroke-width: 2.8; fill: none; }
+    .multiplicidad { fill: #111827; font: bold 21px Arial, sans-serif; }
+  </style>
+  <rect class="caja" x="24" y="24" width="350" height="220" rx="2"/>
+  <line class="division" x1="24" y1="83" x2="374" y2="83"/>
+  <line class="division" x1="24" y1="156" x2="374" y2="156"/>
+  <text class="nombre" x="199" y="61">Equipo</text>
+  <text class="texto" x="43" y="121">- jugadores: List&lt;Jugador&gt;</text>
+  <text class="texto" x="43" y="192">+ agregar(j: Jugador): void</text>
+  <rect class="caja" x="686" y="24" width="350" height="220" rx="2"/>
+  <line class="division" x1="686" y1="83" x2="1036" y2="83"/>
+  <line class="division" x1="686" y1="156" x2="1036" y2="156"/>
+  <text class="nombre" x="861" y="61">Jugador</text>
+  <text class="texto" x="705" y="121">- nombre: String</text>
+  <text class="texto" x="705" y="192">+ Jugador(nombre: String)</text>
+  <path class="relacion" d="M374 141 L395 128 L416 141 L395 154 Z"/>
+  <line class="relacion" x1="416" y1="141" x2="686" y2="141"/>
+  <text class="multiplicidad" x="424" y="120">0..1</text>
+  <text class="multiplicidad" x="627" y="120">0..*</text>
+</svg>

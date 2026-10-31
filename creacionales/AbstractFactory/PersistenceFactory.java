@@ -49,6 +49,17 @@ package creacionales.AbstractFactory;
  *  mapper.mapData();
  */
 public interface PersistenceFactory {
+    /**
+     * Crea el repositorio de la familia de persistencia seleccionada.
+     *
+     * @return repositorio compatible con esta fabrica
+     */
     Repository createRepository();
+
+    /**
+     * Crea el transformador de datos de la misma familia que el repositorio.
+     *
+     * @return mapper compatible con esta fabrica
+     */
     Mapper createMapper();
 }

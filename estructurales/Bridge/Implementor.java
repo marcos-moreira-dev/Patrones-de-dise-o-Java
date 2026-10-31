@@ -42,5 +42,6 @@ package estructurales.Bridge;
  *  [Cocina Tradicional] Preparando pedido manualmente.
  */
 public interface Implementor {
+    /** Ejecuta la operacion propia de la implementacion, independiente de la abstraccion. */
     void operationImpl();
 }

@@ -60,7 +60,11 @@ public class Response {
     private String message;
     private String body;
 
-    // 👇 Constructor requerido por el Builder (corrección del error)
+    /**
+     * Copia al objeto final los valores reunidos por el builder.
+     *
+     * @param builder configuracion acumulada durante la construccion
+     */
     public Response(ResponseBuilder builder) {
         this.statusCode = builder.statusCode;
         this.message = builder.message;

@@ -42,10 +42,20 @@ public class Composite implements Component {
         this.nombre = nombre;
     }
 
+    /**
+     * Incorpora una hoja u otro compuesto al grupo.
+     *
+     * @param component elemento que formara parte del grupo
+     */
     public void add(Component component) {
         hijos.add(component);
     }
 
+    /**
+     * Quita del grupo la referencia al componente indicado.
+     *
+     * @param component elemento que se intenta retirar
+     */
     public void remove(Component component) {
         hijos.remove(component);
     }

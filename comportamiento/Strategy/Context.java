@@ -34,14 +34,25 @@ package comportamiento.Strategy;
 public class Context {
     private Strategy strategy;
 
+    /**
+     * Crea el contexto con su politica inicial.
+     *
+     * @param strategy estrategia que se ejecutara hasta que sea sustituida
+     */
     public Context(Strategy strategy) {
         this.strategy = strategy;
     }
 
+    /**
+     * Cambia la politica sin modificar el resto del contexto.
+     *
+     * @param strategy nueva estrategia; no se valida null en esta demo
+     */
     public void setStrategy(Strategy strategy) {
         this.strategy = strategy;
     }
 
+    /** Delega la operacion en la estrategia que esta activa en este momento. */
     public void executeStrategy() {
         strategy.execute();
     }

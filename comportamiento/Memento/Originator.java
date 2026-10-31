@@ -35,15 +35,30 @@ package comportamiento.Memento;
 public class Originator {
     private String state;
 
+    /**
+     * Cambia el estado actual del objeto cuya historia se quiere preservar.
+     *
+     * @param state nuevo valor de demostracion
+     */
     public void setState(String state) {
         this.state = state;
         System.out.println("Estado actual: " + state);
     }
 
+    /**
+     * Captura el estado actual sin exponer como lo almacena el memento.
+     *
+     * @return nueva instantanea del estado
+     */
     public Memento createMemento() {
         return new Memento(state);
     }
 
+    /**
+     * Restaura un estado previamente guardado.
+     *
+     * @param memento instantanea de origen; debe ser no nula
+     */
     public void restore(Memento memento) {
         this.state = memento.getSavedState();
         System.out.println("Estado restaurado: " + state);

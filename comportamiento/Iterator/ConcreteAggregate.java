@@ -33,10 +33,21 @@ public class ConcreteAggregate implements Aggregate {
 
     private final List<String> items = new ArrayList<>();
 
+    /**
+     * Incorpora un elemento a la coleccion que sera recorrida.
+     *
+     * @param item dato que se agrega al agregado
+     */
     public void addItem(String item) {
         items.add(item);
     }
 
+    /**
+     * Expone la lista utilizada por el ejemplo de iterador.
+     * En un sistema real podria devolverse una vista no modificable para proteger invariantes.
+     *
+     * @return referencia a la lista interna de elementos
+     */
     public List<String> getItems() {
         return items;
     }

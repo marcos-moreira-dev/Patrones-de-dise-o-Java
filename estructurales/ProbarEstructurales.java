@@ -39,12 +39,14 @@ import comportamiento.Observer.ConcreteObserver;
 import comportamiento.Observer.ConcreteSubject;
 import comportamiento.Observer.Observer;
 
+/** Reune ejemplos de composicion y adaptacion de objetos, sin crear servicios reales. */
 public class ProbarEstructurales {
 
     public ProbarEstructurales() {
         System.out.println("=== ProbarEstructurales ===");
     }
 
+    /** Ejecuta los patrones estructurales y dos demostraciones cruzadas. */
     public void ejecutarTodo() {
         probarAdapter();
         probarBridge();

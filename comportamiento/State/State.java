@@ -45,5 +45,12 @@ package comportamiento.State;
  *  Cambiando a estado A
  */
 public interface State {
+    /**
+     * Atiende una solicitud segun el estado actual y puede cambiar el estado futuro.
+     * Un semaforo es una analogia: cada estado determina su proximo comportamiento.
+     * Esta demo usa estados A/B para aislar el mecanismo del patron.
+     *
+     * @param context objeto cuyo comportamiento depende del estado
+     */
     void handle(Context context);
 }

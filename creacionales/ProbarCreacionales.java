@@ -23,12 +23,14 @@ import creacionales.Prototype.Configuration;
 // Singleton
 import creacionales.SingletonInstance.SingletonInstance;
 
+/** Reune demostraciones ejecutables de los patrones de creacion del laboratorio. */
 public class ProbarCreacionales {
 
     public ProbarCreacionales() {
         System.out.println("=== ProbarCreacionales ===");
     }
 
+    /** Ejecuta los cinco ejemplos creacionales en un orden de estudio fijo. */
     public void ejecutarTodo() {
         probarAbstractFactory();
         probarBuilder();

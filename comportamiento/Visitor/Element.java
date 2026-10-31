@@ -25,5 +25,10 @@ package comportamiento.Visitor;
  *  e.accept(v);
  */
 public interface Element {
+    /**
+     * Acepta un visitante que conoce las operaciones para cada tipo de elemento.
+     *
+     * @param visitor operacion externa aplicada al elemento
+     */
     void accept(Visitor visitor);
 }

@@ -38,10 +38,16 @@ public class Context {
         this.state = new ConcreteStateA(); // Estado inicial
     }
 
+    /**
+     * Cambia el objeto que representa el comportamiento del estado actual.
+     *
+     * @param state nuevo estado; esta demo no impide valores null
+     */
     public void setState(State state) {
         this.state = state;
     }
 
+    /** Delega la solicitud en el estado actual, que puede provocar una transicion. */
     public void request() {
         state.handle(this);
     }

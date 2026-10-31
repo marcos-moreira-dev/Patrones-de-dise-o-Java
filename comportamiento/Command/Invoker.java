@@ -31,10 +31,16 @@ package comportamiento.Command;
 public class Invoker {
     private Command command;
 
+    /**
+     * Configura la accion que activara el invocador, como un boton de control remoto.
+     *
+     * @param command comando que se desea ejecutar
+     */
     public void setCommand(Command command) {
         this.command = command;
     }
 
+    /** Ejecuta el comando configurado; si no hay ninguno, no realiza ninguna accion. */
     public void executeCommand() {
         if (command != null) {
             command.execute();

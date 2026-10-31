@@ -83,8 +83,16 @@ package creacionales.FactoryMethod;
  *  `PizzaPepperoni`) según el pedido.
  */
 public abstract class ServiceFactory {
+    /**
+     * Punto de extension: cada fabrica decide que servicio concreto instanciar.
+     * Una fabrica de personajes de juego ilustra la idea, pero esta demo crea
+     * servicios de usuario y pago para mostrar el mismo principio.
+     *
+     * @return servicio preparado para ejecutar
+     */
     public abstract Service createService();
 
+    /** Ejecuta un servicio mediante su interfaz, sin conocer su clase concreta. */
     public void runService() {
         Service service = createService();
         service.execute();

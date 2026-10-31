@@ -41,5 +41,6 @@ package estructurales.Composite;
  *   - Refresco
  */
 public interface Component {
+    /** Muestra los detalles de una hoja o de un grupo mediante el mismo contrato. */
     void showDetails();
 }

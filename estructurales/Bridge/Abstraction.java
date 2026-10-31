@@ -26,9 +26,15 @@ package estructurales.Bridge;
 public abstract class Abstraction {
     protected Implementor implementor;
 
+    /**
+     * Vincula la abstraccion con una implementacion intercambiable.
+     *
+     * @param implementor mecanismo concreto al que se delegaran las operaciones
+     */
     public Abstraction(Implementor implementor) {
         this.implementor = implementor;
     }
 
+    /** Coordina una operacion de alto nivel sin fijar la implementacion utilizada. */
     public abstract void realizarOperacion();
 }

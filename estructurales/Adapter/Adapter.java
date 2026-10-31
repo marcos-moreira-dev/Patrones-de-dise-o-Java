@@ -32,7 +32,11 @@ package estructurales.Adapter;
 public class Adapter implements Target {
     private Adaptee adaptee;
 
-    // Constructor que recibe un objeto Adaptee
+    /**
+     * Prepara la traduccion hacia el proveedor cuyo contrato es incompatible.
+     *
+     * @param adaptee implementacion externa que realmente realiza el trabajo
+     */
     public Adapter(Adaptee adaptee) {
         this.adaptee = adaptee;
     }
