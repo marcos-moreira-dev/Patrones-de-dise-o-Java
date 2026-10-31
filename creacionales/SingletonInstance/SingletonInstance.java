@@ -54,6 +54,12 @@ public class SingletonInstance {
     private SingletonInstance() {
         // Constructor privado para evitar instanciación externa
     }
+    /**
+     * Obtiene la instancia compartida, creandola en el primer acceso.
+     * Esta implementacion didactica no es segura para acceso concurrente.
+     *
+     * @return instancia unica mientras se utiliza secuencialmente
+     */
     public static SingletonInstance getInstance() {
         if (instance == null) {
             instance = new SingletonInstance();

@@ -29,12 +29,22 @@ package comportamiento.Observer;
 public class ConcreteSubject extends Subject {
     private String state;
 
+    /**
+     * Cambia el estado y publica inmediatamente un aviso a los suscriptores.
+     *
+     * @param newState nuevo valor que se comunicara a los observadores
+     */
     public void setState(String newState) {
         this.state = newState;
         // Notificar inmediatamente a los observadores
         notifyObservers("Estado cambiado: " + state);
     }
 
+    /**
+     * Consulta el estado sin emitir una notificacion nueva.
+     *
+     * @return valor actual del sujeto
+     */
     public String getState() {
         return state;
     }

@@ -38,5 +38,10 @@ package estructurales.Flyweight;
  *  Preparando pizza tipo Margarita para Mesa 5
  */
 public interface Flyweight {
+    /**
+     * Usa el objeto compartido con datos externos que varian por solicitud.
+     *
+     * @param mesa contexto extrinseco de esta ejecucion
+     */
     void servir(String mesa); // Estado extrínseco
 }

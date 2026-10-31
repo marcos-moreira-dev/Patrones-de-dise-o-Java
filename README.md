@@ -10,6 +10,19 @@ Los ejemplos están organizados por tipo de patrón:
 
 El proyecto **no utiliza Maven ni Gradle intencionalmente**, para facilitar la compilación directa desde consola y concentrarse en los conceptos fundamentales.
 
+### Cómo estudiar este laboratorio
+
+1. Empieza por el problema que resuelve el patrón (puede ser un ejemplo cotidiano, un videojuego o un negocio).
+2. Lee el diagrama UML y relaciona cada clase, interfaz y cardinalidad con el código.
+3. Ejecuta el ejemplo, cambia una decisión y observa qué comportamiento se modifica.
+4. Revisa el Javadoc de los contratos: **qué garantiza cada método, qué recibe y qué devuelve**. La implementación puede llamar internamente a otros métodos sin que cada uno sea un caso de uso.
+
+La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidades, clases abstractas, interfaces (incluida la notación circular), enumeraciones, `record` y el paso del modelo a estructuras Java como `List` y `Map`.
+
+Los comentarios de clase conservan el contexto del patrón; los comentarios de método priorizan contratos, invariantes y decisiones relevantes. Los ejemplos domésticos, lúdicos o empresariales se utilizan cuando aclaran la idea, no como una plantilla repetitiva.
+
+Cada pull request ejecuta una comprobación automática con **Java 21**: compilación de los ejemplos y generación de Javadoc. El proyecto sigue sin necesitar Maven ni Gradle.
+
 ---
 
 ## 📁 Estructura del proyecto

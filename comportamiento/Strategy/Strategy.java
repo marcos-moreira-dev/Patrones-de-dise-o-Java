@@ -40,5 +40,10 @@ package comportamiento.Strategy;
  *  context.executeStrategy();
  */
 public interface Strategy {
+    /**
+     * Ejecuta una de las politicas intercambiables elegidas por el contexto.
+     * En un videojuego, la misma criatura podria cambiar entre tacticas de ataque.
+     * Este laboratorio muestra estrategias de descuento, no implementa ese juego.
+     */
     void execute();
 }

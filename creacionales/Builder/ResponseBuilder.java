@@ -55,21 +55,44 @@ public class ResponseBuilder {
     String message;
     String body;
 
+    /**
+     * Establece el codigo de estado de la respuesta en construccion.
+     *
+     * @param code codigo que tendra la respuesta
+     * @return este mismo builder para encadenar configuraciones
+     */
     public ResponseBuilder statusCode(int code) {
         this.statusCode = code;
         return this;
     }
 
+    /**
+     * Establece el mensaje legible de la respuesta.
+     *
+     * @param msg mensaje descriptivo
+     * @return este mismo builder para seguir configurando
+     */
     public ResponseBuilder message(String msg) {
         this.message = msg;
         return this;
     }
 
+    /**
+     * Establece el contenido de la respuesta de demostracion.
+     *
+     * @param body cuerpo que se desea incluir
+     * @return este mismo builder para seguir configurando
+     */
     public ResponseBuilder body(String body) {
         this.body = body;
         return this;
     }
 
+    /**
+     * Materializa el resultado de las configuraciones encadenadas.
+     *
+     * @return nueva respuesta construida con el estado actual del builder
+     */
     public Response build() {
         return new Response(this); // ✅ ahora compila, constructor agregado en Response.java
     }

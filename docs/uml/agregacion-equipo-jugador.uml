@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Equipo {
+  - jugadores: List<Jugador>
+  + agregar(j: Jugador): void
+}
+class Jugador {
+  - nombre: String
+  + Jugador(nombre: String)
+}
+
+Equipo "0..1" o-- "0..*" Jugador
+@enduml

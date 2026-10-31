@@ -23,6 +23,11 @@ package estructurales.Facade;
  *  [Subsistema B] Preparando Pizza Napolitana
  */
 public class SubsystemB {
+    /**
+     * Simula la etapa de preparacion de un pedido.
+     *
+     * @param pedido descripcion que se mostrara en consola
+     */
     public void prepararPedido(String pedido) {
         System.out.println("[Subsistema B] Preparando " + pedido);
     }

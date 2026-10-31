@@ -68,6 +68,17 @@ package comportamiento.Iterator;
  */
 
 public interface Iterator {
+    /**
+     * Comprueba si quedan elementos por recorrer.
+     *
+     * @return true si existe un elemento siguiente
+     */
     boolean hasNext();
+
+    /**
+     * Devuelve el siguiente elemento de la coleccion, avanzando el recorrido.
+     *
+     * @return siguiente elemento de la iteracion
+     */
     Object next();
 }

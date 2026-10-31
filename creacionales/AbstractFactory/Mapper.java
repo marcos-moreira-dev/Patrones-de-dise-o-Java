@@ -22,5 +22,6 @@ package creacionales.AbstractFactory;
  *  mapper.mapData();
  */
 public interface Mapper {
+    /** Adapta los datos al formato de la tecnologia de persistencia elegida. */
     void mapData();
 }

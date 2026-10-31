@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Orden {
+  - lineas: List<LineaPedido>
+  + agregarLinea(...): void
+}
+class LineaPedido {
+  - producto: String
+  - cantidad: int
+  + LineaPedido(...)
+}
+
+Orden "1" *-- "0..*" LineaPedido
+@enduml

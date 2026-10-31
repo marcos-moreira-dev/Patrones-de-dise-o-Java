@@ -39,5 +39,9 @@ package estructurales.Adapter;
  *  [Proveedor Externo] Recibiendo solicitud en formato incompatible.
  */
 public interface Target {
+    /**
+     * Solicita una operacion mediante el contrato que espera el cliente.
+     * El adaptador traducira esta llamada al proveedor incompatible.
+     */
     void request();
 }

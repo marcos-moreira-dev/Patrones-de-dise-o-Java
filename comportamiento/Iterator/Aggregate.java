@@ -19,5 +19,10 @@ package comportamiento.Iterator;
  *  Iterator it = pedidos.createIterator();
  */
 public interface Aggregate {
+    /**
+     * Crea un recorrido independiente sobre los elementos de este agregado.
+     *
+     * @return iterador configurado para esta coleccion
+     */
     Iterator createIterator();
 }

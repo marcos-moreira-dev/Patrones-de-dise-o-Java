@@ -46,13 +46,14 @@ import comportamiento.Visitor.ConcreteVisitor;
 import comportamiento.Visitor.Element;
 import comportamiento.Visitor.Visitor;
 
+/** Orquesta ejemplos sobre colaboracion, estados y distribucion de responsabilidades. */
 public class ProbarComportamiento {
 
     public ProbarComportamiento() {
         System.out.println("=== ProbarComportamiento ===");
     }
 
-    // Ejecuta todos los ejemplos de comportamiento
+    /** Ejecuta todos los escenarios de comportamiento del laboratorio. */
     public void ejecutarTodo() {
         probarStrategy();
         probarState();

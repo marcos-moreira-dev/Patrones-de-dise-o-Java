@@ -48,6 +48,12 @@ import java.io.*;
 public class Memento implements Serializable{
     private final String state;
     private static final long serialVersionUID = 1L;
+
+    /**
+     * Conserva una instantanea del valor proporcionado.
+     *
+     * @param state estado que se desea preservar
+     */
     public Memento(String state) {
         this.state = state;
     }
@@ -59,11 +65,10 @@ public class Memento implements Serializable{
    
 
     /**
-     * Método que permite serializar el estado del Memento
-     * a un archivo binario (útil si el estado ocupa mucha memoria).
-     * 
-     *  Memento backup = editor.createMemento();
-        backup.saveToFile("backup_menu.ser");
+     * Guarda el estado encapsulado en un archivo binario.
+     * Esta demostracion informa errores por consola; no los propaga.
+     *
+     * @param filePath ruta del archivo de salida
      */
     public void saveToFile(String filePath) {
 
@@ -76,11 +81,11 @@ public class Memento implements Serializable{
     }
 
     /**
-     * Método estático que permite cargar un estado previamente serializado
-     * y crear un nuevo Memento a partir de él.
-     * 
-     * Memento loaded = Memento.loadFromFile("backup_menu.ser");
-       editor.restore(loaded);
+     * Lee un estado previamente serializado y reconstruye su instantanea.
+     * El resultado debe comprobarse antes de llamar a {@code restore}.
+     *
+     * @param filePath ruta del archivo que contiene el estado
+     * @return memento reconstruido o null si la lectura fallo
      */
     public static Memento loadFromFile(String filePath) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {

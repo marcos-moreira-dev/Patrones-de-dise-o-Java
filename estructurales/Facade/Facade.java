@@ -49,6 +49,11 @@ public class Facade {
         this.subsistemaB = new SubsystemB();
     }
 
+    /**
+     * Orquesta validacion y preparacion mediante una unica entrada de alto nivel.
+     *
+     * @param pedido descripcion del pedido que procesaran los subsistemas
+     */
     public void realizarPedido(String pedido) {
         subsistemaA.validarPedido(pedido);
         subsistemaB.prepararPedido(pedido);

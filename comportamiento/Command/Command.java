@@ -42,5 +42,9 @@ package comportamiento.Command;
  *  Preparando pedido: Pizza Napolitana
  */
 public interface Command {
+    /**
+     * Ejecuta la accion encapsulada, sin que el invocador conozca al receptor.
+     * Ejemplo intuitivo: un boton de control remoto activa una accion configurable.
+     */
     void execute();
 }

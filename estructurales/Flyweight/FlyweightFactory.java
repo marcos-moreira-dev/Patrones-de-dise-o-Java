@@ -34,6 +34,12 @@ import java.util.Map;
 public class FlyweightFactory {
     private final Map<String, Flyweight> flyweights = new HashMap<>();
 
+    /**
+     * Reutiliza un objeto del tipo solicitado o lo crea si todavia no existe.
+     *
+     * @param tipo clave del estado intrinseco compartido
+     * @return instancia existente o recien creada
+     */
     public Flyweight getFlyweight(String tipo) {
         Flyweight flyweight = flyweights.get(tipo);
         if (flyweight == null) {

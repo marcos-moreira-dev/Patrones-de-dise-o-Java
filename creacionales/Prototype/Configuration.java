@@ -63,6 +63,11 @@ public class Configuration implements Cloneable {
     }
 
     @Override
+    /**
+     * Crea una copia superficial de la configuracion sin reconstruirla campo a campo.
+     *
+     * @return una instancia distinta con los mismos valores de configuracion
+     */
     public Configuration clone() {
         try {
             return (Configuration) super.clone();

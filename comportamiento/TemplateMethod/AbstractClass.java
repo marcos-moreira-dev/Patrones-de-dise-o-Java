@@ -50,7 +50,10 @@ package comportamiento.TemplateMethod;
  */
 public abstract class AbstractClass {
 
-    // Método plantilla: define la secuencia del algoritmo
+    /**
+     * Fija el orden del algoritmo, dejando ciertos pasos a las subclases.
+     * El metodo es final para que las variantes no alteren la secuencia.
+     */
     public final void templateMethod() {
         System.out.println("Iniciando proceso base...");
         stepOne();
@@ -58,7 +61,9 @@ public abstract class AbstractClass {
         System.out.println("Finalizando proceso base.");
     }
 
-    // Pasos que las subclases deben implementar
+    /** Primera etapa variable del algoritmo. */
     protected abstract void stepOne();
+
+    /** Segunda etapa variable del algoritmo. */
     protected abstract void stepTwo();
 }

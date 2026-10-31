@@ -40,5 +40,6 @@ package estructurales.Proxy;
  *  [RealService] Procesando pedido del cliente.
  */
 public interface Service {
+    /** Atiende la solicitud, directamente o a traves de un proxy de control. */
     void request();
 }

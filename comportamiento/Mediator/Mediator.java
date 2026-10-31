@@ -45,6 +45,18 @@ package comportamiento.Mediator;
  *  [Caja] recibió: Pedido #101 listo
  */
 public interface Mediator {
+    /**
+     * Encamina un mensaje a traves del coordinador central.
+     *
+     * @param message contenido comunicado
+     * @param sender componente que origino el mensaje
+     */
     void send(String message, Component sender);
+
+    /**
+     * Incorpora un componente al conjunto coordinado.
+     *
+     * @param component participante que se registra
+     */
     void register(Component component);
 }

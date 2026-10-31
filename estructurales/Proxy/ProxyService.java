@@ -35,6 +35,12 @@ public class ProxyService implements Service {
     private final String user;
     private final String password;
 
+    /**
+     * Configura las credenciales de demostracion usadas por el control de acceso.
+     *
+     * @param user usuario que solicita acceso
+     * @param password clave de ejemplo, nunca para un sistema real
+     */
     public ProxyService(String user, String password) {
         this.user = user;
         this.password = password;

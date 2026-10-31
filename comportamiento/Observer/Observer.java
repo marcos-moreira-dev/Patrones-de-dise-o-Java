@@ -32,5 +32,12 @@ package comportamiento.Observer;
  *  - Se imprime un mensaje por cada observador registrado cuando recibe `update(...)`.
  */
 public interface Observer {
+    /**
+     * Recibe una notificacion sin exigir que el emisor conozca su clase concreta.
+     * Por ejemplo, el marcador de vida de un juego puede reaccionar a un cambio
+     * sin que el personaje sepa como se dibuja ese marcador.
+     *
+     * @param message informacion publicada por el sujeto
+     */
     void update(String message);
 }

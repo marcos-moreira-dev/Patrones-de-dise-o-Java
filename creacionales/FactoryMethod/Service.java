@@ -23,5 +23,6 @@ package creacionales.FactoryMethod;
  *  pizza implementa su propia versión del método `execute()`.
  */
 public interface Service {
+    /** Ejecuta el comportamiento propio del servicio concreto creado por la fabrica. */
     void execute();
 }

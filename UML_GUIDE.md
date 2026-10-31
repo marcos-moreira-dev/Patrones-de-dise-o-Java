@@ -19,17 +19,87 @@ Dentro de la clase se muestran:
 - Metodos: acciones que la clase puede hacer.
 
 ### Interfaz
-Define un conjunto de metodos que otras clases deben implementar.
-No tiene atributos ni implementaciones, solo el "contrato".
+Define un contrato. En Java puede declarar metodos abstractos, `default`, `static` y privados, ademas de constantes; no es simplemente una clase sin codigo.
+
+La realizacion se dibuja con **linea discontinua y triangulo hueco** hacia la interfaz. La alternativa compacta es el **circulo (lollipop)** que representa una interfaz proporcionada:
+
+```mermaid
+classDiagram
+    class Notificador {
+        <<interface>>
+        +enviar(String mensaje) void
+    }
+    Notificador <|.. NotificadorEmail
+```
+
+```mermaid
+classDiagram
+    Notificador ()-- NotificadorEmail
+```
+
+En ambos casos, `NotificadorEmail implements Notificador`. El circulo no es otra clase: muestra el contrato ofrecido.
 
 ### Clase abstracta
 Es una clase que no se instancia directamente. Sirve como base para otras clases.
 Puede tener metodos abstractos y metodos concretos.
 
+```mermaid
+classDiagram
+    class Figura {
+        <<abstract>>
+        +calcularArea() double*
+    }
+    Figura <|-- Circulo
+```
+
+En Java: `abstract class Figura` y `class Circulo extends Figura`. El `*` al final de la operacion es la marca de abstracto en Mermaid.
+
+### Enumeracion (`enum`)
+Representa un **conjunto cerrado de valores** de un dominio, por ejemplo, estados permitidos de un pedido.
+
+```mermaid
+classDiagram
+    class EstadoPedido {
+        <<enumeration>>
+        PENDIENTE
+        PAGADO
+        CANCELADO
+    }
+```
+
+```java
+enum EstadoPedido { PENDIENTE, PAGADO, CANCELADO }
+```
+
+Una clase `Pedido` puede declarar `private EstadoPedido estado;`. El tipo del atributo ya muestra la conexion; **no es obligatorio dibujar una flecha** hacia la enumeracion.
+
+### Record de Java
+Un `record` transporta un grupo fijo de datos y genera constructor, accesores, `equals`, `hashCode` y `toString`. Sus campos de componente son `private final` (inmutabilidad superficial).
+
+```java
+record PedidoResumen(long id, EstadoPedido estado) {}
+```
+
+Puede representarse como una clase con sus atributos y accesores. Usaremos `«record»` solo como **convencion explicita de este repositorio**, porque UML no define un simbolo propio estandar para el `record` de Java.
+
+```mermaid
+classDiagram
+    class PedidoResumen {
+        <<record>>
+        -long id
+        -EstadoPedido estado
+        +id() long
+        +estado() EstadoPedido
+    }
+```
+
+Si un metodo devuelve `PedidoResumen`, escribimos `+resumen(): PedidoResumen` en su clase. Si queremos destacar el uso temporal, podemos dibujar una dependencia `..>`. **El tipo `record` no determina la flecha**.
+
 ## Visibilidad (modificadores)
 - Publico (+): se puede usar desde cualquier parte.
 - Privado (-): solo dentro de la clase.
-- Protegido (#): accesible en la clase y sus hijas.
+- Protegido (#): accesible segun las reglas de `protected` de Java (subclases y mismo paquete).
+- Paquete (~): sin modificador, accesible dentro del paquete Java.
 
 Para recordar: el signo te dice quien puede acceder a un atributo o metodo.
 
@@ -110,9 +180,15 @@ Ayuda a indicar cantidades en una relacion:
 - 1..*: uno o muchos.
 - 0..*: cero o muchos.
 
-Piensa en preguntas simples:
-- "Un pedido tiene cuantos productos?"
-- "Un usuario tiene cuantos perfiles?"
+**Regla de lectura:** situa mentalmente una instancia de una clase y lee la multiplicidad **junto a la clase contraria**.
+
+![Asociacion entre Profesor y Curso, con cardinalidades separadas](docs/uml/asociacion-profesor-curso.svg)
+
+- Para cada **Profesor**, `0..*` en el extremo de **Curso** significa cero o muchos cursos.
+- Para cada **Curso**, `1` en el extremo de **Profesor** significa exactamente un profesor.
+- La flecha hacia `Profesor` expresa que `Curso` lo conoce; **no significa cardinalidad**.
+
+Las multiplicidades son reglas propuestas del dominio, no garantias automaticas de `List`, `Map` o del compilador Java. Por ejemplo, el constructor de `Curso` tendria que impedir un profesor nulo si el dominio exige exactamente uno.
 
 ## Ejemplos concretos por relacion (con cardinalidad)
 Cada ejemplo es inventado y muy simple, solo para entender la relacion.
@@ -122,6 +198,14 @@ Cardinalidad: no aplica (es una relacion de tipo).
 
 ```mermaid
 classDiagram
+    class Persona {
+        #String nombre
+        +getNombre() String
+    }
+    class Estudiante {
+        -String carrera
+        +getCarrera() String
+    }
     Persona <|-- Estudiante
 ```
 ```java
@@ -160,6 +244,12 @@ Cardinalidad: no aplica (es una relacion de contrato).
 classDiagram
     class Repositorio {
         <<interface>>
+        +guardar(String dato) void
+        +buscarPorId(int id) String
+    }
+    class RepositorioSql {
+        +guardar(String dato) void
+        +buscarPorId(int id) String
     }
     Repositorio <|.. RepositorioSql
 ```
@@ -172,24 +262,24 @@ interface Repositorio {
 }
 
 class RepositorioSql implements Repositorio {
-    // Implementa el contrato definido por la interfaz
+    @Override
     public void guardar(String dato) {
         // guardar en SQL (ejemplo)
     }
 
+    @Override
     public String buscarPorId(int id) {
         return "dato-" + id;
     }
 }
 ```
 
+`@Override` permite que el compilador compruebe que el metodo realmente implementa o sobrescribe uno de un supertipo. No se anota un metodo simplemente porque se llame igual que otro.
+
 ### Asociacion
 Cardinalidad sugerida: Profesor 0..* Cursos, Curso 1 Profesor.
 
-```mermaid
-classDiagram
-    Curso "0..*" --> "1" Profesor : profesor
-```
+![Asociacion navegable de Curso a Profesor](docs/uml/asociacion-profesor-curso.svg)
 ```java
 package ejemplo.asociacion;
 
@@ -220,13 +310,12 @@ class Curso {
 }
 ```
 
+**Aterrizaje Java:** `private Profesor profesor;` es una referencia persistente en `Curso`, no una lista. `Curso` conoce al profesor; no se necesita que `Profesor` mantenga una lista de cursos para dibujar la relacion conceptual. La regla `1` requiere validar que el profesor no sea nulo.
+
 ### Agregacion
 Cardinalidad sugerida: Equipo 0..* Jugadores, Jugador 0..1 Equipo.
 
-```mermaid
-classDiagram
-    Equipo "0..1" o-- "0..*" Jugador : jugadores
-```
+![Agregacion de jugadores en un equipo](docs/uml/agregacion-equipo-jugador.svg)
 ```java
 package ejemplo.agregacion;
 
@@ -248,19 +337,32 @@ class Equipo {
         this.jugadores = new ArrayList<>();
     }
 
+    /**
+     * Incorpora un jugador a la plantilla; el jugador puede existir sin este equipo.
+     *
+     * @param jugador jugador que se incorporara
+     */
     public void agregar(Jugador jugador) {
         jugadores.add(jugador);
     }
 }
 ```
 
+**Aterrizaje Java:** el rombo hueco corresponde al lado del *todo* (`Equipo`), pero **UML no obliga a usar `ArrayList` ni a guardar una referencia en `Jugador`**. Segun las reglas del dominio, el equipo podria almacenar:
+
+| Estructura | Ventaja | Precaucion |
+| --- | --- | --- |
+| `ArrayList<Jugador>` | Orden de insercion y acceso por indice | Permite duplicados |
+| `HashSet<Jugador>` | Evita duplicados segun `equals`/`hashCode` | No garantiza orden de iteracion |
+| `HashMap<String, Jugador>` | Busca por codigo con rapidez habitual | Las claves deben ser unicas y estables |
+| Grafo | Modela relaciones complejas entre jugadores y equipos | Es excesivo para una plantilla simple |
+
+**Regla pendiente:** el ejemplo permite agregar el mismo jugador a varios equipos. La multiplicidad propuesta `0..1` solo se cumple si la aplicacion la valida. No debemos deducir reglas del negocio exclusivamente de la estructura de datos.
+
 ### Composicion
 Cardinalidad sugerida: Orden 0..* Lineas, Linea 1 Orden.
 
-```mermaid
-classDiagram
-    Orden "1" *-- "0..*" LineaPedido : lineas
-```
+![Composicion de lineas dentro de una orden](docs/uml/composicion-orden-linea.svg)
 ```java
 package ejemplo.composicion;
 
@@ -284,17 +386,31 @@ class Orden {
         this.lineas = new ArrayList<>();
     }
 
+    /**
+     * Crea una linea perteneciente a esta orden y la incorpora a sus detalles.
+     *
+     * @param producto producto solicitado
+     * @param cantidad unidades solicitadas
+     */
     public void agregarLinea(String producto, int cantidad) {
         lineas.add(new LineaPedido(producto, cantidad));
     }
 }
 ```
 
+**Aterrizaje Java:** `Orden` crea las `LineaPedido` internamente y controla la coleccion de detalles. Esto **ilustra** la composicion; la recoleccion de basura de Java no aplica por si sola una regla de negocio como "borrar todas las lineas al cancelar una orden". Esa politica se programa y se prueba.
+
 ### Dependencia
 Cardinalidad: uso temporal, no estructura fija.
 
 ```mermaid
 classDiagram
+    class Impresora {
+        +imprimir(String texto) void
+    }
+    class Reporte {
+        +generar(Impresora impresora) void
+    }
     Reporte ..> Impresora : generar()
 ```
 ```java
@@ -305,6 +421,11 @@ class Impresora {
 }
 
 class Reporte {
+    /**
+     * Genera un reporte mediante la impresora recibida para esta llamada.
+     *
+     * @param impresora servicio temporal utilizado para imprimir
+     */
     public void generar(Impresora impresora) { // dependencia: uso temporal
         impresora.imprimir("OK");
     }
@@ -315,10 +436,35 @@ class Reporte {
 }
 ```
 
+**Aterrizaje Java:** el parametro `Impresora impresora` se usa durante la llamada, pero `Reporte` no necesita conservarlo como atributo. Por eso dibujamos dependencia y no una asociacion persistente.
+
 ## Java, UML y reglas del dominio
 Java define las reglas del lenguaje; UML representa el diseño, pero **ninguno determina por sí solo las reglas del negocio**. Antes de añadir cédula, teléfono o fecha de nacimiento a `Cliente`, hay que confirmar qué necesita el cliente y qué exige o permite la normativa aplicable.
 
 Las multiplicidades mostradas son supuestos didácticos del dominio: **estos ejemplos Java no las validan automáticamente**.
+
+Para aterrizar un diagrama, haz cuatro preguntas: **que relacion representa**, **como se lee**, **que referencia o estructura la implementaria en Java** y **que regla del dominio habria que probar**. Una lista, un mapa o un grafo son opciones de implementacion, no significados universales de un rombo UML.
+
+## Operaciones, casos de uso y Javadoc
+Un **caso de uso** describe un objetivo de un actor frente al sistema (por ejemplo, inscribir un estudiante). Un **metodo** es una operacion de software; un caso de uso puede coordinar varios metodos de varias clases. No asignes un codigo `CU-04` a cada metodo por costumbre: usalo solo cuando exista un requisito rastreable.
+
+Javadoc usa comentarios `/** ... */` inmediatamente antes de la declaracion. Documenta **contratos y decisiones**, no una narracion obvia de cada linea:
+
+```java
+/**
+ * Incorpora al jugador en el equipo si las reglas de inscripcion lo permiten.
+ *
+ * @param jugador participante que solicita la incorporacion
+ * @throws IllegalStateException si el cupo del equipo esta completo
+ */
+public void inscribir(Jugador jugador) {
+    // Aqui irian la validacion de cupo y el alta efectiva.
+}
+```
+
+Este es un **ejemplo ilustrativo de contrato**, no un metodo implementado por el codigo simplificado anterior. Nunca documentes una excepcion o validacion que tu codigo realmente no realiza.
+
+En cada patron, busca primero una intuicion visible (un semaforo, un personaje, un pedido o un dispositivo), luego la relacion UML, el codigo y una prueba de su comportamiento. El ejemplo debe ayudar a comprender, no convertirse en una analogia forzada.
 
 ## Como construir un diagrama desde cero
 1) Lee el problema y subraya sustantivos: suelen ser clases.
@@ -344,3 +490,5 @@ Las multiplicidades mostradas son supuestos didácticos del dominio: **estos eje
 - Un diagrama por patron.
 - Los nombres del diagrama coinciden con el patron.
 - El UML se usa para explicar estructura, no ejecucion.
+- Los metodos publicos que definen contratos deben tener Javadoc con `@param`, `@return` y `@throws` cuando correspondan. No repitas un contrato heredado en cada `@Override` sin aportar informacion.
+- Los diagramas con cardinalidades se guardan como SVG en `docs/uml/` para que sus extremos sean legibles en GitHub; los esquemas pequeños pueden seguir en Mermaid.

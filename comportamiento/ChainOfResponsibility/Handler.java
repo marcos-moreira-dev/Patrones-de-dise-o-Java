@@ -56,9 +56,19 @@ package comportamiento.ChainOfResponsibility;
 public abstract class Handler {
     protected Handler next;
 
+    /**
+     * Define el siguiente eslabon al que podra delegarse una solicitud.
+     *
+     * @param next siguiente manejador o null si termina la cadena
+     */
     public void setNext(Handler next) {
         this.next = next;
     }
 
+    /**
+     * Procesa una solicitud o la deriva al siguiente manejador de la cadena.
+     *
+     * @param request solicitud de demostracion
+     */
     public abstract void handleRequest(String request);
 }

@@ -23,6 +23,11 @@ package estructurales.Facade;
  *  [Subsistema A] Validando pedido: Pizza Napolitana
  */
 public class SubsystemA {
+    /**
+     * Simula la etapa de validacion; no comprueba reglas reales de negocio.
+     *
+     * @param pedido descripcion de la solicitud recibida
+     */
     public void validarPedido(String pedido) {
         System.out.println("[Subsistema A] Validando pedido: " + pedido);
     }

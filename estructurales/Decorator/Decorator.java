@@ -26,6 +26,11 @@ package estructurales.Decorator;
 public abstract class Decorator implements Component {
     protected Component component;
 
+    /**
+     * Envuelve un componente compatible sin modificar su implementacion.
+     *
+     * @param component componente cuya operacion sera delegada o ampliada
+     */
     public Decorator(Component component) {
         this.component = component;
     }

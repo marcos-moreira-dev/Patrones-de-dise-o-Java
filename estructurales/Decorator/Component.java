@@ -39,5 +39,6 @@ package estructurales.Decorator;
  *  + Añadiendo extra: Queso extra.
  */
 public interface Component {
+    /** Ejecuta una operacion que puede envolverse con responsabilidades adicionales. */
     void operation();
 }
