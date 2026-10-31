@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="424" viewBox="0 0 1060 424" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Adapter: contrato de azar con Random de Java</title>
+  <desc id="descripcion">AzarJava realiza FuenteAzar por línea discontinua y guarda una referencia a exactamente un Random. El mismo Random podría ser compartido por varios adaptadores.</desc>
+  <style>
+    .c{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
+    .d{stroke:#3972bf;stroke-width:1.5}
+    .n{fill:#152238;font:bold 23px Arial,sans-serif;text-anchor:middle}
+    .s{fill:#40526b;font:italic 17px Arial,sans-serif;text-anchor:middle}
+    .t{fill:#202936;font:19px Arial,sans-serif}
+    .l{fill:none;stroke:#202936;stroke-width:2.8}
+    .r{stroke-dasharray:9 7}
+    .h{fill:white;stroke:#202936;stroke-width:2.8}
+    .m{fill:#202936;font:bold 18px Arial,sans-serif}
+  </style>
+  <rect class="c" x="36" y="25" width="390" height="150" rx="3"/>
+  <text class="n" x="231" y="60">FuenteAzar</text>
+  <text class="s" x="231" y="85">«interface»</text>
+  <line class="d" x1="36" y1="100" x2="426" y2="100"/>
+  <text class="t" x="53" y="137">+ siguiente(limite: int): int</text>
+  <rect class="c" x="677" y="25" width="345" height="150" rx="3"/>
+  <text class="n" x="850" y="60">AzarJava</text>
+  <line class="d" x1="677" y1="100" x2="1022" y2="100"/>
+  <text class="t" x="695" y="137">- random: Random</text>
+  <line class="l r" x1="677" y1="104" x2="464" y2="104"/>
+  <path class="h" d="M426 104 L463 86 L463 122 Z"/>
+  <rect class="c" x="677" y="275" width="345" height="116" rx="3"/>
+  <text class="n" x="850" y="313">java.util.Random</text>
+  <line class="d" x1="677" y1="335" x2="1022" y2="335"/>
+  <text class="t" x="695" y="363">+ nextInt(bound: int): int</text>
+  <line class="l" x1="850" y1="175" x2="850" y2="275"/>
+  <path class="l" d="M837 257 L850 275 L863 257"/>
+  <text class="m" x="862" y="196">0..*</text>
+  <text class="m" x="862" y="264">1</text>
+  <text class="t" x="878" y="231">delega</text>
+</svg>

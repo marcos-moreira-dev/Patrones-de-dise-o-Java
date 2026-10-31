@@ -1,8 +1,10 @@
 package arena.aplicacion;
 
 import arena.dominio.Accion;
+import arena.dominio.EventoCombate;
 import arena.dominio.MotorCombate;
 import arena.dominio.Partida;
+import arena.dominio.ReglasAccion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,17 +17,11 @@ import java.util.Optional;
 public final class ServicioPartida {
     private final Partida partida;
     private final MotorCombate motor;
-    private final List<ReglasAccion.Regla> reglas;
     private final List<ObservadorPartida> observadores = new ArrayList<>();
 
     public ServicioPartida(Partida partida, MotorCombate motor) {
-        this(partida, motor, ReglasAccion.porDefecto());
-    }
-
-    public ServicioPartida(Partida partida, MotorCombate motor, List<ReglasAccion.Regla> reglas) {
         this.partida = Objects.requireNonNull(partida);
         this.motor = Objects.requireNonNull(motor);
-        this.reglas = List.copyOf(reglas);
     }
 
     public Partida partida() {
@@ -46,14 +42,12 @@ public final class ServicioPartida {
      */
     public ResultadoAccion ejecutar(Accion accion) {
         Objects.requireNonNull(accion);
-        for (ReglasAccion.Regla regla : reglas) {
-            Optional<String> rechazo = regla.revisar(partida, accion);
-            if (rechazo.isPresent()) {
-                return new ResultadoAccion.Rechazada(rechazo.get());
-            }
+        Optional<String> rechazo = ReglasAccion.impedimento(partida, accion);
+        if (rechazo.isPresent()) {
+            return new ResultadoAccion.Rechazada(rechazo.get());
         }
-        List<String> eventos = motor.resolver(partida, accion);
-        for (String evento : eventos) {
+        List<EventoCombate> eventos = motor.resolver(partida, accion);
+        for (EventoCombate evento : eventos) {
             for (ObservadorPartida observador : observadores) {
                 observador.alOcurrir(evento);
             }

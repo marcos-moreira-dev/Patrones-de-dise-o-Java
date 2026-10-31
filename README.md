@@ -8,7 +8,10 @@ Los ejemplos están organizados por tipo de patrón:
 * 🧱 **Estructurales** → Componen clases y objetos.
 * ⚙️ **De comportamiento** → Gestionan la comunicación entre objetos.
 
-El proyecto **no utiliza Maven ni Gradle intencionalmente**, para facilitar la compilación directa desde consola y concentrarse en los conceptos fundamentales.
+Los ejemplos clásicos **no utilizan Maven ni Gradle**, para facilitar la
+compilación directa desde consola. Arena Java mantiene esa posibilidad y
+añade un `pom.xml` **opcional**, documentado, para estudiar también las
+fases de construcción con Maven sin introducir frameworks.
 
 ### Cómo estudiar este laboratorio
 
@@ -29,7 +32,9 @@ independiente de los ejemplos clásicos.
 
 Los comentarios de clase conservan el contexto del patrón; los comentarios de método priorizan contratos, invariantes y decisiones relevantes. Los ejemplos domésticos, lúdicos o empresariales se utilizan cuando aclaran la idea, no como una plantilla repetitiva.
 
-Cada pull request ejecuta una comprobación automática con **Java 21**: compilación de los ejemplos y generación de Javadoc. El proyecto sigue sin necesitar Maven ni Gradle.
+Cada pull request ejecuta una comprobación automática con **Java 21**:
+compilación de los ejemplos, pruebas de Arena, construcción Maven opcional
+y generación de Javadoc. Los ejemplos antiguos siguen sin requerir Maven.
 
 ---
 
@@ -138,7 +143,7 @@ java -cp out Main
   * pruebas rápidas
   * demostraciones
   * enseñanza
-* Si en el futuro se migra a Maven/Gradle, los paquetes serán obligatorios.
+* Los paquetes son una característica de Java; no dependen de Maven ni Gradle.
 
 ---
 

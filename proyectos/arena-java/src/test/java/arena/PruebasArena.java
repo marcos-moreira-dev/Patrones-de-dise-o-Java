@@ -4,6 +4,7 @@ import arena.aplicacion.Comandos;
 import arena.aplicacion.ResultadoAccion;
 import arena.aplicacion.ServicioPartida;
 import arena.dominio.Accion;
+import arena.dominio.EventoCombate;
 import arena.dominio.Jugador;
 import arena.dominio.MotorCombate;
 import arena.dominio.Partida;
@@ -33,6 +34,7 @@ public final class PruebasArena {
 
     public static void main(String[] args) {
         condicionesDeArena();
+        fronteraDelDominio();
         combateEnBosque();
         energiaYEspecial();
         defensa();
@@ -59,6 +61,27 @@ public final class PruebasArena {
                 "Arena prohibe saltar");
         comprobar(servicio.partida().turno() == 1, "Los rechazos no consumen turno");
         comprobar(servicio.partida().heroe().vida() == 20, "Rechazo sin daño");
+    }
+
+    private static void fronteraDelDominio() {
+        ServicioPartida servicio = partida(new ReglasArena(), 20, 2, 20);
+        MotorCombate motor = new MotorCombate(limite -> 0);
+        try {
+            motor.resolver(servicio.partida(), Accion.HUIR);
+            throw new AssertionError("Se pudo eludir el reglamento llamando directamente al motor");
+        } catch (IllegalStateException esperado) {
+            comprobaciones++;
+        }
+        try {
+            motor.resolver(servicio.partida(), Accion.ESPECIAL);
+            throw new AssertionError("Se pudo omitir la validacion de energia");
+        } catch (IllegalStateException esperado) {
+            comprobaciones++;
+        }
+        comprobar(servicio.partida().estado() == Partida.Estado.ACTIVA,
+                "Una llamada directa invalida no cambia el resultado");
+        comprobar(servicio.partida().heroe().energia() == 2,
+                "Una llamada directa invalida no gasta recursos");
     }
 
     private static void combateEnBosque() {
@@ -127,12 +150,15 @@ public final class PruebasArena {
 
     private static void observadores() {
         ServicioPartida servicio = partida(new ReglasArena(), 20, 6, 20);
-        List<String> eventos = new ArrayList<>();
+        List<EventoCombate> eventos = new ArrayList<>();
         servicio.suscribir(eventos::add);
         servicio.ejecutar(Accion.HUIR);
         comprobar(eventos.isEmpty(), "Un rechazo no publica eventos");
         servicio.ejecutar(Accion.ATACAR);
         comprobar(eventos.size() == 2, "Observer recibe ataque y respuesta");
+        comprobar(eventos.get(0).tipo() == EventoCombate.Tipo.ATAQUE
+                && eventos.get(1).tipo() == EventoCombate.Tipo.RESPUESTA,
+                "Los observadores reciben tipos sin analizar cadenas");
     }
 
     private static void invariantes() {
@@ -165,6 +191,13 @@ public final class PruebasArena {
                 StandardCharsets.UTF_8)).iniciar();
         comprobar(consola.toString(StandardCharsets.UTF_8).contains("Resultado final: HUIDA"),
                 "La consola permite elegir bosque y huir");
+
+        ByteArrayOutputStream finEntrada = new ByteArrayOutputStream();
+        new ConsolaArena(new Scanner("2\n"), new PrintStream(finEntrada, true,
+                StandardCharsets.UTF_8)).iniciar();
+        String texto = finEntrada.toString(StandardCharsets.UTF_8);
+        comprobar(texto.contains("Entrada finalizada") && !texto.contains("Resultado final: ACTIVA"),
+                "EOF interrumpe sin anunciar un resultado falso");
     }
 
     private static void comprobar(boolean condicion, String descripcion) {

@@ -20,6 +20,8 @@ jobs:
           find . -name '*.java' -not -path './.git/*' -print0 | xargs -0 javac -encoding UTF-8 -d out
       - name: Probar Arena Java
         run: java -cp out arena.PruebasArena
+      - name: Construir y probar Arena con Maven (opcional para usuarios)
+        run: mvn -B -ntp -f proyectos/arena-java/pom.xml clean verify
       - name: Generar documentacion Javadoc
         run: |
           mkdir -p out/javadoc

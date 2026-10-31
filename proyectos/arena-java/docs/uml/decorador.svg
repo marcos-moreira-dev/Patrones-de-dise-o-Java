@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="565" viewBox="0 0 1100 565" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Decorator: ataque básico, decorador y ataque potenciado</title>
+  <desc id="descripcion">AtaqueBasico y AtaqueDecorado realizan la interfaz Ataque mediante líneas discontinuas; AtaquePotenciado hereda de AtaqueDecorado mediante línea continua. AtaqueDecorado contiene una referencia original de tipo Ataque.</desc>
+  <style>
+    .c{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
+    .d{stroke:#3972bf;stroke-width:1.5}
+    .n{fill:#152238;font:bold 23px Arial,sans-serif;text-anchor:middle}
+    .s{fill:#40526b;font:italic 17px Arial,sans-serif;text-anchor:middle}
+    .t{fill:#202936;font:19px Arial,sans-serif}
+    .l{fill:none;stroke:#202936;stroke-width:2.8}
+    .r{stroke-dasharray:9 7}
+    .h{fill:white;stroke:#202936;stroke-width:2.8}
+  </style>
+  <rect class="c" x="385" y="15" width="330" height="145" rx="3"/>
+  <text class="n" x="550" y="44">Ataque</text>
+  <text class="s" x="550" y="70">«interface»</text>
+  <line class="d" x1="385" y1="82" x2="715" y2="82"/>
+  <text class="t" x="400" y="109">+ danio(): int</text>
+  <text class="t" x="400" y="138">+ descripcion(): String</text>
+  <rect class="c" x="70" y="240" width="360" height="135" rx="3"/>
+  <text class="n" x="250" y="274">AtaqueBasico</text>
+  <text class="s" x="250" y="300">«record»</text>
+  <line class="d" x1="70" y1="313" x2="430" y2="313"/>
+  <text class="t" x="87" y="348">- danio: int</text>
+  <rect class="c" x="680" y="240" width="360" height="135" rx="3"/>
+  <text class="n" x="860" y="274">AtaqueDecorado</text>
+  <text class="s" x="860" y="300">«abstract»</text>
+  <line class="d" x1="680" y1="313" x2="1040" y2="313"/>
+  <text class="t" x="698" y="348">- original: Ataque [1]</text>
+  <rect class="c" x="680" y="452" width="360" height="88" rx="3"/>
+  <text class="n" x="860" y="485">AtaquePotenciado</text>
+  <line class="d" x1="680" y1="499" x2="1040" y2="499"/>
+  <text class="t" x="698" y="525">- adicional: int</text>
+  <line class="l r" x1="250" y1="240" x2="465" y2="192"/>
+  <path class="h" d="M465 160 L448 190 L482 190 Z"/>
+  <line class="l r" x1="860" y1="240" x2="635" y2="192"/>
+  <path class="h" d="M635 160 L618 190 L652 190 Z"/>
+  <line class="l" x1="860" y1="452" x2="860" y2="405"/>
+  <path class="h" d="M860 375 L843 404 L877 404 Z"/>
+</svg>

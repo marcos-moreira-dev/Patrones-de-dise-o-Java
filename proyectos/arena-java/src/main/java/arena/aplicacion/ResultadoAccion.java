@@ -1,5 +1,6 @@
 package arena.aplicacion;
 
+import arena.dominio.EventoCombate;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ public sealed interface ResultadoAccion
         permits ResultadoAccion.Ejecutada, ResultadoAccion.Rechazada {
 
     /** Orden válida con sus acontecimientos. */
-    record Ejecutada(List<String> eventos) implements ResultadoAccion {
+    record Ejecutada(List<EventoCombate> eventos) implements ResultadoAccion {
         public Ejecutada {
             eventos = List.copyOf(eventos);
         }

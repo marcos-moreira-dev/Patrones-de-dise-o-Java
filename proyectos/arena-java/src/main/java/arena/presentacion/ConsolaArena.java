@@ -43,7 +43,7 @@ public final class ConsolaArena {
         Partida partida = new Partida(heroe, rival, escenario);
         ServicioPartida servicio = new ServicioPartida(partida, new MotorCombate(new AzarJava()));
         // Observer: la interfaz escucha, pero el dominio no sabe que existe una consola.
-        servicio.suscribir(texto -> salida.println("  * " + texto));
+        servicio.suscribir(evento -> salida.println("  * " + evento.mensaje()));
         salida.println(escenario.descripcion());
 
         while (partida.activa() && entrada.hasNextLine()) {
@@ -68,8 +68,12 @@ public final class ConsolaArena {
                 }
             }
         }
-        renderizador.dibujar(partida, salida);
-        salida.println("Resultado final: " + partida.estado());
+        if (partida.activa()) {
+            salida.println("Entrada finalizada. Partida interrumpida sin resultado.");
+        } else {
+            renderizador.dibujar(partida, salida);
+            salida.println("Resultado final: " + partida.estado());
+        }
     }
 
     private ReglasEscenario elegirEscenario() {

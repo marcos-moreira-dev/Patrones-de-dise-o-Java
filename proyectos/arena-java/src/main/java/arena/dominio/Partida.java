@@ -57,7 +57,7 @@ public final class Partida {
      * @throws IllegalArgumentException si se intenta usar ACTIVA como resultado
      * @throws IllegalStateException si la partida ya finalizó
      */
-    public void finalizar(Estado nuevoEstado) {
+    void finalizar(Estado nuevoEstado) {
         if (nuevoEstado == null || nuevoEstado == Estado.ACTIVA) {
             throw new IllegalArgumentException("Se requiere un estado terminal");
         }
@@ -68,7 +68,7 @@ public final class Partida {
     }
 
     /** Avanza el turno únicamente si la partida permanece activa. */
-    public void avanzarTurno() {
+    void avanzarTurno() {
         if (!activa()) {
             throw new IllegalStateException("No puede avanzar una partida terminada");
         }

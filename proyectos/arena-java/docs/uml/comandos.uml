@@ -1,0 +1,15 @@
+@startuml
+title Command: acciones del jugador
+skinparam classAttributeIconSize 0
+interface Comando {
+  + ejecutar(servicio: ServicioPartida): ResultadoAccion
+}
+class "Comandos.Atacar" as Atacar <<record>>
+class "Comandos.Huir" as Huir <<record>>
+Comando <|.. Atacar
+Comando <|.. Huir
+note right of Comando
+  Defender, Especial y Saltar
+  realizan el mismo contrato.
+end note
+@enduml

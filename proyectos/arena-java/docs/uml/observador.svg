@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="264" viewBox="0 0 1060 264" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Observer: ServicioPartida conoce observadores</title>
+  <desc id="descripcion">Asociación navegable desde ServicioPartida a cero o muchos ObservadorPartida. Un observador también puede registrarse en varios servicios. La flecha abierta indica navegación, no multiplicidad.</desc>
+  <style>
+    .c{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
+    .d{stroke:#3972bf;stroke-width:1.5}
+    .n{fill:#152238;font:bold 23px Arial,sans-serif;text-anchor:middle}
+    .s{fill:#40526b;font:italic 17px Arial,sans-serif;text-anchor:middle}
+    .t{fill:#202936;font:16px Arial,sans-serif}
+    .l{fill:none;stroke:#202936;stroke-width:2.8}
+    .m{fill:#202936;font:bold 18px Arial,sans-serif}
+  </style>
+  <rect class="c" x="35" y="24" width="390" height="210" rx="3"/>
+  <text class="n" x="230" y="58">ServicioPartida</text>
+  <line class="d" x1="35" y1="79" x2="425" y2="79"/>
+  <text class="t" x="53" y="113">- observadores: List&lt;ObservadorPartida&gt;</text>
+  <line class="d" x1="35" y1="146" x2="425" y2="146"/>
+  <text class="t" x="53" y="180">+ suscribir(o): void</text>
+  <rect class="c" x="650" y="24" width="375" height="210" rx="3"/>
+  <text class="n" x="838" y="58">ObservadorPartida</text>
+  <text class="s" x="838" y="82">«interface»</text>
+  <line class="d" x1="650" y1="99" x2="1025" y2="99"/>
+  <line class="d" x1="650" y1="146" x2="1025" y2="146"/>
+  <text class="t" x="665" y="180">+ alOcurrir(e: EventoCombate): void</text>
+  <line class="l" x1="425" y1="141" x2="650" y2="141"/>
+  <path class="l" d="M631 128 L650 141 L631 154"/>
+  <text class="m" x="436" y="127">0..*</text>
+  <text class="m" x="598" y="127">0..*</text>
+  <text class="t" x="501" y="179">notifica</text>
+</svg>
