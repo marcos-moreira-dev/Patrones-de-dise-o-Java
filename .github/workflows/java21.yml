@@ -22,10 +22,8 @@ jobs:
         run: java -cp out arena.PruebasArena
       - name: Probar MiniSO
         run: java -cp out miniso.PruebasMiniSO
-      - name: Construir y probar Arena con Maven (opcional para usuarios)
-        run: mvn -B -ntp -f proyectos/arena-java/pom.xml clean verify
-      - name: Construir y probar MiniSO con Maven (opcional para usuarios)
-        run: mvn -B -ntp -f proyectos/miniso/pom.xml clean verify
+      - name: Verificar ambos proyectos y JAR ejecutables
+        run: bash scripts/verificar.sh
       - name: Generar documentacion Javadoc
         run: |
           mkdir -p out/javadoc

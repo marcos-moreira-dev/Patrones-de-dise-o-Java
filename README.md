@@ -45,6 +45,21 @@ compilación de los ejemplos, pruebas de Arena Java y MiniSO, construcción
 Maven opcional de ambos y generación de Javadoc. Los ejemplos antiguos
 siguen sin requerir Maven.
 
+### Flujo profesional y pruebas reproducibles
+
+La [guía para contribuir](CONTRIBUTING.md) explica preparación, pruebas,
+revisión de PR y **criterios de terminado**. En Git Bash, desde la raíz del
+repositorio, basta este comando para construir y probar ambos microproyectos
+y comprobar que sus JAR arrancan:
+
+```bash
+bash scripts/verificar.sh
+```
+
+MiniSO también permite ejecutar `metricas` y `comparar` para estudiar
+con números la espera, respuesta, retorno y alternancia de procesos con
+FCFS, Round Robin y prioridad. Son **ticks simulados**, no benchmarks del PC.
+
 ---
 
 ## 📁 Estructura del proyecto

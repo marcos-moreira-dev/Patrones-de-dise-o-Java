@@ -11,17 +11,33 @@ import miniso.dominio.Proceso;
 /**
  * Coordina casos de uso: admisión, tick de CPU, E/S y contabilidad de memoria.
  * No crea hilos, no gestiona la RAM real ni modifica procesos del ordenador.
- * Cada tick cuesta O(B + coste de planificar), con B procesos bloqueados.
+ * Cada tick cuesta O(P + coste de planificar), con P procesos registrados.
  */
 public final class SimuladorSO {
     private final Planificador planificador;
     private final int capacidadKiB;
     private final Map<Long, Proceso> procesos = new LinkedHashMap<>();
+    private final Map<Long, Medicion> mediciones = new LinkedHashMap<>();
     private int memoriaUsadaKiB;
     private long siguientePid = 1;
     private long reloj;
     private Proceso ejecutando;
     private int ticksConsecutivos;
+    private long ultimoPidEnTick;
+    private long cambiosDeProceso;
+    private long ticksCpuOcupados;
+
+    /** Contadores internos: el dominio Proceso no necesita conocer estadísticas. */
+    private static final class Medicion {
+        final long llegada;
+        long primerCpu = -1;
+        long fin = -1;
+        long cpu;
+        long listo;
+        long io;
+
+        Medicion(long llegada) { this.llegada = llegada; }
+    }
 
     public SimuladorSO(Planificador planificador, int capacidadKiB) {
         this.planificador = Objects.requireNonNull(planificador, "planificador");
@@ -34,6 +50,8 @@ public final class SimuladorSO {
     public int capacidadKiB() { return capacidadKiB; }
     public int memoriaUsadaKiB() { return memoriaUsadaKiB; }
     public long pidEnCpu() { return ejecutando == null ? 0 : ejecutando.pid(); }
+    public long cambiosDeProceso() { return cambiosDeProceso; }
+    public long ticksCpuOcupados() { return ticksCpuOcupados; }
 
     /**
      * CU-SO01: admite un trabajo solo si tiene datos válidos y cabe en memoria.
@@ -54,6 +72,7 @@ public final class SimuladorSO {
         proceso.ponerListo();
         planificador.admitir(proceso);
         procesos.put(proceso.pid(), proceso);
+        mediciones.put(proceso.pid(), new Medicion(reloj));
         memoriaUsadaKiB += memoriaKiB;
         return new ResultadoAlta(true, proceso.pid(), "PID " + proceso.pid() + " admitido en LISTO");
     }
@@ -69,14 +88,29 @@ public final class SimuladorSO {
             ticksConsecutivos = 0;
             if (ejecutando != null) ejecutando.comenzarCpu();
         }
+        // Espera de cola = un tick en LISTO sin recibir CPU. El proceso que
+        // termina E/S al final del tick empieza a esperar desde el siguiente.
+        for (Proceso proceso : procesos.values()) {
+            if (proceso.estado() == EstadoProceso.LISTO) {
+                mediciones.get(proceso.pid()).listo++;
+            }
+        }
         EventoTick evento;
         if (ejecutando == null) {
             evento = new EventoTick(reloj, EventoTick.Tipo.OCIOSO, 0, "CPU ociosa");
+            ultimoPidEnTick = 0;
         } else {
             Proceso proceso = ejecutando;
+            Medicion medicion = mediciones.get(proceso.pid());
+            if (medicion.primerCpu < 0) medicion.primerCpu = reloj;
+            if (ultimoPidEnTick != 0 && ultimoPidEnTick != proceso.pid()) cambiosDeProceso++;
+            ultimoPidEnTick = proceso.pid();
+            medicion.cpu++;
+            ticksCpuOcupados++;
             proceso.consumirCpu();
             ticksConsecutivos++;
             if (proceso.estado() == EstadoProceso.TERMINADO) {
+                medicion.fin = reloj;
                 memoriaUsadaKiB -= proceso.memoriaKiB();
                 evento = new EventoTick(reloj, EventoTick.Tipo.FINALIZACION,
                         proceso.pid(), "PID " + proceso.pid() + " termino y libero memoria");
@@ -85,7 +119,8 @@ public final class SimuladorSO {
             } else {
                 boolean rotacion = planificador.debeCederCpu(ticksConsecutivos);
                 evento = new EventoTick(reloj, EventoTick.Tipo.EJECUCION, proceso.pid(),
-                        "PID " + proceso.pid() + ": " + proceso.cpuRestante() + " ticks restantes"
+                        "PID " + proceso.pid() + ": " + proceso.cpuRestante()
+                        + (proceso.cpuRestante() == 1 ? " tick restante" : " ticks restantes")
                         + (rotacion ? " (fin del quantum)" : ""));
                 if (rotacion) {
                     proceso.ponerListo();
@@ -97,9 +132,12 @@ public final class SimuladorSO {
         }
         // Las E/S avanzan en paralelo con la CPU, nunca consumen un tick de ella.
         for (Proceso proceso : procesos.values()) {
-            if (proceso.estado() == EstadoProceso.BLOQUEADO && proceso.avanzarIo()) {
-                proceso.ponerListo();
-                planificador.admitir(proceso);
+            if (proceso.estado() == EstadoProceso.BLOQUEADO) {
+                mediciones.get(proceso.pid()).io++;
+                if (proceso.avanzarIo()) {
+                    proceso.ponerListo();
+                    planificador.admitir(proceso);
+                }
             }
         }
         return evento;
@@ -126,5 +164,19 @@ public final class SimuladorSO {
                     p.prioridad(), p.memoriaKiB(), p.esperaIo()));
         }
         return List.copyOf(vistas);
+    }
+
+    /**
+     * CU-SO09: publica métricas sin entregar contadores mutables a la consola.
+     * Respuesta = primer tick de CPU - llegada - 1; retorno = fin - llegada.
+     */
+    public List<EstadisticaProceso> estadisticas() {
+        List<EstadisticaProceso> resultado = new ArrayList<>();
+        for (Proceso proceso : procesos.values()) {
+            Medicion m = mediciones.get(proceso.pid());
+            resultado.add(new EstadisticaProceso(proceso.pid(), proceso.nombre(), proceso.estado(),
+                    m.llegada, m.primerCpu, m.fin, m.cpu, m.listo, m.io));
+        }
+        return List.copyOf(resultado);
     }
 }
