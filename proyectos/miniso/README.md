@@ -18,8 +18,10 @@ quieres ejecutar un reproductor de música, un editor y un videojuego.
 Cada proceso tiene cierto trabajo de CPU, prioridad y memoria reservada.
 La pregunta de dominio es: **¿quién utiliza la CPU cuando hay varios listos?**
 
-Ejecuta `java -cp out miniso.presentacion.MiniSO` tras compilar, elige
-`2` (Round Robin), y escribe:
+Ejecuta `java -cp out miniso.presentacion.MiniSO` tras compilar. Primero
+**elige una política**: `1` (FCFS), `2` (Round Robin) o `3` (prioridad).
+Una opción distinta se rechaza y vuelve a solicitar la política; todavía
+**no se aceptan comandos `crear`**. Cuando hayas seleccionado `2`, escribe:
 
 ```text
 crear musica 4 2 8

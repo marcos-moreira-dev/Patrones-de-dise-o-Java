@@ -321,5 +321,24 @@ public final class PruebasMiniSO {
         verificar(texto.contains("RESPUESTA | RETORNO"), "metricas accesibles por consola");
         verificar(texto.contains("ESPERA MEDIA | RESPUESTA MEDIA"), "comparacion accesible por consola");
         verificar(texto.contains("Nada del SO anfitrion"), "salida segura");
+
+        ByteArrayOutputStream errores = new ByteArrayOutputStream();
+        String guionErroneo = "crear editor 6 2 8\n2\ncrear demo 1 5 4\nps\ntick\nsalir\n";
+        new ConsolaMiniSO(new Scanner(guionErroneo),
+                new PrintStream(errores, true, StandardCharsets.UTF_8)).iniciar();
+        String salidaCorregida = errores.toString(StandardCharsets.UTF_8);
+        verificar(salidaCorregida.contains("Opcion invalida: elige 1, 2 o 3"),
+                "una orden antes de elegir politica se rechaza de forma explicita");
+        verificar(salidaCorregida.contains("Politica: Round Robin (q=2)"),
+                "la opcion valida posterior determina la politica");
+        verificar(salidaCorregida.contains("PID 1 admitido")
+                && !salidaCorregida.contains("| editor |"),
+                "el rechazo de la seleccion no crea procesos ocultos");
+
+        ByteArrayOutputStream fin = new ByteArrayOutputStream();
+        new ConsolaMiniSO(new Scanner("opcion-invalida\n"),
+                new PrintStream(fin, true, StandardCharsets.UTF_8)).iniciar();
+        verificar(fin.toString(StandardCharsets.UTF_8).contains("Entrada finalizada sin iniciar"),
+                "EOF durante la seleccion no crea simulacion ni lanza excepcion");
     }
 }

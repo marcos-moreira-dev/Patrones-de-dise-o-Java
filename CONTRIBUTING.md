@@ -39,13 +39,14 @@ bash scripts/verificar.sh
 ```
 
 Este comando **no modifica el SO real**. Comprueba que Java y Maven usan
-JDK 21; después compila, ejecuta las suites de Arena y MiniSO, construye
-los dos JAR y prueba automáticamente que arrancan y responden a comandos.
+JDK 21; compila y ejecuta el menú de los patrones clásicos (incluida una
+entrada inválida), ejecuta las suites de Arena y MiniSO, construye los dos
+JAR y prueba automáticamente que arrancan y responden a comandos.
 
 El resultado final esperado es:
 
 ```text
-VERIFICACION COMPLETA: 2 proyectos, 2 suites de pruebas y 2 pruebas de arranque correctas.
+VERIFICACION COMPLETA: 22 patrones clasicos, 2 microproyectos, 2 suites y 3 pruebas de consola correctas.
 ```
 
 Un comando que termina con código **0** significa que no se detectaron
@@ -77,6 +78,7 @@ directa con `javac` en su respectivo `BUILD.md`.
 | Algoritmos | FIFO/heap frente a oráculos de JDK | `miniso.PruebasMiniSO` | Orden y desempates coinciden |
 | Métricas | Espera, respuesta, retorno y alternancias | `miniso.PruebasMiniSO` | Valores coinciden con cálculo manual |
 | Integración | CLI → aplicación → dominio | `bash scripts/verificar.sh` | Dos JAR arrancan y responden |
+| Patrones clásicos | Menú de los 22 patrones y entradas inválidas | `bash scripts/verificar.sh` | Tres categorías se ejecutan sin excepción |
 | Documentación | UML/SVG y contratos | GitHub Actions / inspección visual | Enlaces legibles y Javadoc generado |
 | Usabilidad | Persona real ejecuta el proyecto | Git Bash, dos `java -jar` | Puede completar una partida y un escenario MiniSO |
 

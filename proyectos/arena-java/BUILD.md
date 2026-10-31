@@ -177,8 +177,18 @@ pertenecen a flujos distintos.
 
 El archivo `.github/workflows/java21.yml` usa Java 21 para compilar todos
 los ejemplos directamente, ejecutar `arena.PruebasArena`, construir con
-`mvn clean verify` y generar Javadoc. Así se comprueban **ambas rutas**
-incluso si el equipo local todavía no tiene ese JDK.
+`mvn clean verify` y generar Javadoc. También ejecuta el mismo guion que
+utilizamos localmente desde la raíz:
+
+```bash
+bash scripts/verificar.sh
+```
+
+Este comando comprueba el menú de patrones clásicos (incluida una entrada
+inválida), las dos suites de pruebas, ambos JAR y sus arranques de consola.
+Así se comprueban **ambas rutas de compilación** incluso si el equipo local
+todavía no tiene ese JDK. Consulta la rutina completa en
+[CONTRIBUTING.md](../../CONTRIBUTING.md).
 
 MiniSO conserva el mismo criterio en un proyecto separado: consulta
 [su guía de construcción](../miniso/BUILD.md) para compilar y probar CPU,

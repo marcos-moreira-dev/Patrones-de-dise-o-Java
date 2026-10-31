@@ -56,11 +56,13 @@ public class App {
         comportamiento.probarVisitor();
     }
 
-    /** Gestiona el menu de texto hasta que el usuario selecciona salir. */
+    /**
+     * Gestiona el menú textual sin abortar ante letras, números inválidos o EOF.
+     * Una entrada rechazada no ejecuta patrones; vuelve a pedir una opción.
+     */
     public void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
-        int opcion;
-        do {
+        while (true) {
             System.out.println("\n==============================");
             System.out.println("  MENÚ PRINCIPAL - PATRONES DE DISEÑO");
             System.out.println("==============================");
@@ -69,16 +71,28 @@ public class App {
             System.out.println("3. Patrones de Comportamiento");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
-            opcion = sc.nextInt();
+            if (!sc.hasNextLine()) {
+                System.out.println("Entrada finalizada. Saliendo del programa...");
+                return;
+            }
+            int opcion;
+            try {
+                opcion = Integer.parseInt(sc.nextLine().strip());
+            } catch (NumberFormatException e) {
+                System.out.println("Opción inválida. Escribe 0, 1, 2 o 3.");
+                continue;
+            }
 
             switch (opcion) {
                 case 1 -> ejecutarCreacionales();
                 case 2 -> ejecutarEstructurales();
                 case 3 -> ejecutarComportamiento();
-                case 0 -> System.out.println("Saliendo del programa...");
+                case 0 -> {
+                    System.out.println("Saliendo del programa...");
+                    return;
+                }
                 default -> System.out.println("Opción inválida.");
             }
-        } while (opcion != 0);
-        sc.close();
+        }
     }
 }
