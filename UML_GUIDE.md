@@ -18,24 +18,16 @@ Dentro de la clase se muestran:
 - Atributos: datos que tiene la clase.
 - Metodos: acciones que la clase puede hacer.
 
+Un diagrama de clase se parece a una **ficha o formulario del concepto**: permite ver que datos y operaciones tiene. Pero una clase Java no deberia convertirse siempre en un simple formulario con getters y setters. Por ejemplo, `Jugador.recibirDanio(puntos)` puede proteger la regla de que la vida nunca sea negativa. Si todos los datos se exponen y las reglas se mueven a otra clase, podemos terminar en el mal olor *Data Class* (un objeto que solo transporta datos sin responsabilidad propia). Eso no convierte a todos los objetos de datos en un error: un `record ResultadoAtaque(int danio, boolean critico)` puede ser un buen resultado inmutable de una operacion.
+
 ### Interfaz
 Define un contrato. En Java puede declarar metodos abstractos, `default`, `static` y privados, ademas de constantes; no es simplemente una clase sin codigo.
 
 La realizacion se dibuja con **linea discontinua y triangulo hueco** hacia la interfaz. La alternativa compacta es el **circulo (lollipop)** que representa una interfaz proporcionada:
 
-```mermaid
-classDiagram
-    class Notificador {
-        <<interface>>
-        +enviar(String mensaje) void
-    }
-    Notificador <|.. NotificadorEmail
-```
+![NotificadorEmail implementa Notificador: linea discontinua y triangulo hueco](docs/uml/notificador-interfaz.svg)
 
-```mermaid
-classDiagram
-    Notificador ()-- NotificadorEmail
-```
+![Notificador como interfaz proporcionada en notacion lollipop](docs/uml/notificador-lollipop.svg)
 
 En ambos casos, `NotificadorEmail implements Notificador`. El circulo no es otra clase: muestra el contrato ofrecido.
 
@@ -43,29 +35,14 @@ En ambos casos, `NotificadorEmail implements Notificador`. El circulo no es otra
 Es una clase que no se instancia directamente. Sirve como base para otras clases.
 Puede tener metodos abstractos y metodos concretos.
 
-```mermaid
-classDiagram
-    class Figura {
-        <<abstract>>
-        +calcularArea() double*
-    }
-    Figura <|-- Circulo
-```
+![Circulo hereda de la clase abstracta Figura](docs/uml/figura-abstracta.svg)
 
-En Java: `abstract class Figura` y `class Circulo extends Figura`. El `*` al final de la operacion es la marca de abstracto en Mermaid.
+En Java: `abstract class Figura` y `class Circulo extends Figura`. La marca `«abstract»` identifica a la clase abstracta; `calcularArea()` se declara sin cuerpo en `Figura`.
 
 ### Enumeracion (`enum`)
 Representa un **conjunto cerrado de valores** de un dominio, por ejemplo, estados permitidos de un pedido.
 
-```mermaid
-classDiagram
-    class EstadoPedido {
-        <<enumeration>>
-        PENDIENTE
-        PAGADO
-        CANCELADO
-    }
-```
+![Enumeracion EstadoPedido con sus tres valores](docs/uml/estado-pedido-enum.svg)
 
 ```java
 enum EstadoPedido { PENDIENTE, PAGADO, CANCELADO }
@@ -82,16 +59,7 @@ record PedidoResumen(long id, EstadoPedido estado) {}
 
 Puede representarse como una clase con sus atributos y accesores. Usaremos `«record»` solo como **convencion explicita de este repositorio**, porque UML no define un simbolo propio estandar para el `record` de Java.
 
-```mermaid
-classDiagram
-    class PedidoResumen {
-        <<record>>
-        -long id
-        -EstadoPedido estado
-        +id() long
-        +estado() EstadoPedido
-    }
-```
+![PedidoResumen representado como record con campos y accesores](docs/uml/pedido-resumen-record.svg)
 
 Si un metodo devuelve `PedidoResumen`, escribimos `+resumen(): PedidoResumen` en su clase. Si queremos destacar el uso temporal, podemos dibujar una dependencia `..>`. **El tipo `record` no determina la flecha**.
 
@@ -108,58 +76,37 @@ Para recordar: el signo te dice quien puede acceder a un atributo o metodo.
 Una clase hija hereda de una clase padre.
 Ejemplo mental: "Perro es un Animal".
 
-```mermaid
-classDiagram
-    Animal <|-- Perro
-```
+![Perro hereda de Animal](docs/uml/animal-perro.svg)
 
 ### Implementacion (cumple-un-contrato)
 Una clase cumple una interfaz.
-Ejemplo mental: "RepositorioSQL implementa Repositorio".
+Ejemplo mental: "RepositorioSql implementa Repositorio".
 
-```mermaid
-classDiagram
-    class Repositorio {
-        <<interface>>
-    }
-    Repositorio <|.. RepositorioSQL
-```
+![RepositorioSql implementa la interfaz Repositorio](docs/uml/repositorio-realizacion.svg)
 
 ### Asociacion (se comunica con)
 Una clase usa o conoce a otra.
 Ejemplo mental: "Pedido usa Cliente".
 
-```mermaid
-classDiagram
-    Pedido --> Cliente
-```
+![Pedido conoce a Cliente mediante una asociacion navegable](docs/uml/pedido-cliente.svg)
 
 ### Agregacion (tiene-una, pero puede vivir aparte)
 Una clase contiene a otra, pero el contenido puede existir sin ella.
 Ejemplo mental: "Equipo tiene Jugadores, y los Jugadores pueden existir sin el Equipo".
 
-```mermaid
-classDiagram
-    Equipo o-- Jugador
-```
+![Agregacion entre Equipo y Jugador, con rombo hueco junto a Equipo](docs/uml/agregacion-equipo-jugador.svg)
 
 ### Composicion (parte-de)
 Una clase contiene a otra y su ciclo de vida depende de ella.
 Ejemplo mental: "Casa tiene Habitaciones, si la Casa desaparece, las Habitaciones tambien".
 
-```mermaid
-classDiagram
-    Casa *-- Habitacion
-```
+![Composicion entre Casa y Habitacion, con rombo relleno junto a Casa](docs/uml/casa-habitacion.svg)
 
 ### Dependencia (uso temporal)
 Una clase usa otra solo en un metodo o parametro.
 Ejemplo mental: "Factura usa Impresora solo para imprimir".
 
-```mermaid
-classDiagram
-    Factura ..> Impresora
-```
+![Factura depende temporalmente de Impresora](docs/uml/factura-impresora.svg)
 
 ## Simbologia de relaciones (flechas y lineas)
 Las lineas de los diagramas anteriores representan relaciones UML, no simples adornos:
@@ -196,18 +143,7 @@ Cada ejemplo es inventado y muy simple, solo para entender la relacion.
 ### Herencia
 Cardinalidad: no aplica (es una relacion de tipo).
 
-```mermaid
-classDiagram
-    class Persona {
-        #String nombre
-        +getNombre() String
-    }
-    class Estudiante {
-        -String carrera
-        +getCarrera() String
-    }
-    Persona <|-- Estudiante
-```
+![Herencia entre Persona y Estudiante, con atributos y metodos](docs/uml/persona-estudiante.svg)
 ```java
 package ejemplo.herencia;
 
@@ -240,19 +176,7 @@ class Estudiante extends Persona {
 ### Implementacion
 Cardinalidad: no aplica (es una relacion de contrato).
 
-```mermaid
-classDiagram
-    class Repositorio {
-        <<interface>>
-        +guardar(String dato) void
-        +buscarPorId(int id) String
-    }
-    class RepositorioSql {
-        +guardar(String dato) void
-        +buscarPorId(int id) String
-    }
-    Repositorio <|.. RepositorioSql
-```
+![RepositorioSql realiza Repositorio y sus metodos](docs/uml/repositorio-realizacion.svg)
 ```java
 package ejemplo.implementacion;
 
@@ -403,16 +327,7 @@ class Orden {
 ### Dependencia
 Cardinalidad: uso temporal, no estructura fija.
 
-```mermaid
-classDiagram
-    class Impresora {
-        +imprimir(String texto) void
-    }
-    class Reporte {
-        +generar(Impresora impresora) void
-    }
-    Reporte ..> Impresora : generar()
-```
+![Reporte usa Impresora en el metodo generar](docs/uml/reporte-impresora.svg)
 ```java
 package ejemplo.dependencia;
 
@@ -491,4 +406,4 @@ En cada patron, busca primero una intuicion visible (un semaforo, un personaje, 
 - Los nombres del diagrama coinciden con el patron.
 - El UML se usa para explicar estructura, no ejecucion.
 - Los metodos publicos que definen contratos deben tener Javadoc con `@param`, `@return` y `@throws` cuando correspondan. No repitas un contrato heredado en cada `@Override` sin aportar informacion.
-- Los diagramas con cardinalidades se guardan como SVG en `docs/uml/` para que sus extremos sean legibles en GitHub; los esquemas pequeños pueden seguir en Mermaid.
+- Todos los diagramas de esta guia se muestran como SVG en `docs/uml/` para que sus relaciones sean visibles en GitHub sin depender del visor Mermaid del navegador.

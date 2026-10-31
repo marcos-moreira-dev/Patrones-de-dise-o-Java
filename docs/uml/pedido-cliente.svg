@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="268" viewBox="0 0 1060 268" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Asociacion entre Pedido y Cliente</title><desc id="descripcion">Pedido conoce Cliente mediante asociacion navegable.</desc>
+<style>
+  .caja{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
+  .division{stroke:#3972bf;stroke-width:1.4}
+  .nombre{fill:#152238;font:bold 23px Arial,sans-serif;text-anchor:middle}
+  .stereotipo{fill:#40526b;font:italic 17px Arial,sans-serif;text-anchor:middle}
+  .texto{fill:#202936;font:19px Arial,sans-serif}
+  .linea{stroke:#202936;stroke-width:2.8;fill:none}
+  .discontinua{stroke-dasharray:9 7}
+  .triangulo{stroke:#202936;stroke-width:2.8;fill:white}
+</style>
+<rect class="caja" x="24" y="93" width="350" height="96" rx="2"/>
+<text class="nombre" x="199" y="150">Pedido</text>
+<rect class="caja" x="686" y="93" width="350" height="96" rx="2"/>
+<text class="nombre" x="861" y="150">Cliente</text>
+<line class="linea " x1="374" y1="141" x2="686" y2="141"/>
+<path class="linea" d="M670 128 L686 141 L670 154"/>
+</svg>
