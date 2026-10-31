@@ -180,5 +180,6 @@ los ejemplos directamente, ejecutar `arena.PruebasArena`, construir con
 `mvn clean verify` y generar Javadoc. Así se comprueban **ambas rutas**
 incluso si el equipo local todavía no tiene ese JDK.
 
-Cuando MiniSO se incorpore al mismo repositorio, podrá conservar la misma
-rutina sin obligarnos a adoptar un framework.
+MiniSO conserva el mismo criterio en un proyecto separado: consulta
+[su guía de construcción](../miniso/BUILD.md) para compilar y probar CPU,
+memoria, estructuras de datos y sistema de archivos virtual.

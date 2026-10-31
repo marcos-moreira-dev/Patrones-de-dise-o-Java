@@ -9,9 +9,9 @@ Los ejemplos están organizados por tipo de patrón:
 * ⚙️ **De comportamiento** → Gestionan la comunicación entre objetos.
 
 Los ejemplos clásicos **no utilizan Maven ni Gradle**, para facilitar la
-compilación directa desde consola. Arena Java mantiene esa posibilidad y
-añade un `pom.xml` **opcional**, documentado, para estudiar también las
-fases de construcción con Maven sin introducir frameworks.
+compilación directa desde consola. Los dos microproyectos mantienen esa
+posibilidad y añaden cada uno un `pom.xml` **opcional**, documentado, para
+estudiar también las fases de construcción con Maven sin frameworks.
 
 ### Cómo estudiar este laboratorio
 
@@ -30,11 +30,20 @@ paquetes `dominio`, `aplicacion`, `infraestructura` y `presentacion`, UML
 y pruebas sin dependencias externas. Se compila y ejecuta de forma
 independiente de los ejemplos clásicos.
 
+El segundo es **[MiniSO](proyectos/miniso/README.md)**: una maqueta de
+planificación de procesos, memoria limitada, E/S y archivos en un árbol
+virtual. Implementa desde cero una **cola circular** y un **montículo de
+prioridad**, compara FCFS, Round Robin y prioridades, y justifica Strategy y
+Composite con diagramas SVG, Javadoc y pruebas. No toca el sistema operativo
+real. Su [guía de construcción](proyectos/miniso/BUILD.md) explica Java 21,
+`javac`, classpath, Maven y JAR desde lo elemental.
+
 Los comentarios de clase conservan el contexto del patrón; los comentarios de método priorizan contratos, invariantes y decisiones relevantes. Los ejemplos domésticos, lúdicos o empresariales se utilizan cuando aclaran la idea, no como una plantilla repetitiva.
 
 Cada pull request ejecuta una comprobación automática con **Java 21**:
-compilación de los ejemplos, pruebas de Arena, construcción Maven opcional
-y generación de Javadoc. Los ejemplos antiguos siguen sin requerir Maven.
+compilación de los ejemplos, pruebas de Arena Java y MiniSO, construcción
+Maven opcional de ambos y generación de Javadoc. Los ejemplos antiguos
+siguen sin requerir Maven.
 
 ---
 
@@ -46,7 +55,8 @@ Patrones-de-dise-o-Java/
 ├── estructurales/
 ├── comportamiento/
 ├── proyectos/
-│   └── arena-java/
+│   ├── arena-java/
+│   └── miniso/
 ├── App.java
 ├── Main.java
 ├── README.md
@@ -54,7 +64,7 @@ Patrones-de-dise-o-Java/
 ```
 
 * En los ejemplos clásicos, las carpetas se usan **solo como organización visual** y las clases no declaran `package`.
-* En Arena Java sí existen paquetes reales para practicar arquitectura.
+* En ambos microproyectos existen paquetes reales para practicar arquitectura.
 * `Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
 
 ---

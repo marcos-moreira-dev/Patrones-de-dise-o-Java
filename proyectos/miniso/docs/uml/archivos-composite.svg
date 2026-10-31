@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" role="img" aria-labelledby="t d">
+  <title id="t">Composite de archivos y directorios</title>
+  <desc id="d">ArchivoVirtual y DirectorioVirtual implementan EntradaVirtual. DirectorioVirtual compone cero o muchos hijos EntradaVirtual, mientras cada entrada puede tener cero o un directorio padre.</desc>
+  <rect width="960" height="470" rx="14" fill="#f8fafc"/>
+  <text x="40" y="42" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#0f172a">Composite · sistema de archivos virtual</text>
+  <rect x="347" y="73" width="266" height="120" rx="8" fill="white" stroke="#334155" stroke-width="2"/>
+  <path d="M347 116H613" stroke="#94a3b8" stroke-width="1.5"/>
+  <g font-family="Arial,sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="480" y="91" font-size="13" font-style="italic">&lt;&lt;interface&gt;&gt;</text>
+    <text x="480" y="110" font-size="18" font-weight="700">EntradaVirtual</text>
+    <text x="480" y="142" font-size="15">+ nombre(): String</text>
+    <text x="480" y="163" font-size="15">+ bytes(): long</text>
+    <text x="480" y="182" font-size="14">+ dibujar(...): void</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.5" stroke-dasharray="9 7">
+    <path d="M412 193L223 290"/>
+    <path d="M546 193L730 290"/>
+  </g>
+  <path d="M412 193L408 210L397 197Z" fill="white" stroke="#475569" stroke-width="2.5"/>
+  <path d="M546 193L564 197L551 211Z" fill="white" stroke="#475569" stroke-width="2.5"/>
+  <rect x="65" y="290" width="320" height="136" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <path d="M65 334H385" stroke="#93c5fd"/>
+  <rect x="575" y="290" width="320" height="136" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <path d="M575 334H895" stroke="#93c5fd"/>
+  <g font-family="Arial,sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="225" y="313" font-size="13" font-style="italic">&lt;&lt;record&gt;&gt;</text>
+    <text x="225" y="328" font-size="18" font-weight="700">ArchivoVirtual</text>
+    <text x="225" y="359" font-size="15">+ nombre: String</text>
+    <text x="225" y="380" font-size="15">+ contenido: String</text>
+    <text x="225" y="402" font-size="14" fill="#2563eb">Hoja · no tiene hijos</text>
+    <text x="735" y="321" font-size="18" font-weight="700">DirectorioVirtual</text>
+    <text x="735" y="359" font-size="15">- hijos: LinkedHashMap</text>
+    <text x="735" y="382" font-size="14">+ crearDirectorio(...)</text>
+    <text x="735" y="405" font-size="14" fill="#2563eb">Nodo · posee sus entradas</text>
+  </g>
+  <path d="M895 365H921V130H613" stroke="#475569" stroke-width="2.5" fill="none"/>
+  <path d="M895 365L908 357L921 365L908 373Z" fill="#334155" stroke="#334155" stroke-width="1.5"/>
+  <rect x="856" y="248" width="73" height="24" rx="4" fill="#f8fafc"/>
+  <text x="892" y="265" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" fill="#334155">0..1</text>
+  <rect x="628" y="116" width="72" height="22" rx="4" fill="#f8fafc"/>
+  <text x="664" y="132" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" fill="#334155">0..*</text>
+  <text x="480" y="456" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#64748b">Rombo negro junto al directorio = propiedad de los hijos · 0..* junto a EntradaVirtual = cantidad de hijos</text>
+</svg>

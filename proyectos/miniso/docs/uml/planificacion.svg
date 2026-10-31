@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="440" viewBox="0 0 960 440" role="img" aria-labelledby="t d">
+  <title id="t">Strategy de planificación de MiniSO</title>
+  <desc id="d">La interfaz Planificador tiene dos implementaciones: PlanificadorCola para FCFS y Round Robin, y PlanificadorPrioridad para un montículo binario.</desc>
+  <rect width="960" height="440" rx="14" fill="#f8fafc"/>
+  <text x="40" y="42" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#0f172a">Strategy · planificación de CPU</text>
+  <rect x="335" y="68" width="290" height="140" rx="8" fill="white" stroke="#334155" stroke-width="2"/>
+  <path d="M335 108H625M335 143H625" stroke="#94a3b8" stroke-width="1.5"/>
+  <g font-family="Arial,sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="480" y="88" font-size="13" font-style="italic">&lt;&lt;interface&gt;&gt;</text>
+    <text x="480" y="102" font-size="17" font-weight="700">Planificador</text>
+    <text x="480" y="129" font-size="14">+ admitir(Proceso)</text>
+    <text x="480" y="165" font-size="14">+ siguiente(): Proceso</text>
+    <text x="480" y="187" font-size="14">+ debeCederCpu(ticks): boolean</text>
+  </g>
+  <path d="M445 208 L245 277" stroke="#475569" stroke-width="2.5" stroke-dasharray="9 7" fill="none"/>
+  <path d="M514 208 L721 277" stroke="#475569" stroke-width="2.5" stroke-dasharray="9 7" fill="none"/>
+  <path d="M445 208 L441 224 L429 213Z" fill="white" stroke="#475569" stroke-width="2.5"/>
+  <path d="M514 208 L531 212 L519 226Z" fill="white" stroke="#475569" stroke-width="2.5"/>
+  <rect x="65" y="278" width="340" height="130" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <path d="M65 318H405" stroke="#93c5fd" stroke-width="1.5"/>
+  <rect x="555" y="278" width="340" height="130" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <path d="M555 318H895" stroke="#93c5fd" stroke-width="1.5"/>
+  <g font-family="Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle">
+    <text x="235" y="304" font-size="18" font-weight="700">PlanificadorCola</text>
+    <text x="235" y="344">- cola: ColaCircular</text>
+    <text x="235" y="366">+ fcfs() / roundRobin(q)</text>
+    <text x="235" y="389" fill="#1d4ed8">FIFO · O(1) amortizado</text>
+    <text x="725" y="304" font-size="18" font-weight="700">PlanificadorPrioridad</text>
+    <text x="725" y="344">- listos: MonticuloPrioridad</text>
+    <text x="725" y="366">+ siguiente(): Proceso</text>
+    <text x="725" y="389" fill="#1d4ed8">Montículo · O(log n)</text>
+  </g>
+  <text x="480" y="427" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#64748b">Trazo discontinuo + triángulo hueco = implementación de interfaz (no es una cardinalidad)</text>
+</svg>

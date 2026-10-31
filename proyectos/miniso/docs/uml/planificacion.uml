@@ -1,0 +1,19 @@
+@startuml
+title Strategy de planificación
+interface Planificador {
+    + admitir(p: Proceso): void
+    + siguiente(): Proceso
+    + debeCederCpu(ticks: int): boolean
+}
+class PlanificadorCola {
+    - cola: ColaCircular<Proceso>
+    - quantum: int
+    + {static} fcfs(): PlanificadorCola
+    + {static} roundRobin(q: int): PlanificadorCola
+}
+class PlanificadorPrioridad {
+    - listos: MonticuloPrioridad<Proceso>
+}
+Planificador <|.. PlanificadorCola
+Planificador <|.. PlanificadorPrioridad
+@enduml
