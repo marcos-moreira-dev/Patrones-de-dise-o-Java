@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="268" viewBox="0 0 1060 268" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Realizacion entre Repositorio y RepositorioSql</title><desc id="descripcion">RepositorioSql implementa los metodos declarados en la interfaz Repositorio.</desc>
+<style>
+  .caja{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
+  .division{stroke:#3972bf;stroke-width:1.4}
+  .nombre{fill:#152238;font:bold 23px Arial,sans-serif;text-anchor:middle}
+  .stereotipo{fill:#40526b;font:italic 17px Arial,sans-serif;text-anchor:middle}
+  .texto{fill:#202936;font:19px Arial,sans-serif}
+  .linea{stroke:#202936;stroke-width:2.8;fill:none}
+  .discontinua{stroke-dasharray:9 7}
+  .triangulo{stroke:#202936;stroke-width:2.8;fill:white}
+</style>
+<rect class="caja" x="24" y="24" width="350" height="220" rx="2"/>
+<text class="nombre" x="199" y="58">Repositorio</text>
+<text class="stereotipo" x="199" y="83">«interface»</text>
+<line class="division" x1="24" y1="99" x2="374" y2="99"/>
+<line class="division" x1="24" y1="167" x2="374" y2="167"/>
+<text class="texto" x="42" y="194">+ guardar(dato: String): void</text>
+<text class="texto" x="42" y="219">+ buscarPorId(id: int): String</text>
+<rect class="caja" x="686" y="24" width="350" height="220" rx="2"/>
+<text class="nombre" x="861" y="61">RepositorioSql</text>
+<line class="division" x1="686" y1="83" x2="1036" y2="83"/>
+<line class="division" x1="686" y1="167" x2="1036" y2="167"/>
+<text class="texto" x="704" y="194">+ guardar(dato: String): void</text>
+<text class="texto" x="704" y="219">+ buscarPorId(id: int): String</text>
+<line class="linea discontinua" x1="408" y1="141" x2="686" y2="141"/>
+<path class="triangulo" d="M374 141 L408 123 L408 159 Z"/>
+</svg>

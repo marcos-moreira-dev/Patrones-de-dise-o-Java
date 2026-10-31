@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="268" viewBox="0 0 1060 268" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Enumeracion EstadoPedido</title><desc id="descripcion">Valores permitidos PENDIENTE, PAGADO y CANCELADO.</desc>
+<style>
+  .caja{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
+  .division{stroke:#3972bf;stroke-width:1.4}
+  .nombre{fill:#152238;font:bold 23px Arial,sans-serif;text-anchor:middle}
+  .stereotipo{fill:#40526b;font:italic 17px Arial,sans-serif;text-anchor:middle}
+  .texto{fill:#202936;font:19px Arial,sans-serif}
+  .linea{stroke:#202936;stroke-width:2.8;fill:none}
+  .discontinua{stroke-dasharray:9 7}
+  .triangulo{stroke:#202936;stroke-width:2.8;fill:white}
+</style>
+<rect class="caja" x="312" y="24" width="436" height="220" rx="2"/>
+<text class="nombre" x="530" y="58">EstadoPedido</text>
+<text class="stereotipo" x="530" y="83">«enumeration»</text>
+<line class="division" x1="312" y1="99" x2="748" y2="99"/>
+<text class="texto" x="330" y="129">PENDIENTE</text>
+<text class="texto" x="330" y="159">PAGADO</text>
+<text class="texto" x="330" y="189">CANCELADO</text>
+</svg>
