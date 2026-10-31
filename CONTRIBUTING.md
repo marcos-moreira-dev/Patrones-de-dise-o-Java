@@ -119,7 +119,7 @@ consecutivos ocupados: **no cobran costes de cambio de contexto reales**.
 3. Añade una prueba que fallaría si se rompiera el comportamiento modificado.
 4. Actualiza Javadoc, README, UML y comandos cuando cambie el contrato.
 5. Ejecuta `bash scripts/verificar.sh` y deja que GitHub Actions vuelva a
-   verificar con Java 21 y generar Javadoc.
+   verificar con Java 21 en Linux y Windows, y generar Javadoc.
 6. Revisa el diff, evita archivos generados (`target/`, `out/`, `.class`) y
    fusiona solo cuando las comprobaciones estén en verde.
 
