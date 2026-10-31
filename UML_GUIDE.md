@@ -38,40 +38,70 @@ Para recordar: el signo te dice quien puede acceder a un atributo o metodo.
 Una clase hija hereda de una clase padre.
 Ejemplo mental: "Perro es un Animal".
 
+```mermaid
+classDiagram
+    Animal <|-- Perro
+```
+
 ### Implementacion (cumple-un-contrato)
 Una clase cumple una interfaz.
 Ejemplo mental: "RepositorioSQL implementa Repositorio".
+
+```mermaid
+classDiagram
+    class Repositorio {
+        <<interface>>
+    }
+    Repositorio <|.. RepositorioSQL
+```
 
 ### Asociacion (se comunica con)
 Una clase usa o conoce a otra.
 Ejemplo mental: "Pedido usa Cliente".
 
+```mermaid
+classDiagram
+    Pedido --> Cliente
+```
+
 ### Agregacion (tiene-una, pero puede vivir aparte)
 Una clase contiene a otra, pero el contenido puede existir sin ella.
 Ejemplo mental: "Equipo tiene Jugadores, y los Jugadores pueden existir sin el Equipo".
+
+```mermaid
+classDiagram
+    Equipo o-- Jugador
+```
 
 ### Composicion (parte-de)
 Una clase contiene a otra y su ciclo de vida depende de ella.
 Ejemplo mental: "Casa tiene Habitaciones, si la Casa desaparece, las Habitaciones tambien".
 
+```mermaid
+classDiagram
+    Casa *-- Habitacion
+```
+
 ### Dependencia (uso temporal)
 Una clase usa otra solo en un metodo o parametro.
 Ejemplo mental: "Factura usa Impresora solo para imprimir".
 
+```mermaid
+classDiagram
+    Factura ..> Impresora
+```
+
 ## Simbologia de relaciones (flechas y lineas)
-Aqui tienes la forma de reconocer cada relacion solo por la flecha, con una version didactica en texto:
+Las lineas de los diagramas anteriores representan relaciones UML, no simples adornos:
 
-- Herencia: linea continua con triangulo hueco apuntando a la clase padre. (H) ClaseHija ---|> ClasePadre
-- Implementacion: linea discontinua con triangulo hueco apuntando a la interfaz. (I) Clase ---|> Interfaz
-- Asociacion: linea continua con flecha simple apuntando a la clase conocida. (A) ClaseA ---> ClaseB
-- Agregacion: linea continua con rombo blanco en el lado del "todo". (G) Todo o--- Parte
-- Composicion: linea continua con rombo negro en el lado del "todo". (C) Todo *--- Parte
-- Dependencia: linea discontinua con flecha simple apuntando a la clase usada. (D) ClaseA ..> ClaseB
+- **Herencia:** linea continua y triangulo hueco hacia la clase padre.
+- **Implementacion:** linea discontinua y triangulo hueco hacia la interfaz.
+- **Asociacion:** linea continua; la flecha abierta indica hacia donde se puede navegar.
+- **Agregacion:** rombo hueco del lado del todo (Equipo).
+- **Composicion:** rombo relleno del lado del todo (Casa).
+- **Dependencia:** linea discontinua y flecha abierta hacia la clase utilizada.
 
-Pistas rapidas para recordar:
-- Triangulo hueco = herencia o implementacion (la diferencia es la linea).
-- Rombo = relacion de "contiene".
-- Flecha simple = uso o conocimiento.
+El triangulo indica *generalizacion o realizacion*; el rombo identifica el *todo*. La diferencia entre linea continua y discontinua tambien importa.
 
 ## Cardinalidad (cuantos hay)
 Ayuda a indicar cantidades en una relacion:
@@ -89,6 +119,11 @@ Cada ejemplo es inventado y muy simple, solo para entender la relacion.
 
 ### Herencia
 Cardinalidad: no aplica (es una relacion de tipo).
+
+```mermaid
+classDiagram
+    Persona <|-- Estudiante
+```
 ```java
 package ejemplo.herencia;
 
@@ -120,6 +155,14 @@ class Estudiante extends Persona {
 
 ### Implementacion
 Cardinalidad: no aplica (es una relacion de contrato).
+
+```mermaid
+classDiagram
+    class Repositorio {
+        <<interface>>
+    }
+    Repositorio <|.. RepositorioSql
+```
 ```java
 package ejemplo.implementacion;
 
@@ -142,6 +185,11 @@ class RepositorioSql implements Repositorio {
 
 ### Asociacion
 Cardinalidad sugerida: Profesor 0..* Cursos, Curso 1 Profesor.
+
+```mermaid
+classDiagram
+    Curso "0..*" --> "1" Profesor : profesor
+```
 ```java
 package ejemplo.asociacion;
 
@@ -174,6 +222,11 @@ class Curso {
 
 ### Agregacion
 Cardinalidad sugerida: Equipo 0..* Jugadores, Jugador 0..1 Equipo.
+
+```mermaid
+classDiagram
+    Equipo "0..1" o-- "0..*" Jugador : jugadores
+```
 ```java
 package ejemplo.agregacion;
 
@@ -202,7 +255,12 @@ class Equipo {
 ```
 
 ### Composicion
-Cardinalidad sugerida: Orden 1..* Lineas, Linea 1 Orden.
+Cardinalidad sugerida: Orden 0..* Lineas, Linea 1 Orden.
+
+```mermaid
+classDiagram
+    Orden "1" *-- "0..*" LineaPedido : lineas
+```
 ```java
 package ejemplo.composicion;
 
@@ -234,6 +292,11 @@ class Orden {
 
 ### Dependencia
 Cardinalidad: uso temporal, no estructura fija.
+
+```mermaid
+classDiagram
+    Reporte ..> Impresora : generar()
+```
 ```java
 package ejemplo.dependencia;
 
@@ -251,6 +314,11 @@ class Reporte {
     }
 }
 ```
+
+## Java, UML y reglas del dominio
+Java define las reglas del lenguaje; UML representa el diseño, pero **ninguno determina por sí solo las reglas del negocio**. Antes de añadir cédula, teléfono o fecha de nacimiento a `Cliente`, hay que confirmar qué necesita el cliente y qué exige o permite la normativa aplicable.
+
+Las multiplicidades mostradas son supuestos didácticos del dominio: **estos ejemplos Java no las validan automáticamente**.
 
 ## Como construir un diagrama desde cero
 1) Lee el problema y subraya sustantivos: suelen ser clases.
