@@ -89,6 +89,11 @@ Cada ejemplo es inventado y muy simple, solo para entender la relacion.
 
 ### Herencia
 Cardinalidad: no aplica (es una relacion de tipo).
+
+```mermaid
+classDiagram
+    Persona <|-- Estudiante
+```
 ```java
 package ejemplo.herencia;
 
@@ -120,6 +125,14 @@ class Estudiante extends Persona {
 
 ### Implementacion
 Cardinalidad: no aplica (es una relacion de contrato).
+
+```mermaid
+classDiagram
+    class Repositorio {
+        <<interface>>
+    }
+    Repositorio <|.. RepositorioSql
+```
 ```java
 package ejemplo.implementacion;
 
@@ -142,6 +155,11 @@ class RepositorioSql implements Repositorio {
 
 ### Asociacion
 Cardinalidad sugerida: Profesor 0..* Cursos, Curso 1 Profesor.
+
+```mermaid
+classDiagram
+    Curso "0..*" --> "1" Profesor : profesor
+```
 ```java
 package ejemplo.asociacion;
 
@@ -174,6 +192,11 @@ class Curso {
 
 ### Agregacion
 Cardinalidad sugerida: Equipo 0..* Jugadores, Jugador 0..1 Equipo.
+
+```mermaid
+classDiagram
+    Equipo "0..1" o-- "0..*" Jugador : jugadores
+```
 ```java
 package ejemplo.agregacion;
 
@@ -202,7 +225,12 @@ class Equipo {
 ```
 
 ### Composicion
-Cardinalidad sugerida: Orden 1..* Lineas, Linea 1 Orden.
+Cardinalidad sugerida: Orden 0..* Lineas, Linea 1 Orden.
+
+```mermaid
+classDiagram
+    Orden "1" *-- "0..*" LineaPedido : lineas
+```
 ```java
 package ejemplo.composicion;
 
@@ -234,6 +262,11 @@ class Orden {
 
 ### Dependencia
 Cardinalidad: uso temporal, no estructura fija.
+
+```mermaid
+classDiagram
+    Reporte ..> Impresora : generar()
+```
 ```java
 package ejemplo.dependencia;
 
@@ -251,6 +284,11 @@ class Reporte {
     }
 }
 ```
+
+## Java, UML y reglas del dominio
+Java define las reglas del lenguaje; UML representa el diseño, pero **ninguno determina por sí solo las reglas del negocio**. Antes de añadir cédula, teléfono o fecha de nacimiento a `Cliente`, hay que confirmar qué necesita el cliente y qué exige o permite la normativa aplicable.
+
+Las multiplicidades mostradas son supuestos didácticos del dominio: **estos ejemplos Java no las validan automáticamente**.
 
 ## Como construir un diagrama desde cero
 1) Lee el problema y subraya sustantivos: suelen ser clases.
