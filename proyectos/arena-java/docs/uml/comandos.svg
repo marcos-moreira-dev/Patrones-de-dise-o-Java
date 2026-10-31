@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="352" viewBox="0 0 1050 352" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Command: acciones ejecutables</title>
+  <desc id="descripcion">Los comandos Atacar y Huir son records que realizan la interfaz Comando. Las flechas discontinuas con triángulo hueco apuntan a la interfaz.</desc>
+  <style>
+    .c{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
+    .d{stroke:#3972bf;stroke-width:1.5}
+    .n{fill:#152238;font:bold 23px Arial,sans-serif;text-anchor:middle}
+    .s{fill:#40526b;font:italic 17px Arial,sans-serif;text-anchor:middle}
+    .t{fill:#202936;font:16px Arial,sans-serif}
+    .l{fill:none;stroke:#202936;stroke-width:2.8;stroke-dasharray:9 7}
+    .h{fill:white;stroke:#202936;stroke-width:2.8}
+  </style>
+  <rect class="c" x="300" y="14" width="450" height="132" rx="3"/>
+  <text class="n" x="525" y="44">Comando</text>
+  <text class="s" x="525" y="69">«interface»</text>
+  <line class="d" x1="300" y1="85" x2="750" y2="85"/>
+  <text class="t" x="313" y="114">+ ejecutar(servicio: ServicioPartida): ResultadoAccion</text>
+  <rect class="c" x="45" y="226" width="390" height="92" rx="3"/>
+  <text class="n" x="240" y="264">Comandos.Atacar</text>
+  <text class="s" x="240" y="290">«record»</text>
+  <rect class="c" x="615" y="226" width="390" height="92" rx="3"/>
+  <text class="n" x="810" y="264">Comandos.Huir</text>
+  <text class="s" x="810" y="290">«record»</text>
+  <line class="l" x1="240" y1="226" x2="455" y2="181"/>
+  <path class="h" d="M455 146 L439 178 L471 178 Z"/>
+  <line class="l" x1="810" y1="226" x2="595" y2="181"/>
+  <path class="h" d="M595 146 L579 178 L611 178 Z"/>
+</svg>

@@ -1,0 +1,15 @@
+@startuml
+title Jugador: entidad con invariantes propias
+skinparam classAttributeIconSize 0
+class Jugador {
+  - nombre: String
+  - vida: int
+  - energia: int
+  - vidaMaxima: int
+  - energiaMaxima: int
+  + recibirDanio(puntos: int): void
+  + consumirEnergia(puntos: int): boolean
+  + recuperarEnergia(puntos: int): void
+  + estaVivo(): boolean
+}
+@enduml

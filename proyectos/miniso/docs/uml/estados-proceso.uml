@@ -1,0 +1,11 @@
+@startuml
+title Ciclo de vida de Proceso (simulado)
+[*] --> NUEVO
+NUEVO --> LISTO : admitir
+LISTO --> EJECUTANDO : despachar CPU
+EJECUTANDO --> LISTO : fin de quantum
+EJECUTANDO --> BLOQUEADO : solicitar E/S
+BLOQUEADO --> LISTO : E/S completada
+EJECUTANDO --> TERMINADO : CPU restante = 0
+TERMINADO --> [*]
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+title Adapter: azar sustituible
+skinparam classAttributeIconSize 0
+interface FuenteAzar {
+  + siguiente(limite: int): int
+}
+class AzarJava {
+  - random: Random
+}
+class "java.util.Random" as Random
+FuenteAzar <|.. AzarJava
+AzarJava "0..*" --> "1" Random : delega
+@enduml

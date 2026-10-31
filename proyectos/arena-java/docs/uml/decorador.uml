@@ -1,0 +1,20 @@
+@startuml
+title Decorator: mejorar un ataque sin cambiar su contrato
+skinparam classAttributeIconSize 0
+interface Ataque {
+  + danio(): int
+  + descripcion(): String
+}
+class AtaqueBasico <<record>> {
+  - danio: int
+}
+abstract class AtaqueDecorado {
+  - original: Ataque [1]
+}
+class AtaquePotenciado {
+  - adicional: int
+}
+Ataque <|.. AtaqueBasico
+Ataque <|.. AtaqueDecorado
+AtaqueDecorado <|-- AtaquePotenciado
+@enduml

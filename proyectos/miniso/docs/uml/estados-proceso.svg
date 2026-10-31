@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="460" viewBox="0 0 960 460" role="img" aria-labelledby="t d">
+  <title id="t">Máquina de estados simulada de un proceso</title>
+  <desc id="d">Nuevo pasa a Listo; Listo a Ejecutando; Ejecutando puede volver a Listo por quantum, pasar a Bloqueado por E/S o terminar. Bloqueado vuelve a Listo cuando finaliza la E/S.</desc>
+  <defs><marker id="f" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="strokeWidth"><path d="M0 0L10 4.5L0 9Z" fill="#475569"/></marker></defs>
+  <rect width="960" height="460" rx="14" fill="#f8fafc"/>
+  <text x="40" y="42" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#0f172a">Estados del proceso · transiciones controladas</text>
+  <g fill="white" stroke="#2563eb" stroke-width="2.5">
+    <rect x="42" y="110" width="150" height="64" rx="22"/>
+    <rect x="265" y="110" width="150" height="64" rx="22"/>
+    <rect x="505" y="110" width="170" height="64" rx="22"/>
+    <rect x="775" y="110" width="150" height="64" rx="22" fill="#dcfce7" stroke="#15803d"/>
+    <rect x="505" y="318" width="170" height="64" rx="22" fill="#fef3c7" stroke="#b45309"/>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#0f172a">
+    <text x="117" y="148">NUEVO</text><text x="340" y="148">LISTO</text>
+    <text x="590" y="148">EJECUTANDO</text><text x="850" y="148">TERMINADO</text>
+    <text x="590" y="356">BLOQUEADO</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#f)">
+    <path d="M192 142H265"/>
+    <path d="M415 142H505"/>
+    <path d="M675 142H775"/>
+    <path d="M590 174V318"/>
+    <path d="M505 350H340V174"/>
+    <path d="M522 110V81H340V110"/>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="13" fill="#334155" text-anchor="middle">
+    <text x="227" y="126">admitir</text>
+    <text x="462" y="126">despachar</text>
+    <text x="725" y="124">CPU = 0</text>
+    <text x="653" y="250">solicitar E/S</text>
+    <text x="419" y="333">E/S finalizada</text>
+    <text x="423" y="72">fin del quantum</text>
+    <text x="590" y="417">E/S conserva memoria, pero no ocupa la CPU</text>
+  </g>
+</svg>

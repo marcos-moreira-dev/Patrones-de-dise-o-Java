@@ -1,0 +1,20 @@
+@startuml
+title Composite: árbol de archivos en memoria
+interface EntradaVirtual {
+    + nombre(): String
+    + bytes(): long
+    + dibujar(salida: StringBuilder, nivel: int): void
+}
+class ArchivoVirtual <<record>> {
+    + nombre: String
+    + contenido: String
+}
+class DirectorioVirtual {
+    - hijos: LinkedHashMap<String, EntradaVirtual>
+    + crearDirectorio(nombre: String): boolean
+    + escribirArchivo(nombre: String, contenido: String): boolean
+}
+EntradaVirtual <|.. ArchivoVirtual
+EntradaVirtual <|.. DirectorioVirtual
+DirectorioVirtual "0..1" *-- "0..*" EntradaVirtual : hijos
+@enduml

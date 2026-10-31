@@ -1,0 +1,12 @@
+@startuml
+title Observer: notificar cambios de la partida
+skinparam classAttributeIconSize 0
+class ServicioPartida {
+  - observadores: List<ObservadorPartida>
+  + suscribir(o: ObservadorPartida): void
+}
+interface ObservadorPartida {
+  + alOcurrir(e: EventoCombate): void
+}
+ServicioPartida "0..*" --> "0..*" ObservadorPartida : notifica
+@enduml

@@ -8,7 +8,10 @@ Los ejemplos están organizados por tipo de patrón:
 * 🧱 **Estructurales** → Componen clases y objetos.
 * ⚙️ **De comportamiento** → Gestionan la comunicación entre objetos.
 
-El proyecto **no utiliza Maven ni Gradle intencionalmente**, para facilitar la compilación directa desde consola y concentrarse en los conceptos fundamentales.
+Los ejemplos clásicos **no utilizan Maven ni Gradle**, para facilitar la
+compilación directa desde consola. Los dos microproyectos mantienen esa
+posibilidad y añaden cada uno un `pom.xml` **opcional**, documentado, para
+estudiar también las fases de construcción con Maven sin frameworks.
 
 ### Cómo estudiar este laboratorio
 
@@ -19,9 +22,28 @@ El proyecto **no utiliza Maven ni Gradle intencionalmente**, para facilitar la c
 
 La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidades, clases abstractas, interfaces (incluida la notación circular), enumeraciones, `record` y el paso del modelo a estructuras Java como `List` y `Map`.
 
+### Microproyectos con arquitectura real
+
+El primer microproyecto es **[Arena Java](proyectos/arena-java/README.md)**:
+un juego pequeño de combate por turnos, con dos escenarios, renderizado ASCII,
+paquetes `dominio`, `aplicacion`, `infraestructura` y `presentacion`, UML
+y pruebas sin dependencias externas. Se compila y ejecuta de forma
+independiente de los ejemplos clásicos.
+
+El segundo es **[MiniSO](proyectos/miniso/README.md)**: una maqueta de
+planificación de procesos, memoria limitada, E/S y archivos en un árbol
+virtual. Implementa desde cero una **cola circular** y un **montículo de
+prioridad**, compara FCFS, Round Robin y prioridades, y justifica Strategy y
+Composite con diagramas SVG, Javadoc y pruebas. No toca el sistema operativo
+real. Su [guía de construcción](proyectos/miniso/BUILD.md) explica Java 21,
+`javac`, classpath, Maven y JAR desde lo elemental.
+
 Los comentarios de clase conservan el contexto del patrón; los comentarios de método priorizan contratos, invariantes y decisiones relevantes. Los ejemplos domésticos, lúdicos o empresariales se utilizan cuando aclaran la idea, no como una plantilla repetitiva.
 
-Cada pull request ejecuta una comprobación automática con **Java 21**: compilación de los ejemplos y generación de Javadoc. El proyecto sigue sin necesitar Maven ni Gradle.
+Cada pull request ejecuta una comprobación automática con **Java 21**:
+compilación de los ejemplos, pruebas de Arena Java y MiniSO, construcción
+Maven opcional de ambos y generación de Javadoc. Los ejemplos antiguos
+siguen sin requerir Maven.
 
 ---
 
@@ -32,15 +54,18 @@ Patrones-de-dise-o-Java/
 ├── creacionales/
 ├── estructurales/
 ├── comportamiento/
+├── proyectos/
+│   ├── arena-java/
+│   └── miniso/
 ├── App.java
 ├── Main.java
 ├── README.md
 └── Tree.md
 ```
 
-* Las carpetas se usan **solo como organización visual**.
-* Las clases **no declaran `package`**.
-* `Main.java` actúa como **orquestador** de los ejemplos.
+* En los ejemplos clásicos, las carpetas se usan **solo como organización visual** y las clases no declaran `package`.
+* En ambos microproyectos existen paquetes reales para practicar arquitectura.
+* `Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
 
 ---
 
@@ -128,7 +153,7 @@ java -cp out Main
   * pruebas rápidas
   * demostraciones
   * enseñanza
-* Si en el futuro se migra a Maven/Gradle, los paquetes serán obligatorios.
+* Los paquetes son una característica de Java; no dependen de Maven ni Gradle.
 
 ---
 

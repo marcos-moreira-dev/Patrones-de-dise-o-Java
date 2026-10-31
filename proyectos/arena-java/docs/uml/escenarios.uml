@@ -1,0 +1,17 @@
+@startuml
+title Strategy: reglas de dos escenarios
+skinparam classAttributeIconSize 0
+interface ReglasEscenario {
+    + nombre(): String
+    + impedimento(accion: Accion): Optional<String>
+    + danioTerreno(turno: int, accion: Accion): int
+}
+class ReglasArena {
+    + impedimento(accion: Accion): Optional<String>
+}
+class ReglasBosque {
+    + danioTerreno(turno: int, accion: Accion): int
+}
+ReglasEscenario <|.. ReglasArena
+ReglasEscenario <|.. ReglasBosque
+@enduml
