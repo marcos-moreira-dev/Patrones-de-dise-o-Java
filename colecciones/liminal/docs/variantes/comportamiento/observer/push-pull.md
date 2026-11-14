@@ -13,7 +13,7 @@ El interruptor `I-01` enciende una luz y luego la apaga. Dos observadores recibe
 
 No se duplica la luz ni el interruptor. Los observadores pueden retirarse y dejar de recibir cambios.
 
-**R-LOCAL-OBSERVER-02:** los IDs de observador son únicos dentro de cada interruptor y el orden de notificación es reproducible. El ejemplo solo incorpora receptores sin fallos; no pretende garantizar transacciones cuando un observador arbitrario lanza una excepción. Es **síncrono**, respeta R-07 y R-11 y no introduce hilos.
+**R-LOCAL-OBSERVER-02:** los IDs de observador son únicos dentro de cada interruptor y el orden de notificación es reproducible: primero push y después pull, respetando el orden de alta dentro de cada grupo. **Al comenzar cada pulsación se toma una instantánea de ambos grupos.** Si un observador se retira durante su propio aviso, los demás destinatarios de esa instantánea reciben el evento; el retirado no recibe los eventos siguientes. Un observador añadido durante el aviso participa a partir de la pulsación siguiente. El ejemplo solo incorpora receptores sin fallos; no pretende garantizar transacciones cuando un observador arbitrario lanza una excepción. Es **síncrono**, respeta R-07 y R-11 y no introduce hilos.
 
 ## UML de clases
 

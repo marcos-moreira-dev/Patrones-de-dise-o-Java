@@ -24,6 +24,28 @@ public final class PruebaPushPull {
         asegurar(!i.activado() && !push.encendida(), "Push recibe segundo cambio");
         asegurar(pull.encendida() && pull.avisos() == 1, "Pull retirado no recibe otro");
         asegurar(push.avisos() == 2, "Conteo push");
+
+        // Retirar la propia suscripcion durante un aviso no debe romper la iteracion.
+        Interruptor dinamico = new Interruptor("I-02");
+        int[] avisosRetirado = {0};
+        ObservadorPush seRetira = new ObservadorPush() {
+            public String id() { return "L-03"; }
+            public void actualizar(boolean estado) {
+                avisosRetirado[0]++;
+                dinamico.retirar(id());
+            }
+        };
+        LuzPush receptorPush = new LuzPush("L-04");
+        LuzPull receptorPull = new LuzPull("L-05");
+        dinamico.suscribir(seRetira);
+        dinamico.suscribir(receptorPush);
+        dinamico.suscribir(receptorPull);
+        dinamico.pulsar();
+        asegurar(avisosRetirado[0] == 1 && receptorPush.avisos() == 1
+                && receptorPull.avisos() == 1, "Notificacion estable con auto-retiro");
+        dinamico.pulsar();
+        asegurar(avisosRetirado[0] == 1 && receptorPush.avisos() == 2
+                && receptorPull.avisos() == 2, "El retirado no recibe el aviso siguiente");
         rechazar(() -> new Interruptor(" "));
 
         ByteArrayOutputStream buf = new ByteArrayOutputStream();

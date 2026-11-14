@@ -1,6 +1,7 @@
 package liminal.comportamiento.observer.variantes.pushpull;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -44,7 +45,10 @@ final class Interruptor {
 
     void pulsar() {
         activado = !activado;
-        for (ObservadorPush observador : push.values()) observador.actualizar(activado);
-        for (ObservadorPull observador : pull.values()) observador.notificarCambio(this);
+        // La instantanea evita modificar un Map mientras un observador se retira.
+        List<ObservadorPush> destinatariosPush = List.copyOf(push.values());
+        List<ObservadorPull> destinatariosPull = List.copyOf(pull.values());
+        for (ObservadorPush observador : destinatariosPush) observador.actualizar(activado);
+        for (ObservadorPull observador : destinatariosPull) observador.notificarCambio(this);
     }
 }
