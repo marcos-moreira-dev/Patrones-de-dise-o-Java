@@ -1,5 +1,9 @@
 # Flyweight — Varias paredes, una misma textura
 
+![Pasillo amarillo con alfombra, paredes repetidas y luces fluorescentes](../../../assets/ambientes/pasillo-amarillo.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![UML de Flyweight: paredes distintas comparten textura](../../uml/flyweight.svg)
 
 **Escena:** un pasillo amarillo tiene muchas paredes que muestran **el mismo patrón de papel tapiz**. Cada pared tiene su identidad, pero la información inmutable de la textura se reutiliza.
