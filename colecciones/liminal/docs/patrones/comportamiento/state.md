@@ -1,5 +1,9 @@
 # State — La puerta bloqueada
 
+![Pasillo amarillo con alfombra, paredes repetidas y luces fluorescentes](../../../assets/ambientes/pasillo-amarillo.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![UML de State: una puerta delega comportamiento a sus estados](../../uml/state.svg)
 
 **Escena.** En un pasillo amarillo encuentras una puerta cerrada. Al bloquearla, intentar abrirla no sirve. Con la llave correcta vuelves al estado cerrado; entonces puedes abrirla y atravesarla.
