@@ -18,6 +18,10 @@ public final class VerificarDocumentacion {
     private static final Pattern CODIGO = Pattern.compile("\\]\\(([^)]+\\.java)\\)");
     private static final Pattern AMBIENTE = Pattern.compile("!\\[([^]]+)\\]\\(([^)]+\\.webp)\\)");
 
+    private static final Pattern TIPO_SUPERIOR = Pattern.compile(
+            "(?m)^(?:(?:public|abstract|final|sealed|non-sealed|static)\\s+)*"
+                    + "(?:class|interface|record|enum)\\s+([A-Za-z_$][\\w$]*)");
+
     private VerificarDocumentacion() {}
 
     public static void ejecutar() {
@@ -56,6 +60,7 @@ public final class VerificarDocumentacion {
                         || !svg.startsWith(diagramas)) {
                     throw new AssertionError("UML principal o clase Java inexistentes: " + documento);
                 }
+                comprobarCarpetaJava(documento, java, markdown);
                 while (uml.find()) {
                     Path adicional = documento.getParent().resolve(uml.group(1)).normalize();
                     if (!adicional.startsWith(secuencias) || !Files.isRegularFile(adicional)) {
@@ -149,6 +154,40 @@ public final class VerificarDocumentacion {
         try (Stream<Path> archivos = Files.walk(raiz)) {
             return archivos.filter(Files::isRegularFile)
                     .filter(p -> p.toString().endsWith(extension)).toList();
+        }
+    }
+
+    /** Evita repetir la confusión de Builder: cada tipo en un archivo localizable. */
+    private static void comprobarCarpetaJava(Path ficha, Path cliente, String markdown)
+            throws IOException {
+        String nombreCliente = cliente.getFileName().toString();
+        if (!nombreCliente.startsWith("Cliente") || !nombreCliente.endsWith(".java")) {
+            throw new AssertionError("La ficha debe enlazar primero su Cliente: " + ficha);
+        }
+
+        Path carpeta = cliente.getParent();
+        List<Path> archivos = listar(carpeta, ".java");
+        if (archivos.size() < 2) {
+            throw new AssertionError("No hay clases navegables por separado: " + carpeta);
+        }
+        for (Path archivo : archivos) {
+            Matcher tipo = TIPO_SUPERIOR.matcher(Files.readString(archivo));
+            if (!tipo.find()) throw new AssertionError("Archivo sin tipo: " + archivo);
+            String nombreTipo = tipo.group(1);
+            if (tipo.find() || !archivo.getFileName().toString().equals(nombreTipo + ".java")) {
+                throw new AssertionError("Un tipo superior por archivo: " + archivo);
+            }
+        }
+
+        String categoria = ficha.getParent().getFileName().toString();
+        String patron = ficha.getFileName().toString().replace(".md", "");
+        String nombrePrueba = "Prueba" + nombreCliente.substring("Cliente".length());
+        Path prueba = Path.of("src", "test", "java", "liminal", categoria, patron, nombrePrueba);
+        if (!Files.isRegularFile(prueba) || !markdown.contains(nombrePrueba)) {
+            throw new AssertionError("Prueba separada o enlace faltante: " + ficha);
+        }
+        if (Files.readString(cliente).contains("public static void probar()")) {
+            throw new AssertionError("Las pruebas no deben estar en el cliente: " + cliente);
         }
     }
 
