@@ -1,5 +1,9 @@
 # Memento — Recordar cómo estaba la linterna
 
+![Piscinas interiores de agua turquesa y columnas](../../../assets/ambientes/piscinas-vacias.webp)
+
+*Referencia ambiental, no regla del mundo. Las invariantes están en [DOMINIO.md](../../../DOMINIO.md).*
+
 ![UML de Memento: linterna, recuerdo e historial](../../uml/memento.svg)
 
 **Escena.** Una linterna empieza con intensidad 4 y sin filtro azul. Cambias la intensidad a 8 y colocas el filtro. Después restauras la configuración anterior.
