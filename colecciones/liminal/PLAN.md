@@ -1,6 +1,6 @@
 # Expedición Liminal — PLAN DE IMPLEMENTACIÓN
 
-> **Estado:** contrato fijado y piloto State / Strategy / Observer implementado; restan 20 patrones e imágenes atmosféricas. **Versión de planificación:** 1.1 (2026-11-13).
+> **Estado:** 23 patrones GoF implementados, cada uno con clase cliente, prueba, UML SVG y ficha Markdown. Las ilustraciones atmosféricas originales y la revisión editorial visual quedan pendientes. **Versión de planificación:** 1.2 (2026-11-13).
 > Fuente normativa: [DOMINIO.md](DOMINIO.md). Método de modelado: [Cómo definir un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).
 
 ## 1. Meta didáctica
@@ -155,7 +155,7 @@ Estética liminal y analógica, inquietud tranquila, fotografía/videojuego de e
 
 Preferir **imágenes originales generadas** después de fijar escenas y actores. Las fotos en línea solo pueden usarse cuando se verifican condiciones de licencia, atribución y permiso; registrar fuente y autor. Para mantener el repositorio liviano, exportar imágenes web optimizadas y usar SVG para UML. Las ilustraciones no son autoridad de reglas.
 
-## Piloto entregado (primera implementación)
+## Catálogo entregado (23/23 implementaciones)
 
 - `src/main/java/liminal/comportamiento/state/ClienteState.java`: puerta con objetos de estado y rechazo de transiciones inválidas (R-05, R-12).
 - `src/main/java/liminal/comportamiento/strategy/ClienteStrategy.java`: monstruo oscuro con estrategias intercambiables y validación de salidas del mapa (R-02, R-08).
@@ -165,23 +165,33 @@ Preferir **imágenes originales generadas** después de fijar escenas y actores.
 - `docs/uml/`: tres diagramas SVG; `docs/patrones/comportamiento/`: tres fichas explicativas.
 - `scripts/verificar.sh` y `scripts/verificar.ps1`: compilación Java 21 y ejecución reproducible.
 
-**Decisión pedagógica:** cada piloto agrupa sus clases auxiliares de paquete en un único archivo Java junto a su clase cliente pública. Java permite varias clases no públicas por archivo; esa concentración facilita leer el patrón como una pequeña historia. Si la complejidad crece, separar archivos sin alterar el contrato.
+**Decisión pedagógica:** cada patrón agrupa sus clases auxiliares de paquete en un único archivo Java junto a su clase cliente pública. Java permite varias clases no públicas por archivo; esa concentración facilita leer el patrón como una pequeña historia. Si la complejidad crece, separar archivos sin alterar el contrato.
 
-**Limitación declarada:** el piloto no modela multijugador, concurrencia, físicas ni un motor gráfico. El mapa de Strategy maneja identificadores de habitaciones y conexiones dirigidas. En Observer, la notificación síncrona no se presenta como una transacción tolerante a excepciones arbitrarias de receptores.
+**Limitación declarada:** el catálogo no modela multijugador, concurrencia, físicas ni un motor gráfico. El mapa de Strategy maneja identificadores de habitaciones y conexiones dirigidas. En Observer, la notificación síncrona no se presenta como una transacción tolerante a excepciones arbitrarias de receptores.
+
+### Entregas posteriores al piloto
+
+- **5 creacionales:** Singleton, Factory Method, Abstract Factory, Builder y Prototype.
+- **7 estructurales:** Adapter, Bridge, Composite, Decorator, Facade, Flyweight y Proxy.
+- **8 de comportamiento adicionales:** Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Template Method y Visitor.
+- Los 23 patrones tienen una ficha en `docs/patrones/<categoria>/`, un diagrama SVG en `docs/uml/`, una clase cliente en `src/main/java/` y un método `probar()` o clase de pruebas dedicada.
+- `DemoLiminal todos` permite recorrer todos. `PruebasLiminal` verifica los 23 y el script de Bash está integrado a la verificación del repositorio completo.
+
+**Pendiente separado:** producir y auditar las imágenes atmosféricas originales de los escenarios. Los UML ya son imágenes técnicas de aprendizaje, no ilustraciones ambientales.
 
 ## 8. Secuencia de desarrollo y compuertas de calidad
 
 | Etapa | Entrega | Condición para avanzar |
 | --- | --- | --- |
-| A — Contrato | `DOMINIO.md`, glosario, invariantes, tabla de transiciones | Sin contradicciones internas; casos válidos e inválidos |
-| B — Diseño | fichas de los 23 patrones, clases cliente, UML preliminar | Cada patrón resuelve una necesidad sin cambiar reglas |
-| C — Piloto | State, Strategy y Observer funcionales con pruebas | Java 21 compila, consola clara, invariantes verificadas |
-| D — Catálogo | restantes 20 patrones en lotes controlados | Cada ejemplo independiente y probado |
-| E — Integración | menú de demos y scripts de verificación | No altera scripts de la colección técnica existente |
+| A — Contrato (hecha) | `DOMINIO.md`, glosario, invariantes, tabla de transiciones | Sin contradicciones internas; casos válidos e inválidos |
+| B — Diseño (hecha) | fichas de los 23 patrones, clases cliente, UML preliminar | Cada patrón resuelve una necesidad sin cambiar reglas |
+| C — Piloto (hecha) | State, Strategy y Observer funcionales con pruebas | Java 21 compila, consola clara, invariantes verificadas |
+| D — Catálogo (hecha) | restantes 20 patrones en lotes controlados | Cada ejemplo independiente y probado |
+| E — Integración (hecha) | menú de demos y scripts de verificación | No altera scripts de la colección técnica existente |
 | F — Arte | imágenes originales, pies explicativos, créditos | Coherencia estética, licencias, sin contradicciones de dominio |
 | G — Auditoría | código, documentación, enlaces, UML, tildes y accesibilidad | Todas las demos verificadas y mapa de trazabilidad completo |
 
-**Orden de implementación recomendado:** primero `State`, `Strategy` y `Observer` por su claridad; después creacionales, estructurales y restantes de comportamiento. La lista es una ruta de trabajo, no una jerarquía de patrones.
+**Orden implementado:** primero `State`, `Strategy` y `Observer`; después los cinco creacionales, siete estructurales y ocho patrones de comportamiento restantes. La secuencia es pedagógica, no una jerarquía de patrones.
 
 ## 9. Matriz de pruebas mínima
 
