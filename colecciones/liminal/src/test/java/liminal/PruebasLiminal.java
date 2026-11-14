@@ -1,6 +1,14 @@
 package liminal;
 
 import liminal.comportamiento.observer.PruebaObserver;
+import liminal.comportamiento.chainofresponsibility.ClienteChainOfResponsibility;
+import liminal.comportamiento.command.ClienteCommand;
+import liminal.comportamiento.interpreter.ClienteInterpreter;
+import liminal.comportamiento.iterator.ClienteIterator;
+import liminal.comportamiento.mediator.ClienteMediator;
+import liminal.comportamiento.memento.ClienteMemento;
+import liminal.comportamiento.templatemethod.ClienteTemplateMethod;
+import liminal.comportamiento.visitor.ClienteVisitor;
 import liminal.estructurales.adapter.ClienteAdapter;
 import liminal.estructurales.bridge.ClienteBridge;
 import liminal.estructurales.composite.ClienteComposite;
@@ -45,12 +53,28 @@ public final class PruebasLiminal {
         System.out.println("OK Flyweight");
         ClienteProxy.probar();
         System.out.println("OK Proxy");
+        ClienteChainOfResponsibility.probar();
+        System.out.println("OK ChainOfResponsibility");
+        ClienteCommand.probar();
+        System.out.println("OK Command");
+        ClienteInterpreter.probar();
+        System.out.println("OK Interpreter");
+        ClienteIterator.probar();
+        System.out.println("OK Iterator");
+        ClienteMediator.probar();
+        System.out.println("OK Mediator");
+        ClienteMemento.probar();
+        System.out.println("OK Memento");
+        ClienteTemplateMethod.probar();
+        System.out.println("OK TemplateMethod");
+        ClienteVisitor.probar();
+        System.out.println("OK Visitor");
         PruebaState.ejecutar();
         System.out.println("OK State (R-05, R-12)");
         PruebaStrategy.ejecutar();
         System.out.println("OK Strategy (R-02, R-08, R-12)");
         PruebaObserver.ejecutar();
         System.out.println("OK Observer (R-07)");
-        System.out.println("OK 15/15 pruebas del catálogo liminal.");
+        System.out.println("OK 23/23 pruebas del catálogo liminal.");
     }
 }
