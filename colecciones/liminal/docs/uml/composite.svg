@@ -5,7 +5,8 @@
 <path class="edge dashed" d="M346 152.5 L490 152.5" marker-end="url(#open)"/>
 <path class="edge dashed" d="M440 358 L684.5 230" marker-end="url(#triangle)"/>
 <path class="edge dashed" d="M1052.5 345 L684.5 230" marker-end="url(#triangle)"/>
-<path class="edge" d="M830 420 L615 417" marker-end="url(#open)"/>
+<path class="edge" d="M1275 417 H1340 V267 H875 V230" marker-end="url(#open)"/>
+<text x="1045" y="258" class="body">hijos: 0..*</text>
 <rect x="40" y="95" width="306" height="115" rx="3" class="box"/><text x="193" y="130" class="title">ClienteComposite</text><path d="M40 148 H346" class="sep"/><text x="54" y="179" class="body">+ ejecutar(out): void</text>
 <rect x="490" y="75" width="389" height="155" rx="3" class="iface"/><text x="684.5" y="110" class="title">«interface» Encendible</text><path d="M490 128 H879" class="sep"/><text x="504" y="159" class="body">+ encender(): void</text><text x="504" y="185" class="body">+ apagar(): void</text>
 <rect x="265" y="358" width="350" height="118" rx="3" class="box"/><text x="440" y="393" class="title">LuzIndividual</text><path d="M265 411 H615" class="sep"/><text x="279" y="442" class="body">+ encender(): void</text>
