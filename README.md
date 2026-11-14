@@ -28,6 +28,8 @@ Además de los ejemplos técnicos existentes, se ha completado una segunda colec
 
 Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](colecciones/liminal/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](colecciones/liminal/PLAN.md). Empieza por el [README de la colección liminal](colecciones/liminal/README.md).
 
+La siguiente ampliación **está planificada, pero no implementada**: [variantes GoF de ingeniería y laboratorio `class` frente a `record`](colecciones/liminal/PLAN_VARIANTES.md). Se conservarán intactos los 23 ejercicios clásicos como ruta principal.
+
 ![Pasillo amarillo inspirado en espacios liminales, con luces fluorescentes y alfombra](colecciones/liminal/assets/ambientes/pasillo-amarillo.webp)
 
 **[Ver el atlas visual de los escenarios](colecciones/liminal/GUIA_VISUAL.md)** · [Galería de ilustraciones originales](colecciones/liminal/assets/README.md).
