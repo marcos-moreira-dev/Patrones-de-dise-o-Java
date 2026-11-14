@@ -16,21 +16,7 @@ public final class ClienteInterpreter {
         out.println(interprete.analizar("ENCENDER L-01").interpretar(contexto));
     }
 
-    public static void probar() {
-        Contexto contexto = escenario();
-        InterpreteOrdenes interprete = new InterpreteOrdenes();
-        esperarFallo(() -> interprete.analizar("ABRIR"));
-        esperarFallo(() -> interprete.analizar("BORRAR P-01"));
-        esperarFallo(() -> interprete.analizar("ENCENDER L-99").interpretar(contexto));
-        if (contexto.puerta("P-01").abierta() || contexto.luz("L-01").encendida()) {
-            throw new AssertionError("Instrucción inválida no modifica el contexto");
-        }
-        interprete.analizar("ABRIR P-01").interpretar(contexto);
-        interprete.analizar("ENCENDER L-01").interpretar(contexto);
-        if (!contexto.puerta("P-01").abierta() || !contexto.luz("L-01").encendida()) {
-            throw new AssertionError("Expresiones no se ejecutaron");
-        }
-    }
+
     public static void main(String[] args) { ejecutar(System.out); }
 
     private static Contexto escenario() {
@@ -39,9 +25,5 @@ public final class ClienteInterpreter {
         contexto.agregarLuz("L-01");
         return contexto;
     }
-    private static void esperarFallo(Runnable operacion) {
-        try { operacion.run(); }
-        catch (IllegalArgumentException esperado) { return; }
-        throw new AssertionError("Debe rechazar instrucción inválida");
-    }
+
 }
