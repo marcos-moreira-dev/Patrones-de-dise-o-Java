@@ -1,5 +1,11 @@
 # Abstract Factory — Dos ambientes liminales
 
+![Pasillo amarillo con alfombra, paredes repetidas y luces fluorescentes](../../../assets/ambientes/pasillo-amarillo.webp)
+
+![Piscinas interiores iluminadas artificialmente, con agua turquesa y columnas](../../../assets/ambientes/piscinas-vacias.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![Diagrama de Abstract Factory: fábricas de conjuntos coherentes](../../uml/abstractfactory.svg)
 
 **Escena:** al preparar un pasillo amarillo aparecen una luz fluorescente amarilla y una puerta beige. En las piscinas vacías aparecen un reflejo azul y una puerta blanca.
