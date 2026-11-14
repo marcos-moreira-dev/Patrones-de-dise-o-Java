@@ -1,9 +1,6 @@
 package liminal.creacionales.singleton;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 /** Demostración de Singleton, limitado a un panel de avisos ficticio. */
 public final class ClienteSingleton {
@@ -19,8 +16,6 @@ public final class ClienteSingleton {
         out.println("Avisos: " + b.mensajes().size());
         out.println("Último aviso: " + b.mensajes().get(1));
     }
-
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

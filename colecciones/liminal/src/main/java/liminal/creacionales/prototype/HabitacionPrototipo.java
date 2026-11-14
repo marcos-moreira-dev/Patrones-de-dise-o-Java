@@ -1,10 +1,7 @@
 package liminal.creacionales.prototype;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 
 record HabitacionPrototipo(String id, String ambiente, List<String> objetos)
         implements Prototipo<HabitacionPrototipo> {

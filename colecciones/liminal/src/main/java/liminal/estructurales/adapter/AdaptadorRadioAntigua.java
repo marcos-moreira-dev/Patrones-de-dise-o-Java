@@ -1,9 +1,6 @@
 package liminal.estructurales.adapter;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
-
 
 final class AdaptadorRadioAntigua implements Comunicador {
     private final RadioAntigua radio;

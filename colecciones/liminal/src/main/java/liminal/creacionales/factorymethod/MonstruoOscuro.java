@@ -1,11 +1,6 @@
 package liminal.creacionales.factorymethod;
 
-import java.io.PrintStream;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-
 
 record MonstruoOscuro(String id, String habitacion) implements Criatura {
     MonstruoOscuro { validarDatos(id, habitacion); }

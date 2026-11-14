@@ -1,10 +1,6 @@
 package liminal.creacionales.factorymethod;
 
-import java.io.PrintStream;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
 
 record MonstruoSilencioso(String id, String habitacion) implements Criatura {
     MonstruoSilencioso {

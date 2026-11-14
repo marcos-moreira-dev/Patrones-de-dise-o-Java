@@ -1,10 +1,8 @@
 package liminal.creacionales.singleton;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 
 final class PanelAvisos {
     private static final PanelAvisos UNICO = new PanelAvisos();
