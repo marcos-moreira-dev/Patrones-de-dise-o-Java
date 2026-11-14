@@ -61,6 +61,24 @@ public final class VerificarDocumentacion {
             comprobarUml(diagramas, "facade.svg", "salida(origen, destino)");
             for (Path fondo : fondos) validarWebp(fondo);
 
+            Path laboratorio = Path.of("docs", "laboratorios");
+            Path guiaRelaciones = laboratorio.resolve("relaciones-uml.md");
+            Path clasesRelaciones = laboratorio.resolve("relaciones-uml.svg");
+            Path objetosRelaciones = laboratorio.resolve("referencias-objetos.svg");
+            String teoria = Files.readString(guiaRelaciones);
+            if (!teoria.contains("R-09") || !teoria.contains("LAB-UML-01")
+                    || !teoria.contains("relaciones-uml.svg")
+                    || !teoria.contains("referencias-objetos.svg")) {
+                throw new AssertionError("Falta teoría o enlaces del laboratorio UML");
+            }
+            validarSvg(clasesRelaciones);
+            validarSvg(objetosRelaciones);
+            comprobarUml(laboratorio, "relaciones-uml.svg",
+                    "RegistroExpedicion", "EquipoExploracion", "VistaEntrada");
+            comprobarUml(laboratorio, "referencias-objetos.svg",
+                    "entrada:EntradaRegistro", "activa=false");
+            System.out.println("OK laboratorio UML, dos diagramas y reglas enlazadas.");
+
             List<Path> documentosVisuales = new ArrayList<>(documentos);
             documentosVisuales.add(Path.of("README.md"));
             documentosVisuales.add(Path.of("GUIA_VISUAL.md"));
