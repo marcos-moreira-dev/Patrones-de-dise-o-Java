@@ -52,10 +52,16 @@ public final class VerificarDocumentacion {
                 }
                 Path svg = documento.getParent().resolve(uml.group(1)).normalize();
                 Path java = documento.getParent().resolve(codigo.group(1)).normalize();
-                if (!Files.isRegularFile(svg) || !Files.isRegularFile(java)) {
-                    throw new AssertionError("Enlace roto en " + documento);
+                if (!Files.isRegularFile(svg) || !Files.isRegularFile(java)
+                        || !svg.startsWith(diagramas)) {
+                    throw new AssertionError("UML principal o clase Java inexistentes: " + documento);
                 }
-                if (uml.find()) throw new AssertionError("Debe haber un UML principal por ficha");
+                while (uml.find()) {
+                    Path adicional = documento.getParent().resolve(uml.group(1)).normalize();
+                    if (!adicional.startsWith(secuencias) || !Files.isRegularFile(adicional)) {
+                        throw new AssertionError("SVG adicional fuera de secuencias: " + documento);
+                    }
+                }
             }
             for (Path imagen : imagenes) validarSvg(imagen);
             for (Path secuencia : ilustracionesDinamicas) validarSvg(secuencia);
