@@ -15,7 +15,7 @@ public final class ClienteFacade {
         MapaLocal mapa = new MapaLocal();
         mapa.agregarHabitacion("H-01");
         mapa.agregarHabitacion("H-02");
-        PuertaPaso puerta = new PuertaPaso();
+        PuertaPaso puerta = new PuertaPaso("P-01");
         mapa.agregarSalida("H-01", "H-02", puerta);
         Explorador explorador = new Explorador("E-01", "H-01", mapa);
         FachadaCruce fachada = new FachadaCruce(explorador, mapa);
@@ -31,7 +31,7 @@ public final class ClienteFacade {
         mapa.agregarHabitacion("H-02");
         mapa.agregarHabitacion("H-03");
         mapa.agregarHabitacion("H-04");
-        PuertaPaso puerta = new PuertaPaso();
+        PuertaPaso puerta = new PuertaPaso("P-01");
         mapa.agregarSalida("H-01", "H-02", puerta);
         mapa.agregarSalida("H-02", "H-03", null); // Pasillo sin puerta.
         Explorador explorador = new Explorador("E-01", "H-01", mapa);
@@ -53,6 +53,10 @@ public final class ClienteFacade {
         if (!explorador.ubicacion().equals("H-03")) {
             throw new AssertionError("Un cruce inválido no debe mover al explorador");
         }
+        esperarFallo(() -> new PuertaPaso(" "));
+        if (!explorador.ubicacion().equals("H-03")) {
+            throw new AssertionError("R-01: el rechazo de puerta sin ID no altera la ubicación");
+        }
     }
 
     private static void esperarFallo(Runnable accion) {
@@ -65,7 +69,13 @@ public final class ClienteFacade {
 
 enum EstadoPaso { CERRADA, ABIERTA, BLOQUEADA }
 final class PuertaPaso {
+    private final String id;
     private EstadoPaso estado = EstadoPaso.CERRADA;
+    PuertaPaso(String id) {
+        this.id = Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID de puerta vacío");
+    }
+    String id() { return id; }
     EstadoPaso estado() { return estado; }
     void abrir() {
         if (estado != EstadoPaso.CERRADA) throw new IllegalStateException("No puede abrirse");
