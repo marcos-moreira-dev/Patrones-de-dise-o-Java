@@ -29,18 +29,3 @@ public final class ClienteTemplateMethod {
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
-
-abstract class RutaExploracion {
-    public final List<String> recorrer() {
-        return List.of(preparar(), observar(), finalizar());
-    }
-    private String preparar() { return "Preparar linterna"; }
-    protected abstract String observar();
-    private String finalizar() { return "Regresar al punto seguro"; }
-}
-final class RutaOficina extends RutaExploracion {
-    protected String observar() { return "Observar oficina vacía"; }
-}
-final class RutaPiscina extends RutaExploracion {
-    protected String observar() { return "Observar piscina vacía"; }
-}
