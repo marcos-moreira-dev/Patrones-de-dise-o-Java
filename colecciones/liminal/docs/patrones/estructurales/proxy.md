@@ -1,5 +1,9 @@
 # Proxy — Cámara con acceso controlado
 
+![Oficinas vacías con alfombra rosada y mobiliario bajo luces artificiales](../../../assets/ambientes/oficinas-oniricas.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![UML de Proxy: ambas clases realizan Camara](../../uml/proxy.svg)
 
 **Escena:** una cámara ficticia muestra un pasillo. Antes de visualizarlo, hay que introducir un pase; sin pase, el monitor responde «denegado».
