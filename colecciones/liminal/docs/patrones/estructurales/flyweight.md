@@ -12,7 +12,7 @@
 
 **Problema:** repetir una configuración idéntica de textura en cada pared desperdicia objetos compartibles.
 
-**Patrón:** `FabricaTexturas` conserva un mapa de `ClaveTextura` a `Textura`; dos solicitudes equivalentes devuelven **la misma instancia inmutable**. `Pared` conserva una referencia a ella.
+**Patrón:** `FabricaTexturas` conserva un mapa de `ClaveTextura` a `Textura`; dos solicitudes equivalentes devuelven **la misma instancia inmutable**. `Pared` conserva una referencia a ella. La fábrica utiliza `computeIfAbsent` para **crear la textura únicamente cuando la clave todavía no existe**, en vez de construir objetos de descarte ante aciertos de caché.
 
 **Java y UML:** `pared1 != pared2` mientras `pared1.textura() == pared2.textura()`. Compartir un *flyweight* no significa que las dos paredes sean la misma entidad ni que alguna sea propietaria exclusiva de la textura.
 

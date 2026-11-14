@@ -91,7 +91,7 @@ Las rutas anteriores corresponden a la **estructura implementada** (los nombres 
 
 - **Participantes GoF principales** (creador, producto-entidad, observador, estrategia, comando, etc.): preferir `class` / `interface` tradicionales y atributos/constructores/métodos visibles.
 - Hacer **inventario** de usos existentes de `record` antes de cambiar nada; no aplicar reemplazos automáticos en lote.
-- Candidatos visibles: `creacionales/builder/Habitacion.java` y `creacionales/prototype/HabitacionPrototipo.java`, actualmente `record`. Si modelan una entidad con identidad, pasar a clase inmutable con constructor y métodos explícitos. **Antes de cambiar igualdad**, decidir en la ficha si se compara identidad Java (`==`), ID de dominio o valor; no son equivalentes.
+- Revisión completada: `creacionales/builder/Habitacion.java` y `creacionales/prototype/HabitacionPrototipo.java` **eran records** y ya se convirtieron en clases inmutables con atributos y constructores explícitos. Los principales roles GoF de otras carpetas se alinearon de la misma forma. **Identidad Java (`==`), ID de dominio y valor no son equivalentes.**
 - Mantener la consola y pruebas del patrón intactas; modificar UML y fichas si el tipo o los métodos cambian.
 - Si un `record` representa un simple valor, no es automáticamente un error técnico. Sin embargo, en la ruta clásica debe justificarse; los ejemplos en los que su sintaxis sea el objetivo pertenecen al laboratorio Java moderno.
 
@@ -163,7 +163,7 @@ Las descripciones pedagógicas largas van en Markdown; comentarios Java cortos. 
 
 **Implementación confirmada:** los 23 GoF principales permanecen independientes y hay siete clientes nuevos: dos Prototype (copia superficial/profunda y registro), Builder con Director, Proxy con caché, Command con deshacer/rehacer, Chain de pipeline y Observer push/pull. El laboratorio `class` / `record` tiene un cliente adicional. Sus pruebas se ejecutan desde `PruebasLiminal` con Java 21.
 
-**Alineación clásica:** se revisaron los usos de `record` en las 132 fuentes base; los participantes principales se representan con `class` y cinco records de datos/valor permanecen intencionalmente. Véase [auditoría del andamiaje](AUDITORIA_ANDAMIAJE.md).
+**Alineación clásica:** se revisaron los usos de `record` en las 132 fuentes base; los participantes principales se representan con `class` y cuatro records de datos/valor permanecen intencionalmente. Véase [auditoría del andamiaje](AUDITORIA_ANDAMIAJE.md).
 
 **Cobertura editorial completada:** los 17 patrones sin segunda implementación incluyen una sección breve «Otras implementaciones (sin código extra)». La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) tiene clasificación y candidatos de simplificación.
 

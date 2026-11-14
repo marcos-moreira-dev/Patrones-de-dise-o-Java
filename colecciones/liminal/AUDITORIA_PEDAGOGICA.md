@@ -123,6 +123,6 @@ A partir de una revisión de las carpetas del repositorio en GitHub, se detectó
 
 ## 11. Alineación de variantes y clasificación de andamiaje
 
-El catálogo base conserva los 23 patrones. Hay [siete variantes](PLAN_VARIANTES.md) con clientes propios, reglas locales, pruebas y fichas; el [laboratorio class/record](docs/laboratorios/java/class-vs-record.md) justifica la igualdad por valor en una clave de textura. Los roles principales que eran records pasaron a clases tradicionales cuando correspondía; cinco records de datos/valor permanecen intencionalmente.
+El catálogo base conserva los 23 patrones. Hay [siete variantes](PLAN_VARIANTES.md) con clientes propios, reglas locales, pruebas y fichas; el [laboratorio class/record](docs/laboratorios/java/class-vs-record.md) justifica la igualdad por valor en una clave de textura. Los roles principales que eran records pasaron a clases tradicionales cuando correspondía; cuatro records de datos/valor permanecen intencionalmente.
 
 La [primera auditoría estructural de andamiaje](AUDITORIA_ANDAMIAJE.md) separa modelo del dominio, roles GoF, soporte educativo y soporte de pruebas/compilación. **No** declara completada la revisión semántica línea por línea de todo el repositorio ni recomienda borrar código sin consumidores y pruebas identificados.

@@ -52,15 +52,19 @@ Son **conteos estructurales**, no una certificación automática de que cada arc
 
 Se examinaron **132 archivos Java de la ruta original**, excluyendo las nuevas variantes y laboratorios. Había **20 tipos record**. Tras alinear el catálogo clásico, los participantes GoF que necesitaban mostrar identidad, métodos y contratos explícitos quedaron como clases: Builder, Prototype, Factory Method, Abstract Factory, Interpreter, Iterator, Visitor, Decorator y los objetos principales de Flyweight.
 
-Se conservaron **cinco records de datos/valor**, no roles polimórficos GoF:
+Se conservaron **cuatro records de datos/valor**, no roles polimórficos GoF:
 
 - `chainofresponsibility.Ruta` y `chainofresponsibility.SolicitudCruce`: solicitud y descripción de enlaces, inmutables.
-- `facade.Ruta` y `facade.Salida`: descriptores locales de conexiones y puerta opcional.
+- `facade.Ruta`: descriptor inmutable de origen y destino.
 - `flyweight.ClaveTextura`: clave de caché, con igualdad por valor y `hashCode()`.
 
-El [laboratorio Java moderno](docs/laboratorios/java/class-vs-record.md) explica por qué una clave de textura puede beneficiarse de record. **Precaución:** `facade.Salida` referencia una puerta potencialmente mutable; un record no garantiza inmutabilidad profunda ni sustituye el modelo completo de una entidad Salida del dominio. Esa distinción se deja señalada para la auditoría semántica.
+El [laboratorio Java moderno](docs/laboratorios/java/class-vs-record.md) explica por qué una clave de textura puede beneficiarse de record. **Corrección realizada:** `facade.Salida` se convirtió a clase porque conserva una referencia a una puerta mutable. El nombre sigue siendo un descriptor local de la conexión y no reemplaza por sí solo la entidad completa de salida definida en R-01/R-02.
 
-## 5. Candidatos de simplificación, NO eliminados
+## 5. Corrección técnica detectada durante la auditoría
+
+En `FabricaTexturas.obtener()` se construía una instancia nueva de `Textura` **antes** de preguntar a la caché, incluso cuando existía una textura equivalente. Se cambió a `computeIfAbsent(clave, k -> new Textura(...))` para que la nueva textura se cree **solo en el fallo de caché**. Esto preserva el comportamiento visible de Flyweight y elimina trabajo superfluo. No se añadió ninguna clase o contador adicional para justificarlo.
+
+## 6. Candidatos de simplificación, NO eliminados
 
 1. **Documentación antigua:** `PLAN.md` y `Tree.md` todavía contienen o podrían conservar nomenclatura de la fase «FUTURO». Actualizar la navegación sin borrar la historia de decisiones.
 2. **Doble compilación:** la CI compila fuentes y luego `scripts/verificar.sh` ejecuta sus propias compilaciones. Revisar si se puede reducir trabajo sin perder pruebas, Javadoc ni compatibilidad con Windows.
@@ -69,7 +73,7 @@ El [laboratorio Java moderno](docs/laboratorios/java/class-vs-record.md) explica
 5. **Dominio duplicado deliberadamente:** clases con el mismo nombre en paquetes distintos son ejercicios independientes. No extraer un framework común si eso impide leerlos a mano.
 6. **Arte y builds:** `out/`, `target/` y `*.class` están en `.gitignore`; no son fuente que debamos conservar en Git.
 
-## 6. Segunda pasada para declarar auditoría total
+## 7. Segunda pasada para declarar auditoría total
 
 Para cada uno de los 23 patrones, siete variantes, dos laboratorios y ambos microproyectos:
 
