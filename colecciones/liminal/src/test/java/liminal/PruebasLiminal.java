@@ -2,6 +2,9 @@ package liminal;
 
 import liminal.comportamiento.observer.PruebaObserver;
 import liminal.laboratorios.relaciones.PruebaRelacionesUml;
+import liminal.laboratorios.java.classvsrecord.PruebaClassVsRecord;
+import liminal.creacionales.prototype.variantes.copiaprofunda.PruebaCopiaProfunda;
+import liminal.creacionales.prototype.variantes.registro.PruebaRegistroPrototipos;
 import liminal.comportamiento.chainofresponsibility.PruebaChainOfResponsibility;
 import liminal.comportamiento.command.PruebaCommand;
 import liminal.comportamiento.interpreter.PruebaInterpreter;
@@ -79,6 +82,12 @@ public final class PruebasLiminal {
         System.out.println("OK 23/23 pruebas del catálogo liminal.");
         PruebaRelacionesUml.ejecutar();
         System.out.println("OK laboratorio UML (R-01, R-03, R-09, R-10, R-12)");
+        PruebaClassVsRecord.ejecutar();
+        System.out.println("OK laboratorio class vs record (valor, identidad y caché)");
+        PruebaCopiaProfunda.ejecutar();
+        System.out.println("OK Prototype variante copia superficial/profunda");
+        PruebaRegistroPrototipos.ejecutar();
+        System.out.println("OK Prototype variante catálogo de prototipos");
         VerificarDocumentacion.ejecutar();
     }
 }
