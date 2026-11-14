@@ -1,5 +1,9 @@
 # Facade — Atravesar un pasillo con seguridad
 
+![Pasillo amarillo con alfombra, paredes repetidas y luces fluorescentes](../../../assets/ambientes/pasillo-amarillo.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![UML de Facade: una fachada coordina explorador, mapa y puerta](../../uml/facade.svg)
 
 **Escena:** un explorador desea pasar de H-01 a H-02. Para ello debe comprobar que ambas habitaciones existen, que hay una **salida dirigida** y que su puerta está abierta.
