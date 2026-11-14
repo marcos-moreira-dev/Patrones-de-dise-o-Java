@@ -62,6 +62,8 @@ public final class VerificarDocumentacion {
                     "LuzAmarilla", "LuzPiscinas", "PuertaAmarilla", "PuertaPiscinas",
                     "FabricaAmarilla", "FabricaPiscinas");
             comprobarUml(diagramas, "facade.svg", "salida(origen, destino)");
+            comprobarUml(diagramas, "observer.svg",
+                    "ObservadorInterruptor", "observadores: Map", "0..*");
             for (Path fondo : fondos) validarWebp(fondo);
             for (Path lamina : laminas) validarWebp(lamina);
 
