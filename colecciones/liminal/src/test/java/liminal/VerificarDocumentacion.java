@@ -120,7 +120,11 @@ public final class VerificarDocumentacion {
                     "entrada:EntradaRegistro", "activa=false");
             System.out.println("OK laboratorio UML, dos diagramas y reglas enlazadas.");
 
+            comprobarAmpliacion();
             List<Path> documentosVisuales = new ArrayList<>(documentos);
+            documentosVisuales.add(Path.of("docs", "laboratorios", "java", "class-vs-record.md"));
+            documentosVisuales.add(Path.of("docs", "variantes", "creacionales", "prototype", "copia-profunda.md"));
+            documentosVisuales.add(Path.of("docs", "variantes", "creacionales", "prototype", "registro-prototipos.md"));
             documentosVisuales.add(Path.of("README.md"));
             documentosVisuales.add(Path.of("GUIA_VISUAL.md"));
             documentosVisuales.add(Path.of("assets", "README.md"));
@@ -148,6 +152,38 @@ public final class VerificarDocumentacion {
         } catch (Exception e) {
             throw new AssertionError("Auditoría de documentación fallida", e);
         }
+    }
+
+    /** Verifica que las ampliaciones no sean código huérfano ni enlaces inexistentes. */
+    private static void comprobarAmpliacion() throws IOException {
+        String[][] documentos = {
+                {"docs/laboratorios/java/class-vs-record.md", "ClaveTextura", "class"},
+                {"docs/variantes/creacionales/prototype/copia-profunda.md",
+                        "R-LOCAL-PROTOTYPE-01", "mermaid"},
+                {"docs/variantes/creacionales/prototype/registro-prototipos.md",
+                        "R-LOCAL-PROTOTYPE-02", "mermaid"}
+        };
+        for (String[] documento : documentos) {
+            Path ruta = Path.of(documento[0]);
+            String texto = Files.readString(ruta);
+            if (!texto.contains(documento[1]) || !texto.contains(documento[2])) {
+                throw new AssertionError("Ampliación sin contrato o explicación: " + ruta);
+            }
+        }
+        String[] fuentes = {
+                "src/main/java/liminal/laboratorios/java/classvsrecord/ClienteClassVsRecord.java",
+                "src/test/java/liminal/laboratorios/java/classvsrecord/PruebaClassVsRecord.java",
+                "src/main/java/liminal/creacionales/prototype/variantes/copiaprofunda/ClienteCopiaProfunda.java",
+                "src/test/java/liminal/creacionales/prototype/variantes/copiaprofunda/PruebaCopiaProfunda.java",
+                "src/main/java/liminal/creacionales/prototype/variantes/registro/ClienteRegistroPrototipos.java",
+                "src/test/java/liminal/creacionales/prototype/variantes/registro/PruebaRegistroPrototipos.java"
+        };
+        for (String fuente : fuentes) {
+            if (!Files.isRegularFile(Path.of(fuente))) {
+                throw new AssertionError("Ampliación incompleta: " + fuente);
+            }
+        }
+        System.out.println("OK laboratorio Java y 2 variantes Prototype documentadas.");
     }
 
     private static List<Path> listar(Path raiz, String extension) throws IOException {
