@@ -38,6 +38,22 @@
 
 **Estudia aquí:** [Observer](docs/patrones/comportamiento/observer.md), [Proxy](docs/patrones/estructurales/proxy.md), [Interpreter](docs/patrones/comportamiento/interpreter.md) y [Mediator](docs/patrones/comportamiento/mediator.md).
 
+## 4. Objetos que puedes reconocer en las escenas
+
+![Una puerta beige cerrada, una linterna, un interruptor de pared y una criatura oscura lejana: cuatro escenas VHS](assets/objetos/lamina-objetos-liminales.webp)
+
+Son **cuatro referencias visuales independientes**, ordenadas de izquierda a derecha y de arriba abajo. No son una secuencia temporal ni demuestran reglas por sí solas.
+
+**Puerta cerrada:** en [State](docs/patrones/comportamiento/state.md) se modela si abrir, cerrar o atravesar es válido según el estado (R-05). Una puerta dibujada no demuestra que todas las salidas tengan una.
+
+**Linterna:** en [Decorator](docs/patrones/estructurales/decorator.md) una mejora envuelve la linterna sin copiarla. En el dominio, una linterna portable no puede estar físicamente en dos inventarios al mismo tiempo (R-06).
+
+**Interruptor:** en [Observer](docs/patrones/comportamiento/observer.md) puede notificar luces y alarmas sin convertirse en dueño de esos receptores (R-07).
+
+**Monstruo oscuro:** en [Strategy](docs/patrones/comportamiento/strategy.md) puede cambiar de patrullar a perseguir sin convertirse en otra criatura (R-08). Su silueta en la imagen no determina su ubicación válida ni la lógica del movimiento.
+
+[Ver procedencia y ficha de la lámina](assets/README.md).
+
 ## Método de estudio: de la imagen al patrón
 
 1. Describe en una frase qué **ocurre** en la escena imaginada.
