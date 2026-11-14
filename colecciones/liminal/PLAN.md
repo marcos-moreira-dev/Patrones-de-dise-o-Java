@@ -5,6 +5,8 @@
 
 La [auditoría pedagógica de noviembre de 2026](AUDITORIA_PEDAGOGICA.md) corrigió restricciones de movimiento e identidad, añadió pruebas y afinó seis diagramas de patrones.
 
+**Próxima etapa (solo planificada):** [variantes de seis patrones y laboratorio sobre `class` / `record`](PLAN_VARIANTES.md). Se mantiene separada del catálogo clásico de 23 ejemplos y su avance no cambia las invariantes R-01…R-14.
+
 **Laboratorio R-09 incorporado:** [Relaciones UML y ciclo de vida](docs/laboratorios/relaciones-uml.md) como actividad extra, no como patrón número 24. Se integra en las pruebas Java 21 y tiene dos diagramas adicionales sin modificar el inventario de 23 SVG GoF. Los pendientes restantes están clasificados por prioridad en ese documento.
 
 ## 1. Meta didáctica
