@@ -1,9 +1,6 @@
 package liminal.estructurales.bridge;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
-
 
 abstract class AlertaLiminal {
     private final CanalAviso canal;

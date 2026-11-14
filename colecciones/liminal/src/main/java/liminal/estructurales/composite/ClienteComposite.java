@@ -1,11 +1,6 @@
 package liminal.estructurales.composite;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 /** Composite: controlar una luz individual y grupos con el mismo contrato. */
 public final class ClienteComposite {
@@ -21,7 +16,6 @@ public final class ClienteComposite {
         out.println("Luz L-01: " + (a.encendida() ? "ENCENDIDA" : "APAGADA"));
         out.println("Luz L-02: " + (b.encendida() ? "ENCENDIDA" : "APAGADA"));
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

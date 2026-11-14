@@ -1,7 +1,6 @@
 package liminal.estructurales.bridge;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /** Bridge: tipo de alerta y forma de comunicarla evolucionan por separado. */
 public final class ClienteBridge {
@@ -13,7 +12,6 @@ public final class ClienteBridge {
         out.println(puerta.emitir());
         out.println(ruido.emitir());
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

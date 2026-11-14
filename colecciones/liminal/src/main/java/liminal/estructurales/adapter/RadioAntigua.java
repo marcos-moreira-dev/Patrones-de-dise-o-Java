@@ -1,10 +1,5 @@
 package liminal.estructurales.adapter;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
-
-
 /** API vieja que no implementa el contrato nuevo. */
 final class RadioAntigua {
     private String ultimaEmision = "";
