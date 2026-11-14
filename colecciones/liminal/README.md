@@ -4,7 +4,7 @@
 
 *Una expedición por pasillos, piscinas y oficinas imposibles. Lee la escena primero; después descubre cómo funciona el patrón en Java.*
 
-**Estado: catálogo Java 21 completo (23/23).** Todos los patrones cuentan con una clase cliente ejecutable por consola, una prueba autónoma, un diagrama UML SVG y una ficha Markdown. La colección incluye **tres escenarios originales y una lámina de cuatro objetos y criatura**; las secuencias didácticas de transiciones siguen siendo una mejora artística opcional.
+**Estado: catálogo Java 21 completo (23/23).** Todos los patrones cuentan con una clase cliente ejecutable por consola, una prueba autónoma, un diagrama UML SVG y una ficha Markdown. La colección incluye **tres escenarios originales y una lámina de cuatro objetos y criatura**; las secuencias didácticas de **State, Strategy y Observer** también están ilustradas en SVG.
 
 La colección técnica original y los microproyectos Arena Java y MiniSO **se conservan intactos en su organización**.
 
@@ -90,6 +90,6 @@ Los diagramas muestran dependencia, asociación, realización y herencia cuando 
 
 ## Ilustraciones y próximas mejoras
 
-Ya existen **tres fondos originales y una lámina de cuatro objetos**: puerta, linterna, interruptor y monstruo oscuro. Se muestran en el [atlas visual](GUIA_VISUAL.md) y están optimizados como WebP. El trabajo gráfico futuro podría ilustrar transiciones de puertas y secuencias de comportamientos siguiendo el [plan](PLAN.md).
+Ya existen **tres fondos originales y una lámina de cuatro objetos**: puerta, linterna, interruptor y monstruo oscuro. Se muestran en el [atlas visual](GUIA_VISUAL.md) y están optimizados como WebP. Además, hay tres [láminas de comportamiento](GUIA_VISUAL.md#5-qué-cambia-cuando-se-ejecuta-el-código): transiciones de puertas, recorrido de monstruo y notificaciones de dispositivos. Pueden ampliarse siguiendo el [plan](PLAN.md).
 
 El juego *The Complex: Expedition* y la cultura Backrooms son referencias estéticas, no fuentes de capturas ni de reglas normativas. Las ilustraciones **no tienen autoridad sobre el dominio**.
