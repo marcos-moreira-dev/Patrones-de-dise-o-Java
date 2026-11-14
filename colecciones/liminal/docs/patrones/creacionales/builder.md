@@ -12,7 +12,15 @@
 
 **Problema:** constructores con muchos parámetros posicionales son difíciles de leer cuando se describen ambientes visuales.
 
-**Patrón:** `ConstructorHabitacion` guarda temporalmente los valores y produce un objeto `Habitacion` validado en `construir()`. El cliente configura los pasos y el registro asegura la unicidad de identificadores en un mismo mapa.
+**Patrón:** `ConstructorHabitacion` guarda temporalmente los valores y produce un objeto `Habitacion` validado en `construir()`. **Builder necesita esencialmente dos roles:** producto y constructor paso a paso. `RegistroHabitaciones` es un colaborador del dominio para IDs únicos, **no otro participante GoF obligatorio**.
+
+**Dónde está cada tipo en GitHub:** ahora cada uno tiene un archivo independiente:
+
+- [`ClienteBuilder.java`](../../../src/main/java/liminal/creacionales/builder/ClienteBuilder.java) — indica el recorrido con los métodos `construirHabitacion()`, `registrarHabitacion()` y `mostrarHabitacion()`.
+- [`ConstructorHabitacion.java`](../../../src/main/java/liminal/creacionales/builder/ConstructorHabitacion.java) — configura paso a paso.
+- [`Habitacion.java`](../../../src/main/java/liminal/creacionales/builder/Habitacion.java) — producto inmutable.
+- [`RegistroHabitaciones.java`](../../../src/main/java/liminal/creacionales/builder/RegistroHabitaciones.java) — comprobación de identidad del mapa.
+- [`PruebaBuilder.java`](../../../src/test/java/liminal/creacionales/builder/PruebaBuilder.java) — pruebas separadas del cliente.
 
 **Java y UML:** el constructor y el producto son **objetos distintos**. El hecho de crear un objeto en `construir()` no prueba por sí solo propiedad compuesta. La construcción del objeto y su inscripción en el mapa son responsabilidades separadas.
 
@@ -29,4 +37,4 @@ Puerta: sí
 
 **Cuándo no usarlo:** para un `record` de dos campos obligatorios, su constructor puede ser suficiente.
 
-[Ver código y clase cliente](../../../src/main/java/liminal/creacionales/builder/ClienteBuilder.java).
+[Abrir la carpeta con todas las clases](../../../src/main/java/liminal/creacionales/builder/).
