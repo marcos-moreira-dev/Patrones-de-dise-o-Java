@@ -46,7 +46,7 @@ JAR y prueba automáticamente que arrancan y responden a comandos.
 El resultado final esperado es:
 
 ```text
-VERIFICACION COMPLETA: 22 patrones clasicos, 2 microproyectos, 2 suites y 3 pruebas de consola correctas.
+VERIFICACION COMPLETA: 23 patrones clasicos, 2 microproyectos y 23 demos liminales, mas laboratorio UML.
 ```
 
 Un comando que termina con código **0** significa que no se detectaron
@@ -78,7 +78,7 @@ directa con `javac` en su respectivo `BUILD.md`.
 | Algoritmos | FIFO/heap frente a oráculos de JDK | `miniso.PruebasMiniSO` | Orden y desempates coinciden |
 | Métricas | Espera, respuesta, retorno y alternancias | `miniso.PruebasMiniSO` | Valores coinciden con cálculo manual |
 | Integración | CLI → aplicación → dominio | `bash scripts/verificar.sh` | Dos JAR arrancan y responden |
-| Patrones clásicos | Menú de los 22 patrones y entradas inválidas | `bash scripts/verificar.sh` | Tres categorías se ejecutan sin excepción |
+| Patrones clásicos | Menú de los 23 patrones y entradas inválidas | `bash scripts/verificar.sh` | Tres categorías se ejecutan sin excepción |
 | Documentación | UML/SVG y contratos | GitHub Actions / inspección visual | Enlaces legibles y Javadoc generado |
 | Usabilidad | Persona real ejecuta el proyecto | Git Bash, dos `java -jar` | Puede completar una partida y un escenario MiniSO |
 
