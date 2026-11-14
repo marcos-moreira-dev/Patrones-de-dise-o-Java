@@ -107,3 +107,11 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 **Decisión de poda:** ninguna clase de estas variantes se elimina en este lote: los tipos revisados conservan roles didácticos o de dominio identificables. Las clases cliente y de prueba siguen separadas. **La regresión de la cadena pasó GitHub Actions (commit `ceb2c044`) con Java 21.** La regresión de auto-retiro de Observer requiere la misma comprobación de CI.
 
 **Siguiente alcance aún abierto:** auditoría semántica de las 23 implementaciones base, correspondencia de flechas y multiplicidades en todos los UML, laboratorios, utilidades del repositorio y los dos microproyectos. Mantener la distinción entre esta revisión dirigida y una certificación total.
+
+## 9. Segunda pasada técnica — eliminar compilación y pruebas duplicadas en CI
+
+**Hallazgo:** el job Ubuntu del workflow `.github/workflows/java21.yml` compilaba los Java con `find | javac`, ejecutaba `arena.PruebasArena` y `miniso.PruebasMiniSO`, y luego invocaba `scripts/verificar.sh`, que **ya** vuelve a compilar las colecciones y ejecuta esas pruebas desde Maven.
+
+**Inventario de cobertura comprobado:** todos los **344 archivos `.java`** del árbol se encuentran dentro de las colecciones clásicas (incluidos `App.java` y `Main.java`), Expedición Liminal, Arena Java o MiniSO. Ninguna fuente queda fuera del verificador común: clásicos (javac y menú), liminal (javac, pruebas y consola) y microproyectos (Maven `clean verify` con el plugin exec y pruebas), más dos smoke tests de JAR.
+
+**Decisión:** eliminar los tres pasos redundantes del job Ubuntu y ejecutar una sola vez el script de verificación; conservar la generación independiente de **Javadoc** y el job de **Windows/Git Bash**. Es poda de andamiaje técnico T, sin modificar código de dominio, UML ni número de pruebas. La comprobación del nuevo workflow debe observarse en GitHub Actions, no suponerse por lectura de YAML.
