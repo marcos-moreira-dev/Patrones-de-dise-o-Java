@@ -32,25 +32,3 @@ public final class ClienteAdapter {
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
-
-interface Comunicador {
-    void enviar(String aviso);
-}
-
-/** API vieja que no implementa el contrato nuevo. */
-final class RadioAntigua {
-    private String ultimaEmision = "";
-    void emitirPorFrecuencia(String mensaje) { ultimaEmision = "Radio antigua: " + mensaje; }
-    String ultimaEmision() { return ultimaEmision; }
-}
-
-final class AdaptadorRadioAntigua implements Comunicador {
-    private final RadioAntigua radio;
-
-    AdaptadorRadioAntigua(RadioAntigua radio) { this.radio = Objects.requireNonNull(radio); }
-    public void enviar(String aviso) {
-        Objects.requireNonNull(aviso);
-        if (aviso.isBlank()) throw new IllegalArgumentException("Aviso vacío");
-        radio.emitirPorFrecuencia(aviso);
-    }
-}
