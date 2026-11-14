@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1060" height="268" viewBox="0 0 1060 268" role="img" aria-labelledby="titulo descripcion">
-<title id="titulo">Interfaz lollipop</title><desc id="descripcion">NotificadorEmail proporciona la interfaz Notificador representada por un circulo.</desc>
+<title id="titulo">Interfaz lollipop</title><desc id="descripcion">NotificadorEmail proporciona la interfaz Notificador representada por un círculo.</desc>
 <style>
   .caja{fill:#f0f5ff;stroke:#3972bf;stroke-width:2}
   .division{stroke:#3972bf;stroke-width:1.4}
