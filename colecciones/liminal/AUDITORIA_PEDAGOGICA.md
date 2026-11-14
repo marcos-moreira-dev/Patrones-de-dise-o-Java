@@ -101,3 +101,22 @@ Cada secuencia se enlaza desde la ficha del patrón y desde el [atlas visual](GU
 Considerar la colección **funcional y apta para estudio**. Antes de anunciar un cierre estrictamente editorial, inspeccionar visualmente los otros SVG si se busca perfección editorial. La galería de objetos y el laboratorio aparte de R-09 ya están incorporados. Conservar las **reglas del dominio como fuente normativa**: si cambian, actualizar documentación, Java, UML y pruebas en ese orden.
 
 [Volver al README](README.md) · [Ver atlas visual](GUIA_VISUAL.md) · [Consultar dominio](DOMINIO.md).
+
+
+## 10. Auditoría de navegabilidad del código (14 de noviembre de 2026)
+
+A partir de una revisión de las carpetas del repositorio en GitHub, se detectó una **dificultad de lectura**: cada `ClienteX.java` contenía el cliente y varias clases, interfaces o records auxiliares. Aunque Java permite estas declaraciones, GitHub mostraba solo el nombre del cliente en la carpeta; eso ocultaba visualmente la estructura de cada patrón, a diferencia de `Response.java` y `ResponseBuilder.java` en el ejemplo técnico.
+
+**Correcciones completadas:**
+
+- Los **23 patrones liminales** están reorganizados con **un tipo superior Java por archivo**; cada nombre aparece ahora en la carpeta correspondiente. No se fusionaron dominios distintos ni se añadieron frameworks.
+- Las pruebas se separaron en `PruebaNombre.java`, bajo `src/test/java`, para todos los patrones (State, Strategy y Observer ya las tenían; Builder fue el primer cambio). Los clientes dejaron de mezclar demostraciones y aserciones.
+- **Builder** se redujo a los dos roles principales: `ConstructorHabitacion` y `Habitacion`. Su cliente tiene pasos `construirHabitacion()` y `mostrarHabitacion()`. Se retiró el registro de habitaciones de este ejemplo porque la unicidad de un mapa **no es una responsabilidad de Builder**.
+- Los clientes de Factory Method, State, Strategy, Observer y Facade muestran ahora el recorrido mediante métodos con nombre; los ejemplos cortos permanecen cortos, sin trocear artificialmente cada instrucción.
+- `DemoLiminal.java` ofrece `ejecutarCreacionales()`, `ejecutarEstructurales()`, `ejecutarComportamiento()` y `probarX()` por patrón, como los orquestadores de la colección técnica.
+- Se retiraron imports sin uso y espacios redundantes de clases de producción y pruebas, y se corrigieron etiquetas obsoletas en UML de Singleton y Prototype.
+- El verificador de documentación comprueba la existencia de las carpetas, el **archivo por tipo superior**, los enlaces de clientes, la clase de prueba independiente y la ausencia de `probar()` dentro del cliente.
+
+**Resultado para el lector:** seguir la [guía de lectura manual](GUIA_LECTURA_CODIGO.md), abrir el cliente, ir a cada tipo mencionado por nombre y consultar la prueba solo al final. No hace falta comprender un juego integrado para estudiar Builder o cualquier otro patrón.
+
+**Alcance y limitación:** no se cambiaron las reglas R-01…R-14. Se mantuvieron las colaboraciones GoF existentes; una mejora de navegación no sustituye una auditoría profunda del diseño de cada patrón ni el examen visual de cada flecha UML.
