@@ -1,5 +1,9 @@
 # Observer — El interruptor de la habitación
 
+![Oficinas vacías con alfombra rosada y mobiliario bajo luces artificiales](../../../assets/ambientes/oficinas-oniricas.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![UML de Observer: interruptor mantiene referencias a observadores](../../uml/observer.svg)
 
 **Escena.** Pulsas un interruptor en una oficina vacía. La luz se enciende y la alarma recibe un aviso. Al pulsarlo de nuevo, la luz se apaga. La alarma también puede dejar de recibir notificaciones.
