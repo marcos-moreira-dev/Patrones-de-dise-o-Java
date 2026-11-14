@@ -21,7 +21,7 @@ classDiagram
         -siguiente: ValidadorCruce
         +enlazar(nuevoSiguiente) void
         +verificar(solicitud) List
-        #comprobar(solicitud, errores)* void
+        #comprobar(solicitud, errores) void
     }
     class ValidarHabitaciones
     class ValidarSalida

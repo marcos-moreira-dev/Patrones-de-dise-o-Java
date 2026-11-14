@@ -44,7 +44,7 @@ ESTADO: luces de H-01 -> 3
 ```mermaid
 classDiagram
     class ClaveTextura {
-      <<record de Java>>
+      <<record>>
       +material() String
       +patron() String
     }

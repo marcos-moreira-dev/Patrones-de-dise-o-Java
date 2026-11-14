@@ -16,7 +16,26 @@ Una plantilla de habitación tiene configuraciones de luminarias con modelo e in
 
 **R-06 y R-10:** esta copia ocurre antes de crear entidades activas; no se duplica físicamente una linterna, no hay dos inventarios ni habitaciones nuevas con ID repetido.
 
-## Diagrama de objetos
+## UML de clases y esquema de referencias
+
+```mermaid
+classDiagram
+    class PlantillaHabitacion {
+        -ambiente: String
+        -luminarias: List
+        +copiarSuperficial() PlantillaHabitacion
+        +copiarProfunda() PlantillaHabitacion
+    }
+    class ConfiguracionLuminaria {
+        -modelo: String
+        -intensidad: int
+        +cambiarIntensidad(valor) void
+        +copiar() ConfiguracionLuminaria
+    }
+    PlantillaHabitacion --> ConfiguracionLuminaria : referencias 0..*
+```
+
+**Esquema de objetos y aliasing**, complementario al UML de clases:
 
 ```mermaid
 flowchart LR
