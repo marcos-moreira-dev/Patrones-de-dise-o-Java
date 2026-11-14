@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="410" viewBox="0 0 1060 410" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Dos listas guardan referencias a la misma instancia de Estudiante</title>
+  <desc id="descripcion">cursoA y cursoB son objetos distintos de Curso; cada uno tiene una lista cuyo elemento de indice cero referencia al mismo objeto ana de Estudiante. No hay dos copias de ana.</desc>
+  <style>
+    .caja { fill: #f0f5ff; stroke: #3972bf; stroke-width: 2.5; }
+    .objeto { fill: #e6faf3; stroke: #147d68; stroke-width: 2.5; }
+    .division { stroke: #64748b; stroke-width: 1.5; }
+    .nombre { fill: #152238; font: bold 25px Arial,sans-serif; text-anchor: middle; text-decoration: underline; }
+    .dato { fill: #202936; font: 22px Arial,sans-serif; }
+    .puntero { stroke: #147d68; stroke-width: 3; fill: none; }
+    .anotacion { fill: #40526b; font: italic 20px Arial,sans-serif; text-anchor: middle; }
+  </style>
+  <rect class="caja" x="35" y="35" width="310" height="120" rx="3"/>
+  <text class="nombre" x="190" y="72">cursoA : Curso</text>
+  <line class="division" x1="35" y1="94" x2="345" y2="94"/>
+  <text class="dato" x="52" y="131">estudiantes[0]</text>
+  <rect class="caja" x="35" y="210" width="310" height="120" rx="3"/>
+  <text class="nombre" x="190" y="247">cursoB : Curso</text>
+  <line class="division" x1="35" y1="269" x2="345" y2="269"/>
+  <text class="dato" x="52" y="306">estudiantes[0]</text>
+  <rect class="objeto" x="716" y="124" width="306" height="132" rx="3"/>
+  <text class="nombre" x="869" y="166">ana : Estudiante</text>
+  <line class="division" x1="716" y1="188" x2="1022" y2="188"/>
+  <text class="dato" x="738" y="225">nombre = &quot;Ana&quot;</text>
+  <path class="puntero" d="M345 122 L701 168"/>
+  <path class="puntero" d="M687 158 L701 168 L685 175"/>
+  <path class="puntero" d="M345 298 L701 220"/>
+  <path class="puntero" d="M683 216 L701 220 L688 231"/>
+  <text class="anotacion" x="529" y="361">Una sola instancia; dos referencias.</text>
+  <text class="anotacion" x="529" y="389">Esquema explicativo de objetos en ejecución.</text>
+</svg>
