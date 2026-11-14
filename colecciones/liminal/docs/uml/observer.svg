@@ -1,19 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="560" viewBox="0 0 1240 560" role="img" aria-labelledby="titulo descripcion">
-<title id="titulo">Observer: interruptor y receptores suscritos</title><desc id="descripcion">Interruptor mantiene referencias a 0..* ObservadorInterruptor. Luz y Alarma realizan el contrato. La relación no implica propiedad compuesta.</desc>
-<style>
-.caja{fill:#f2f6ff;stroke:#4373a5;stroke-width:2}
-.interfaz{fill:#f3ecff;stroke:#8152b6;stroke-width:2}
-.linea{stroke:#26374c;stroke-width:2.5;fill:none}
-.dash{stroke-dasharray:9 6}
-.nombre{font:700 20px Arial,sans-serif;fill:#152238;text-anchor:middle}
-.metodo{font:17px Arial,sans-serif;fill:#23364a}
-.nota{font:italic 16px Arial,sans-serif;fill:#415774;text-anchor:middle}
-.triangulo{fill:white;stroke:#26374c;stroke-width:2.5}
-</style><rect class="caja" x="25" y="58" width="280" height="119" rx="3"/><text class="nombre" x="165" y="89">ClienteObserver</text><line x1="25" y1="104" x2="305" y2="104" stroke="#8b9aaa"/><text class="metodo" x="38" y="132">+ ejecutar(out): void</text><rect class="caja" x="351" y="48" width="382" height="168" rx="3"/><text class="nombre" x="542" y="79">Interruptor</text><line x1="351" y1="94" x2="733" y2="94" stroke="#8b9aaa"/><text class="metodo" x="364" y="122">- observadores: Map&lt;String, ObservadorInterruptor&gt;</text><text class="metodo" x="364" y="146">+ suscribir(observador)</text><text class="metodo" x="364" y="170">+ pulsar(): void</text><rect class="interfaz" x="820" y="48" width="393" height="168" rx="3"/><text class="nombre" x="1016.5" y="79">«interface» ObservadorInterruptor</text><line x1="820" y1="94" x2="1213" y2="94" stroke="#8b9aaa"/><text class="metodo" x="833" y="122">+ id(): String</text><text class="metodo" x="833" y="146">+ alCambiar(activo): void</text><rect class="caja" x="685" y="350" width="240" height="113" rx="3"/><text class="nombre" x="805" y="381">Luz</text><line x1="685" y1="396" x2="925" y2="396" stroke="#8b9aaa"/><text class="metodo" x="698" y="424">+ alCambiar(activo)</text><rect class="caja" x="974" y="350" width="240" height="113" rx="3"/><text class="nombre" x="1094" y="381">Alarma</text><line x1="974" y1="396" x2="1214" y2="396" stroke="#8b9aaa"/><text class="metodo" x="987" y="424">+ alCambiar(activo)</text><path class="linea dash" d="M305 124 H351"/><path class="linea" d="M338 114 L351 124 L338 134"/>
-<path class="linea" d="M733 124 H820"/><path class="linea" d="M807 114 L820 124 L807 134"/>
-<text class="metodo" x="740" y="107">0..*</text>
-<path class="linea dash" d="M805 350 L910 236"/>
-<path class="linea dash" d="M1094 350 L1100 236"/>
-<path class="triangulo" d="M896 236 L910 216 L924 236 Z"/>
-<path class="triangulo" d="M1086 236 L1100 216 L1114 236 Z"/>
-<text class="nota" x="620" y="516">Suscripción y notificación no significan propiedad de los observadores.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="640" viewBox="0 0 1480 640" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Observer — interruptor, luces y alarma</title>
+<desc id="descripcion">ClienteObserver depende de Interruptor. Interruptor mantiene una asociación de cero o más observadores ObservadorInterruptor, sin propiedad compuesta. Luz y Alarma realizan la interfaz ObservadorInterruptor.</desc>
+<defs><marker id="v" viewBox="0 0 24 24" markerWidth="11" markerHeight="11" refX="22" refY="12" orient="auto"><path d="M7 4 L22 12 L7 20" stroke="#26374c" stroke-width="2" fill="none"/></marker><marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#26374c" stroke-width="2"/></marker></defs>
+<style>.clase{fill:#f0f6ff;stroke:#4a77a2;stroke-width:2.2}.interfaz{fill:#f5edff;stroke:#8159a7;stroke-width:2.2}.linea{stroke:#26374c;stroke-width:2.5;fill:none}.dash{stroke-dasharray:9 7}.titulo{font:700 21px Arial,sans-serif;fill:#16283f;text-anchor:middle}.detalle{font:18px Arial,sans-serif;fill:#23364a}.etiqueta{font:17px Arial,sans-serif;fill:#2c475f}.nota{font:italic 17px Arial,sans-serif;fill:#475569;text-anchor:middle}.separador{stroke:#9bacc0;stroke-width:1.5}</style>
+<rect width="1480" height="640" fill="#fff"/>
+<!-- Conexiones detrás de las cajas -->
+<path d="M320 163 H394" class="linea dash" marker-end="url(#v)"/>
+<path d="M865 163 H960" class="linea" marker-end="url(#v)"/>
+<text class="etiqueta" x="906" y="139">0..*</text>
+<path d="M1020 394 V330 H1120 V245" class="linea dash" marker-end="url(#tri)"/>
+<path d="M1310 394 V330 H1220 V245" class="linea dash" marker-end="url(#tri)"/>
+<!-- Cliente -->
+<rect class="clase" x="30" y="98" width="290" height="132" rx="3"/>
+<text class="titulo" x="175" y="136">ClienteObserver</text>
+<path class="separador" d="M30 153 H320"/>
+<text class="detalle" x="48" y="187">+ ejecutar(out): void</text>
+<!-- Sujeto -->
+<rect class="clase" x="394" y="80" width="471" height="215" rx="3"/>
+<text class="titulo" x="629.5" y="120">Interruptor</text>
+<path class="separador" d="M394 140 H865"/>
+<text class="detalle" x="412" y="176">- observadores: Map&lt;String,</text>
+<text class="detalle" x="429" y="203">ObservadorInterruptor&gt;</text>
+<text class="detalle" x="412" y="241">+ suscribir(observador): void</text>
+<text class="detalle" x="412" y="268">+ pulsar(): void</text>
+<!-- Contrato -->
+<rect class="interfaz" x="960" y="80" width="465" height="165" rx="3"/>
+<text class="titulo" x="1192.5" y="119">«interface» ObservadorInterruptor</text>
+<path class="separador" d="M960 141 H1425"/>
+<text class="detalle" x="980" y="176">+ id(): String</text>
+<text class="detalle" x="980" y="206">+ alCambiar(activo): void</text>
+<!-- Observadores concretos -->
+<rect class="clase" x="865" y="394" width="305" height="138" rx="3"/>
+<text class="titulo" x="1017.5" y="433">Luz</text>
+<path class="separador" d="M865 451 H1170"/>
+<text class="detalle" x="886" y="486">+ alCambiar(activo): void</text>
+<rect class="clase" x="1205" y="394" width="230" height="138" rx="3"/>
+<text class="titulo" x="1320" y="433">Alarma</text>
+<path class="separador" d="M1205 451 H1435"/>
+<text class="detalle" x="1219" y="486">+ alCambiar(activo)</text>
+<text class="nota" x="740" y="602">Los observadores reciben avisos; estar suscrito no implica pertenecer al interruptor por composición.</text>
+</svg>
