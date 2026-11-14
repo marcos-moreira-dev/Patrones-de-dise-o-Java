@@ -46,14 +46,8 @@ public class App {
     /** Presenta los ejemplos de comportamiento en la consola principal. */
     public void ejecutarComportamiento() {
         System.out.println("\n=== PATRONES DE COMPORTAMIENTO ===");
-        comportamiento.probarStrategy();
-        comportamiento.probarState();
-        comportamiento.probarChainOfResponsibility();
-        comportamiento.probarCommand();
-        comportamiento.probarMediator();
-        comportamiento.probarMemento();
-        comportamiento.probarTemplateMethod();
-        comportamiento.probarVisitor();
+        // Orquestador único: evita omitir Interpreter, Iterator u Observer en el menú.
+        comportamiento.ejecutarTodo();
     }
 
     /**
