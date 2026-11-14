@@ -115,3 +115,13 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 **Inventario de cobertura comprobado:** todos los **344 archivos `.java`** del árbol se encuentran dentro de las colecciones clásicas (incluidos `App.java` y `Main.java`), Expedición Liminal, Arena Java o MiniSO. Ninguna fuente queda fuera del verificador común: clásicos (javac y menú), liminal (javac, pruebas y consola) y microproyectos (Maven `clean verify` con el plugin exec y pruebas), más dos smoke tests de JAR.
 
 **Decisión:** eliminar los tres pasos redundantes del job Ubuntu y ejecutar una sola vez el script de verificación; conservar la generación independiente de **Javadoc** y el job de **Windows/Git Bash**. Es poda de andamiaje técnico T, sin modificar código de dominio, UML ni número de pruebas. La comprobación del nuevo workflow debe observarse en GitHub Actions, no suponerse por lectura de YAML.
+
+## 10. Segunda pasada semántica — Memento: aislar el originador
+
+**Ruta → rol → consumidor:** `comportamiento/memento/Historial.java` (cuidador P) guarda instantáneas opacas de `Linterna` (originador D), utilizadas por `ClienteMemento` y `PruebaMemento`. También se inspeccionaron Facade, Iterator, State, Strategy, Composite, Mediator, Abstract Factory e Interpreter; se preservan sus colaboraciones actuales sin poda especulativa.
+
+**Defecto reproducido de forma independiente en OpenJDK 21:** guardar una instantánea de la linterna A y llamar `historial.deshacer(B)` **cambiaba la linterna B** y consumía la instantánea de A. La configuración restaurada era válida (0..10), pero no pertenecía al objeto sobre el que se intentaba deshacer. Se ejecutó un harness aislado que imprimió `DEFECTO: historial de A restauro B a intensidad 4`.
+
+**Corrección mínima:** el cuidador recuerda una referencia `origen` tras la primera captura. `guardar` y `deshacer` verifican identidad Java antes de modificar estado o historial; no se introduce una jerarquía ni una clase auxiliar. La referencia es una **asociación**, no propiedad UML. La ficha y el SVG de Memento representan esta decisión. `PruebaMemento` comprueba rechazo de guardado/restauración sobre otra linterna, invariantes sin mutación y que el recuerdo original sigue disponible. El mismo harness aislado, compilado con `javac --release 21`, pasa después del cambio. La verificación integral remota queda a cargo de GitHub Actions.
+
+**Límite:** estos hallazgos no certifican todavía una inspección exhaustiva del resto de patrones, laboratorios ni microproyectos.

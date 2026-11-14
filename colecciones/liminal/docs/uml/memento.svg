@@ -7,8 +7,9 @@
 <path class="edge dash" d="M367 170.5 L1020 158" marker-end="url(#open)"/>
 <path class="edge dash" d="M699.5 250 L910 370" marker-end="url(#open)"/>
 <path class="edge" d="M1188 228 L910 370" marker-end="url(#open)"/>
+<path class="edge" d="M1020 111 L922 111" marker-end="url(#open)"/>
 <rect x="34" y="103" width="333" height="135" rx="3" class="box"/><text class="title" x="200.5" y="137">ClienteMemento</text><path class="sep" d="M34 155 H367"/><text class="body" x="48" y="186">+ ejecutar(out)</text>
 <rect x="477" y="70" width="445" height="180" rx="3" class="box"/><text class="title" x="699.5" y="104">Linterna</text><path class="sep" d="M477 122 H922"/><text class="body" x="491" y="153">+ configurar(...)</text><text class="body" x="491" y="178">+ guardarEstado(): Recuerdo</text><text class="body" x="491" y="203">+ restaurar(recuerdo)</text>
-<rect x="1020" y="88" width="336" height="140" rx="3" class="box"/><text class="title" x="1188" y="122">Historial</text><path class="sep" d="M1020 140 H1356"/><text class="body" x="1034" y="171">+ guardar(linterna)</text><text class="body" x="1034" y="196">+ deshacer(linterna)</text>
+<rect x="1020" y="88" width="336" height="140" rx="3" class="box"/><text class="title" x="1188" y="122">Historial</text><path class="sep" d="M1020 140 H1356"/><text class="body" x="1034" y="166">- origen: Linterna</text><text class="body" x="1034" y="187">+ guardar(linterna)</text><text class="body" x="1034" y="208">+ deshacer(linterna)</text>
 <rect x="665" y="370" width="490" height="145" rx="3" class="box"/><text class="title" x="910" y="404">Linterna.Recuerdo</text><path class="sep" d="M665 422 H1155"/><text class="body" x="679" y="453">- intensidad: int {private}</text><text class="body" x="679" y="478">- filtroAzul: boolean {private}</text>
 <text class="note" x="700" y="627">El historial conserva una instantánea opaca; no modifica la configuración de Linterna.</text></svg>
