@@ -24,11 +24,11 @@ La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidade
 
 ### Nueva ruta de estudio: Expedición Liminal (en planificación)
 
-Además de los ejemplos técnicos existentes, se ha iniciado una segunda colección **visual y narrativa**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Se estudiarán los **23 patrones GoF** con Java 21 por consola; **ya están implementados los tres pilotos State, Strategy y Observer**, mientras los otros 20 quedan pendientes.
+Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. Las imágenes atmosféricas originales serán incorporadas en una etapa artística independiente.
 
 Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](colecciones/liminal/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](colecciones/liminal/PLAN.md). Empieza por el [README de la colección liminal](colecciones/liminal/README.md).
 
-Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el piloto: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
+Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
 
 ### Microproyectos con arquitectura real
 
