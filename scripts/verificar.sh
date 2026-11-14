@@ -68,7 +68,7 @@ if [[ "$salida_miniso" != *'PID 1 termino y libero memoria'* ]] \
     exit 1
 fi
 
-printf '\n[6/6] Expedicion Liminal: compilar, ejecutar pruebas y demos del piloto\n'
+printf '\n[6/6] Expedicion Liminal: 23 patrones y laboratorio UML\n'
 bash colecciones/liminal/scripts/verificar.sh
 
-printf '\nVERIFICACION COMPLETA: 22 patrones clasicos, 2 microproyectos y 3 demos liminales verificadas.\n'
+printf '\nVERIFICACION COMPLETA: 23 patrones clasicos, 23 patrones liminales, laboratorio UML y 2 microproyectos.\n'
