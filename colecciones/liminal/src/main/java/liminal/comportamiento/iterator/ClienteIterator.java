@@ -43,37 +43,3 @@ public final class ClienteIterator {
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
-
-record Habitacion(String id, String nombre) {
-    Habitacion {
-        Objects.requireNonNull(id);
-        Objects.requireNonNull(nombre);
-        if (id.isBlank() || nombre.isBlank()) throw new IllegalArgumentException("Hab. inválida");
-    }
-}
-final class RegistroHabitaciones implements Iterable<Habitacion> {
-    private final List<Habitacion> habitaciones = new ArrayList<>();
-    private final Set<String> ids = new HashSet<>();
-
-    void agregar(Habitacion habitacion) {
-        Objects.requireNonNull(habitacion);
-        if (!ids.add(habitacion.id())) throw new IllegalArgumentException("ID repetido");
-        habitaciones.add(habitacion);
-    }
-    int cantidad() { return habitaciones.size(); }
-    public Iterator<Habitacion> iterator() {
-        return new RecorridoHabitaciones(List.copyOf(habitaciones));
-    }
-}
-final class RecorridoHabitaciones implements Iterator<Habitacion> {
-    private final List<Habitacion> instantanea;
-    private int indice;
-    RecorridoHabitaciones(List<Habitacion> instantanea) {
-        this.instantanea = List.copyOf(instantanea);
-    }
-    public boolean hasNext() { return indice < instantanea.size(); }
-    public Habitacion next() {
-        if (!hasNext()) throw new NoSuchElementException();
-        return instantanea.get(indice++);
-    }
-}
