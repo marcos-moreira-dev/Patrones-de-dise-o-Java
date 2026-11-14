@@ -32,6 +32,8 @@ Antes de escribirlos se fijan las reglas del mundo y la metodología para deriva
 
 **[Ver el atlas visual de los escenarios](colecciones/liminal/GUIA_VISUAL.md)** · [Galería de ilustraciones originales](colecciones/liminal/assets/README.md).
 
+**[Laboratorio complementario de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md)**: composición, agregación y ciclo de vida, con diagramas y pruebas Java.
+
 Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
 
 ### Microproyectos con arquitectura real
