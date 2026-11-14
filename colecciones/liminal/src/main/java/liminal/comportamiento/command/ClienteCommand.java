@@ -33,6 +33,18 @@ public final class ClienteCommand {
         panel.asignar(new EncenderLuz(luz));
         panel.pulsar();
         if (!luz.encendida()) throw new AssertionError("Debe encender la luz");
+        try {
+            new Puerta(" ");
+            throw new AssertionError("La puerta necesita un ID");
+        } catch (IllegalArgumentException esperado) {
+            // Se protege R-01.
+        }
+        try {
+            new Luz("");
+            throw new AssertionError("La luz necesita un ID");
+        } catch (IllegalArgumentException esperado) {
+            // Se protege R-01.
+        }
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
@@ -43,7 +55,10 @@ interface Comando {
 final class Puerta {
     private final String id;
     private boolean abierta;
-    Puerta(String id) { this.id = Objects.requireNonNull(id); }
+    Puerta(String id) {
+        this.id = Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     void abrir() {
         if (abierta) throw new IllegalStateException("La puerta ya está abierta");
         abierta = true;
@@ -54,7 +69,10 @@ final class Puerta {
 final class Luz {
     private final String id;
     private boolean encendida;
-    Luz(String id) { this.id = Objects.requireNonNull(id); }
+    Luz(String id) {
+        this.id = Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     void encender() { encendida = true; }
     boolean encendida() { return encendida; }
     String id() { return id; }
