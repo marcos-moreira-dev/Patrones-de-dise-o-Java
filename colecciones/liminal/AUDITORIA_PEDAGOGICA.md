@@ -69,7 +69,7 @@ Los ejemplos pertenecen a **un solo mundo de referencia**, pero tienen **paquete
 | **Revisión visual manual de SVG** tras las correcciones | La compilación y el parser XML no detectan superposición de flechas o texto | Media |
 | **Ilustraciones de objetos y criatura** | Existen tres ambientes originales; faltarían láminas específicas de linterna, puerta, interruptor y monstruo, si queremos un catálogo más ilustrado | Baja |
 | **Laboratorio independiente de composición UML** | **Completado** en [Relaciones UML](docs/laboratorios/relaciones-uml.md): composición R-09, agregación local, asociaciones, referencias y baja lógica, con dos diagramas y pruebas | Resuelto |
-| **Completar `Interpreter` en la colección técnica original** | Esa colección sigue teniendo 22 patrones; la liminal sí tiene los 23 | Media, trabajo separado |
+| **Completar `Interpreter` en la colección técnica original** | **Completado:** [Interpreter técnico](../../comportamiento/Interpreter/README.md) con expresiones anidadas, `BigDecimal` y pruebas; las dos colecciones ahora tienen 23 patrones | Resuelto |
 | **Abstract Factory con clases de producto concretas diferentes** | Las dos fábricas actuales comparten los tipos `LuzAmbiental` y `PuertaAmbiental` y varían `Tema`; es una aplicación funcional y sencilla, aunque una segunda variante podría enseñar también polimorfismo entre productos | Baja opcional |
 | **Notificaciones con fallo de observador** | El Observer de consola es sincrónico y no ofrece transaccionalidad ante excepciones arbitrarias de callbacks. Ya se declara su alcance en la ficha | Baja; sería un diseño más avanzado |
 
