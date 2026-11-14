@@ -12,7 +12,7 @@ mapfile -d '' fuentes < <(find src/main/java src/test/java -type f -name '*.java
 javac --release 21 -encoding UTF-8 -d out "${fuentes[@]}"
 java -cp out liminal.PruebasLiminal
 salida="$(java -cp out liminal.DemoLiminal todos)"
-for esperado in 'STATE' 'STRATEGY' 'OBSERVER' 'Avisos:' 'Monstruo silencioso' 'ABSTRACT FACTORY' 'Original:' 'ADAPTER' 'BRIDGE' 'COMPOSITE' 'DECORATOR' 'FACADE' 'FLYWEIGHT' 'PROXY' 'Puerta P-01' 'Patrullar' 'Luz -> ENCENDIDA'; do
+for esperado in 'STATE' 'STRATEGY' 'OBSERVER' 'Avisos:' 'Monstruo silencioso' 'ABSTRACT FACTORY' 'Original:' 'ADAPTER' 'BRIDGE' 'COMPOSITE' 'DECORATOR' 'FACADE' 'FLYWEIGHT' 'PROXY' 'CHAIN OF RESPONSIBILITY' 'COMMAND' 'INTERPRETER' 'ITERATOR' 'MEDIATOR' 'MEMENTO' 'TEMPLATE METHOD' 'VISITOR' 'Puerta P-01' 'Patrullar' 'Luz -> ENCENDIDA'; do
     if [[ "$salida" != *"$esperado"* ]]; then
         echo "ERROR: falta la salida: $esperado" >&2
         exit 1
