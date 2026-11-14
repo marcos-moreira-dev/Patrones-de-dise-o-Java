@@ -1,52 +1,73 @@
-# Expedición Liminal — ruta visual de patrones GoF
+# Expedición Liminal — ruta visual de los 23 patrones GoF
 
-**Estado: piloto implementado (3/23 patrones).** Ya existen demostraciones de **State, Strategy y Observer** con clases cliente, UML SVG, pruebas y ejecución por consola Java 21. Los otros 20 patrones y las imágenes atmosféricas están pendientes. Los ejemplos originales del repositorio siguen intactos.
+**Estado: catálogo Java 21 completo (23/23).** Todos los patrones cuentan con una clase cliente ejecutable por consola, una prueba autónoma, un diagrama UML SVG y una ficha Markdown. Las **imágenes atmosféricas originales** de Backrooms/Dreamcore/Weirdcore quedan para la etapa artística, sin alterar las reglas del dominio.
 
-## ¿Qué aprenderás aquí?
+La colección técnica original y los microproyectos Arena Java y MiniSO **se conservan intactos en su organización**.
 
-Los mismos patrones de diseño que se estudian con clases técnicas, pero usando escenas que puedes imaginar sin conocer backend: habitaciones, puertas, interruptores, linternas, cámaras, radios y monstruos oscuros.
+## Empieza aquí
 
-**Java 21 por consola.** No se necesita JavaFX, interfaz gráfica ni un juego completo. Cada patrón tendrá una clase cliente visible, código corto, salida de consola, UML y una ficha ilustrada.
+1. [Cómo se define un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md): supuestos, invariantes, restricciones, precondiciones, postcondiciones y contraejemplos.
+2. [DOMINIO.md](DOMINIO.md): reglas verificables del mundo Expedición Liminal, que prevalecen sobre cualquier patrón.
+3. [PLAN.md](PLAN.md): decisiones editoriales, estructura y trazabilidad del catálogo.
+4. [UML_GUIDE.md](../../UML_GUIDE.md): clases, referencias, asociaciones, dependencia, agregación, composición y multiplicidades.
+5. Escoge una ficha de la tabla siguiente. Mira primero la escena y el UML, luego el cliente Java y finalmente la prueba.
 
-## Orden de lectura
+## Catálogo completo y enlaces de estudio
 
-1. [Cómo se define un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md) — supuestos, invariantes, restricciones, precondiciones, postcondiciones y ejemplos comprobables.
-2. [DOMINIO.md](DOMINIO.md) — las **reglas concretas** de Expedición Liminal, que no deben inventarse según convenga a cada patrón.
-3. [PLAN.md](PLAN.md) — estructura de archivos, tabla de los 23 GoF, escenas propuestas, UML, pruebas y futura generación de imágenes.
-4. [Fichas y UML del piloto](docs/patrones/comportamiento/) — [State](docs/patrones/comportamiento/state.md), [Strategy](docs/patrones/comportamiento/strategy.md) y [Observer](docs/patrones/comportamiento/observer.md).
-5. [Guía general UML](../../UML_GUIDE.md) — clases, objetos, dependencias, asociaciones, agregación, composición y multiplicidades.
+| Categoría | Patrón | Ficha con UML | Nombre para ejecutar |
+| --- | --- | --- | --- |
+| Creacionales | Singleton | [Panel de avisos](docs/patrones/creacionales/singleton.md) | `singleton` |
+| Creacionales | Factory Method | [Apariciones](docs/patrones/creacionales/factorymethod.md) | `factorymethod` |
+| Creacionales | Abstract Factory | [Dos ambientes](docs/patrones/creacionales/abstractfactory.md) | `abstractfactory` |
+| Creacionales | Builder | [Construir una habitación](docs/patrones/creacionales/builder.md) | `builder` |
+| Creacionales | Prototype | [Copiar una plantilla](docs/patrones/creacionales/prototype.md) | `prototype` |
+| Estructurales | Adapter | [Radio antigua](docs/patrones/estructurales/adapter.md) | `adapter` |
+| Estructurales | Bridge | [Alertas y canales](docs/patrones/estructurales/bridge.md) | `bridge` |
+| Estructurales | Composite | [Grupos de luces](docs/patrones/estructurales/composite.md) | `composite` |
+| Estructurales | Decorator | [Linterna con mejoras](docs/patrones/estructurales/decorator.md) | `decorator` |
+| Estructurales | Facade | [Cruzar un pasillo](docs/patrones/estructurales/facade.md) | `facade` |
+| Estructurales | Flyweight | [Texturas compartidas](docs/patrones/estructurales/flyweight.md) | `flyweight` |
+| Estructurales | Proxy | [Cámara vigilada](docs/patrones/estructurales/proxy.md) | `proxy` |
+| Comportamiento | Chain of Responsibility | [Validación en cadena](docs/patrones/comportamiento/chainofresponsibility.md) | `chainofresponsibility` |
+| Comportamiento | Command | [Panel de botones](docs/patrones/comportamiento/command.md) | `command` |
+| Comportamiento | Interpreter | [Lenguaje de instrucciones](docs/patrones/comportamiento/interpreter.md) | `interpreter` |
+| Comportamiento | Iterator | [Recorrer habitaciones](docs/patrones/comportamiento/iterator.md) | `iterator` |
+| Comportamiento | Mediator | [Central de control](docs/patrones/comportamiento/mediator.md) | `mediator` |
+| Comportamiento | Memento | [Recuerdo de linterna](docs/patrones/comportamiento/memento.md) | `memento` |
+| Comportamiento | Observer | [Interruptor y avisos](docs/patrones/comportamiento/observer.md) | `observer` |
+| Comportamiento | State | [Puerta bloqueada](docs/patrones/comportamiento/state.md) | `state` |
+| Comportamiento | Strategy | [Monstruo que se mueve](docs/patrones/comportamiento/strategy.md) | `strategy` |
+| Comportamiento | Template Method | [Rutas de exploración](docs/patrones/comportamiento/templatemethod.md) | `templatemethod` |
+| Comportamiento | Visitor | [Inspector de objetos](docs/patrones/comportamiento/visitor.md) | `visitor` |
 
-## Norma editorial
+## Ejecutar en Java 21
 
-Primero una escena fácil de visualizar, luego una explicación de lo que ocurre con **instancias y referencias**, después las relaciones UML, el código Java y una prueba. Los comentarios del código serán breves; las explicaciones largas vivirán en Markdown. No se dibujarán rombos de UML solo por encontrar una lista o una instancia creada con `new`.
+Sin JavaFX, Maven, redes ni frameworks. Desde la **raíz del repositorio**:
 
-## Ejecutar con Java 21
-
-Desde la raíz del repositorio en Git Bash o Linux:
+En Git Bash o Linux:
 
 ~~~bash
 bash colecciones/liminal/scripts/verificar.sh
 java -cp colecciones/liminal/out liminal.DemoLiminal todos
-java -cp colecciones/liminal/out liminal.DemoLiminal state
 java -cp colecciones/liminal/out liminal.DemoLiminal strategy
-java -cp colecciones/liminal/out liminal.DemoLiminal observer
+java -cp colecciones/liminal/out liminal.DemoLiminal visitor
 ~~~
 
-En Windows PowerShell, desde la raíz:
+En PowerShell:
 
 ~~~powershell
 powershell -ExecutionPolicy Bypass -File .\colecciones\liminal\scripts\verificar.ps1
 java -cp colecciones/liminal/out liminal.DemoLiminal todos
 ~~~
 
-El script compila `src/main/java` y `src/test/java` a `colecciones/liminal/out` y ejecuta tres pruebas autocontenidas. No necesita JavaFX, Maven ni conexión a Internet.
+Los scripts compilan código y pruebas, ejecutan las **23 verificaciones** y muestran las demostraciones por consola. También se ejecutan en la [verificación principal](../../scripts/verificar.sh) y en GitHub Actions, sin intervención del usuario.
 
-## Las imágenes atmosféricas llegarán al final
+## Regla editorial de los ejemplos
 
-El estilo tomará inspiración de Backrooms, Dreamcore/Weirdcore y *The Complex: Expedition*, sin copiar sus mapas, personajes concretos ni capturas. Se crearán imágenes originales de pasillos amarillos, piscinas vacías, luces y artefactos, según el inventario del [plan](PLAN.md). Las imágenes sirven para aprender y no cambian las reglas del dominio.
+**Escena sencilla → reglas del dominio → necesidad del patrón → objetos, referencias y UML → Java → salida de consola → pruebas → cuándo no utilizarlo.** Las explicaciones extensas viven en las fichas Markdown; el código conserva comentarios breves y nombres del dominio en español.
 
-## Colección técnica existente
+Los diagramas muestran dependencia, asociación, realización y herencia cuando aportan. **No inferimos agregación o composición simplemente porque una clase contenga un `List` o invoque `new`.** Las composiciones reales deben justificarse en las invariantes del dominio.
 
-Los directorios de la raíz `creacionales/`, `estructurales/` y `comportamiento/` **no se moverán** en esta fase. Esta ruta liminal los complementará, no los reemplazará. Arena Java y MiniSO permanecen como microproyectos independientes.
+## Etapa de ilustraciones atmosféricas
 
-**Siguiente etapa:** verificar el piloto con CI, auditar la fidelidad del UML y ampliar la colección por lotes, sin modificar las reglas del dominio solo para acomodar un patrón.
+Se crearán imágenes originales de pasillos amarillos, piscinas vacías, oficinas, habitaciones y objetos con estética liminal analógica. Las imágenes de referencia del videojuego *The Complex: Expedition* y de la cultura Backrooms sirven para fijar la dirección visual; no se reproducirán mapas ni imágenes protegidas. Las ilustraciones **no tienen autoridad sobre el dominio**. El [inventario artístico](PLAN.md) sigue siendo el plan para esa etapa.
