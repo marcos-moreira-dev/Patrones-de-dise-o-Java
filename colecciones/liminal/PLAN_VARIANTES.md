@@ -1,6 +1,6 @@
 # Expedición Liminal — Plan de variantes GoF y laboratorio `class` / `record`
 
-> **Estado: PLANIFICADO, SIN IMPLEMENTAR.** Versión 1.0 — 14 de noviembre de 2026.
+> **Estado: 7/7 variantes y laboratorio Java implementados; cobertura editorial de los otros 17 patrones en revisión y auditoría de andamiaje en primera pasada.** Versión 1.1 — 14 de noviembre de 2026.
 > Esta hoja de ruta amplía el catálogo existente; no sustituye [PLAN.md](PLAN.md) ni modifica las reglas de [DOMINIO.md](DOMINIO.md). No añadir nuevas mecánicas al mundo simplemente para justificar una variante.
 
 ## 1. Resultado que queremos conseguir
@@ -81,7 +81,7 @@ colecciones/liminal/
     └── laboratorios/java/classvsrecord/
 ```
 
-Las rutas anteriores son **propuestas**, no archivos existentes. La carpeta base contiene **un tipo superior por archivo**, y cada variante deberá respetar el mismo criterio. La guía técnica extendida vive en Markdown; no saturar Java con comentarios.
+Las rutas anteriores corresponden a la **estructura implementada** (los nombres de subpaquete son sus identificadores Java sin guiones). La carpeta base contiene **un tipo superior por archivo**, y cada variante deberá respetar el mismo criterio. La guía técnica extendida vive en Markdown; no saturar Java con comentarios.
 
 **Lanzamiento:** cada variante puede ejecutar su propio `ClienteVariante.main`. Opcionalmente añadir `DemoVariantes` con menús separados; nunca añadir siete modos a `DemoLiminal todos` si eso rompe la ruta de estudio de 23 ejemplos. Compilar con `--release 21`; ninguna dependencia externa.
 
@@ -159,7 +159,15 @@ Cada `.md` adicional debe incluir, en este orden:
 
 Las descripciones pedagógicas largas van en Markdown; comentarios Java cortos. Las imágenes son **atmosféricas, no normativas**, con procedencia documentada. Las ilustraciones actuales (tres ambientes, lámina de objetos, State/Strategy/Observer) deben reutilizarse primero; crear nuevas solo si aclaran una diferencia conceptual que UML no comunica.
 
-## 8. Etapas de ejecución y criterios de aceptación
+## 8. Estado de ejecución y compuertas de calidad
+
+**Implementación confirmada:** los 23 GoF principales permanecen independientes y hay siete clientes nuevos: dos Prototype (copia superficial/profunda y registro), Builder con Director, Proxy con caché, Command con deshacer/rehacer, Chain de pipeline y Observer push/pull. El laboratorio `class` / `record` tiene un cliente adicional. Sus pruebas se ejecutan desde `PruebasLiminal` con Java 21.
+
+**Alineación clásica:** se revisaron los usos de `record` en las 132 fuentes base; los participantes principales se representan con `class` y cinco records de datos/valor permanecen intencionalmente. Véase [auditoría del andamiaje](AUDITORIA_ANDAMIAJE.md).
+
+**Aún no demostrado por esta etapa:** una auditoría semántica línea por línea de los 516 archivos, o una auditoría pixel a pixel de todos los visores UML. No mezclar esas tareas con las pruebas de compilación.
+
+### Etapas de implementación originalmente planificadas
 
 | Fase | Trabajo | Evidencia para pasar |
 | --- | --- | --- |
@@ -184,8 +192,8 @@ Si una variante se vuelve más compleja que el problema que debía enseñar, sim
 - Convertir `record` indiscriminadamente sin identificar si es entidad o valor.
 - Modificar los 23 patrones originales para meter variaciones en un único `ClienteX`.
 
-## 10. Primer paso al iniciar la implementación
+## 10. Primer paso implementado y próximas revisiones
 
-**Empezar por Prototype**: copiar configuraciones mutables de luminarias y comprobar con referencias Java qué permanece compartido, qué se duplica y dónde debe cambiar la identidad de la habitación. Abrir la [ficha Prototype actual](docs/patrones/creacionales/prototype.md) y no tocarla hasta definir y probar el caso de copia profunda. En paralelo preparar el laboratorio `class`/`record` para que cada uso tenga una justificación de identidad o de valor, no una preferencia estética.
+**Completado:** la [variante de copia profunda](docs/variantes/creacionales/prototype/copia-profunda.md) distingue referencias mutables; el [catálogo de prototipos](docs/variantes/creacionales/prototype/registro-prototipos.md) garantiza IDs locales; el [laboratorio Java](docs/laboratorios/java/class-vs-record.md) muestra cuándo una clave de caché justifica `record`. Siguiente revisión: documentación de alternativas en los otros 17 patrones y auditoría más profunda de clases accesorias.
 
 [Catálogo principal](README.md) · [Dominio normativo](DOMINIO.md) · [Guía de lectura de clases](GUIA_LECTURA_CODIGO.md) · [Guía de modelado de dominios](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).

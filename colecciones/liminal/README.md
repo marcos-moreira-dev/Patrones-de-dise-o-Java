@@ -18,9 +18,9 @@ La colección técnica original y los microproyectos Arena Java y MiniSO **se co
 
 **[Guía para leer las clases a mano](GUIA_LECTURA_CODIGO.md)**: compara Builder con el ejemplo técnico, presenta las carpetas con un tipo por archivo y explica por dónde comenzar en los clientes y las pruebas.
 
-**[Plan de variantes GoF y laboratorio class/record](PLAN_VARIANTES.md)**: hoja de ruta **todavía no implementada** para profundizar en seis patrones (siete demostraciones), comparar las otras 17 opciones sin añadir código innecesario y conservar el catálogo principal de 23.
+**[Variantes GoF y laboratorio class/record](PLAN_VARIANTES.md)**: **siete variantes implementadas** en seis patrones y un laboratorio independiente sobre valores e identidad. Los **23 ejercicios principales** conservan sus clientes y su menú.
 
-**[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones aplicadas, reglas contrastadas con Java y UML, pruebas y mejoras opcionales pendientes.
+**[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones, pruebas y mejoras opcionales. **[Auditoría del andamiaje técnico](AUDITORIA_ANDAMIAJE.md)**: distingue el dominio, las clases GoF, los clientes de estudio y las herramientas de verificación.
 
 ## Laboratorio adicional de relaciones UML
 

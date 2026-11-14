@@ -120,3 +120,9 @@ A partir de una revisión de las carpetas del repositorio en GitHub, se detectó
 **Resultado para el lector:** seguir la [guía de lectura manual](GUIA_LECTURA_CODIGO.md), abrir el cliente, ir a cada tipo mencionado por nombre y consultar la prueba solo al final. No hace falta comprender un juego integrado para estudiar Builder o cualquier otro patrón.
 
 **Alcance y limitación:** no se cambiaron las reglas R-01…R-14. Se mantuvieron las colaboraciones GoF existentes; una mejora de navegación no sustituye una auditoría profunda del diseño de cada patrón ni el examen visual de cada flecha UML.
+
+## 11. Alineación de variantes y clasificación de andamiaje
+
+El catálogo base conserva los 23 patrones. Hay [siete variantes](PLAN_VARIANTES.md) con clientes propios, reglas locales, pruebas y fichas; el [laboratorio class/record](docs/laboratorios/java/class-vs-record.md) justifica la igualdad por valor en una clave de textura. Los roles principales que eran records pasaron a clases tradicionales cuando correspondía; cinco records de datos/valor permanecen intencionalmente.
+
+La [primera auditoría estructural de andamiaje](AUDITORIA_ANDAMIAJE.md) separa modelo del dominio, roles GoF, soporte educativo y soporte de pruebas/compilación. **No** declara completada la revisión semántica línea por línea de todo el repositorio ni recomienda borrar código sin consumidores y pruebas identificados.

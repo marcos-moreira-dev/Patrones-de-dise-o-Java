@@ -5,7 +5,7 @@
 
 La [auditoría pedagógica de noviembre de 2026](AUDITORIA_PEDAGOGICA.md) corrigió restricciones de movimiento e identidad, añadió pruebas y afinó seis diagramas de patrones.
 
-**Próxima etapa (solo planificada):** [variantes de seis patrones y laboratorio sobre `class` / `record`](PLAN_VARIANTES.md). Se mantiene separada del catálogo clásico de 23 ejemplos y su avance no cambia las invariantes R-01…R-14.
+**Ampliación implementada:** [siete variantes de seis patrones y laboratorio `class` / `record`](PLAN_VARIANTES.md), separados de los 23 ejercicios base. La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) clasifica roles y pendientes sin eliminar código imprescindible.
 
 **Laboratorio R-09 incorporado:** [Relaciones UML y ciclo de vida](docs/laboratorios/relaciones-uml.md) como actividad extra, no como patrón número 24. Se integra en las pruebas Java 21 y tiene dos diagramas adicionales sin modificar el inventario de 23 SVG GoF. Los pendientes restantes están clasificados por prioridad en ese documento.
 
@@ -19,7 +19,9 @@ Una **segunda colección** de los patrones GoF, independiente de los ejemplos t�
 
 **No metas:** JavaFX, motor de juego, gráficos en tiempo real, infraestructura web, frameworks, integración obligatoria entre los 23 ejemplos o Javadoc repetitivo en cada línea.
 
-## 2. Organización propuesta (sin alterar los ejemplos existentes)
+## 2. Organización propuesta inicialmente (histórica)
+
+El árbol de esta sección documenta el **planteamiento inicial**, no la estructura exacta ya entregada. Consulta [Tree.md](../../Tree.md) y [GUIA_LECTURA_CODIGO.md](GUIA_LECTURA_CODIGO.md) para las rutas actuales.
 
 ```text
 Patrones-de-dise-o-Java/

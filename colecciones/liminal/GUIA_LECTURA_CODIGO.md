@@ -97,3 +97,9 @@ Si se construyera un juego integrado en el futuro, habría que extraer un núcle
 Los comentarios de código deben ser breves: explicar una decisión no evidente, no reescribir la ficha del patrón dentro de cada método. Las explicaciones más extensas pertenecen a los Markdown.
 
 [Volver al índice de patrones](README.md) · [Contrato del dominio](DOMINIO.md) · [Atlas visual](GUIA_VISUAL.md).
+
+## 5. Cómo explorar las variantes sin confundirlas con los 23 patrones
+
+Las siete implementaciones alternativas están en subcarpetas `variantes/` del **mismo patrón**. El recorrido principal no ha cambiado: ficha base → UML base → `ClientePatron` → colaboradores → pruebas. Solo después, si interesa profundizar, abre [el plan y enlaces de variantes](PLAN_VARIANTES.md), su cliente independiente y su prueba.
+
+[Laboratorio de class frente a record](docs/laboratorios/java/class-vs-record.md) · [Auditoría del andamiaje](AUDITORIA_ANDAMIAJE.md). No interpretes scripts, tests, generadores SVG o ficheros Maven como participantes del patrón.
