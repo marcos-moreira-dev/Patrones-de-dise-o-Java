@@ -1,8 +1,6 @@
 package liminal.comportamiento.mediator;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
 
 final class CentroControl implements Mediador {
     private final String sensorPermitido;

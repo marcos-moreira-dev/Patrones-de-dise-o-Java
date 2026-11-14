@@ -1,7 +1,6 @@
 package liminal.comportamiento.mediator;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /** Mediator: un centro coordina sensores y dispositivos sin enlaces entre ellos. */
 public final class ClienteMediator {
@@ -16,7 +15,6 @@ public final class ClienteMediator {
         out.println("Luz: " + (luz.encendida() ? "ENCENDIDA" : "APAGADA"));
         out.println("Avisos de alarma: " + alarma.avisos());
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

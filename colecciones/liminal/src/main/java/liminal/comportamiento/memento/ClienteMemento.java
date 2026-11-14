@@ -1,9 +1,6 @@
 package liminal.comportamiento.memento;
 
 import java.io.PrintStream;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Objects;
 
 /** Memento: recuperar un ajuste anterior sin exponer sus campos internos. */
 public final class ClienteMemento {
@@ -18,7 +15,6 @@ public final class ClienteMemento {
         ajustes.deshacer(linterna);
         out.println("Ajuste restaurado: " + linterna.descripcion());
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

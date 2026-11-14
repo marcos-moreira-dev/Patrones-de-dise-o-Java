@@ -1,8 +1,6 @@
 package liminal.comportamiento.mediator;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
 
 final class Alarma {
     private final String id;

@@ -1,11 +1,6 @@
 package liminal.comportamiento.memento;
 
-import java.io.PrintStream;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Objects;
-
-
 
 final class Linterna {
     private int intensidad;

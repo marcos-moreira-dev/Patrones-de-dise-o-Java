@@ -1,8 +1,6 @@
 package liminal.comportamiento.mediator;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
 
 final class Luz {
     private final String id;

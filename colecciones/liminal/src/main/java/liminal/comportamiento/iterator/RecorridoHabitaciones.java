@@ -1,14 +1,8 @@
 package liminal.comportamiento.iterator;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Set;
-
 
 final class RecorridoHabitaciones implements Iterator<Habitacion> {
     private final List<Habitacion> instantanea;
