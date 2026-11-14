@@ -34,6 +34,8 @@ Antes de escribirlos se fijan las reglas del mundo y la metodología para deriva
 
 **[Laboratorio complementario de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md)**: composición, agregación y ciclo de vida, con diagramas y pruebas Java.
 
+**[Guía de lectura del código liminal](colecciones/liminal/GUIA_LECTURA_CODIGO.md)**: la misma organización de clases y clientes que en los ejemplos clásicos, con archivos individuales para cada tipo y pruebas separadas.
+
 Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
 
 ### Dos colecciones y un laboratorio UML
