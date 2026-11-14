@@ -1,5 +1,9 @@
 # Prototype — Copiar el diseño de una habitación
 
+![Pasillo amarillo con alfombra, paredes repetidas y luces fluorescentes](../../../assets/ambientes/pasillo-amarillo.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![Diagrama de Prototype: la nueva instancia conserva configuración sin duplicar ID](../../uml/prototype.svg)
 
 **Escena:** hay un pasillo amarillo con una linterna y una llave. Necesitamos otra habitación con la misma **plantilla de objetos**, pero con identidad H-02 en lugar de H-01.
