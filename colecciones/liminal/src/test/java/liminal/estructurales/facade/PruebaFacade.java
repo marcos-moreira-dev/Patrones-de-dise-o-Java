@@ -1,12 +1,5 @@
 package liminal.estructurales.facade;
 
-import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
 /** Prueba independiente del recorrido pedagógico. */
 public final class PruebaFacade {
     private PruebaFacade() {}

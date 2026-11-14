@@ -1,8 +1,5 @@
 package liminal.estructurales.bridge;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
 /** Pruebas del patrón, fuera del cliente pedagógico. */
 public final class PruebaBridge {
     private PruebaBridge() {}

@@ -1,8 +1,5 @@
 package liminal.creacionales.factorymethod;
 
-import java.io.PrintStream;
-import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /** Pruebas del patrón, fuera del cliente pedagógico. */

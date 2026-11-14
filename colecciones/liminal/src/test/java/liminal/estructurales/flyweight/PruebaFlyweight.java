@@ -1,10 +1,5 @@
 package liminal.estructurales.flyweight;
 
-import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
 /** Prueba independiente del recorrido pedagógico. */
 public final class PruebaFlyweight {
     private PruebaFlyweight() {}

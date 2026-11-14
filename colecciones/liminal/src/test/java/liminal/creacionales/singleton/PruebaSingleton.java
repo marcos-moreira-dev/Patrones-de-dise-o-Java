@@ -1,9 +1,6 @@
 package liminal.creacionales.singleton;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /** Pruebas del patrón, fuera del cliente pedagógico. */
 public final class PruebaSingleton {

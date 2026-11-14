@@ -1,8 +1,5 @@
 package liminal.creacionales.abstractfactory;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
 /** Pruebas del patrón, fuera del cliente pedagógico. */
 public final class PruebaAbstractFactory {
     private PruebaAbstractFactory() {}

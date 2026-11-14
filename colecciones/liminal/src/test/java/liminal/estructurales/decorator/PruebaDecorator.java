@@ -1,8 +1,5 @@
 package liminal.estructurales.decorator;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
 /** Prueba independiente del recorrido pedagógico. */
 public final class PruebaDecorator {
     private PruebaDecorator() {}

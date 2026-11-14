@@ -1,9 +1,6 @@
 package liminal.comportamiento.visitor;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /** Prueba independiente del recorrido pedagógico. */
 public final class PruebaVisitor {
