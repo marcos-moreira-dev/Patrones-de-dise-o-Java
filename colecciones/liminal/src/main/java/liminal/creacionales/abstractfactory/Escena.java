@@ -1,9 +1,6 @@
 package liminal.creacionales.abstractfactory;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
-
 
 /** Cliente del contrato: no conoce las clases concretas de los productos. */
 final class Escena {

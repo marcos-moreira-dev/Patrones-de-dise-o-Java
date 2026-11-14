@@ -1,7 +1,6 @@
 package liminal.creacionales.abstractfactory;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /** Abstract Factory: cada fábrica construye una familia de productos concretos. */
 public final class ClienteAbstractFactory {
@@ -13,8 +12,6 @@ public final class ClienteAbstractFactory {
         out.println(amarillo.descripcion());
         out.println(piscinas.descripcion());
     }
-
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

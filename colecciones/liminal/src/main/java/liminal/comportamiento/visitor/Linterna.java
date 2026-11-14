@@ -1,10 +1,6 @@
 package liminal.comportamiento.visitor;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
 
 record Linterna(String id) implements Elemento {
     Linterna {
