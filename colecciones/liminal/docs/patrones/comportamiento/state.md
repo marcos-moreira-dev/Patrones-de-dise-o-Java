@@ -6,6 +6,10 @@
 
 ![UML de State: una puerta delega comportamiento a sus estados](../../uml/state.svg)
 
+**Dos maneras de leer el diseño:** el UML anterior responde «¿qué clases colaboran?»; el siguiente diagrama responde «¿qué transiciones permite R-05?».
+
+![Máquina de estados: CERRADA, ABIERTA y BLOQUEADA y las acciones permitidas entre ellas](../../secuencias/transiciones-state.svg)
+
 **Escena.** En un pasillo amarillo encuentras una puerta cerrada. Al bloquearla, intentar abrirla no sirve. Con la llave correcta vuelves al estado cerrado; entonces puedes abrirla y atravesarla.
 
 **Reglas del mundo:** [R-05 y R-12](../../../DOMINIO.md). No inventamos transiciones para que encajen con el patrón: primero existe el contrato de la puerta.
