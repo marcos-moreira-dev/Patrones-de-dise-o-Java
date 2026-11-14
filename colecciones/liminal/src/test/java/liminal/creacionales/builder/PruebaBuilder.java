@@ -7,7 +7,7 @@ public final class PruebaBuilder {
     public static void ejecutar() {
         rechazarConfiguracionIncompleta();
         construirHabitacionValida();
-        rechazarIdsDuplicados();
+        rechazarIdentidadInvalida();
         rechazarLucesNegativas();
     }
 
@@ -24,15 +24,9 @@ public final class PruebaBuilder {
         }
     }
 
-    private static void rechazarIdsDuplicados() {
-        RegistroHabitaciones mapa = new RegistroHabitaciones();
-        mapa.agregar(new ConstructorHabitacion()
-                .id("H-01").ambiente("Piscina vacía")
-                .luces(0).construir());
-        esperarFallo(() -> mapa.agregar(new ConstructorHabitacion()
-                .id("H-01").ambiente("Oficina")
-                .luces(1).construir()));
-        if (mapa.cantidad() != 1) throw new AssertionError("No se admiten IDs repetidos");
+    private static void rechazarIdentidadInvalida() {
+        esperarFallo(() -> new ConstructorHabitacion()
+                .id(" ").ambiente("Oficina").luces(1).construir());
     }
 
     private static void rechazarLucesNegativas() {

@@ -1,3 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="590" viewBox="0 0 1400 590" role="img" aria-labelledby="titulo descripcion"><title id="titulo">Builder: crear una habitación por pasos</title><desc id="descripcion">ClienteBuilder configura ConstructorHabitacion, que construye una Habitacion validada. RegistroHabitaciones comprueba IDs únicos.</desc><style>
-.b{fill:#f1f5ff;stroke:#3c6da1;stroke-width:2}.i{fill:#f4ecff;stroke:#8159a7;stroke-width:2}.l{stroke:#25374a;stroke-width:2.5;fill:none}.d{stroke-dasharray:9 7}.tri{fill:white;stroke:#25374a;stroke-width:2.5}.t{fill:#17283d;font:700 22px Arial,sans-serif;text-anchor:middle}.m{fill:#23364a;font:18px Arial,sans-serif}.n{fill:#475569;font:italic 18px Arial,sans-serif;text-anchor:middle}
-</style><rect class="b" x="40" y="50" width="305" height="150" rx="2"/><text class="t" x="192.5" y="84">ClienteBuilder</text><path class="l" d="M40 102 H345"/><text class="m" x="54" y="132">+ ejecutar(out): void</text><text class="m" x="54" y="158">+ probar(): void</text><rect class="b" x="440" y="45" width="450" height="255" rx="2"/><text class="t" x="665" y="79">ConstructorHabitacion</text><path class="l" d="M440 97 H890"/><text class="m" x="454" y="127">+ id(valor): ConstructorHabitacion</text><text class="m" x="454" y="153">+ ambiente(valor): ConstructorHabitacion</text><text class="m" x="454" y="179">+ luces(n): ConstructorHabitacion</text><text class="m" x="454" y="205">+ construir(): Habitacion</text><rect class="b" x="1010" y="65" width="340" height="175" rx="2"/><text class="t" x="1180" y="99">«record» Habitacion</text><path class="l" d="M1010 117 H1350"/><text class="m" x="1024" y="147">+ id(): String</text><text class="m" x="1024" y="173">+ ambiente(): String</text><text class="m" x="1024" y="199">+ luces(): int</text><rect class="b" x="1020" y="336" width="332" height="130" rx="2"/><text class="t" x="1186" y="370">RegistroHabitaciones</text><path class="l" d="M1020 388 H1352"/><text class="m" x="1034" y="418">+ agregar(h): void</text><path class="l d" d="M345 126 L440 126"/><path class="l d" d="M890 170 L1010 170"/><path class="l d" d="M1180 336 L1180 240"/><text class="n" x="700" y="553">El constructor paso a paso no asigna por sí mismo unicidad global de IDs.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="410" viewBox="0 0 1200 410" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Builder: producto y constructor en archivos separados</title>
+<desc id="descripcion">ClienteBuilder crea un ConstructorHabitacion mediante new, configura los parámetros y llama a construir. ConstructorHabitacion produce una Habitacion inmutable. No interviene un registro ni hay composición UML deducida de new.</desc>
+<defs><marker id="flecha" viewBox="0 0 24 24" markerWidth="11" markerHeight="11" refX="22" refY="12" orient="auto"><path d="M5 4 L22 12 L5 20" fill="none" stroke="#304762" stroke-width="2"/></marker></defs>
+<style>.nodo{fill:#f1f6ff;stroke:#4a78a3;stroke-width:2}.titulo{fill:#16293f;font:700 22px Arial,sans-serif;text-anchor:middle}.texto{fill:#283c55;font:18px Arial,sans-serif}.separa{stroke:#b0c0d0;stroke-width:1.5}.linea{fill:none;stroke:#304762;stroke-width:2.5;stroke-dasharray:8 6}.nota{fill:#51647b;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
+<rect width="1200" height="410" fill="white"/>
+<path class="linea" d="M305 153 H386" marker-end="url(#flecha)"/>
+<path class="linea" d="M825 153 H895" marker-end="url(#flecha)"/>
+<rect class="nodo" x="35" y="67" width="270" height="160" rx="4"/>
+<text class="titulo" x="170" y="108">ClienteBuilder</text><path class="separa" d="M35 129 H305"/>
+<text class="texto" x="52" y="165">+ ejecutar(out): void</text>
+<text class="texto" x="52" y="194">- construirHabitacion()</text>
+<rect class="nodo" x="386" y="50" width="439" height="231" rx="4"/>
+<text class="titulo" x="605.5" y="92">ConstructorHabitacion</text><path class="separa" d="M386 112 H825"/>
+<text class="texto" x="404" y="147">+ id(valor): ConstructorHabitacion</text>
+<text class="texto" x="404" y="178">+ ambiente(valor): ConstructorHabitacion</text>
+<text class="texto" x="404" y="209">+ luces(n): ConstructorHabitacion</text>
+<text class="texto" x="404" y="240">+ construir(): Habitacion</text>
+<rect class="nodo" x="895" y="67" width="270" height="183" rx="4"/>
+<text class="titulo" x="1030" y="108">«record» Habitacion</text><path class="separa" d="M895 129 H1165"/>
+<text class="texto" x="914" y="165">+ id(): String</text>
+<text class="texto" x="914" y="194">+ ambiente(): String</text>
+<text class="texto" x="914" y="222">+ luces(): int</text>
+<text class="nota" x="600" y="354">Cliente → Builder → producto. Un producto construido no implica composición UML.</text>
+</svg>

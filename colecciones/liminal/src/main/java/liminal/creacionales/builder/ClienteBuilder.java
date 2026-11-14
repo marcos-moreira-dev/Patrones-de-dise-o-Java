@@ -4,7 +4,7 @@ import java.io.PrintStream;
 
 /**
  * Cliente de Builder.
- * Recorrido: configurar el producto, registrarlo y mostrar el resultado.
+ * Recorrido: configurar el producto y mostrar el resultado.
  */
 public final class ClienteBuilder {
     private ClienteBuilder() {}
@@ -15,7 +15,6 @@ public final class ClienteBuilder {
 
     public static void ejecutar(PrintStream out) {
         Habitacion habitacion = construirHabitacion();
-        registrarHabitacion(habitacion);
         mostrarHabitacion(habitacion, out);
     }
 
@@ -29,13 +28,7 @@ public final class ClienteBuilder {
                 .construir();
     }
 
-    /** 2. Dominio: comprobar el ID al insertar en el mapa (no es Builder). */
-    private static void registrarHabitacion(Habitacion habitacion) {
-        RegistroHabitaciones mapa = new RegistroHabitaciones();
-        mapa.agregar(habitacion);
-    }
-
-    /** 3. Presentación: mostrar el producto ya construido. */
+    /** 2. Presentación: mostrar el producto ya construido. */
     private static void mostrarHabitacion(Habitacion habitacion, PrintStream out) {
         out.println("Habitación: " + habitacion.id());
         out.println("Ambiente: " + habitacion.ambiente());
