@@ -25,3 +25,7 @@ Puerta abierta -> PERMITIDO
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/chainofresponsibility/ClienteChainOfResponsibility.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/chainofresponsibility/) · [PruebaChainOfResponsibility.java](../../../src/test/java/liminal/comportamiento/chainofresponsibility/PruebaChainOfResponsibility.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Variante para profundizar
+
+**[Chain de validación completa](../../variantes/comportamiento/chainofresponsibility/pipeline.md):** reunir todos los fallos detectables en una solicitud, en lugar de detenerse ante el primero.

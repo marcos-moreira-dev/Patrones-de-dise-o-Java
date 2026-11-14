@@ -32,3 +32,10 @@ Mismos objetos de plantilla: true
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/prototype/ClientePrototype.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/prototype/) · [PruebaPrototype.java](../../../src/test/java/liminal/creacionales/prototype/PruebaPrototype.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Variantes para profundizar
+
+- **[Copia superficial frente a profunda](../../variantes/creacionales/prototype/copia-profunda.md):** cuándo una copia comparte referencias internas y por qué importa su mutabilidad.
+- **[Registro de prototipos](../../variantes/creacionales/prototype/registro-prototipos.md):** crear habitaciones por clave a partir de plantillas, con IDs locales únicos.
+
+La demostración anterior sigue siendo el **Prototype principal**; estas dos variantes son opcionales.

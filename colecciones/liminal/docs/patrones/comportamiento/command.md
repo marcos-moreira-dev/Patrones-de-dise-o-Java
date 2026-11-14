@@ -23,3 +23,7 @@ Luz L-01: ENCENDIDA
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/command/ClienteCommand.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/command/) · [PruebaCommand.java](../../../src/test/java/liminal/comportamiento/command/PruebaCommand.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Variante para profundizar
+
+**[Command con deshacer y rehacer](../../variantes/comportamiento/command/deshacer.md):** comprobar que las transiciones inversas siguen siendo válidas y que un historial no modifica el dominio si encuentra una acción obsoleta.

@@ -39,3 +39,7 @@ Luz -> APAGADA
 **Archivos:** [ClienteObserver.java](../../../src/main/java/liminal/comportamiento/observer/ClienteObserver.java) · [PruebaObserver.java](../../../src/test/java/liminal/comportamiento/observer/PruebaObserver.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/observer/) · [PruebaObserver.java](../../../src/test/java/liminal/comportamiento/observer/PruebaObserver.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Variante para profundizar
+
+**[Observer push frente a pull](../../variantes/comportamiento/observer/push-pull.md):** enviar el nuevo valor o permitir que el receptor consulte al emisor. Ambas versiones son síncronas y respetan R-11.

@@ -39,3 +39,10 @@ Puerta: sí
 [Abrir la carpeta con todas las clases](../../../src/main/java/liminal/creacionales/builder/).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/builder/) · [PruebaBuilder.java](../../../src/test/java/liminal/creacionales/builder/PruebaBuilder.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Variantes para profundizar
+
+- **[Builder con Director](../../variantes/creacionales/builder/director.md):** secuencias reutilizables con Builder abstracto y un producto concreto.
+- **[Cuándo elegir class frente a record](../../laboratorios/java/class-vs-record.md):** laboratorio Java separado. La `Habitacion` principal ya es una clase tradicional.
+
+La demostración fluida sigue siendo el punto de entrada.

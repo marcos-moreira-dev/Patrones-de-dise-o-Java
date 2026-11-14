@@ -25,3 +25,7 @@
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/proxy/ClienteProxy.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/proxy/) · [PruebaProxy.java](../../../src/test/java/liminal/estructurales/proxy/PruebaProxy.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Variante para profundizar
+
+**[Proxy con caché e invalidación](../../variantes/estructurales/proxy/cache.md):** reutilizar una vista costosa y regenerarla cuando cambia la revisión de una escena, sin red real ni relojes.
