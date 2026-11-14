@@ -1,9 +1,6 @@
 package liminal.comportamiento.templatemethod;
 
-import java.io.PrintStream;
 import java.util.List;
-
-
 
 abstract class RutaExploracion {
     public final List<String> recorrer() {

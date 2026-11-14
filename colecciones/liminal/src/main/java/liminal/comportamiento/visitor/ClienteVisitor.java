@@ -1,9 +1,7 @@
 package liminal.comportamiento.visitor;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /** Visitor: nuevas operaciones de inspección sin cambiarlas en cada objeto. */
 public final class ClienteVisitor {
@@ -15,7 +13,6 @@ public final class ClienteVisitor {
         for (Elemento e : objetos) e.aceptar(descripcion);
         for (String texto : descripcion.resultados()) out.println(texto);
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 
