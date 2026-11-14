@@ -1,5 +1,9 @@
 # Strategy — El monstruo oscuro cambia de movimiento
 
+![Pasillo amarillo con alfombra, paredes repetidas y luces fluorescentes](../../../assets/ambientes/pasillo-amarillo.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![UML de Strategy: MonstruoOscuro conserva una estrategia intercambiable](../../uml/strategy.svg)
 
 **Escena.** En una zona con pasillo amarillo y piscina vacía aparece un monstruo oscuro. Primero patrulla por una salida; después persigue un objetivo que está en una habitación vecina; finalmente permanece quieto.
