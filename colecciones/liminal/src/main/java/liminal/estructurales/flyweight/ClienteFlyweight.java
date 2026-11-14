@@ -1,9 +1,6 @@
 package liminal.estructurales.flyweight;
 
 import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 /** Flyweight: muchas paredes comparten una textura inmutable. */
 public final class ClienteFlyweight {
@@ -17,7 +14,6 @@ public final class ClienteFlyweight {
         out.println("Textura compartida: " + (a.textura() == b.textura()));
         out.println("Texturas almacenadas: " + fabrica.cantidad());
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

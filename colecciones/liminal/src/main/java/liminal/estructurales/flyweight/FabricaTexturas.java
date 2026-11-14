@@ -1,10 +1,7 @@
 package liminal.estructurales.flyweight;
 
-import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-
 
 final class FabricaTexturas {
     private final Map<ClaveTextura, Textura> texturas = new HashMap<>();

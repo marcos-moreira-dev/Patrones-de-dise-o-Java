@@ -1,8 +1,6 @@
 package liminal.estructurales.proxy;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
 
 final class ProxyCamara implements Camara {
     private final String habitacion;

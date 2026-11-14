@@ -1,7 +1,6 @@
 package liminal.estructurales.proxy;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /** Proxy: protege una cámara y crea el objeto real solo cuando se necesita. */
 public final class ClienteProxy {
@@ -18,7 +17,6 @@ public final class ClienteProxy {
         out.println(camara.observar("PASE-01"));
         out.println("Cámara real creada al final: " + camara.creaciones());
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }
