@@ -1,8 +1,20 @@
 # Expedición Liminal — ruta visual de los 23 patrones GoF
 
-**Estado: catálogo Java 21 completo (23/23).** Todos los patrones cuentan con una clase cliente ejecutable por consola, una prueba autónoma, un diagrama UML SVG y una ficha Markdown. Las **imágenes atmosféricas originales** de Backrooms/Dreamcore/Weirdcore quedan para la etapa artística, sin alterar las reglas del dominio.
+![Pasillo amarillo vacío con luces fluorescentes y arquitectura repetitiva](assets/ambientes/pasillo-amarillo.webp)
+
+*Una expedición por pasillos, piscinas y oficinas imposibles. Lee la escena primero; después descubre cómo funciona el patrón en Java.*
+
+**Estado: catálogo Java 21 completo (23/23).** Todos los patrones cuentan con una clase cliente ejecutable por consola, una prueba autónoma, un diagrama UML SVG y una ficha Markdown. Las **primeras tres imágenes atmosféricas originales** ya están incorporadas; la ampliación a personajes, objetos y láminas de estados queda como mejora artística posterior.
 
 La colección técnica original y los microproyectos Arena Java y MiniSO **se conservan intactos en su organización**.
+
+## Una mirada al mundo
+
+| Piscinas vacías | Oficinas oníricas |
+| --- | --- |
+| ![Piscina de azulejos y agua turquesa iluminada artificialmente](assets/ambientes/piscinas-vacias.webp) | ![Oficina vacía de alfombra rosa, luces artificiales y muebles](assets/ambientes/oficinas-oniricas.webp) |
+
+**[Abrir el atlas visual](GUIA_VISUAL.md)**: las tres ambientaciones conectadas con las clases y las reglas R-XX del dominio. Consulta también la [procedencia de las ilustraciones](assets/README.md).
 
 ## Empieza aquí
 
@@ -68,6 +80,8 @@ Los scripts compilan código y pruebas, ejecutan las **23 verificaciones** y mue
 
 Los diagramas muestran dependencia, asociación, realización y herencia cuando aportan. **No inferimos agregación o composición simplemente porque una clase contenga un `List` o invoque `new`.** Las composiciones reales deben justificarse en las invariantes del dominio.
 
-## Etapa de ilustraciones atmosféricas
+## Ilustraciones y próximas mejoras
 
-Se crearán imágenes originales de pasillos amarillos, piscinas vacías, oficinas, habitaciones y objetos con estética liminal analógica. Las imágenes de referencia del videojuego *The Complex: Expedition* y de la cultura Backrooms sirven para fijar la dirección visual; no se reproducirán mapas ni imágenes protegidas. Las ilustraciones **no tienen autoridad sobre el dominio**. El [inventario artístico](PLAN.md) sigue siendo el plan para esa etapa.
+Ya existen **tres fondos originales** incorporados al repositorio: pasillo amarillo, piscinas vacías y oficinas oníricas. Se muestran en el [atlas visual](GUIA_VISUAL.md) y en fichas seleccionadas junto a sus UML. Están optimizados como WebP. El trabajo gráfico futuro puede añadir láminas de objetos, criaturas y transiciones de puertas siguiendo el [plan](PLAN.md).
+
+El juego *The Complex: Expedition* y la cultura Backrooms son referencias estéticas, no fuentes de capturas ni de reglas normativas. Las ilustraciones **no tienen autoridad sobre el dominio**.
