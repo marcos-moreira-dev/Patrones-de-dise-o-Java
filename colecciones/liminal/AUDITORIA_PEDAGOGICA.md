@@ -66,7 +66,7 @@ Los ejemplos pertenecen a **un solo mundo de referencia**, pero tienen **paquete
 
 | Pendiente | Motivo | Prioridad sugerida |
 | --- | --- | --- |
-| **Revisión visual de SVG** | **Avance:** se inspeccionó la estructura de los 23 UML y se renderizaron los esquemas de Observer y Abstract Factory. Se corrigió una superposición real en Observer y se reorganizó Abstract Factory; una inspección pixel a pixel de los demás diagramas sigue siendo opcional | Parcial |
+| **Revisión visual de SVG** | Se revisó la estructura y la distribución textual de los 23 UML mediante análisis de cajas/etiquetas. Ya se había corregido una superposición real en Observer y reorganizado Abstract Factory. La inspección visual píxel a píxel de cada visor continúa siendo opcional | Parcial |
 | **Ilustraciones de objetos y criatura** | **Completado como lámina única:** puerta beige, linterna, interruptor y monstruo oscuro en [galería visual](assets/README.md). Láminas individuales o transiciones animadas serían una mejora adicional | Resuelto para esta etapa |
 | **Laboratorio independiente de composición UML** | **Completado** en [Relaciones UML](docs/laboratorios/relaciones-uml.md): composición R-09, agregación local, asociaciones, referencias y baja lógica, con dos diagramas y pruebas | Resuelto |
 | **Completar `Interpreter` en la colección técnica original** | **Completado:** [Interpreter técnico](../../comportamiento/Interpreter/README.md) con expresiones anidadas, `BigDecimal` y pruebas; las dos colecciones ahora tienen 23 patrones | Resuelto |
@@ -86,7 +86,17 @@ Se implementó [un laboratorio adicional de relaciones UML](docs/laboratorios/re
 - Se incorporó una lámina ilustrada de **puerta, linterna, interruptor y criatura oscura** en [la galería](assets/README.md) y se relacionó con R-05 a R-08 en el atlas. Una imagen no constituye evidencia de una regla.
 - Los chequeos automáticos validan estructura SVG, enlaces y archivos WebP, pero **no** garantizan por sí solos la legibilidad de todas las posiciones de texto y flechas en diferentes visores.
 
-## 8. Recomendación de cierre
+## 8. Actualización: secuencias de comportamiento y verificación
+
+Se añadieron tres SVG técnicos adicionales, **separados de los 23 UML de clases**:
+
+- [State: transiciones de puerta](docs/secuencias/transiciones-state.svg), conforme a R-05.
+- [Strategy: cuatro pasos de M-01](docs/secuencias/recorrido-strategy.svg), conforme a R-08 y a las salidas dirigidas.
+- [Observer: dos pulsaciones](docs/secuencias/notificaciones-observer.svg), conforme a R-07 y al contador de alarma.
+
+Cada secuencia se enlaza desde la ficha del patrón y desde el [atlas visual](GUIA_VISUAL.md), y el verificador Java comprueba que el SVG sea XML válido, contenga referentes semánticos y tenga enlaces existentes. Las pruebas de los **23 patrones** son independientes del número de ilustraciones. La comprobación de desbordamiento de etiquetas en los 23 diagramas de clases fue una estimación geométrica, no una validación visual completa.
+
+## 9. Recomendación de cierre
 
 Considerar la colección **funcional y apta para estudio**. Antes de anunciar un cierre estrictamente editorial, inspeccionar visualmente los otros SVG si se busca perfección editorial. La galería de objetos y el laboratorio aparte de R-09 ya están incorporados. Conservar las **reglas del dominio como fuente normativa**: si cambian, actualizar documentación, Java, UML y pruebas en ese orden.
 
