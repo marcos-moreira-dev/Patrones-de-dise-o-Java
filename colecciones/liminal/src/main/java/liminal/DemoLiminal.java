@@ -26,11 +26,11 @@ public final class DemoLiminal {
             case "builder" -> ejecutar("BUILDER — Habitación", () -> ClienteBuilder.ejecutar(System.out));
             case "prototype" -> ejecutar("PROTOTYPE — Habitación", () -> ClientePrototype.ejecutar(System.out));
             case "todos" -> {
-                ClienteSingleton.ejecutar(System.out);
-                ClienteFactoryMethod.ejecutar(System.out);
-                ClienteAbstractFactory.ejecutar(System.out);
-                ClienteBuilder.ejecutar(System.out);
-                ClientePrototype.ejecutar(System.out);
+                ejecutar("SINGLETON — Panel de avisos", () -> ClienteSingleton.ejecutar(System.out));
+                ejecutar("FACTORY METHOD — Apariciones", () -> ClienteFactoryMethod.ejecutar(System.out));
+                ejecutar("ABSTRACT FACTORY — Ambientes", () -> ClienteAbstractFactory.ejecutar(System.out));
+                ejecutar("BUILDER — Habitación", () -> ClienteBuilder.ejecutar(System.out));
+                ejecutar("PROTOTYPE — Habitación", () -> ClientePrototype.ejecutar(System.out));
                 ejecutar("STATE — Puerta", () -> ClienteState.ejecutar(System.out));
                 ejecutar("STRATEGY — Monstruo oscuro", () -> ClienteStrategy.ejecutar(System.out));
                 ejecutar("OBSERVER — Interruptor", () -> ClienteObserver.ejecutar(System.out));
