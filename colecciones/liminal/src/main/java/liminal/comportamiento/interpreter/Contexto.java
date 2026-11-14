@@ -1,10 +1,8 @@
 package liminal.comportamiento.interpreter;
 
-import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
 
 final class Contexto {
     private final Map<String, Puerta> puertas = new HashMap<>();

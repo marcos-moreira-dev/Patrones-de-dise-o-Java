@@ -1,8 +1,6 @@
 package liminal.comportamiento.command;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
 
 final class Puerta {
     private final String id;
