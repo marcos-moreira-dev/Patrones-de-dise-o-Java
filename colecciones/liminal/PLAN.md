@@ -87,7 +87,7 @@ Patrones-de-dise-o-Java/
 | Comportamiento | Template Method | Explorar «oficina» o «piscinas» con fases comunes | Secuencia fija con pasos variables |
 | Comportamiento | Visitor | Un inspector produce descripciones de puerta, luz y artefacto | Operación externa sobre tipos heterogéneos |
 
-**Diferencia con el catálogo actual:** hoy existen 5 creacionales, 7 estructurales y 10 de comportamiento; falta `Interpreter` en la colección técnica original. La colección nueva contempla **23**, y el patrón ausente podrá incorporarse a la colección técnica en una tarea independiente.
+**Situación actual:** las dos colecciones tienen **23 patrones GoF**. El `Interpreter` de la colección técnica se añadió posteriormente como ejemplo de lenguaje recursivo de precios; el liminal utiliza instrucciones simples de exploración.
 
 ## 4. Contrato por ejemplo (plantilla de ficha)
 
@@ -217,6 +217,6 @@ Un patrón se marca **Terminado** cuando están su ficha, reglas citadas, implem
 - Detalles visuales finales (composición, encuadre, cromatismo, resolución).
 - Herramienta exacta de renderizado de UML (siempre resultado final legible, preferiblemente SVG).
 - Si se comparte una pequeñísima biblioteca de tipos entre los 23 patrones; decidir tras el piloto, evitando acoplamiento.
-- Si el `Interpreter` también se agrega a la colección técnica: sí es deseable, pero hacerlo sin reorganizar paquetes existentes.
+- `Interpreter` ya se agregó a la colección técnica sin reorganizar paquetes, con [su guía independiente](../../comportamiento/Interpreter/README.md).
 
 **Regla para cualquier cambio:** revisar primero si afecta `DOMINIO.md`. Si afecta, editar y versionar su regla, actualizar pruebas y UML; **no corregir solo el código**.
