@@ -28,11 +28,16 @@ public final class VerificarDocumentacion {
         try {
             List<Path> documentos = listar(fichas, ".md");
             List<Path> imagenes = listar(diagramas, ".svg");
+            Path secuencias = Path.of("docs", "secuencias");
+            List<Path> ilustracionesDinamicas = listar(secuencias, ".svg");
             List<Path> fondos = listar(ambientes, ".webp");
             List<Path> laminas = listar(objetos, ".webp");
 
             if (documentos.size() != 23 || imagenes.size() != 23) {
                 throw new AssertionError("Se esperan 23 fichas y 23 diagramas UML");
+            }
+            if (ilustracionesDinamicas.size() != 3) {
+                throw new AssertionError("Se esperan 3 secuencias didácticas SVG");
             }
             if (fondos.size() != 3 || laminas.size() != 1) {
                 throw new AssertionError("Se esperan 3 ambientes y 1 lámina de objetos en WebP");
@@ -53,6 +58,7 @@ public final class VerificarDocumentacion {
                 if (uml.find()) throw new AssertionError("Debe haber un UML principal por ficha");
             }
             for (Path imagen : imagenes) validarSvg(imagen);
+            for (Path secuencia : ilustracionesDinamicas) validarSvg(secuencia);
             // Comprobaciones semánticas puntuales además de XML bien formado.
             comprobarUml(diagramas, "composite.svg", "hijos: 0..*");
             comprobarUml(diagramas, "decorator.svg", "envuelta: 1");
@@ -64,6 +70,24 @@ public final class VerificarDocumentacion {
             comprobarUml(diagramas, "facade.svg", "salida(origen, destino)");
             comprobarUml(diagramas, "observer.svg",
                     "ObservadorInterruptor", "observadores: Map", "0..*");
+            String[][] rutas = {
+                    {"state", "transiciones-state.svg", "CERRADA", "BLOQUEADA"},
+                    {"strategy", "recorrido-strategy.svg", "M-01", "Piscina"},
+                    {"observer", "notificaciones-observer.svg", "I-01", "L-01"}
+            };
+            String atlas = Files.readString(Path.of("GUIA_VISUAL.md"));
+            for (String[] ruta : rutas) {
+                Path secuencia = secuencias.resolve(ruta[1]);
+                comprobarUml(secuencias, ruta[1], ruta[2], ruta[3]);
+                Path ficha = fichas.resolve("comportamiento").resolve(ruta[0] + ".md");
+                String contenido = Files.readString(ficha);
+                if (!contenido.contains("../../secuencias/" + ruta[1])
+                        || !atlas.contains("docs/secuencias/" + ruta[1])
+                        || !Files.isRegularFile(secuencia)) {
+                    throw new AssertionError("Secuencia no enlazada: " + ruta[1]);
+                }
+            }
+            System.out.println("OK 3/3 secuencias SVG, fichas y atlas enlazados.");
             for (Path fondo : fondos) validarWebp(fondo);
             for (Path lamina : laminas) validarWebp(lamina);
 
