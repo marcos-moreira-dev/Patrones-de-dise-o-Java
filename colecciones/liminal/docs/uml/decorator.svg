@@ -5,6 +5,8 @@
 <path class="edge dashed" d="M345 132.5 L475 136" marker-end="url(#open)"/>
 <path class="edge dashed" d="M342.5 350 L650 215" marker-end="url(#triangle)"/>
 <path class="edge dashed" d="M877.5 286 L650 215" marker-end="url(#triangle)"/>
+<path class="edge" d="M1115 375 H1210 V255 H805 V215" marker-end="url(#open)"/>
+<text x="984" y="247" class="body">envuelta: 1</text>
 <path class="edge" d="M747.5 488 L877.5 440" marker-end="url(#triangle)"/>
 <path class="edge" d="M1150 488 L877.5 440" marker-end="url(#triangle)"/>
 <rect x="25" y="70" width="320" height="125" rx="3" class="box"/><text x="185" y="105" class="title">ClienteDecorator</text><path d="M25 123 H345" class="sep"/><text x="39" y="154" class="body">+ ejecutar(out): void</text>
