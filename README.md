@@ -24,7 +24,7 @@ La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidade
 
 ### Ruta visual de estudio: Expedición Liminal
 
-Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. La colección ya incluye tres imágenes atmosféricas originales; las láminas de objetos y criaturas serían una ampliación artística opcional.
+Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. La colección incluye tres imágenes atmosféricas originales y una lámina con puerta, linterna, interruptor y monstruo oscuro; nuevas láminas serían una ampliación opcional.
 
 Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](colecciones/liminal/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](colecciones/liminal/PLAN.md). Empieza por el [README de la colección liminal](colecciones/liminal/README.md).
 
