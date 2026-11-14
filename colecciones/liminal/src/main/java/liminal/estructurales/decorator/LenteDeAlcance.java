@@ -1,9 +1,5 @@
 package liminal.estructurales.decorator;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
-
 final class LenteDeAlcance extends DecoradorLinterna {
     private final int extra;
     LenteDeAlcance(Linterna base, int extra) {

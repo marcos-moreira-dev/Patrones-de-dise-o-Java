@@ -1,12 +1,6 @@
 package liminal.estructurales.facade;
 
-import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
-
 
 final class FachadaCruce {
     private final Explorador explorador;

@@ -1,7 +1,6 @@
 package liminal.estructurales.decorator;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /** Decorator: las mejoras envuelven a la linterna sin reemplazar su contrato. */
 public final class ClienteDecorator {
@@ -13,7 +12,6 @@ public final class ClienteDecorator {
         out.println("Base: " + base.descripcion() + " (" + base.alcance() + " m)");
         out.println("Mejorada: " + mejorada.descripcion() + " (" + mejorada.alcance() + " m)");
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

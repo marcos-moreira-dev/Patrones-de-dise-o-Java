@@ -1,11 +1,6 @@
 package liminal.estructurales.facade;
 
 import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
 
 /** Facade: ofrece un único método para cruzar una salida segura. */
 public final class ClienteFacade {
@@ -24,9 +19,6 @@ public final class ClienteFacade {
         fachada.cruzar("H-02");
         out.println("Cruce correcto: " + explorador.ubicacion());
     }
-
-
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

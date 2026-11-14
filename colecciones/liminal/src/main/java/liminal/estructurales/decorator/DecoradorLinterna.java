@@ -1,9 +1,6 @@
 package liminal.estructurales.decorator;
 
-import java.io.PrintStream;
 import java.util.Objects;
-
-
 
 abstract class DecoradorLinterna implements Linterna {
     protected final Linterna envuelta;
