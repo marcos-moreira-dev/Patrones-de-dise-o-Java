@@ -22,11 +22,15 @@ estudiar también las fases de construcción con Maven sin frameworks.
 
 La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidades, clases abstractas, interfaces (incluida la notación circular), enumeraciones, `record` y el paso del modelo a estructuras Java como `List` y `Map`. También diferencia **clases, instancias, referencias, creación, uso y propiedad**, y explica por qué la ingeniería inversa de código Java no puede deducir por sí sola la semántica de agregación y composición.
 
-### Nueva ruta de estudio: Expedición Liminal (en planificación)
+### Ruta visual de estudio: Expedición Liminal
 
 Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. Las imágenes atmosféricas originales serán incorporadas en una etapa artística independiente.
 
 Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](colecciones/liminal/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](colecciones/liminal/PLAN.md). Empieza por el [README de la colección liminal](colecciones/liminal/README.md).
+
+![Pasillo amarillo inspirado en espacios liminales, con luces fluorescentes y alfombra](colecciones/liminal/assets/ambientes/pasillo-amarillo.webp)
+
+**[Ver el atlas visual de los escenarios](colecciones/liminal/GUIA_VISUAL.md)** · [Galería de ilustraciones originales](colecciones/liminal/assets/README.md).
 
 Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
 
