@@ -17,3 +17,5 @@
 **Alternativa:** si siempre hay dos luces fijas, llamarlas directamente es más sencillo.
 
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/composite/ClienteComposite.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/composite/) · [PruebaComposite.java](../../../src/test/java/liminal/estructurales/composite/PruebaComposite.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

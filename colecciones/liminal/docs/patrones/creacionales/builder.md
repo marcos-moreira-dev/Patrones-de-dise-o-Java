@@ -37,3 +37,5 @@ Puerta: sí
 **Cuándo no usarlo:** para un `record` de dos campos obligatorios, su constructor puede ser suficiente.
 
 [Abrir la carpeta con todas las clases](../../../src/main/java/liminal/creacionales/builder/).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/builder/) · [PruebaBuilder.java](../../../src/test/java/liminal/creacionales/builder/PruebaBuilder.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

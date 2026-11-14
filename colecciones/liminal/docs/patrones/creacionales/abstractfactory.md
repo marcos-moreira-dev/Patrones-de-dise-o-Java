@@ -32,3 +32,5 @@ PISCINAS: reflejo azul y puerta blanca
 **Cuándo no usarlo:** si solo hay un objeto que construir, puede bastar Factory Method o un constructor.
 
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/abstractfactory/ClienteAbstractFactory.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/abstractfactory/) · [PruebaAbstractFactory.java](../../../src/test/java/liminal/creacionales/abstractfactory/PruebaAbstractFactory.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

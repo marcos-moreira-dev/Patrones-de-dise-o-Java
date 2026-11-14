@@ -24,3 +24,5 @@ Monstruo silencioso en H-02
 **Cuándo no usarlo:** si una condición local basta y nunca se extiende la creación, una función simple puede ser más legible.
 
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/factorymethod/ClienteFactoryMethod.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/factorymethod/) · [PruebaFactoryMethod.java](../../../src/test/java/liminal/creacionales/factorymethod/PruebaFactoryMethod.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

@@ -30,3 +30,5 @@ Mismos objetos de plantilla: true
 **Cuándo no usarlo:** si la configuración consta de uno o dos valores, crear directamente el objeto puede ser más simple.
 
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/prototype/ClientePrototype.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/prototype/) · [PruebaPrototype.java](../../../src/test/java/liminal/creacionales/prototype/PruebaPrototype.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

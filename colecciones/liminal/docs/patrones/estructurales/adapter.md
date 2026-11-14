@@ -17,3 +17,5 @@
 **Alternativa:** si las dos interfaces ya coinciden, no se necesita adaptador.
 
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/adapter/ClienteAdapter.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/adapter/) · [PruebaAdapter.java](../../../src/test/java/liminal/estructurales/adapter/PruebaAdapter.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

@@ -19,3 +19,5 @@
 **Alternativa:** si solo hay una combinación fija, un método directo basta.
 
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/bridge/ClienteBridge.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/bridge/) · [PruebaBridge.java](../../../src/test/java/liminal/estructurales/bridge/PruebaBridge.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

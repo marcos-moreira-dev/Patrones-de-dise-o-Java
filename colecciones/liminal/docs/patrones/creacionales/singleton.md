@@ -25,3 +25,5 @@ Avisos: 2
 **Cuándo no usarlo:** cuando el panel deba ser distinto por jugador, partida o ejecución, conviene una instancia administrada por su propietario. Singleton tiene costos de estado global y testeo.
 
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/singleton/ClienteSingleton.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/singleton/) · [PruebaSingleton.java](../../../src/test/java/liminal/creacionales/singleton/PruebaSingleton.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
