@@ -6,6 +6,10 @@
 
 ![UML de Strategy: MonstruoOscuro conserva una estrategia intercambiable](../../uml/strategy.svg)
 
+**Mira la ejecución:** esta secuencia muestra las ubicaciones sucesivas del mismo monstruo `M-01`. Cambiar de estrategia modifica un algoritmo, no su identidad.
+
+![Recorrido del monstruo M-01: pasillo, piscina, regreso al pasillo y espera](../../secuencias/recorrido-strategy.svg)
+
 **Escena.** En una zona con pasillo amarillo y piscina vacía aparece un monstruo oscuro. Primero patrulla por una salida; después persigue un objetivo que está en una habitación vecina; finalmente permanece quieto.
 
 **Reglas del mundo:** [R-02, R-08 y R-12](../../../DOMINIO.md). El mapa contiene salidas dirigidas identificadas. Una estrategia puede **proponer** el siguiente destino, pero no saltarse las conexiones del mapa.
