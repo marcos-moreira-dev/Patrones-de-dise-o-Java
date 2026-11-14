@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Template Method — Rutas de exploración</title><desc id="descripcion">RutaExploracion fija el orden preparar-observar-finalizar; RutaOficina y RutaPiscina sobrescriben observar.</desc><defs>
+<marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker>
+</defs><style>.box{fill:#f1f5ff;stroke:#4272a5;stroke-width:2.4}.iface{fill:#f4ecff;stroke:#825cac;stroke-width:2.4}.sep{stroke:#8194ad;stroke-width:1.4}.title{fill:#18283d;font:700 20px Arial,sans-serif;text-anchor:middle}.body{fill:#23364a;font:17px Arial,sans-serif}.edge{fill:none;stroke:#25374a;stroke-width:2.4}.dash{stroke-dasharray:8 6}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
+<path class="edge dash" d="M382 185.5 L495 198" marker-end="url(#open)"/>
+<path class="edge" d="M500 385 L712.5 308" marker-end="url(#tri)"/>
+<path class="edge" d="M1015 385 L712.5 308" marker-end="url(#tri)"/>
+<rect x="42" y="118" width="340" height="135" rx="3" class="box"/><text class="title" x="212" y="152">ClienteTemplateMethod</text><path class="sep" d="M42 170 H382"/><text class="body" x="56" y="201">+ ejecutar(out)</text>
+<rect x="495" y="88" width="435" height="220" rx="3" class="box"/><text class="title" x="712.5" y="122">«abstract» RutaExploracion</text><path class="sep" d="M495 140 H930"/><text class="body" x="509" y="171">+ recorrer(): List&lt;String&gt; {final}</text><text class="body" x="509" y="196"># observar(): String</text>
+<rect x="305" y="385" width="390" height="120" rx="3" class="box"/><text class="title" x="500" y="419">RutaOficina</text><path class="sep" d="M305 437 H695"/><text class="body" x="319" y="468">+ observar(): String</text>
+<rect x="820" y="385" width="390" height="120" rx="3" class="box"/><text class="title" x="1015" y="419">RutaPiscina</text><path class="sep" d="M820 437 H1210"/><text class="body" x="834" y="468">+ observar(): String</text>
+<text class="note" x="700" y="627">Las dos rutas conservan la misma secuencia de pasos y cambian solo su observación.</text></svg>
