@@ -76,5 +76,6 @@ public final class PruebasLiminal {
         PruebaObserver.ejecutar();
         System.out.println("OK Observer (R-07)");
         System.out.println("OK 23/23 pruebas del catálogo liminal.");
+        VerificarDocumentacion.ejecutar();
     }
 }
