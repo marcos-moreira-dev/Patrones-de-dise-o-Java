@@ -145,3 +145,13 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 **Corrección mínima:** después de `crearCriatura` y antes de `registrar`, el creador común rechaza producto nulo o un producto cuya identidad/ubicación no coincida con los argumentos. No altera la jerarquía GoF ni añade clases al código de producción. Las pruebas incorporan tres fábricas defectuosas y confirman que los rechazos dejan libre el mismo ID para una aparición posterior válida.
 
 **Andamiaje:** la comprobación pertenece al creador (contrato de producción), no al cliente de consola ni a infraestructura adicional. Actualizada la ficha del patrón. La validación integral depende de GitHub Actions con Java 21.
+
+## 13. Segunda pasada semántica — Arena Java: estabilidad de Observer
+
+**Ruta → rol → consumidor:** `proyectos/arena-java/src/main/java/arena/aplicacion/ServicioPartida.java` (servicio de aplicación y sujeto Observer P) publica `EventoCombate` a receptores `ObservadorPartida` utilizados por consola y `PruebasArena`.
+
+**Defecto detectado:** la publicación recorría directamente un `ArrayList` mutable de observadores. Si un callback llamaba a `ServicioPartida.suscribir`, el iterador podía lanzar `ConcurrentModificationException` durante el aviso. Además, sin una política explícita no estaba definido si el alta debía participar en el segundo evento del mismo turno.
+
+**Corrección:** después de resolver una acción válida, se captura una única `List.copyOf(observadores)` para **todos los eventos de esa acción**; así el alta durante el turno no modifica los destinatarios actuales y participa desde la acción siguiente. Se conserva el carácter síncrono y el orden de suscripción. `PruebasArena.observadores()` verifica que el receptor original ve los dos eventos, el nuevo no ve ninguno del primer turno y sí ve los dos del siguiente. La decisión se documenta en el README sin añadir un gestor de eventos.
+
+**Límite consciente:** los callbacks con excepciones siguen siendo responsabilidad del consumidor; este cambio no promete revertir el combate si un observador falla. No se añaden hilos ni una infraestructura de eventos compleja. Verificación integral en GitHub Actions Java 21 Linux/Windows.
