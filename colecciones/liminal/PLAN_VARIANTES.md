@@ -1,6 +1,6 @@
 # Expedición Liminal — Plan de variantes GoF y laboratorio `class` / `record`
 
-> **Estado: 7/7 variantes y laboratorio Java implementados; cobertura editorial de los otros 17 patrones en revisión y auditoría de andamiaje en primera pasada.** Versión 1.1 — 14 de noviembre de 2026.
+> **Estado: 7/7 variantes implementadas, laboratorio Java terminado, 17/17 fichas restantes comparadas por escrito y primera auditoría de andamiaje realizada.** Versión 1.2 — 14 de noviembre de 2026. **Pendiente:** auditoría semántica exhaustiva del repositorio completo.
 > Esta hoja de ruta amplía el catálogo existente; no sustituye [PLAN.md](PLAN.md) ni modifica las reglas de [DOMINIO.md](DOMINIO.md). No añadir nuevas mecánicas al mundo simplemente para justificar una variante.
 
 ## 1. Resultado que queremos conseguir
@@ -165,7 +165,9 @@ Las descripciones pedagógicas largas van en Markdown; comentarios Java cortos. 
 
 **Alineación clásica:** se revisaron los usos de `record` en las 132 fuentes base; los participantes principales se representan con `class` y cinco records de datos/valor permanecen intencionalmente. Véase [auditoría del andamiaje](AUDITORIA_ANDAMIAJE.md).
 
-**Aún no demostrado por esta etapa:** una auditoría semántica línea por línea de los 516 archivos, o una auditoría pixel a pixel de todos los visores UML. No mezclar esas tareas con las pruebas de compilación.
+**Cobertura editorial completada:** los 17 patrones sin segunda implementación incluyen una sección breve «Otras implementaciones (sin código extra)». La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) tiene clasificación y candidatos de simplificación.
+
+**Aún no demostrado por esta etapa:** una auditoría semántica línea por línea de los 516 archivos observados en la instantánea, o una auditoría píxel a píxel de todos los visores UML. No mezclar esas tareas con las pruebas de compilación.
 
 ### Etapas de implementación originalmente planificadas
 
