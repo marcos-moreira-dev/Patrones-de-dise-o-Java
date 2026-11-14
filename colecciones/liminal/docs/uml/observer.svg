@@ -12,7 +12,8 @@
 </style><rect class="caja" x="25" y="58" width="280" height="119" rx="3"/><text class="nombre" x="165" y="89">ClienteObserver</text><line x1="25" y1="104" x2="305" y2="104" stroke="#8b9aaa"/><text class="metodo" x="38" y="132">+ ejecutar(out): void</text><rect class="caja" x="351" y="48" width="382" height="168" rx="3"/><text class="nombre" x="542" y="79">Interruptor</text><line x1="351" y1="94" x2="733" y2="94" stroke="#8b9aaa"/><text class="metodo" x="364" y="122">- observadores: Map&lt;String, ObservadorInterruptor&gt;</text><text class="metodo" x="364" y="146">+ suscribir(observador)</text><text class="metodo" x="364" y="170">+ pulsar(): void</text><rect class="interfaz" x="820" y="48" width="393" height="168" rx="3"/><text class="nombre" x="1016.5" y="79">«interface» ObservadorInterruptor</text><line x1="820" y1="94" x2="1213" y2="94" stroke="#8b9aaa"/><text class="metodo" x="833" y="122">+ id(): String</text><text class="metodo" x="833" y="146">+ alCambiar(activo): void</text><rect class="caja" x="685" y="350" width="240" height="113" rx="3"/><text class="nombre" x="805" y="381">Luz</text><line x1="685" y1="396" x2="925" y2="396" stroke="#8b9aaa"/><text class="metodo" x="698" y="424">+ alCambiar(activo)</text><rect class="caja" x="974" y="350" width="240" height="113" rx="3"/><text class="nombre" x="1094" y="381">Alarma</text><line x1="974" y1="396" x2="1214" y2="396" stroke="#8b9aaa"/><text class="metodo" x="987" y="424">+ alCambiar(activo)</text><path class="linea dash" d="M305 124 H351"/><path class="linea" d="M338 114 L351 124 L338 134"/>
 <path class="linea" d="M733 124 H820"/><path class="linea" d="M807 114 L820 124 L807 134"/>
 <text class="metodo" x="740" y="107">0..*</text>
-<path class="linea dash" d="M805 350 L1015 240 V216"/>
-<path class="linea dash" d="M1094 350 V216"/>
-<path class="triangulo" d="M1080 235 L1094 216 L1108 235 Z"/>
+<path class="linea dash" d="M805 350 L910 236"/>
+<path class="linea dash" d="M1094 350 L1100 236"/>
+<path class="triangulo" d="M896 236 L910 216 L924 236 Z"/>
+<path class="triangulo" d="M1086 236 L1100 216 L1114 236 Z"/>
 <text class="nota" x="620" y="516">Suscripción y notificación no significan propiedad de los observadores.</text></svg>
