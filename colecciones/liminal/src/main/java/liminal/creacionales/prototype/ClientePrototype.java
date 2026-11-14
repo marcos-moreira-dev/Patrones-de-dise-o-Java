@@ -41,26 +41,3 @@ public final class ClientePrototype {
 
     public static void main(String[] args) { ejecutar(System.out); }
 }
-
-interface Prototipo<T> {
-    T copiarConId(String nuevoId);
-}
-
-record HabitacionPrototipo(String id, String ambiente, List<String> objetos)
-        implements Prototipo<HabitacionPrototipo> {
-    HabitacionPrototipo {
-        Objects.requireNonNull(id);
-        Objects.requireNonNull(ambiente);
-        Objects.requireNonNull(objetos);
-        if (id.isBlank() || ambiente.isBlank()) throw new IllegalArgumentException("Texto vacío");
-        objetos = List.copyOf(objetos);
-    }
-
-    public HabitacionPrototipo copiarConId(String nuevoId) {
-        Objects.requireNonNull(nuevoId);
-        if (nuevoId.isBlank() || id.equals(nuevoId)) {
-            throw new IllegalArgumentException("La copia necesita un ID nuevo");
-        }
-        return new HabitacionPrototipo(nuevoId, ambiente, objetos);
-    }
-}
