@@ -1,6 +1,14 @@
 package liminal;
 
 import java.util.Locale;
+import liminal.comportamiento.chainofresponsibility.ClienteChainOfResponsibility;
+import liminal.comportamiento.command.ClienteCommand;
+import liminal.comportamiento.interpreter.ClienteInterpreter;
+import liminal.comportamiento.iterator.ClienteIterator;
+import liminal.comportamiento.mediator.ClienteMediator;
+import liminal.comportamiento.memento.ClienteMemento;
+import liminal.comportamiento.templatemethod.ClienteTemplateMethod;
+import liminal.comportamiento.visitor.ClienteVisitor;
 import liminal.estructurales.adapter.ClienteAdapter;
 import liminal.estructurales.bridge.ClienteBridge;
 import liminal.estructurales.composite.ClienteComposite;
@@ -39,6 +47,14 @@ public final class DemoLiminal {
             case "facade" -> ejecutar("FACADE — Cruce seguro", () -> ClienteFacade.ejecutar(System.out));
             case "flyweight" -> ejecutar("FLYWEIGHT — Texturas", () -> ClienteFlyweight.ejecutar(System.out));
             case "proxy" -> ejecutar("PROXY — Cámara", () -> ClienteProxy.ejecutar(System.out));
+            case "chainofresponsibility" -> ejecutar("CHAIN OF RESPONSIBILITY — Cruce", () -> ClienteChainOfResponsibility.ejecutar(System.out));
+            case "command" -> ejecutar("COMMAND — Panel", () -> ClienteCommand.ejecutar(System.out));
+            case "interpreter" -> ejecutar("INTERPRETER — Lenguaje", () -> ClienteInterpreter.ejecutar(System.out));
+            case "iterator" -> ejecutar("ITERATOR — Habitaciones", () -> ClienteIterator.ejecutar(System.out));
+            case "mediator" -> ejecutar("MEDIATOR — Sensores", () -> ClienteMediator.ejecutar(System.out));
+            case "memento" -> ejecutar("MEMENTO — Linterna", () -> ClienteMemento.ejecutar(System.out));
+            case "templatemethod" -> ejecutar("TEMPLATE METHOD — Rutas", () -> ClienteTemplateMethod.ejecutar(System.out));
+            case "visitor" -> ejecutar("VISITOR — Inspección", () -> ClienteVisitor.ejecutar(System.out));
             case "todos" -> {
                 ejecutar("SINGLETON — Panel de avisos", () -> ClienteSingleton.ejecutar(System.out));
                 ejecutar("FACTORY METHOD — Apariciones", () -> ClienteFactoryMethod.ejecutar(System.out));
@@ -52,6 +68,14 @@ public final class DemoLiminal {
                 ejecutar("FACADE — Cruce seguro", () -> ClienteFacade.ejecutar(System.out));
                 ejecutar("FLYWEIGHT — Texturas", () -> ClienteFlyweight.ejecutar(System.out));
                 ejecutar("PROXY — Cámara", () -> ClienteProxy.ejecutar(System.out));
+                ejecutar("CHAIN OF RESPONSIBILITY — Cruce", () -> ClienteChainOfResponsibility.ejecutar(System.out));
+                ejecutar("COMMAND — Panel", () -> ClienteCommand.ejecutar(System.out));
+                ejecutar("INTERPRETER — Lenguaje", () -> ClienteInterpreter.ejecutar(System.out));
+                ejecutar("ITERATOR — Habitaciones", () -> ClienteIterator.ejecutar(System.out));
+                ejecutar("MEDIATOR — Sensores", () -> ClienteMediator.ejecutar(System.out));
+                ejecutar("MEMENTO — Linterna", () -> ClienteMemento.ejecutar(System.out));
+                ejecutar("TEMPLATE METHOD — Rutas", () -> ClienteTemplateMethod.ejecutar(System.out));
+                ejecutar("VISITOR — Inspección", () -> ClienteVisitor.ejecutar(System.out));
                 ejecutar("STATE — Puerta", () -> ClienteState.ejecutar(System.out));
                 ejecutar("STRATEGY — Monstruo oscuro", () -> ClienteStrategy.ejecutar(System.out));
                 ejecutar("OBSERVER — Interruptor", () -> ClienteObserver.ejecutar(System.out));
