@@ -16,6 +16,8 @@ La colección técnica original y los microproyectos Arena Java y MiniSO **se co
 
 **[Abrir el atlas visual](GUIA_VISUAL.md)**: las tres ambientaciones y cuatro objetos conectados con las clases y las reglas R-XX del dominio. Consulta también la [procedencia de las ilustraciones](assets/README.md).
 
+**[Guía para leer las clases a mano](GUIA_LECTURA_CODIGO.md)**: compara Builder con el ejemplo técnico, presenta las carpetas con un tipo por archivo y explica por dónde comenzar en los clientes y las pruebas.
+
 **[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones aplicadas, reglas contrastadas con Java y UML, pruebas y mejoras opcionales pendientes.
 
 ## Laboratorio adicional de relaciones UML
@@ -60,6 +62,12 @@ Se ejecuta por consola, se prueba automáticamente y no requiere JavaFX.
 | Comportamiento | Template Method | [Rutas de exploración](docs/patrones/comportamiento/templatemethod.md) | `templatemethod` |
 | Comportamiento | Visitor | [Inspector de objetos](docs/patrones/comportamiento/visitor.md) | `visitor` |
 
+## Cómo está organizado el código
+
+La colección sigue el estilo de los ejemplos técnicos: **un tipo Java superior por archivo**. Las clases cliente solo demuestran; las comprobaciones se guardan en `src/test/java`. El lanzador [`DemoLiminal.java`](src/main/java/liminal/DemoLiminal.java) agrupa los métodos por categorías y permite escoger un patrón individual.
+
+Para ver los cambios directamente: [carpeta de Builder](src/main/java/liminal/creacionales/builder/) · [guía de lectura de clases](GUIA_LECTURA_CODIGO.md).
+
 ## Ejecutar en Java 21
 
 Sin JavaFX, Maven, redes ni frameworks. Desde la **raíz del repositorio**:
@@ -69,6 +77,7 @@ En Git Bash o Linux:
 ~~~bash
 bash colecciones/liminal/scripts/verificar.sh
 java -cp colecciones/liminal/out liminal.DemoLiminal todos
+java -cp colecciones/liminal/out liminal.DemoLiminal creacionales
 java -cp colecciones/liminal/out liminal.DemoLiminal strategy
 java -cp colecciones/liminal/out liminal.DemoLiminal visitor
 ~~~
