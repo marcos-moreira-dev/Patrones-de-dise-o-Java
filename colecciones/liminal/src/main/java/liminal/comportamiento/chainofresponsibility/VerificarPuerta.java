@@ -1,10 +1,5 @@
 package liminal.comportamiento.chainofresponsibility;
 
-import java.io.PrintStream;
-import java.util.Objects;
-import java.util.Set;
-
-
 final class VerificarPuerta extends ValidadorCruce {
     VerificarPuerta(ValidadorCruce siguiente) { super(siguiente); }
     protected String detectarRechazo(SolicitudCruce s) {

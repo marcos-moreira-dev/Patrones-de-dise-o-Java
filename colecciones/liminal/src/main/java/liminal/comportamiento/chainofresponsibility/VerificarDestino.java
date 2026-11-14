@@ -1,10 +1,5 @@
 package liminal.comportamiento.chainofresponsibility;
 
-import java.io.PrintStream;
-import java.util.Objects;
-import java.util.Set;
-
-
 final class VerificarDestino extends ValidadorCruce {
     VerificarDestino(ValidadorCruce siguiente) { super(siguiente); }
     protected String detectarRechazo(SolicitudCruce s) {

@@ -1,7 +1,6 @@
 package liminal.comportamiento.command;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /** Command: un panel ejecuta acciones encapsuladas sobre dispositivos. */
 public final class ClienteCommand {
@@ -16,7 +15,6 @@ public final class ClienteCommand {
         panel.asignar(new EncenderLuz(luz));
         out.println(panel.pulsar());
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

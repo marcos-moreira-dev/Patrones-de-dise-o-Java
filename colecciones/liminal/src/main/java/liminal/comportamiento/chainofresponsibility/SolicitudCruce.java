@@ -1,9 +1,7 @@
 package liminal.comportamiento.chainofresponsibility;
 
-import java.io.PrintStream;
 import java.util.Objects;
 import java.util.Set;
-
 
 record SolicitudCruce(Set<String> habitaciones, Set<Ruta> salidas,
                        Set<Ruta> puertas, Set<Ruta> abiertas,

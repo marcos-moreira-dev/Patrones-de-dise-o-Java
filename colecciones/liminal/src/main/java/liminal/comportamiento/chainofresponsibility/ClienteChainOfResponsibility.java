@@ -1,7 +1,6 @@
 package liminal.comportamiento.chainofresponsibility;
 
 import java.io.PrintStream;
-import java.util.Objects;
 import java.util.Set;
 
 /** Chain of Responsibility: las comprobaciones de un cruce forman una cadena. */
@@ -16,7 +15,6 @@ public final class ClienteChainOfResponsibility {
         out.println("Puerta cerrada -> " + cadena.verificar(cerrado));
         out.println("Puerta abierta -> " + cadena.verificar(abierto));
     }
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 

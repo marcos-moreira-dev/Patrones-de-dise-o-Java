@@ -1,11 +1,5 @@
 package liminal.comportamiento.chainofresponsibility;
 
-import java.io.PrintStream;
-import java.util.Objects;
-import java.util.Set;
-
-
-
 abstract class ValidadorCruce {
     private final ValidadorCruce siguiente;
 
