@@ -2,10 +2,16 @@ package liminal.comportamiento.visitor;
 
 import java.util.Objects;
 
-record Linterna(String id) implements Elemento {
-    Linterna {
-        Objects.requireNonNull(id);
+/** Elemento concreto de Visitor: doble despacho explícito. */
+final class Linterna implements Elemento {
+    private final String id;
+
+    Linterna(String id) {
+        this.id = Objects.requireNonNull(id);
         if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
     }
+
+    String id() { return id; }
+
     public void aceptar(Visitante visitante) { visitante.visitar(this); }
 }

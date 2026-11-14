@@ -47,7 +47,7 @@
 <text class="body" x="949" y="411">- instantanea: List&lt;Habitacion&gt;</text>
 <text class="body" x="949" y="439">+ next(): Habitacion</text>
 <rect class="box" x="405" y="565" width="400" height="115" rx="3"/>
-<text class="title" x="605" y="602">«record» Habitacion</text>
+<text class="title" x="605" y="602">Habitacion</text>
 <path class="sep" d="M405 620 H805"/>
 <text class="body" x="419" y="653">+ id(): String</text>
 <text class="note" x="700" y="726">Los dos contratos Iterable e Iterator son de Java; las listas almacenan referencias a objetos.</text>
