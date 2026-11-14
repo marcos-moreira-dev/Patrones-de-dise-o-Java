@@ -1,7 +1,9 @@
 # Expedición Liminal — PLAN DE IMPLEMENTACIÓN
 
-> **Estado:** 23 patrones GoF con cliente, prueba, UML y ficha. Tres ilustraciones originales (pasillo, piscinas, oficinas) integradas y enlazadas; faltan posibles láminas de objetos/criaturas y auditorías visuales ampliadas. **Versión de planificación:** 1.3 (2026-11-14).
+> **Estado:** 23 patrones GoF con cliente, prueba, UML y ficha. Tres ilustraciones originales (pasillo, piscinas, oficinas) integradas y enlazadas; faltan posibles láminas de objetos/criaturas y auditorías visuales ampliadas. **Versión de planificación:** 1.4 (2026-11-14).
 > Fuente normativa: [DOMINIO.md](DOMINIO.md). Método de modelado: [Cómo definir un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).
+
+La [auditoría pedagógica de noviembre de 2026](AUDITORIA_PEDAGOGICA.md) corrigió restricciones de movimiento e identidad, añadió pruebas y afinó seis diagramas de patrones. Los pendientes restantes están clasificados por prioridad en ese documento.
 
 ## 1. Meta didáctica
 
