@@ -24,7 +24,7 @@
 | Media | UML de Decorator no mostraba la asociación de envoltura | Se agregó `envuelta: 1` desde `DecoradorLinterna` hacia `Linterna` | UML |
 | Media | UML de Chain no representaba al siguiente validador | Se agregó la autoasociación `siguiente: 0..1` de `ValidadorCruce` | UML |
 | Media | UML de Iterator no mostraba `Iterable`, que `RegistroHabitaciones` implementa | Se dibujaron separadamente `Iterable<Habitacion>` e `Iterator<Habitacion>` y sus realizaciones | UML |
-| Media | UML de Abstract Factory no dejaba claros los tipos de producto concreto | Se representan `LuzAmbiental`, `PuertaAmbiental`, sus contratos y las dos fábricas | UML |
+| Media | UML de Abstract Factory no dejaba claros los tipos de producto concreto | Se distinguen los cuatro productos concretos (`LuzAmarilla`, `LuzPiscinas`, `PuertaAmarilla`, `PuertaPiscinas`), los contratos y las dos fábricas | UML |
 | Baja | UML de Facade mencionaba `puerta(...)` tras la corrección del modelo | Se actualizó a `salida(origen, destino)` y se corrigió la ficha narrativa | UML, R-04 |
 
 **Lección principal:** compilar correctamente no basta para validar la semántica. Las restricciones del dominio deben traducirse en pruebas, y los diagramas deben representar las colaboraciones concretas.
@@ -70,7 +70,7 @@ Los ejemplos pertenecen a **un solo mundo de referencia**, pero tienen **paquete
 | **Ilustraciones de objetos y criatura** | Existen tres ambientes originales; faltarían láminas específicas de linterna, puerta, interruptor y monstruo, si queremos un catálogo más ilustrado | Baja |
 | **Laboratorio independiente de composición UML** | **Completado** en [Relaciones UML](docs/laboratorios/relaciones-uml.md): composición R-09, agregación local, asociaciones, referencias y baja lógica, con dos diagramas y pruebas | Resuelto |
 | **Completar `Interpreter` en la colección técnica original** | **Completado:** [Interpreter técnico](../../comportamiento/Interpreter/README.md) con expresiones anidadas, `BigDecimal` y pruebas; las dos colecciones ahora tienen 23 patrones | Resuelto |
-| **Abstract Factory con clases de producto concretas diferentes** | Las dos fábricas actuales comparten los tipos `LuzAmbiental` y `PuertaAmbiental` y varían `Tema`; es una aplicación funcional y sencilla, aunque una segunda variante podría enseñar también polimorfismo entre productos | Baja opcional |
+| **Abstract Factory con clases de producto concretas diferentes** | **Completado:** cada fábrica produce sus clases concretas de luz y puerta; se comprueban los tipos y se rechaza una mezcla de familias. El UML fue actualizado | Resuelto |
 | **Notificaciones con fallo de observador** | El Observer de consola es sincrónico y no ofrece transaccionalidad ante excepciones arbitrarias de callbacks. Ya se declara su alcance en la ficha | Baja; sería un diseño más avanzado |
 
 Los pendientes **no invalidan** el catálogo para estudiar los patrones por consola. Ninguna relación de composición o agregación UML debe introducirse para llenar una cuota de símbolos.
