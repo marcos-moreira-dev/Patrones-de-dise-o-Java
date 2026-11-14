@@ -1,8 +1,6 @@
 package liminal.creacionales.factorymethod;
 
 import java.io.PrintStream;
-import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /** Factory Method: la clase creadora delega el tipo de criatura. */
@@ -18,10 +16,6 @@ public final class ClienteFactoryMethod {
         out.println(a.nombre() + " en " + a.habitacion());
         out.println(b.nombre() + " en " + b.habitacion());
     }
-
-
-
-
 
     public static void main(String[] args) { ejecutar(System.out); }
 }

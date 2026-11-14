@@ -1,11 +1,6 @@
 package liminal.creacionales.factorymethod;
 
-import java.io.PrintStream;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-
 
 abstract class GeneradorCriatura {
     public final Criatura aparecer(String id, String habitacion, RegistroApariciones registro) {
