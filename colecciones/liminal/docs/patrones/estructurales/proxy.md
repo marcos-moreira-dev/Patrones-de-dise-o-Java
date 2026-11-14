@@ -23,3 +23,5 @@
 **Alternativa:** sin control ni carga diferida, utilizar directamente la cámara sería suficiente.
 
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/proxy/ClienteProxy.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/proxy/) · [PruebaProxy.java](../../../src/test/java/liminal/estructurales/proxy/PruebaProxy.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

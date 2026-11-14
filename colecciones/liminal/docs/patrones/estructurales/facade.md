@@ -23,3 +23,5 @@
 **Alternativa:** con un solo método sin coordinación adicional, la fachada puede ser innecesaria.
 
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/facade/ClienteFacade.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/facade/) · [PruebaFacade.java](../../../src/test/java/liminal/estructurales/facade/PruebaFacade.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

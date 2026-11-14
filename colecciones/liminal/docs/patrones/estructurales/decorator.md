@@ -19,3 +19,5 @@
 **Alternativa:** una linterna fija con propiedades simples no necesita múltiples decoradores.
 
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/decorator/ClienteDecorator.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/decorator/) · [PruebaDecorator.java](../../../src/test/java/liminal/estructurales/decorator/PruebaDecorator.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

@@ -23,3 +23,5 @@ Puerta abierta -> PERMITIDO
 **Cuándo no usarlo:** con una única validación fija, una sola condición resulta más fácil.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/chainofresponsibility/ClienteChainOfResponsibility.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/chainofresponsibility/) · [PruebaChainOfResponsibility.java](../../../src/test/java/liminal/comportamiento/chainofresponsibility/PruebaChainOfResponsibility.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

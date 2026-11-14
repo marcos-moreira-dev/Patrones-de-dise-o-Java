@@ -25,3 +25,5 @@ H-02: Piscina vacía
 **Cuándo no usarlo:** no se recomienda implementar un iterador manual si basta con usar las colecciones e iteradores existentes.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/iterator/ClienteIterator.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/iterator/) · [PruebaIterator.java](../../../src/test/java/liminal/comportamiento/iterator/PruebaIterator.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

@@ -23,3 +23,5 @@
 **Alternativa:** pocas texturas pequeñas no siempre justifican la fábrica y su caché.
 
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/flyweight/ClienteFlyweight.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/flyweight/) · [PruebaFlyweight.java](../../../src/test/java/liminal/estructurales/flyweight/PruebaFlyweight.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

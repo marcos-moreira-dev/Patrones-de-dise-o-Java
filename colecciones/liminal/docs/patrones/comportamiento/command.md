@@ -21,3 +21,5 @@ Luz L-01: ENCENDIDA
 **Cuándo no usarlo:** si no hay botones configurables, historial ni acciones desacopladas, una invocación directa puede bastar.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/command/ClienteCommand.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/command/) · [PruebaCommand.java](../../../src/test/java/liminal/comportamiento/command/PruebaCommand.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

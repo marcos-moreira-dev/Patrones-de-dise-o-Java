@@ -25,3 +25,5 @@ Luz L-01 ENCENDIDA
 **Cuándo no usarlo:** una lista pequeña de comandos fija podría resolverse con un `switch`. Interpreter resulta útil para estudiar gramáticas que crecen.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/interpreter/ClienteInterpreter.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/interpreter/) · [PruebaInterpreter.java](../../../src/test/java/liminal/comportamiento/interpreter/PruebaInterpreter.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
