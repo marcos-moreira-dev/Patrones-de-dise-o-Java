@@ -19,3 +19,7 @@
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/composite/ClienteComposite.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/composite/) · [PruebaComposite.java](../../../src/test/java/liminal/estructurales/composite/PruebaComposite.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Interfaz uniforme frente a interfaz segura:** poner añadir/quitar hijos en el contrato común facilita clientes uniformes, pero obliga a hojas a rechazar operaciones. Restringir esas operaciones solo a los compuestos protege tipos, a cambio de que el cliente distinga hojas y grupos. Ninguna opción implica composición UML automáticamente.

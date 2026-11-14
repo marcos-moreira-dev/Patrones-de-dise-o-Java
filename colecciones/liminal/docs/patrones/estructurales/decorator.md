@@ -21,3 +21,7 @@
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/decorator/ClienteDecorator.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/decorator/) · [PruebaDecorator.java](../../../src/test/java/liminal/estructurales/decorator/PruebaDecorator.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Orden y selección de decoradores:** dos mejoras pueden no conmutar si modifican el mismo valor. Una decoración condicional tiene sentido cuando la combinación cambia por configuración; no se necesita un administrador de plugins para dos mejoras fijas.

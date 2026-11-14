@@ -34,3 +34,7 @@ PISCINAS: reflejo azul y puerta blanca
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/abstractfactory/ClienteAbstractFactory.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/abstractfactory/) · [PruebaAbstractFactory.java](../../../src/test/java/liminal/creacionales/abstractfactory/PruebaAbstractFactory.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Familias registradas o parametrizadas:** en sistemas extensibles podría elegirse una fábrica por configuración, pero no hace falta introducir plugins o registros para dos ambientes conocidos. La coherencia entre productos sigue siendo la obligación principal.

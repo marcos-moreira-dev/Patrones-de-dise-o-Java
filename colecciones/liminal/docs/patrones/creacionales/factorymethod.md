@@ -26,3 +26,7 @@ Monstruo silencioso en H-02
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/factorymethod/ClienteFactoryMethod.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/factorymethod/) · [PruebaFactoryMethod.java](../../../src/test/java/liminal/creacionales/factorymethod/PruebaFactoryMethod.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Método de fábrica virtual frente a fábrica parametrizada:** una fábrica estática con un switch puede crear criaturas, pero no reproduce el punto de extensión por herencia de Factory Method GoF. Escoger la variante depende de si realmente necesitamos creadores intercambiables.

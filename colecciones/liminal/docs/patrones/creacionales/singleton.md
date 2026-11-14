@@ -27,3 +27,7 @@ Avisos: 2
 [Ver código y clase cliente](../../../src/main/java/liminal/creacionales/singleton/ClienteSingleton.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/creacionales/singleton/) · [PruebaSingleton.java](../../../src/test/java/liminal/creacionales/singleton/PruebaSingleton.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Inicialización inmediata, lazy holder o enum:** las tres pueden organizar una instancia compartida, pero difieren en inicialización, serialización y testabilidad. No es una ley del universo liminal: el alcance del servicio debe justificarse antes de imponer unicidad.

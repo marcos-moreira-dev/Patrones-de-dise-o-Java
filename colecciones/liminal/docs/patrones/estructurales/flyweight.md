@@ -25,3 +25,7 @@
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/flyweight/ClienteFlyweight.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/flyweight/) · [PruebaFlyweight.java](../../../src/test/java/liminal/estructurales/flyweight/PruebaFlyweight.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Estado intrínseco y extrínseco:** compartir una textura inmutable tiene sentido; la identidad de cada pared sigue separada. La clave de caché puede ser un objeto-valor (`record`) por su igualdad estructural, sin convertir al Flyweight o a las paredes en records.

@@ -21,3 +21,7 @@
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/bridge/ClienteBridge.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/bridge/) · [PruebaBridge.java](../../../src/test/java/liminal/estructurales/bridge/PruebaBridge.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Elección del implementador en construcción o en ejecución:** un puente puede recibir su canal al crearse o cambiarlo durante la vida del objeto. Crear dos jerarquías grandes sin variación real sería más pesado, no más correcto.

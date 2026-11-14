@@ -19,3 +19,7 @@
 [Ver cliente y código](../../../src/main/java/liminal/estructurales/adapter/ClienteAdapter.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/estructurales/adapter/) · [PruebaAdapter.java](../../../src/test/java/liminal/estructurales/adapter/PruebaAdapter.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Adaptador por objeto o por clase:** por objeto delega a una instancia antigua; por clase hereda de la clase adaptada y realiza la interfaz destino, cuando Java permite esa herencia. Un adaptador bidireccional solo aporta valor si ambas direcciones se usan realmente.
