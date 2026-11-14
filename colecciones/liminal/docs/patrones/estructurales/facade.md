@@ -14,11 +14,13 @@
 
 **Patrón:** `FachadaCruce` ofrece `cruzar(destino)` y coordina `Explorador` y `MapaLocal`. El mapa distingue una salida inexistente de una salida sin puerta; esta última puede atravesarse. La fachada no añade excepciones al dominio ni teletransportación.
 
-**Java y UML:** la fachada guarda referencias a objetos que **utiliza** para verificar el cruce; son asociaciones, no una relación de propiedad compuesta. El método solo actualiza la ubicación **al final** de todas las comprobaciones.
+**Integridad R-03:** el explorador conserva una referencia al mapa en el que fue creado; la fachada exige **esa misma instancia de mapa**, aunque otro tenga habitaciones con los mismos IDs. Así se evita un cruce artificial entre expediciones con mapas distintos. La validación de identidad de referencia ocurre al construir la fachada, sin mover al explorador.
+
+**Java y UML:** la fachada y el explorador guardan referencias a objetos que **utilizan** para verificar el cruce; son asociaciones, no relaciones de propiedad compuesta. El método solo actualiza la ubicación **al final** de todas las comprobaciones.
 
 **Consola:** `Inicio: H-01` seguido de `Cruce correcto: H-02`.
 
-**Pruebas:** puerta cerrada, destino inexistente y ausencia de salida de regreso son rechazos sin movimiento; el cruce con puerta abierta funciona **y una salida sin puerta también permite avanzar**.
+**Pruebas:** puerta cerrada, destino inexistente, mapa ajeno y ausencia de salida de regreso son rechazos sin movimiento; el cruce con puerta abierta funciona **y una salida sin puerta también permite avanzar**.
 
 **Alternativa:** con un solo método sin coordinación adicional, la fachada puede ser innecesaria.
 

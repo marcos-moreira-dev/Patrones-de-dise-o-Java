@@ -125,3 +125,13 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 **Corrección mínima:** el cuidador recuerda una referencia `origen` tras la primera captura. `guardar` y `deshacer` verifican identidad Java antes de modificar estado o historial; no se introduce una jerarquía ni una clase auxiliar. La referencia es una **asociación**, no propiedad UML. La ficha y el SVG de Memento representan esta decisión. `PruebaMemento` comprueba rechazo de guardado/restauración sobre otra linterna, invariantes sin mutación y que el recuerdo original sigue disponible. El mismo harness aislado, compilado con `javac --release 21`, pasa después del cambio. La verificación integral remota queda a cargo de GitHub Actions.
 
 **Límite:** estos hallazgos no certifican todavía una inspección exhaustiva del resto de patrones, laboratorios ni microproyectos.
+
+## 11. Segunda pasada semántica — Facade: mapa de procedencia
+
+**Ruta → rol → consumidor:** `estructurales/facade/Explorador.java` (entidad D) y `FachadaCruce.java` (rol Facade P), consumidos por `ClienteFacade` y `PruebaFacade`.
+
+**Defecto reproducido localmente con OpenJDK 21:** era posible crear un explorador en el mapa A (`H-01`) y una fachada con el mapa B (con `H-01` y `H-99`), cruzar hacia `H-99` y dejar al explorador **fuera de su mapa original**, vulnerando R-03. El programa aislado mostró `DEFECTO: explorador fuera de su mapa = true`.
+
+**Corrección:** `Explorador` conserva una referencia al `MapaLocal` de origen y expone `perteneceA(mapa)` mediante comparación de identidad (`==`). El constructor de `FachadaCruce` rechaza un mapa ajeno antes de permitir cruces. La prueba crea expresamente dos mapas distintos con un ID de habitación en común, verifica rechazo y comprueba que no cambió la ubicación. La ficha y el diagrama UML reflejan la asociación **Explorador → MapaLocal** (sin composición).
+
+**Validación:** el caso aislado de regresión se compiló con `javac --release 21` y pasó después del cambio, sin usar la computadora del estudiante. La comprobación integral de las colecciones y ambos microproyectos se realiza además con GitHub Actions.

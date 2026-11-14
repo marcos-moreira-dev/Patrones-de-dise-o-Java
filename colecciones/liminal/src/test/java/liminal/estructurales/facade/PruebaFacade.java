@@ -15,6 +15,14 @@ public final class PruebaFacade {
         mapa.agregarSalida("H-02", "H-03", null); // Pasillo sin puerta.
         Explorador explorador = new Explorador("E-01", "H-01", mapa);
         FachadaCruce fachada = new FachadaCruce(explorador, mapa);
+        MapaLocal mapaAjeno = new MapaLocal();
+        mapaAjeno.agregarHabitacion("H-01");
+        mapaAjeno.agregarHabitacion("H-99");
+        mapaAjeno.agregarSalida("H-01", "H-99", null);
+        esperarFallo(() -> new FachadaCruce(explorador, mapaAjeno));
+        if (!explorador.ubicacion().equals("H-01") || mapa.contiene("H-99")) {
+            throw new AssertionError("Un mapa ajeno no debe modificar el explorador");
+        }
         esperarFallo(() -> fachada.cruzar("H-02"));
         if (!explorador.ubicacion().equals("H-01")) throw new AssertionError("La puerta cerrada no permite pasar");
         puerta.abrir();

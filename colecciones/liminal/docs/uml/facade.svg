@@ -6,9 +6,10 @@
 <path class="edge" d="M884 176 L1010 113" marker-end="url(#open)"/>
 <path class="edge" d="M884 176 L1010 332.5" marker-end="url(#open)"/>
 <path class="edge" d="M1185 405 L1185 463" marker-end="url(#open)"/>
+<path class="edge" d="M1250 178 L1250 260" marker-end="url(#open)"/>
 <rect x="45" y="95" width="322" height="130" rx="3" class="box"/><text x="206" y="130" class="title">ClienteFacade</text><path d="M45 148 H367" class="sep"/><text x="59" y="179" class="body">+ ejecutar(out): void</text>
 <rect x="460" y="86" width="424" height="180" rx="3" class="box"/><text x="672" y="121" class="title">FachadaCruce</text><path d="M460 139 H884" class="sep"/><text x="474" y="170" class="body">- explorador: Explorador</text><text x="474" y="196" class="body">- mapa: MapaLocal</text><text x="474" y="222" class="body">+ cruzar(destino): void</text>
-<rect x="1010" y="48" width="350" height="130" rx="3" class="box"/><text x="1185" y="83" class="title">Explorador</text><path d="M1010 101 H1360" class="sep"/><text x="1024" y="132" class="body">- ubicacion: String</text>
+<rect x="1010" y="48" width="350" height="130" rx="3" class="box"/><text x="1185" y="83" class="title">Explorador</text><path d="M1010 101 H1360" class="sep"/><text x="1024" y="132" class="body">- ubicacion: String</text><text x="1024" y="157" class="body">- mapa: MapaLocal</text>
 <rect x="1010" y="260" width="350" height="145" rx="3" class="box"/><text x="1185" y="295" class="title">MapaLocal</text><path d="M1010 313 H1360" class="sep"/><text x="1024" y="344" class="body">+ salida(origen, destino)</text>
 <rect x="1010" y="463" width="350" height="118" rx="3" class="box"/><text x="1185" y="498" class="title">PuertaPaso</text><path d="M1010 516 H1360" class="sep"/><text x="1024" y="547" class="body">+ transitable(): boolean</text>
 <text class="note" x="700" y="626">La fachada simplifica el recorrido sin inventar nuevas reglas de movimiento.</text></svg>

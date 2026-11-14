@@ -9,6 +9,9 @@ final class FachadaCruce {
     FachadaCruce(Explorador explorador, MapaLocal mapa) {
         this.explorador = Objects.requireNonNull(explorador);
         this.mapa = Objects.requireNonNull(mapa);
+        if (!explorador.perteneceA(mapa)) {
+            throw new IllegalArgumentException("El explorador pertenece a otro mapa");
+        }
     }
     void cruzar(String destino) {
         if (!mapa.contiene(destino)) throw new IllegalArgumentException("Destino inexistente");
