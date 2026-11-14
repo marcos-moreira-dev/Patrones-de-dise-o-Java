@@ -1,6 +1,7 @@
 package liminal;
 
 import liminal.comportamiento.observer.PruebaObserver;
+import liminal.laboratorios.relaciones.PruebaRelacionesUml;
 import liminal.comportamiento.chainofresponsibility.ClienteChainOfResponsibility;
 import liminal.comportamiento.command.ClienteCommand;
 import liminal.comportamiento.interpreter.ClienteInterpreter;
@@ -76,6 +77,8 @@ public final class PruebasLiminal {
         PruebaObserver.ejecutar();
         System.out.println("OK Observer (R-07)");
         System.out.println("OK 23/23 pruebas del catálogo liminal.");
+        PruebaRelacionesUml.ejecutar();
+        System.out.println("OK laboratorio UML (R-01, R-03, R-09, R-10, R-12)");
         VerificarDocumentacion.ejecutar();
     }
 }
