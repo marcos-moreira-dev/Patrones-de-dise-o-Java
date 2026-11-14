@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640" role="img" aria-labelledby="titulo descripcion"><title id="titulo">Adapter — La radio antigua</title><desc id="descripcion">El adaptador implementa Comunicador y contiene una referencia a RadioAntigua.</desc>
+<defs><marker id="triangle" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker></defs>
+<style>.box{fill:#f1f5ff;stroke:#4272a5;stroke-width:2.4}.iface{fill:#f4ecff;stroke:#825cac;stroke-width:2.4}.sep{stroke:#8194ad;stroke-width:1.4}.title{fill:#18283d;font:700 21px Arial,sans-serif;text-anchor:middle}.body{fill:#23364a;font:17px Arial,sans-serif}.edge{fill:none;stroke:#25374a;stroke-width:2.4}.dashed{stroke-dasharray:8 6}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
+<path class="edge dashed" d="M335 163 L450 142.5" marker-end="url(#open)"/>
+<path class="edge dashed" d="M617.5 370 L640 220" marker-end="url(#triangle)"/>
+<path class="edge" d="M825 445 L925 445" marker-end="url(#open)"/>
+<rect x="35" y="100" width="300" height="126" rx="3" class="box"/><text x="185" y="135" class="title">ClienteAdapter</text><path d="M35 153 H335" class="sep"/><text x="49" y="184" class="body">+ ejecutar(out): void</text>
+<rect x="450" y="65" width="380" height="155" rx="3" class="iface"/><text x="640" y="100" class="title">«interface» Comunicador</text><path d="M450 118 H830" class="sep"/><text x="464" y="149" class="body">+ enviar(aviso): void</text>
+<rect x="410" y="370" width="415" height="150" rx="3" class="box"/><text x="617.5" y="405" class="title">AdaptadorRadioAntigua</text><path d="M410 423 H825" class="sep"/><text x="424" y="454" class="body">- radio: RadioAntigua</text><text x="424" y="480" class="body">+ enviar(aviso): void</text>
+<rect x="925" y="370" width="355" height="150" rx="3" class="box"/><text x="1102.5" y="405" class="title">RadioAntigua</text><path d="M925 423 H1280" class="sep"/><text x="939" y="454" class="body">+ emitirPorFrecuencia(...)</text>
+<text class="note" x="700" y="626">La radio no cambia su API; el adaptador traduce enviar a emitirPorFrecuencia.</text></svg>
