@@ -8,7 +8,7 @@
 
 **Problema:** duplicar la lógica de registrar y validar IDs cada vez que aparece un tipo nuevo dificulta mantener las reglas.
 
-**Patrón:** `GeneradorCriatura` define `aparecer(...)`, que valida el registro y llama al **factory method** abstracto `crearCriatura(...)`. `GeneradorOscuro` y `GeneradorSilencioso` eligen sus productos.
+**Patrón:** `GeneradorCriatura` define `aparecer(...)`, que valida el registro y llama al **factory method** abstracto `crearCriatura(...)`. `GeneradorOscuro` y `GeneradorSilencioso` eligen sus productos. El creador comprueba que el producto no sea nulo y conserve exactamente el **ID y la habitación solicitados** antes de registrarlo. Esto protege el contrato aunque una nueva subclase implemente mal el punto de extensión.
 
 **Java y UML:** las fábricas concretas **heredan** del creador; los monstruos concretos **realizan** la interfaz `Criatura`. El cliente recibe productos por su contrato, no por el conocimiento de su constructor concreto.
 
@@ -19,7 +19,7 @@ Monstruo oscuro en H-01
 Monstruo silencioso en H-02
 ~~~
 
-**Prueba:** se crea el tipo correcto; IDs duplicados y habitaciones inexistentes se rechazan antes de mutar el registro.
+**Prueba:** se crea el tipo correcto; IDs duplicados y habitaciones inexistentes se rechazan antes de mutar el registro. Tres generadores defectuosos —ID cambiado, habitación cambiada a otra válida y producto nulo— deben fallar sin registrar ninguna criatura; después todavía es posible generar una válida con el mismo ID solicitado.
 
 **Cuándo no usarlo:** si una condición local basta y nunca se extiende la creación, una función simple puede ser más legible.
 

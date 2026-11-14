@@ -7,6 +7,10 @@ abstract class GeneradorCriatura {
         Objects.requireNonNull(registro);
         registro.verificar(id, habitacion);
         Criatura resultado = crearCriatura(id, habitacion);
+        if (resultado == null || !id.equals(resultado.id())
+                || !habitacion.equals(resultado.habitacion())) {
+            throw new IllegalStateException("El producto no respeta el ID o la ubicación solicitados");
+        }
         registro.registrar(resultado);
         return resultado;
     }

@@ -135,3 +135,13 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 **Corrección:** `Explorador` conserva una referencia al `MapaLocal` de origen y expone `perteneceA(mapa)` mediante comparación de identidad (`==`). El constructor de `FachadaCruce` rechaza un mapa ajeno antes de permitir cruces. La prueba crea expresamente dos mapas distintos con un ID de habitación en común, verifica rechazo y comprueba que no cambió la ubicación. La ficha y el diagrama UML reflejan la asociación **Explorador → MapaLocal** (sin composición).
 
 **Validación:** el caso aislado de regresión se compiló con `javac --release 21` y pasó después del cambio, sin usar la computadora del estudiante. La comprobación integral de las colecciones y ambos microproyectos se realiza además con GitHub Actions.
+
+## 12. Segunda pasada semántica — Factory Method: postcondiciones del creador
+
+**Ruta → rol → consumidor:** `creacionales/factorymethod/GeneradorCriatura.java` (creador abstracto P), sus productos `Criatura` (P/D) y `RegistroApariciones` (D), utilizados por `ClienteFactoryMethod` y `PruebaFactoryMethod`.
+
+**Defecto reproducido en OpenJDK 21:** `aparecer("M-01", "H-01", registro)` permitía que una subclase devolviera una criatura con ID `M-99` y ubicación `H-02`, siempre que esos valores también fueran válidos para el registro; el registro pasaba a contener la criatura distinta. La salida del harness aislado antes del cambio fue `SOLICITUD=M-01/H-01 RESULTADO=M-99/H-02 REGISTRADOS=1`. Se vulneraba la postcondición implícita de la solicitud y el control de identidad de R-01/R-08.
+
+**Corrección mínima:** después de `crearCriatura` y antes de `registrar`, el creador común rechaza producto nulo o un producto cuya identidad/ubicación no coincida con los argumentos. No altera la jerarquía GoF ni añade clases al código de producción. Las pruebas incorporan tres fábricas defectuosas y confirman que los rechazos dejan libre el mismo ID para una aparición posterior válida.
+
+**Andamiaje:** la comprobación pertenece al creador (contrato de producción), no al cliente de consola ni a infraestructura adicional. Actualizada la ficha del patrón. La validación integral depende de GitHub Actions con Java 21.
