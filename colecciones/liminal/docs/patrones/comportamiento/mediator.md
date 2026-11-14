@@ -1,5 +1,9 @@
 # Mediator — La central de control
 
+![Oficinas vacías con alfombra rosada y luces fluorescentes](../../../assets/ambientes/oficinas-oniricas.webp)
+
+*Referencia ambiental, no regla del mundo. Las invariantes están en [DOMINIO.md](../../../DOMINIO.md).*
+
 ![UML de Mediator: sensor, centro, luz y alarma](../../uml/mediator.svg)
 
 **Escena.** Un sensor escucha un ruido extraño. Al detectarlo, la central enciende una luz y avisa a la alarma; el sensor no necesita conocer ninguno de esos dispositivos.
