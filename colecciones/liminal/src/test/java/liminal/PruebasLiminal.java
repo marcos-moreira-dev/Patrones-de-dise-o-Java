@@ -18,7 +18,7 @@ import liminal.estructurales.facade.ClienteFacade;
 import liminal.estructurales.flyweight.ClienteFlyweight;
 import liminal.estructurales.proxy.ClienteProxy;
 import liminal.creacionales.abstractfactory.ClienteAbstractFactory;
-import liminal.creacionales.builder.ClienteBuilder;
+import liminal.creacionales.builder.PruebaBuilder;
 import liminal.creacionales.factorymethod.ClienteFactoryMethod;
 import liminal.creacionales.prototype.ClientePrototype;
 import liminal.creacionales.singleton.ClienteSingleton;
@@ -36,7 +36,7 @@ public final class PruebasLiminal {
         System.out.println("OK Factory Method");
         ClienteAbstractFactory.probar();
         System.out.println("OK Abstract Factory");
-        ClienteBuilder.probar();
+        PruebaBuilder.ejecutar();
         System.out.println("OK Builder");
         ClientePrototype.probar();
         System.out.println("OK Prototype");
