@@ -9,6 +9,11 @@ Patrones-de-dise-o-Java/
 ├── creacionales/                 Patrones de creación y ProbarCreacionales
 ├── estructurales/                Patrones estructurales y ProbarEstructurales
 ├── comportamiento/               Patrones de comportamiento y ProbarComportamiento
+├── colecciones/liminal/           23 patrones narrativos y un laboratorio UML
+│   ├── DOMINIO.md                 Invariantes, reglas y glosario
+│   ├── docs/patrones/             23 fichas y diagramas UML
+│   ├── docs/laboratorios/         Composición, agregación y referencias Java
+│   └── assets/ambientes/          Ilustraciones originales WebP
 ├── docs/uml/                     Diagramas de la guía UML y su generador
 ├── proyectos/
 │   ├── arena-java/               Videojuego de combate por turnos
