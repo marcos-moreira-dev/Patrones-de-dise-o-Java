@@ -1,6 +1,6 @@
 # Expedición Liminal — PLAN DE IMPLEMENTACIÓN
 
-> **Estado:** 23 patrones GoF implementados, cada uno con clase cliente, prueba, UML SVG y ficha Markdown. Las ilustraciones atmosféricas originales y la revisión editorial visual quedan pendientes. **Versión de planificación:** 1.2 (2026-11-13).
+> **Estado:** 23 patrones GoF con cliente, prueba, UML y ficha. Tres ilustraciones originales (pasillo, piscinas, oficinas) integradas y enlazadas; faltan posibles láminas de objetos/criaturas y auditorías visuales ampliadas. **Versión de planificación:** 1.3 (2026-11-14).
 > Fuente normativa: [DOMINIO.md](DOMINIO.md). Método de modelado: [Cómo definir un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).
 
 ## 1. Meta didáctica
@@ -177,7 +177,7 @@ Preferir **imágenes originales generadas** después de fijar escenas y actores.
 - Los 23 patrones tienen una ficha en `docs/patrones/<categoria>/`, un diagrama SVG en `docs/uml/`, una clase cliente en `src/main/java/` y un método `probar()` o clase de pruebas dedicada.
 - `DemoLiminal todos` permite recorrer todos. `PruebasLiminal` verifica los 23 y el script de Bash está integrado a la verificación del repositorio completo.
 
-**Pendiente separado:** producir y auditar las imágenes atmosféricas originales de los escenarios. Los UML ya son imágenes técnicas de aprendizaje, no ilustraciones ambientales.
+**Arte entregado:** tres imágenes generadas por IA y optimizadas en `assets/ambientes/`, un [atlas ilustrado](GUIA_VISUAL.md) y fichas con fondos pertinentes. Los UML ya son imágenes técnicas de aprendizaje y siguen separados de la ambientación. **Pendiente opcional:** láminas de puertas, linternas, interruptores y monstruos.
 
 ## 8. Secuencia de desarrollo y compuertas de calidad
 
@@ -188,7 +188,7 @@ Preferir **imágenes originales generadas** después de fijar escenas y actores.
 | C — Piloto (hecha) | State, Strategy y Observer funcionales con pruebas | Java 21 compila, consola clara, invariantes verificadas |
 | D — Catálogo (hecha) | restantes 20 patrones en lotes controlados | Cada ejemplo independiente y probado |
 | E — Integración (hecha) | menú de demos y scripts de verificación | No altera scripts de la colección técnica existente |
-| F — Arte | imágenes originales, pies explicativos, créditos | Coherencia estética, licencias, sin contradicciones de dominio |
+| F — Arte (parcial) | 3 fondos originales, atlas, pies y procedencia | Pendientes láminas de objetos y criaturas |
 | G — Auditoría | código, documentación, enlaces, UML, tildes y accesibilidad | Todas las demos verificadas y mapa de trazabilidad completo |
 
 **Orden implementado:** primero `State`, `Strategy` y `Observer`; después los cinco creacionales, siete estructurales y ocho patrones de comportamiento restantes. La secuencia es pedagógica, no una jerarquía de patrones.
