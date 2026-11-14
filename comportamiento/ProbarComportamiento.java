@@ -11,6 +11,9 @@ import comportamiento.Command.ConcreteCommand;
 import comportamiento.Command.Invoker;
 import comportamiento.Command.Receiver;
 
+// Interpreter
+import comportamiento.Interpreter.ClienteInterpreter;
+
 // Iterator
 import comportamiento.Iterator.ConcreteAggregate;
 import comportamiento.Iterator.Iterator;
@@ -59,6 +62,7 @@ public class ProbarComportamiento {
         probarState();
         probarChainOfResponsibility();
         probarCommand();
+        probarInterpreter();
         probarIterator();
         probarObserver();
         probarMediator();
@@ -106,6 +110,13 @@ public class ProbarComportamiento {
         Invoker inv = new Invoker();
         inv.setCommand(cmd);
         inv.executeCommand();
+    }
+
+    // ----------- INTERPRETER -----------
+    public void probarInterpreter() {
+        System.out.println("\n[Interpreter]");
+        ClienteInterpreter.ejecutar(System.out);
+        ClienteInterpreter.probar();
     }
 
     // ----------- ITERATOR -----------
