@@ -1,8 +1,5 @@
 package liminal.estructurales.proxy;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
 /** Prueba independiente del recorrido pedagógico. */
 public final class PruebaProxy {
     private PruebaProxy() {}
