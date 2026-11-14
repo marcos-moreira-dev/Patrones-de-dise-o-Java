@@ -6,8 +6,9 @@ import java.util.Map;
 final class FabricaTexturas {
     private final Map<ClaveTextura, Textura> texturas = new HashMap<>();
     Textura obtener(String material, String color) {
-        Textura propuesta = new Textura(material, color);
-        return texturas.computeIfAbsent(new ClaveTextura(material, color), clave -> propuesta);
+        ClaveTextura clave = new ClaveTextura(material, color);
+        return texturas.computeIfAbsent(clave,
+                valor -> new Textura(valor.material(), valor.color()));
     }
     int cantidad() { return texturas.size(); }
 }
