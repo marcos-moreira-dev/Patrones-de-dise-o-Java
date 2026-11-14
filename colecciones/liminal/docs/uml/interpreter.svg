@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Interpreter — Un lenguaje mínimo</title><desc id="descripcion">InterpreteOrdenes analiza textos ABRIR y ENCENDER; produce expresiones que interpretan un Contexto.</desc><defs>
+<marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker>
+</defs><style>.box{fill:#f1f5ff;stroke:#4272a5;stroke-width:2.4}.iface{fill:#f4ecff;stroke:#825cac;stroke-width:2.4}.sep{stroke:#8194ad;stroke-width:1.4}.title{fill:#18283d;font:700 20px Arial,sans-serif;text-anchor:middle}.body{fill:#23364a;font:17px Arial,sans-serif}.edge{fill:none;stroke:#25374a;stroke-width:2.4}.dash{stroke-dasharray:8 6}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
+<path class="edge dash" d="M345 136 L420 140.5" marker-end="url(#open)"/>
+<path class="edge dash" d="M835 140.5 L985 122" marker-end="url(#open)"/>
+<path class="edge dash" d="M485 365 L1174 182" marker-end="url(#tri)"/>
+<path class="edge dash" d="M935 365 L1174 182" marker-end="url(#tri)"/>
+<path class="edge dash" d="M670 432.5 L1135 416" marker-end="url(#open)"/>
+<path class="edge dash" d="M1120 432.5 L1135 416" marker-end="url(#open)"/>
+<rect x="35" y="70" width="310" height="132" rx="3" class="box"/><text class="title" x="190" y="104">ClienteInterpreter</text><path class="sep" d="M35 122 H345"/><text class="body" x="49" y="153">+ ejecutar(out)</text>
+<rect x="420" y="58" width="415" height="165" rx="3" class="box"/><text class="title" x="627.5" y="92">InterpreteOrdenes</text><path class="sep" d="M420 110 H835"/><text class="body" x="434" y="141">+ analizar(texto): Expresion</text>
+<rect x="985" y="62" width="378" height="120" rx="3" class="iface"/><text class="title" x="1174" y="96">«interface» Expresion</text><path class="sep" d="M985 114 H1363"/><text class="body" x="999" y="145">+ interpretar(contexto)</text>
+<rect x="300" y="365" width="370" height="135" rx="3" class="box"/><text class="title" x="485" y="399">«record» Abrir</text><path class="sep" d="M300 417 H670"/><text class="body" x="314" y="448">+ interpretar(contexto)</text>
+<rect x="750" y="365" width="370" height="135" rx="3" class="box"/><text class="title" x="935" y="399">«record» Encender</text><path class="sep" d="M750 417 H1120"/><text class="body" x="764" y="448">+ interpretar(contexto)</text>
+<rect x="1135" y="350" width="240" height="132" rx="3" class="box"/><text class="title" x="1255" y="384">Contexto</text><path class="sep" d="M1135 402 H1375"/><text class="body" x="1149" y="433">+ puerta / luz</text>
+<text class="note" x="700" y="627">Cada texto se analiza primero; la expresión resultante ejecuta una operación válida.</text></svg>
