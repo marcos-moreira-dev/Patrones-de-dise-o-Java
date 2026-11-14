@@ -5,6 +5,11 @@ import liminal.laboratorios.relaciones.PruebaRelacionesUml;
 import liminal.laboratorios.java.classvsrecord.PruebaClassVsRecord;
 import liminal.creacionales.prototype.variantes.copiaprofunda.PruebaCopiaProfunda;
 import liminal.creacionales.prototype.variantes.registro.PruebaRegistroPrototipos;
+import liminal.creacionales.builder.variantes.director.PruebaDirector;
+import liminal.estructurales.proxy.variantes.cache.PruebaProxyCache;
+import liminal.comportamiento.command.variantes.deshacer.PruebaDeshacer;
+import liminal.comportamiento.chainofresponsibility.variantes.pipeline.PruebaPipeline;
+import liminal.comportamiento.observer.variantes.pushpull.PruebaPushPull;
 import liminal.comportamiento.chainofresponsibility.PruebaChainOfResponsibility;
 import liminal.comportamiento.command.PruebaCommand;
 import liminal.comportamiento.interpreter.PruebaInterpreter;
@@ -88,6 +93,17 @@ public final class PruebasLiminal {
         System.out.println("OK Prototype variante copia superficial/profunda");
         PruebaRegistroPrototipos.ejecutar();
         System.out.println("OK Prototype variante catálogo de prototipos");
+        PruebaDirector.ejecutar();
+        System.out.println("OK Builder variante Director");
+        PruebaProxyCache.ejecutar();
+        System.out.println("OK Proxy variante cache");
+        PruebaDeshacer.ejecutar();
+        System.out.println("OK Command deshacer/rehacer");
+        PruebaPipeline.ejecutar();
+        System.out.println("OK Chain validación completa");
+        PruebaPushPull.ejecutar();
+        System.out.println("OK Observer push/pull");
+        System.out.println("OK 7/7 variantes GoF; 23/23 patrones originales.");
         VerificarDocumentacion.ejecutar();
     }
 }
