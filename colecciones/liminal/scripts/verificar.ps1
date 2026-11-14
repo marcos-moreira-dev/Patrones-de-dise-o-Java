@@ -16,7 +16,9 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Fallaron las pruebas' }
     & java -cp out liminal.DemoLiminal todos
     if ($LASTEXITCODE -ne 0) { throw 'Falló la demostración' }
-    Write-Host 'OK: compilación, pruebas y salida por consola.'
+    & java -cp out liminal.laboratorios.relaciones.ClienteRelacionesUml
+    if ($LASTEXITCODE -ne 0) { throw 'Falló el laboratorio UML' }
+    Write-Host 'OK: 23 patrones GoF, laboratorio UML y salida por consola.'
 } finally {
     Pop-Location
 }
