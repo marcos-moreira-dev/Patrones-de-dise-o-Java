@@ -1,6 +1,13 @@
 package liminal;
 
 import liminal.comportamiento.observer.PruebaObserver;
+import liminal.estructurales.adapter.ClienteAdapter;
+import liminal.estructurales.bridge.ClienteBridge;
+import liminal.estructurales.composite.ClienteComposite;
+import liminal.estructurales.decorator.ClienteDecorator;
+import liminal.estructurales.facade.ClienteFacade;
+import liminal.estructurales.flyweight.ClienteFlyweight;
+import liminal.estructurales.proxy.ClienteProxy;
 import liminal.creacionales.abstractfactory.ClienteAbstractFactory;
 import liminal.creacionales.builder.ClienteBuilder;
 import liminal.creacionales.factorymethod.ClienteFactoryMethod;
@@ -24,12 +31,26 @@ public final class PruebasLiminal {
         System.out.println("OK Builder");
         ClientePrototype.probar();
         System.out.println("OK Prototype");
+        ClienteAdapter.probar();
+        System.out.println("OK Adapter");
+        ClienteBridge.probar();
+        System.out.println("OK Bridge");
+        ClienteComposite.probar();
+        System.out.println("OK Composite");
+        ClienteDecorator.probar();
+        System.out.println("OK Decorator");
+        ClienteFacade.probar();
+        System.out.println("OK Facade");
+        ClienteFlyweight.probar();
+        System.out.println("OK Flyweight");
+        ClienteProxy.probar();
+        System.out.println("OK Proxy");
         PruebaState.ejecutar();
         System.out.println("OK State (R-05, R-12)");
         PruebaStrategy.ejecutar();
         System.out.println("OK Strategy (R-02, R-08, R-12)");
         PruebaObserver.ejecutar();
         System.out.println("OK Observer (R-07)");
-        System.out.println("OK 8/8 pruebas del catálogo liminal.");
+        System.out.println("OK 15/15 pruebas del catálogo liminal.");
     }
 }
