@@ -1,5 +1,9 @@
 # Builder — Construir una habitación paso a paso
 
+![Pasillo amarillo con alfombra, paredes repetidas y luces fluorescentes](../../../assets/ambientes/pasillo-amarillo.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![Diagrama de Builder: constructor fluido y objeto resultante](../../uml/builder.svg)
 
 **Escena:** preparas una habitación del pasillo amarillo con cuatro luces y una puerta. Primero seleccionas el ID, después el ambiente, las luces y la existencia de una puerta.
