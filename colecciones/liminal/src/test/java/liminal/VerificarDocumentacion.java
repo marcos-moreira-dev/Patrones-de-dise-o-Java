@@ -51,6 +51,14 @@ public final class VerificarDocumentacion {
                 if (uml.find()) throw new AssertionError("Debe haber un UML principal por ficha");
             }
             for (Path imagen : imagenes) validarSvg(imagen);
+            // Comprobaciones semánticas puntuales además de XML bien formado.
+            comprobarUml(diagramas, "composite.svg", "hijos: 0..*");
+            comprobarUml(diagramas, "decorator.svg", "envuelta: 1");
+            comprobarUml(diagramas, "chainofresponsibility.svg", "siguiente: 0..1");
+            comprobarUml(diagramas, "iterator.svg", "Iterable", "Iterator");
+            comprobarUml(diagramas, "abstractfactory.svg",
+                    "LuzAmbiental", "PuertaAmbiental", "FabricaAmarilla", "FabricaPiscinas");
+            comprobarUml(diagramas, "facade.svg", "salida(origen, destino)");
             for (Path fondo : fondos) validarWebp(fondo);
 
             List<Path> documentosVisuales = new ArrayList<>(documentos);
@@ -85,6 +93,16 @@ public final class VerificarDocumentacion {
         try (Stream<Path> archivos = Files.walk(raiz)) {
             return archivos.filter(Files::isRegularFile)
                     .filter(p -> p.toString().endsWith(extension)).toList();
+        }
+    }
+
+    private static void comprobarUml(Path directorio, String nombre, String... elementos)
+            throws IOException {
+        String contenido = Files.readString(directorio.resolve(nombre));
+        for (String elemento : elementos) {
+            if (!contenido.contains(elemento)) {
+                throw new AssertionError("UML de " + nombre + " omite: " + elemento);
+            }
         }
     }
 
