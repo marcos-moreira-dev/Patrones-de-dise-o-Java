@@ -1,5 +1,11 @@
 # Template Method — Dos excursiones diferentes
 
+![Oficinas vacías con alfombra rosada y luces fluorescentes](../../../assets/ambientes/oficinas-oniricas.webp)
+
+![Piscinas interiores de agua turquesa y columnas](../../../assets/ambientes/piscinas-vacias.webp)
+
+*Referencia ambiental, no regla del mundo. Las invariantes están en [DOMINIO.md](../../../DOMINIO.md).*
+
 ![UML de Template Method: clase base y rutas concretas](../../uml/templatemethod.svg)
 
 **Escena.** Un explorador recorre una oficina vacía; otro observa una piscina abandonada. Ambos preparan su linterna antes y regresan a un punto seguro al finalizar.
