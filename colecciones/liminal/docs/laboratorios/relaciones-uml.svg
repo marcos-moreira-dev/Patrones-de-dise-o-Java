@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="850" viewBox="0 0 1440 850" role="img" aria-labelledby="titulo descripcion"><title id="titulo">Relaciones UML: reglas del dominio, no patrones GoF</title><desc id="descripcion">Composición: RegistroExpedicion, rombo negro, posee EntradaRegistro. Agregación compartida: EquipoExploracion, rombo blanco, agrupa Explorador. Asociación: Explorador apunta a Habitacion. Dependencia: ServicioConsulta usa Explorador. InformeExpedicion observa VistaEntrada sin poseerla.</desc><defs>
+<marker id="nav" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9" stroke="#283E56" stroke-width="1.5" fill="none"/></marker>
+<marker id="hollow" markerWidth="16" markerHeight="16" refX="15" refY="8" orient="auto"><path d="M1 1 L15 8 L1 15 Z" fill="white" stroke="#283E56" stroke-width="1.5"/></marker>
+</defs><style>.name{font:700 20px Arial,sans-serif;fill:#14263D;text-anchor:middle}.body{font:18px Arial,sans-serif;fill:#273B50}.caption{font:17px Arial,sans-serif;fill:#455A73}.subtitle{font:700 19px Arial,sans-serif;fill:#1C3851}.sep{stroke:#96A8BB;stroke-width:1.5}.edge{stroke:#283E56;stroke-width:2.5;fill:none}.dash{stroke-dasharray:9 7}</style><rect width="1440" height="850" fill="#FFFFFF"/><text x="720" y="46" class="subtitle" text-anchor="middle">Relaciones UML: reglas del dominio, no patrones GoF</text><path class="edge" d="M235 250 V365" marker-end="url(#nav)"/>
+<text class="caption" x="247" y="303">conoce 0..*</text>
+<path class="edge" d="M715 276 V365"/>
+<polygon points="715,250 728,263 715,276 702,263" fill="white" stroke="#283E56" stroke-width="2.5"/>
+<text class="caption" x="732" y="304">agrupa 0..*</text>
+<path class="edge" d="M1205 310 V365"/>
+<polygon points="1205,284 1218,297 1205,310 1192,297" fill="#283E56" stroke="#283E56" stroke-width="2"/>
+<text class="caption" x="1225" y="334">posee 0..* (R-09)</text>
+<path class="edge" d="M520 446 H410" marker-end="url(#nav)"/>
+<text class="caption" x="421" y="431">ubicación: 1</text>
+<path class="edge dash" d="M350 650 L585 522" marker-end="url(#nav)"/>
+<text class="caption" x="365" y="585">usa parámetro</text>
+<path class="edge" d="M910 720 H1030" marker-end="url(#nav)"/>
+<text class="caption" x="919" y="700">lee, no posee</text>
+<path class="edge dash" d="M1205 520 V650" marker-end="url(#hollow)"/>
+<text class="caption" x="1220" y="591">realiza</text><rect x="60" y="90" width="350" height="160" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="235" y="124" class="name">MapaLiminal</text>
+<path d="M60 141 H410" class="sep"/>
+<text x="74" y="172" class="body">- habitaciones: Map&lt;String, Habitacion&gt;</text><text x="74" y="199" class="body">+ buscar(id): Habitacion</text><rect x="520" y="90" width="390" height="160" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="715" y="124" class="name">EquipoExploracion</text>
+<path d="M520 141 H910" class="sep"/>
+<text x="534" y="172" class="body">- integrantes: Set&lt;Explorador&gt;</text><text x="534" y="199" class="body">+ agregar(explorador)</text><text x="534" y="226" class="body">+ disolver(): void</text><rect x="1030" y="90" width="350" height="194" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="1205" y="124" class="name">RegistroExpedicion</text>
+<path d="M1030 141 H1380" class="sep"/>
+<text x="1044" y="172" class="body">- entradas: Map&lt;String, Entrada&gt;</text><text x="1044" y="199" class="body">+ anotar(id, texto)</text><text x="1044" y="226" class="body">+ cerrar(): void</text><rect x="60" y="365" width="350" height="135" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="235" y="399" class="name">Habitacion</text>
+<path d="M60 416 H410" class="sep"/>
+<text x="74" y="447" class="body">- id: String</text><text x="74" y="474" class="body">- nombre: String</text><rect x="520" y="365" width="390" height="156" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="715" y="399" class="name">Explorador</text>
+<path d="M520 416 H910" class="sep"/>
+<text x="534" y="447" class="body">- ubicacion: Habitacion</text><text x="534" y="474" class="body">+ ubicacion(): Habitacion</text><rect x="1030" y="365" width="350" height="155" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="1205" y="399" class="name">RegistroExpedicion.EntradaRegistro</text>
+<path d="M1030 416 H1380" class="sep"/>
+<text x="1044" y="447" class="body">«clase privada anidada»</text><text x="1044" y="474" class="body">- activa: boolean</text><rect x="60" y="650" width="350" height="118" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="235" y="684" class="name">ServicioConsulta</text>
+<path d="M60 701 H410" class="sep"/>
+<text x="74" y="732" class="body">+ describirUbicacion(explorador)</text><rect x="520" y="650" width="390" height="118" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="715" y="684" class="name">InformeExpedicion</text>
+<path d="M520 701 H910" class="sep"/>
+<text x="534" y="732" class="body">- entrada: VistaEntrada</text><text x="534" y="759" class="body">+ consultar(): String</text><rect x="1030" y="650" width="350" height="128" rx="4" fill="#F3EBFF" stroke="#815DB5" stroke-width="2.4"/>
+<text x="1205" y="684" class="name">«interface» VistaEntrada</text>
+<path d="M1030 701 H1380" class="sep"/>
+<text x="1044" y="732" class="body">+ texto(): String</text><text x="1044" y="759" class="body">+ activa(): boolean</text><text class="caption" x="720" y="817" text-anchor="middle">◆ Composición: ciclo de vida exclusivo · ◇ Agregación: miembros independientes · Línea: asociación · Punteada: dependencia o realización</text></svg>
