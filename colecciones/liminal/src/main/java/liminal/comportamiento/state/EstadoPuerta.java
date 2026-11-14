@@ -1,10 +1,5 @@
 package liminal.comportamiento.state;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
-
-
 interface EstadoPuerta {
     String nombre();
     default boolean transitable() { return false; }

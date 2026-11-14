@@ -1,7 +1,6 @@
 package liminal.comportamiento.state;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /** Demostración State: una puerta delega acciones según su estado. */
 public final class ClienteState {
