@@ -1,8 +1,5 @@
 package liminal.comportamiento.mediator;
 
-import java.io.PrintStream;
-import java.util.Objects;
-
 /** Prueba independiente del recorrido pedagógico. */
 public final class PruebaMediator {
     private PruebaMediator() {}

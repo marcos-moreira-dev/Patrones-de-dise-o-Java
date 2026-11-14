@@ -1,10 +1,5 @@
 package liminal.comportamiento.interpreter;
 
-import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
 /** Prueba independiente del recorrido pedagógico. */
 public final class PruebaInterpreter {
     private PruebaInterpreter() {}

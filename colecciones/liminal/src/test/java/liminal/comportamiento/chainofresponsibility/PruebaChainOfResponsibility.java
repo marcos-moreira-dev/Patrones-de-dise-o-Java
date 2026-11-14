@@ -1,7 +1,5 @@
 package liminal.comportamiento.chainofresponsibility;
 
-import java.io.PrintStream;
-import java.util.Objects;
 import java.util.Set;
 
 /** Prueba independiente del recorrido pedagógico. */

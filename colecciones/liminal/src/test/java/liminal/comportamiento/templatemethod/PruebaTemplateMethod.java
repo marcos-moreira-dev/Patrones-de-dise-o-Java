@@ -1,6 +1,5 @@
 package liminal.comportamiento.templatemethod;
 
-import java.io.PrintStream;
 import java.util.List;
 
 /** Prueba independiente del recorrido pedagógico. */
