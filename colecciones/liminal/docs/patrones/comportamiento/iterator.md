@@ -1,5 +1,9 @@
 # Iterator — Recorrer habitaciones
 
+![Piscinas interiores iluminadas artificialmente, con agua turquesa y columnas](../../../assets/ambientes/piscinas-vacias.webp)
+
+*Referencia ambiental de esta escena. El contrato válido se define en [DOMINIO.md](../../../DOMINIO.md), no en la imagen.*
+
 ![UML de Iterator: colección, iterador y habitación](../../uml/iterator.svg)
 
 **Escena.** El explorador quiere leer todas las habitaciones de su mapa: H-01, pasillo amarillo, y H-02, piscina vacía.
