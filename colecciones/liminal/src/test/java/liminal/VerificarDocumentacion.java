@@ -65,7 +65,8 @@ public final class VerificarDocumentacion {
                     if (imagen.group(1).isBlank()) {
                         throw new AssertionError("Imagen sin texto alternativo: " + documento);
                     }
-                    Path ruta = documento.getParent().resolve(imagen.group(2)).normalize();
+                    Path directorio = documento.getParent() == null ? Path.of(".") : documento.getParent();
+                    Path ruta = directorio.resolve(imagen.group(2)).normalize();
                     if (!ruta.startsWith(ambientes) || !Files.isRegularFile(ruta)) {
                         throw new AssertionError("Fondo roto o fuera de la galería: " + documento);
                     }
