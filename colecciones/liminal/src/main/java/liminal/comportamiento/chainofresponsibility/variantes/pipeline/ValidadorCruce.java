@@ -10,8 +10,14 @@ abstract class ValidadorCruce {
 
     final void enlazar(ValidadorCruce nuevoSiguiente) {
         Objects.requireNonNull(nuevoSiguiente);
-        if (nuevoSiguiente == this || siguiente != null) {
-            throw new IllegalArgumentException("Siguiente inválido");
+        if (siguiente != null) {
+            throw new IllegalArgumentException("El validador ya tiene siguiente");
+        }
+        // Revisar antes de enlazar: una referencia circular haria infinita la validacion.
+        for (ValidadorCruce actual = nuevoSiguiente; actual != null; actual = actual.siguiente) {
+            if (actual == this) {
+                throw new IllegalArgumentException("El enlace crearia un ciclo");
+            }
         }
         siguiente = nuevoSiguiente;
     }

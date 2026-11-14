@@ -10,7 +10,9 @@ Una solicitud intenta salir desde H-99 hacia H-02, pero **H-99 no aparece en el 
 
 **R-LOCAL-CHAIN-01:** cada validador anota sus errores y deja continuar a los demás. La cadena **solo verifica**: no mueve a un explorador. La puerta se revisa si existe una salida y esa salida tiene puerta. Se respetan R-02, R-04 y R-12.
 
-Las solicitudes con datos incompatibles, como declarar una puerta para una salida inexistente, se rechazan al construir el objeto inmutable.
+Las solicitudes con datos incompatibles, como declarar una puerta para una salida inexistente, se rechazan al construir el objeto inmutable. **La cadena debe ser acíclica:** al enlazar un validador, se revisa el tramo siguiente y se rechaza previamente cualquier enlace que vuelva a un nodo anterior. No basta con impedir que un nodo se enlace a sí mismo.
+
+**Contraejemplo:** `ValidarHabitaciones → ValidarSalida → ValidarPuerta → ValidarHabitaciones` provocaría recursión indefinida. La comprobación detecta el ciclo **antes de mutar** `siguiente`; las pruebas cubren ciclos de dos y tres validadores, un autoenlace y la conservación de la cadena válida.
 
 ## UML de clases
 

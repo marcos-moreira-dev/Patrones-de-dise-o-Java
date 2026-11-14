@@ -1,6 +1,6 @@
 # Auditoría de andamiaje: qué es dominio, patrón y soporte técnico
 
-**14 de noviembre de 2026. Primera pasada estructural.** No se han eliminado archivos por esta auditoría. Una revisión semántica línea por línea de todos los ejemplos y microproyectos queda diferenciada como **segunda pasada**.
+**14 de noviembre de 2026. Primera pasada estructural, con segunda pasada semántica iniciada.** No se han eliminado archivos por esta auditoría. Una revisión semántica línea por línea de todos los ejemplos y microproyectos sigue **pendiente de completarse**.
 
 ## 1. Categorías para decidir
 
@@ -89,3 +89,21 @@ Registrar hallazgos con **ruta → rol → consumidor → coste → propuesta �
 **Alcance demostrado hasta ahora:** estructura, rutas de soporte, revisión completa de las declaraciones record del catálogo liminal y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 516 archivos.**
 
 [Plan de variantes](PLAN_VARIANTES.md) · [Contrato del dominio](DOMINIO.md) · [Guía de lectura](GUIA_LECTURA_CODIGO.md).
+
+## 8. Segunda pasada semántica — revisión dirigida de las siete variantes
+
+Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 516 archivos del inventario original.**
+
+| Área y ruta | Rol / consumidor | Evidencia y criterio |
+| --- | --- | --- |
+| `prototype/variantes/copiaprofunda/` | P: plantilla y configuración; E: comparación de referencias | La copia superficial comparte las configuraciones mutables intencionalmente; la profunda copia cada configuración. La lista defensiva no equivale por sí misma a copia profunda |
+| `prototype/variantes/registro/` | P: catálogo; D: habitación materializada | Los IDs se controlan dentro del catálogo, no mediante un supuesto registro global. La plantilla no recibe ID de entidad activa |
+| `builder/variantes/director/` | P: director, contrato y builder concreto | El Director define la secuencia; no es infraestructura accidental. El rechazo de un ID inválido conserva el producto previo |
+| `proxy/variantes/cache/` | P: proxy y cámara real; E: contador de generaciones | La versión de la escena invalida la vista en caché; el contador ilustra trabajo evitado, no una dependencia de producción |
+| `command/variantes/deshacer/` | P: comando reversible e historial; D: puerta | La revisión de la puerta impide restaurar un estado obsoleto y el historial no mueve entradas después de un rechazo |
+| `chainofresponsibility/variantes/pipeline/` | P: validadores enlazados | **Defecto corregido:** se podían crear ciclos indirectos que producirían recursión indefinida. `ValidadorCruce.enlazar` ahora verifica aciclicidad antes de alterar el enlace, con pruebas para ciclos de 2 y 3 nodos y autoenlace |
+| `observer/variantes/pushpull/` | P: emisor y observadores | Notificación síncrona determinista: se notifica primero a los observadores push y luego a los pull. Ese orden no pretende representar orden global de suscripción |
+
+**Decisión de poda:** ninguna clase de estas variantes se elimina en este lote: los tipos revisados conservan roles didácticos o de dominio identificables. Las clases cliente y de prueba siguen separadas. **La regresión de la cadena debe pasar en Java 21 y CI** antes de dar por cerrado el hallazgo.
+
+**Siguiente alcance aún abierto:** auditoría semántica de las 23 implementaciones base, correspondencia de flechas y multiplicidades en todos los UML, laboratorios, utilidades del repositorio y los dos microproyectos. Mantener la distinción entre esta revisión dirigida y una certificación total.

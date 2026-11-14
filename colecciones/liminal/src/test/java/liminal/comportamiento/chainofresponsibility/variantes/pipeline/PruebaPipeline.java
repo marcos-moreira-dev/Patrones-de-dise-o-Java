@@ -35,6 +35,15 @@ public final class PruebaPipeline {
         rechazar(() -> new SolicitudCruce(habitaciones, "", "H-02",
                 false, false, false));
         rechazar(() -> ubicacion.enlazar(salida));
+        rechazar(() -> puerta.enlazar(puerta)); // Enlace a si mismo.
+        rechazar(() -> puerta.enlazar(ubicacion)); // Ciclo indirecto: 3 validadores.
+        asegurar(ubicacion.verificar(mal).equals(List.of("ORIGEN_DESCONOCIDO", "SIN_SALIDA")),
+                "Rechazar un ciclo no altera la cadena existente");
+        ValidadorCruce primero = new ValidarSalida();
+        ValidadorCruce segundo = new ValidarPuerta();
+        primero.enlazar(segundo);
+        rechazar(() -> segundo.enlazar(primero)); // Ciclo indirecto: 2 validadores.
+        asegurar(primero.verificar(abierto).isEmpty(), "Cadena util despues del rechazo");
 
         ByteArrayOutputStream buf = new ByteArrayOutputStream();
         ClientePipeline.ejecutar(new PrintStream(buf, true, StandardCharsets.UTF_8));
