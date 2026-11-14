@@ -24,16 +24,18 @@ public final class VerificarDocumentacion {
         Path fichas = Path.of("docs", "patrones");
         Path diagramas = Path.of("docs", "uml");
         Path ambientes = Path.of("assets", "ambientes");
+        Path objetos = Path.of("assets", "objetos");
         try {
             List<Path> documentos = listar(fichas, ".md");
             List<Path> imagenes = listar(diagramas, ".svg");
             List<Path> fondos = listar(ambientes, ".webp");
+            List<Path> laminas = listar(objetos, ".webp");
 
             if (documentos.size() != 23 || imagenes.size() != 23) {
                 throw new AssertionError("Se esperan 23 fichas y 23 diagramas UML");
             }
-            if (fondos.size() != 3) {
-                throw new AssertionError("Se esperan 3 ambientes originales en WebP");
+            if (fondos.size() != 3 || laminas.size() != 1) {
+                throw new AssertionError("Se esperan 3 ambientes y 1 lámina de objetos en WebP");
             }
 
             for (Path documento : documentos) {
@@ -61,6 +63,7 @@ public final class VerificarDocumentacion {
                     "FabricaAmarilla", "FabricaPiscinas");
             comprobarUml(diagramas, "facade.svg", "salida(origen, destino)");
             for (Path fondo : fondos) validarWebp(fondo);
+            for (Path lamina : laminas) validarWebp(lamina);
 
             Path laboratorio = Path.of("docs", "laboratorios");
             Path guiaRelaciones = laboratorio.resolve("relaciones-uml.md");
@@ -94,7 +97,8 @@ public final class VerificarDocumentacion {
                     }
                     Path directorio = documento.getParent() == null ? Path.of(".") : documento.getParent();
                     Path ruta = directorio.resolve(imagen.group(2)).normalize();
-                    if (!ruta.startsWith(ambientes) || !Files.isRegularFile(ruta)) {
+                    if ((!ruta.startsWith(ambientes) && !ruta.startsWith(objetos))
+                            || !Files.isRegularFile(ruta)) {
                         throw new AssertionError("Fondo roto o fuera de la galería: " + documento);
                     }
                     referencias++;
@@ -102,7 +106,8 @@ public final class VerificarDocumentacion {
             }
             if (referencias < 14) throw new AssertionError("Faltan imágenes en las fichas");
             System.out.println("OK 23/23 fichas, clases cliente y UML SVG.");
-            System.out.println("OK 3/3 fondos WebP y " + referencias + " referencias Markdown.");
+            System.out.println("OK 3/3 fondos + 1/1 lámina WebP y "
+                    + referencias + " referencias Markdown.");
         } catch (Exception e) {
             throw new AssertionError("Auditoría de documentación fallida", e);
         }
