@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Command — Órdenes para botones</title><desc id="descripcion">PanelBotones conserva Comando; AbrirPuerta y EncenderLuz implementan Comando y delegan a sus receptores.</desc><defs>
+<marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker>
+</defs><style>.box{fill:#f1f5ff;stroke:#4272a5;stroke-width:2.4}.iface{fill:#f4ecff;stroke:#825cac;stroke-width:2.4}.sep{stroke:#8194ad;stroke-width:1.4}.title{fill:#18283d;font:700 20px Arial,sans-serif;text-anchor:middle}.body{fill:#23364a;font:17px Arial,sans-serif}.edge{fill:none;stroke:#25374a;stroke-width:2.4}.dash{stroke-dasharray:8 6}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
+<path class="edge dash" d="M330 130 L445 120.5" marker-end="url(#open)"/>
+<path class="edge" d="M840 120.5 L995 120" marker-end="url(#open)"/>
+<path class="edge dash" d="M565 345 L1170 185" marker-end="url(#tri)"/>
+<path class="edge dash" d="M1005 345 L1170 185" marker-end="url(#tri)"/>
+<path class="edge" d="M370 412.5 L325 450" marker-end="url(#open)"/>
+<path class="edge" d="M1200 412.5 L1220 450" marker-end="url(#open)"/>
+<rect x="30" y="65" width="300" height="130" rx="3" class="box"/><text class="title" x="180" y="99">ClienteCommand</text><path class="sep" d="M30 117 H330"/><text class="body" x="44" y="148">+ ejecutar(out)</text>
+<rect x="445" y="43" width="395" height="155" rx="3" class="box"/><text class="title" x="642.5" y="77">PanelBotones</text><path class="sep" d="M445 95 H840"/><text class="body" x="459" y="126">- comando: Comando</text><text class="body" x="459" y="151">+ pulsar(): String</text>
+<rect x="995" y="55" width="350" height="130" rx="3" class="iface"/><text class="title" x="1170" y="89">«interface» Comando</text><path class="sep" d="M995 107 H1345"/><text class="body" x="1009" y="138">+ ejecutar(): String</text>
+<rect x="370" y="345" width="390" height="135" rx="3" class="box"/><text class="title" x="565" y="379">AbrirPuerta</text><path class="sep" d="M370 397 H760"/><text class="body" x="384" y="428">- puerta: Puerta</text>
+<rect x="810" y="345" width="390" height="135" rx="3" class="box"/><text class="title" x="1005" y="379">EncenderLuz</text><path class="sep" d="M810 397 H1200"/><text class="body" x="824" y="428">- luz: Luz</text>
+<rect x="90" y="390" width="235" height="120" rx="3" class="box"/><text class="title" x="207.5" y="424">Puerta</text><path class="sep" d="M90 442 H325"/><text class="body" x="104" y="473">+ abrir(): void</text>
+<rect x="1220" y="390" width="170" height="120" rx="3" class="box"/><text class="title" x="1305" y="424">Luz</text><path class="sep" d="M1220 442 H1390"/><text class="body" x="1234" y="473">+ encender()</text>
+<text class="note" x="700" y="627">El botón invoca la orden, sin conocer la clase concreta del dispositivo.</text></svg>
