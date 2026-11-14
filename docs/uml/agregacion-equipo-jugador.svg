@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1060" height="268" viewBox="0 0 1060 268" role="img" aria-labelledby="titulo descripcion">
-  <title id="titulo">Agregacion de Equipo y Jugador</title>
-  <desc id="descripcion">El rombo blanco esta en Equipo, el todo. Cada equipo tiene cero o muchos jugadores y cada jugador se relaciona con cero o un equipo, segun el dominio propuesto.</desc>
+  <title id="titulo">Agregación de Equipo y Jugador</title>
+  <desc id="descripcion">El rombo blanco está en Equipo, el todo. Cada equipo tiene cero o muchos jugadores y cada jugador se relaciona con cero o un equipo, según el dominio propuesto.</desc>
   <style>
     .caja { fill: #f0f5ff; stroke: #3972bf; stroke-width: 2; }
     .division { stroke: #3972bf; stroke-width: 1.4; }
