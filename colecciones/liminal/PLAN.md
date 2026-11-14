@@ -1,6 +1,6 @@
 # Expedición Liminal — PLAN DE IMPLEMENTACIÓN
 
-> **Estado:** 23 patrones GoF con cliente, prueba, UML y ficha. Tres ambientes originales y una lámina de cuatro objetos/criatura integrados; revisión visual de Observer y Abstract Factory realizada, restante inspección gráfica ampliada opcional. **Versión de planificación:** 1.5 (2026-11-14).
+> **Estado:** 23 patrones GoF con cliente, prueba, UML y ficha. Tres ambientes originales y una lámina de cuatro objetos/criatura integrados; revisión visual de Observer y Abstract Factory realizada, restante inspección gráfica ampliada opcional. **Versión de planificación:** 1.6 (2026-11-14).
 > Fuente normativa: [DOMINIO.md](DOMINIO.md). Método de modelado: [Cómo definir un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).
 
 La [auditoría pedagógica de noviembre de 2026](AUDITORIA_PEDAGOGICA.md) corrigió restricciones de movimiento e identidad, añadió pruebas y afinó seis diagramas de patrones.
@@ -49,7 +49,7 @@ Patrones-de-dise-o-Java/
         │   ├── estructurales/
         │   ├── comportamiento/
         │   └── DemoLiminal.java
-        ├── src/test/java/liminal/    # FUTURO: pruebas sin dependencias externas
+        ├── src/test/java/liminal/    # Pruebas separadas de clientes, Java 21
         └── scripts/                  # FUTURO: ejecutar/verificar en consola
 ```
 
@@ -126,7 +126,7 @@ javac --release 21 -encoding UTF-8 -d out $(find src/main/java -name '*.java')
 java -cp out liminal.DemoLiminal
 ```
 
-Este comando es una **referencia de diseño para Git Bash/Linux**; no es ejecutable todavía porque los archivos Java de la colección aún no existen. Se añadirá script Windows/PowerShell cuando exista el primer ejemplo.
+El script de verificación es **ejecutable** con JDK 21: `bash colecciones/liminal/scripts/verificar.sh`. También existe `colecciones/liminal/scripts/verificar.ps1` para PowerShell. Los dos se prueban en GitHub Actions.
 
 ## 6. Estrategia de UML
 
@@ -169,7 +169,9 @@ Preferir **imágenes originales generadas** después de fijar escenas y actores.
 - `docs/uml/`: tres diagramas SVG; `docs/patrones/comportamiento/`: tres fichas explicativas.
 - `scripts/verificar.sh` y `scripts/verificar.ps1`: compilación Java 21 y ejecución reproducible.
 
-**Decisión pedagógica:** cada patrón agrupa sus clases auxiliares de paquete en un único archivo Java junto a su clase cliente pública. Java permite varias clases no públicas por archivo; esa concentración facilita leer el patrón como una pequeña historia. Si la complejidad crece, separar archivos sin alterar el contrato.
+**Decisión pedagógica actualizada tras una auditoría de navegabilidad:** cada patrón tiene **un tipo superior Java por archivo**, dentro de su carpeta. Las pruebas están exclusivamente en `src/test/java` y cada `ClienteX.java` contiene la demostración. El lanzador `DemoLiminal` reúne métodos por categoría, como los orquestadores de la colección técnica. [Guía de lectura del código](GUIA_LECTURA_CODIGO.md).
+
+**Justificación:** el formato anterior reunía varias clases de paquete en `ClienteX.java`, aunque Java lo permita. En GitHub se veía un solo nombre de archivo y se dificultaba reconocer Builder, sus productos y sus colaboradores. El cambio es estructural, no modifica las reglas del dominio.
 
 **Limitación declarada:** el catálogo no modela multijugador, concurrencia, físicas ni un motor gráfico. El mapa de Strategy maneja identificadores de habitaciones y conexiones dirigidas. En Observer, la notificación síncrona no se presenta como una transacción tolerante a excepciones arbitrarias de receptores.
 
@@ -178,7 +180,7 @@ Preferir **imágenes originales generadas** después de fijar escenas y actores.
 - **5 creacionales:** Singleton, Factory Method, Abstract Factory, Builder y Prototype.
 - **7 estructurales:** Adapter, Bridge, Composite, Decorator, Facade, Flyweight y Proxy.
 - **8 de comportamiento adicionales:** Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Template Method y Visitor.
-- Los 23 patrones tienen una ficha en `docs/patrones/<categoria>/`, un diagrama SVG en `docs/uml/`, una clase cliente en `src/main/java/` y un método `probar()` o clase de pruebas dedicada.
+- Los 23 patrones tienen una ficha en `docs/patrones/<categoria>/`, un diagrama SVG en `docs/uml/`, una clase cliente en `src/main/java/` y su clase `PruebaX.java` independiente en `src/test/java/`.
 - `DemoLiminal todos` permite recorrer todos. `PruebasLiminal` verifica los 23 y el script de Bash está integrado a la verificación del repositorio completo.
 
 **Arte entregado:** tres ambientes WebP, una lámina de cuatro objetos y criatura, y [tres secuencias didácticas SVG](GUIA_VISUAL.md#5-qué-cambia-cuando-se-ejecuta-el-código) para State, Strategy y Observer. Los 23 UML de clases siguen separados. **Pendiente opcional:** aumentar la colección artística, no imprescindible para aprender.
