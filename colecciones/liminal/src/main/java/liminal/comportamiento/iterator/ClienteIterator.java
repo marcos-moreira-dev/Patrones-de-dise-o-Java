@@ -1,0 +1,79 @@
+package liminal.comportamiento.iterator;
+
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Set;
+
+/** Iterator: recorrer habitaciones sin exponer la lista interna. */
+public final class ClienteIterator {
+    private ClienteIterator() {}
+
+    public static void ejecutar(PrintStream out) {
+        RegistroHabitaciones mapa = new RegistroHabitaciones();
+        mapa.agregar(new Habitacion("H-01", "Pasillo amarillo"));
+        mapa.agregar(new Habitacion("H-02", "Piscina vacía"));
+        for (Habitacion h : mapa) out.println(h.id() + ": " + h.nombre());
+    }
+
+    public static void probar() {
+        RegistroHabitaciones mapa = new RegistroHabitaciones();
+        mapa.agregar(new Habitacion("H-01", "Pasillo"));
+        Iterator<Habitacion> i = mapa.iterator();
+        mapa.agregar(new Habitacion("H-02", "Piscina"));
+        if (!i.hasNext() || !i.next().id().equals("H-01") || i.hasNext()) {
+            throw new AssertionError("El iterador debe recorrer su instantánea");
+        }
+        try {
+            i.next();
+            throw new AssertionError("Fin de iteración debe fallar");
+        } catch (NoSuchElementException esperado) {
+            // El estado del registro no cambia.
+        }
+        try {
+            mapa.agregar(new Habitacion("H-01", "Oficina"));
+            throw new AssertionError("ID repetido");
+        } catch (IllegalArgumentException esperado) {
+            if (mapa.cantidad() != 2) throw new AssertionError("Sin registro duplicado");
+        }
+    }
+    public static void main(String[] args) { ejecutar(System.out); }
+}
+
+record Habitacion(String id, String nombre) {
+    Habitacion {
+        Objects.requireNonNull(id);
+        Objects.requireNonNull(nombre);
+        if (id.isBlank() || nombre.isBlank()) throw new IllegalArgumentException("Hab. inválida");
+    }
+}
+final class RegistroHabitaciones implements Iterable<Habitacion> {
+    private final List<Habitacion> habitaciones = new ArrayList<>();
+    private final Set<String> ids = new HashSet<>();
+
+    void agregar(Habitacion habitacion) {
+        Objects.requireNonNull(habitacion);
+        if (!ids.add(habitacion.id())) throw new IllegalArgumentException("ID repetido");
+        habitaciones.add(habitacion);
+    }
+    int cantidad() { return habitaciones.size(); }
+    public Iterator<Habitacion> iterator() {
+        return new RecorridoHabitaciones(List.copyOf(habitaciones));
+    }
+}
+final class RecorridoHabitaciones implements Iterator<Habitacion> {
+    private final List<Habitacion> instantanea;
+    private int indice;
+    RecorridoHabitaciones(List<Habitacion> instantanea) {
+        this.instantanea = List.copyOf(instantanea);
+    }
+    public boolean hasNext() { return indice < instantanea.size(); }
+    public Habitacion next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        return instantanea.get(indice++);
+    }
+}
