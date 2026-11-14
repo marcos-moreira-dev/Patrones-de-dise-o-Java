@@ -4,7 +4,7 @@
 
 *Una expedición por pasillos, piscinas y oficinas imposibles. Lee la escena primero; después descubre cómo funciona el patrón en Java.*
 
-**Estado: catálogo Java 21 completo (23/23).** Todos los patrones cuentan con una clase cliente ejecutable por consola, una prueba autónoma, un diagrama UML SVG y una ficha Markdown. Las **primeras tres imágenes atmosféricas originales** ya están incorporadas; la ampliación a personajes, objetos y láminas de estados queda como mejora artística posterior.
+**Estado: catálogo Java 21 completo (23/23).** Todos los patrones cuentan con una clase cliente ejecutable por consola, una prueba autónoma, un diagrama UML SVG y una ficha Markdown. La colección incluye **tres escenarios originales y una lámina de cuatro objetos y criatura**; las secuencias didácticas de transiciones siguen siendo una mejora artística opcional.
 
 La colección técnica original y los microproyectos Arena Java y MiniSO **se conservan intactos en su organización**.
 
@@ -14,7 +14,7 @@ La colección técnica original y los microproyectos Arena Java y MiniSO **se co
 | --- | --- |
 | ![Piscina de azulejos y agua turquesa iluminada artificialmente](assets/ambientes/piscinas-vacias.webp) | ![Oficina vacía de alfombra rosa, luces artificiales y muebles](assets/ambientes/oficinas-oniricas.webp) |
 
-**[Abrir el atlas visual](GUIA_VISUAL.md)**: las tres ambientaciones conectadas con las clases y las reglas R-XX del dominio. Consulta también la [procedencia de las ilustraciones](assets/README.md).
+**[Abrir el atlas visual](GUIA_VISUAL.md)**: las tres ambientaciones y cuatro objetos conectados con las clases y las reglas R-XX del dominio. Consulta también la [procedencia de las ilustraciones](assets/README.md).
 
 **[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones aplicadas, reglas contrastadas con Java y UML, pruebas y mejoras opcionales pendientes.
 
@@ -90,6 +90,6 @@ Los diagramas muestran dependencia, asociación, realización y herencia cuando 
 
 ## Ilustraciones y próximas mejoras
 
-Ya existen **tres fondos originales** incorporados al repositorio: pasillo amarillo, piscinas vacías y oficinas oníricas. Se muestran en el [atlas visual](GUIA_VISUAL.md) y en fichas seleccionadas junto a sus UML. Están optimizados como WebP. El trabajo gráfico futuro puede añadir láminas de objetos, criaturas y transiciones de puertas siguiendo el [plan](PLAN.md).
+Ya existen **tres fondos originales y una lámina de cuatro objetos**: puerta, linterna, interruptor y monstruo oscuro. Se muestran en el [atlas visual](GUIA_VISUAL.md) y están optimizados como WebP. El trabajo gráfico futuro podría ilustrar transiciones de puertas y secuencias de comportamientos siguiendo el [plan](PLAN.md).
 
 El juego *The Complex: Expedition* y la cultura Backrooms son referencias estéticas, no fuentes de capturas ni de reglas normativas. Las ilustraciones **no tienen autoridad sobre el dominio**.
