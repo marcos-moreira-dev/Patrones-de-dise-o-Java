@@ -1,6 +1,8 @@
 # Expedición Liminal — DOMINIO.md
 
 > **Contrato normativo del dominio, versión 1.0 (2026-11-13).** Estas reglas son decisiones didácticas del proyecto, no afirmaciones de que exista un canon único de Backrooms. Los ejercicios no pueden contradecirlas sin declarar una excepción específica y motivada.
+>
+> **Apoyo no normativo:** el [atlas visual](GUIA_VISUAL.md) ilustra pasillos, piscinas y oficinas con imágenes generadas. Su aspecto no crea nuevas reglas.
 
 ## 1. Propósito y límites
 
