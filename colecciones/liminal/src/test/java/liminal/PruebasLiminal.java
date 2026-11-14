@@ -10,18 +10,18 @@ import liminal.comportamiento.mediator.ClienteMediator;
 import liminal.comportamiento.memento.ClienteMemento;
 import liminal.comportamiento.templatemethod.ClienteTemplateMethod;
 import liminal.comportamiento.visitor.ClienteVisitor;
-import liminal.estructurales.adapter.ClienteAdapter;
-import liminal.estructurales.bridge.ClienteBridge;
+import liminal.estructurales.adapter.PruebaAdapter;
+import liminal.estructurales.bridge.PruebaBridge;
 import liminal.estructurales.composite.ClienteComposite;
 import liminal.estructurales.decorator.ClienteDecorator;
 import liminal.estructurales.facade.ClienteFacade;
 import liminal.estructurales.flyweight.ClienteFlyweight;
 import liminal.estructurales.proxy.ClienteProxy;
-import liminal.creacionales.abstractfactory.ClienteAbstractFactory;
+import liminal.creacionales.abstractfactory.PruebaAbstractFactory;
 import liminal.creacionales.builder.PruebaBuilder;
-import liminal.creacionales.factorymethod.ClienteFactoryMethod;
-import liminal.creacionales.prototype.ClientePrototype;
-import liminal.creacionales.singleton.ClienteSingleton;
+import liminal.creacionales.factorymethod.PruebaFactoryMethod;
+import liminal.creacionales.prototype.PruebaPrototype;
+import liminal.creacionales.singleton.PruebaSingleton;
 import liminal.comportamiento.state.PruebaState;
 import liminal.comportamiento.strategy.PruebaStrategy;
 
@@ -30,19 +30,19 @@ public final class PruebasLiminal {
     private PruebasLiminal() {}
 
     public static void main(String[] args) {
-        ClienteSingleton.probar();
+        PruebaSingleton.ejecutar();
         System.out.println("OK Singleton");
-        ClienteFactoryMethod.probar();
+        PruebaFactoryMethod.ejecutar();
         System.out.println("OK Factory Method");
-        ClienteAbstractFactory.probar();
+        PruebaAbstractFactory.ejecutar();
         System.out.println("OK Abstract Factory");
         PruebaBuilder.ejecutar();
         System.out.println("OK Builder");
-        ClientePrototype.probar();
+        PruebaPrototype.ejecutar();
         System.out.println("OK Prototype");
-        ClienteAdapter.probar();
+        PruebaAdapter.ejecutar();
         System.out.println("OK Adapter");
-        ClienteBridge.probar();
+        PruebaBridge.ejecutar();
         System.out.println("OK Bridge");
         ClienteComposite.probar();
         System.out.println("OK Composite");
