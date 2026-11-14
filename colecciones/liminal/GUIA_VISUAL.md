@@ -54,6 +54,28 @@ Son **cuatro referencias visuales independientes**, ordenadas de izquierda a der
 
 [Ver procedencia y ficha de la lámina](assets/README.md).
 
+## 5. Qué cambia cuando se ejecuta el código
+
+Estas tres láminas técnicas **complementan**, pero no sustituyen, los UML de clases. Se basan en los métodos reales de los clientes Java y en las reglas R-05, R-08 y R-07.
+
+### Puerta — State
+
+![Estados CERRADA, ABIERTA y BLOQUEADA, con transiciones permitidas y rechazos](docs/secuencias/transiciones-state.svg)
+
+En [State](docs/patrones/comportamiento/state.md), la puerta tiene un solo estado en cada momento. Abrir desde BLOQUEADA no es una transición válida, aunque el método exista en la interfaz.
+
+### Monstruo — Strategy
+
+![Secuencia de cuatro pasos del mismo monstruo M-01 con tres estrategias](docs/secuencias/recorrido-strategy.svg)
+
+En [Strategy](docs/patrones/comportamiento/strategy.md), la referencia a la estrategia cambia. `MonstruoOscuro` verifica los destinos propuestos y conserva su ID.
+
+### Interruptor — Observer
+
+![Dos pulsaciones y estados resultantes de interruptor, luz y alarma](docs/secuencias/notificaciones-observer.svg)
+
+En [Observer](docs/patrones/comportamiento/observer.md), una pulsación notifica a los receptores existentes. La alarma incrementa su contador solo cuando el valor notificado es verdadero.
+
 ## Método de estudio: de la imagen al patrón
 
 1. Describe en una frase qué **ocurre** en la escena imaginada.
