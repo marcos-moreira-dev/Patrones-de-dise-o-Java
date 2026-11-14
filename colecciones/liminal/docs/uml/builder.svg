@@ -17,7 +17,7 @@
 <text class="texto" x="404" y="209">+ luces(n): ConstructorHabitacion</text>
 <text class="texto" x="404" y="240">+ construir(): Habitacion</text>
 <rect class="nodo" x="895" y="67" width="270" height="183" rx="4"/>
-<text class="titulo" x="1030" y="108">«record» Habitacion</text><path class="separa" d="M895 129 H1165"/>
+<text class="titulo" x="1030" y="108">Habitacion</text><path class="separa" d="M895 129 H1165"/>
 <text class="texto" x="914" y="165">+ id(): String</text>
 <text class="texto" x="914" y="194">+ ambiente(): String</text>
 <text class="texto" x="914" y="222">+ luces(): int</text>
