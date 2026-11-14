@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Mediator — Central de control</title><desc id="descripcion">SensorRuido habla con Mediador; CentroControl coordina Luz y Alarma sin que estos se conozcan.</desc><defs>
+<marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker>
+</defs><style>.box{fill:#f1f5ff;stroke:#4272a5;stroke-width:2.4}.iface{fill:#f4ecff;stroke:#825cac;stroke-width:2.4}.sep{stroke:#8194ad;stroke-width:1.4}.title{fill:#18283d;font:700 20px Arial,sans-serif;text-anchor:middle}.body{fill:#23364a;font:17px Arial,sans-serif}.edge{fill:none;stroke:#25374a;stroke-width:2.4}.dash{stroke-dasharray:8 6}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
+<path class="edge dash" d="M317 162.5 L485 140" marker-end="url(#open)"/>
+<path class="edge" d="M345 342 L670 220" marker-end="url(#open)"/>
+<path class="edge dash" d="M907.5 316 L670 220" marker-end="url(#tri)"/>
+<path class="edge" d="M907.5 316 L1251 219" marker-end="url(#open)"/>
+<path class="edge" d="M1095 398.5 L1135 409.5" marker-end="url(#open)"/>
+<rect x="20" y="95" width="297" height="135" rx="3" class="box"/><text class="title" x="168.5" y="129">ClienteMediator</text><path class="sep" d="M20 147 H317"/><text class="body" x="34" y="178">+ ejecutar(out)</text>
+<rect x="485" y="60" width="370" height="160" rx="3" class="iface"/><text class="title" x="670" y="94">«interface» Mediador</text><path class="sep" d="M485 112 H855"/><text class="body" x="499" y="143">+ notificarRuido(id)</text>
+<rect x="170" y="342" width="350" height="139" rx="3" class="box"/><text class="title" x="345" y="376">SensorRuido</text><path class="sep" d="M170 394 H520"/><text class="body" x="184" y="425">- mediador: Mediador</text>
+<rect x="720" y="316" width="375" height="165" rx="3" class="box"/><text class="title" x="907.5" y="350">CentroControl</text><path class="sep" d="M720 368 H1095"/><text class="body" x="734" y="399">- luz: Luz</text><text class="body" x="734" y="424">- alarma: Alarma</text>
+<rect x="1145" y="100" width="212" height="119" rx="3" class="box"/><text class="title" x="1251" y="134">Luz</text><path class="sep" d="M1145 152 H1357"/><text class="body" x="1159" y="183">+ encender()</text>
+<rect x="1135" y="350" width="230" height="119" rx="3" class="box"/><text class="title" x="1250" y="384">Alarma</text><path class="sep" d="M1135 402 H1365"/><text class="body" x="1149" y="433">+ avisar()</text>
+<text class="note" x="700" y="627">El sensor no tiene referencias a Luz ni a Alarma; solo conoce Mediador.</text></svg>
