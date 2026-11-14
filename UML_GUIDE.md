@@ -71,6 +71,65 @@ Si un metodo devuelve `PedidoResumen`, escribimos `+resumen(): PedidoResumen` en
 
 Para recordar: el signo te dice quien puede acceder a un atributo o metodo.
 
+## De clases Java a objetos y referencias
+
+**Idea central:** Java implementa mecanismos (crear, recibir, guardar y usar objetos); UML describe vínculos y restricciones del modelo. **No existe una correspondencia automática entre `new`, `List` y un rombo UML.**
+
+- **Clase:** define tipos, estado y comportamiento. `Curso` no es un objeto; `new Curso()` crea una instancia.
+- **Instancia:** objeto concreto durante la ejecución; dos variables pueden señalar el *mismo* objeto.
+- **Referencia:** permite localizar y utilizar un objeto. Un atributo `private Profesor profesor;` no crea un profesor.
+- **Creación:** `new B()` construye una instancia; no prueba que exista composición.
+- **Uso:** recibir `B` como parámetro o invocar sus métodos no exige construirlo ni guardarlo.
+- **Propiedad en el modelo:** regla sobre a qué todo pertenece una parte; Java no la deduce de `List<B>` ni la garantiza automáticamente.
+
+| Código observado | Conclusión segura | Lo que **no** demuestra |
+| --- | --- | --- |
+| `new B()` dentro de A | Se crea una instancia de B | Que A sea su dueño compuesto |
+| `void operar(B b)` | A usa el tipo B en su operación | Que A guarde B como atributo |
+| `private B b;` | A declara una referencia estructural a B | Que A haya creado B |
+| `private List<B> elementos;` | A puede almacenar varias referencias a B | Agregación o composición |
+| `b.operar()` | Se invoca una operación de B | Propiedad sobre B |
+
+### Dos colecciones, una sola instancia
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+class Estudiante {
+    final String nombre;
+    Estudiante(String nombre) { this.nombre = nombre; }
+}
+
+class Curso {
+    final List<Estudiante> estudiantes = new ArrayList<>();
+    void matricular(Estudiante estudiante) { estudiantes.add(estudiante); }
+}
+
+class Demo {
+    public static void main(String[] args) {
+        Estudiante ana = new Estudiante("Ana");
+        Curso cursoA = new Curso();
+        Curso cursoB = new Curso();
+        cursoA.matricular(ana);
+        cursoB.matricular(ana);
+        System.out.println(cursoA.estudiantes.get(0) == cursoB.estudiantes.get(0)); // true
+    }
+}
+```
+
+![Dos cursos referencian a la misma instancia de Estudiante sin duplicarla](docs/uml/referencias-compartidas.svg)
+
+`ArrayList.add(ana)` almacena una **referencia**, no clona el objeto. El hecho de que ambas colecciones lo referencien es válido en Java. El **dominio** determina si una matrícula en dos cursos está permitida; el modelo puede añadir restricciones que el código debe verificar. Este SVG representa **objetos en ejecución**, no un diagrama de clases.
+
+### Preguntas antes de dibujar una relación
+
+1. ¿Qué clase declara atributos o métodos que mencionan a la otra? ¿Quién **crea**, **recibe**, **usa** o **guarda** instancias?
+2. ¿Existe un vínculo estructural duradero en el modelo o solo una necesidad de uso? **Duradero** no significa eterno, y **dependencia** tampoco significa necesariamente temporal.
+3. ¿El dominio considera un objeto como parte de otro? ¿Es una pertenencia débil o **propiedad compuesta exclusiva**?
+4. ¿Qué multiplicidades, cambios de propietario, eliminaciones y validaciones son obligatorios?
+5. ¿Qué garantiza realmente Java y qué necesita programarse y probarse?
+
 ## Relaciones mas comunes (y como pensarlas)
 ### Herencia (es-un)
 Una clase hija hereda de una clase padre.
@@ -84,27 +143,27 @@ Ejemplo mental: "RepositorioSql implementa Repositorio".
 
 ![RepositorioSql implementa la interfaz Repositorio](docs/uml/repositorio-realizacion.svg)
 
-### Asociacion (se comunica con)
-Una clase usa o conoce a otra.
-Ejemplo mental: "Pedido usa Cliente".
+### Asociacion (vinculo estructural)
+Existe un vínculo estructural entre instancias de las clases. En Java, una implementación frecuente es que un objeto conserve una referencia al otro, pero el diagrama expresa el **modelo**, no la obligación de usar un campo concreto. No implica creación ni propiedad.
+Ejemplo mental: "Cada Curso tiene asignado un Profesor".
 
 ![Pedido conoce a Cliente mediante una asociacion navegable](docs/uml/pedido-cliente.svg)
 
-### Agregacion (tiene-una, pero puede vivir aparte)
-Una clase contiene a otra, pero el contenido puede existir sin ella.
-Ejemplo mental: "Equipo tiene Jugadores, y los Jugadores pueden existir sin el Equipo".
+### Agregacion compartida (todo-parte debil)
+Un objeto agrupa otros como partes, pero estos conservan independencia respecto del todo. El rombo blanco representa una **interpretación explícita del dominio**, no una regla detectada porque aparezca `List`. La especificación UML deja el significado preciso de la agregación compartida al área de aplicación y al modelador; una asociación simple suele ser preferible cuando no hay una semántica todo-parte clara.
+Ejemplo mental: "Equipo agrupa Jugadores; estos pueden continuar sin ese Equipo".
 
 ![Agregacion entre Equipo y Jugador, con rombo hueco junto a Equipo](docs/uml/agregacion-equipo-jugador.svg)
 
-### Composicion (parte-de)
-Una clase contiene a otra y su ciclo de vida depende de ella.
-Ejemplo mental: "Casa tiene Habitaciones, si la Casa desaparece, las Habitaciones tambien".
+### Composicion (todo-parte con propietario exclusivo)
+Cada instancia que actúa como parte pertenece **como máximo a un objeto compuesto a la vez**. Si se destruye el compuesto en el modelo, se destruyen sus partes todavía asociadas; una parte puede **desvincularse antes** y después pertenecer a otro compuesto cuando las reglas lo permitan. No prohíbe que terceros tengan referencias a esa instancia, ni exige que su constructor se invoque dentro del todo.
+Ejemplo mental: "Una LineaPedido pertenece como parte propia a una Orden; no simultáneamente a dos".
 
 ![Composicion entre Casa y Habitacion, con rombo relleno junto a Casa](docs/uml/casa-habitacion.svg)
 
-### Dependencia (uso temporal)
-Una clase usa otra solo en un metodo o parametro.
-Ejemplo mental: "Factura usa Impresora solo para imprimir".
+### Dependencia (necesita o utiliza)
+Un elemento **cliente** depende de otro **proveedor** cuando cambiar el segundo podría afectar al primero. Recibir un parámetro, declarar un tipo, invocar una operación o utilizar una API son manifestaciones frecuentes. **No requiere `new` ni un atributo**, y no está restringida a infraestructura o al uso temporal.
+Ejemplo mental: "Reporte utiliza una Impresora recibida para generar su salida".
 
 ![Factura depende temporalmente de Impresora](docs/uml/factura-impresora.svg)
 
@@ -225,7 +284,7 @@ class Curso {
 
     public Curso(String titulo, Profesor profesor) {
         this.titulo = titulo;
-        this.profesor = profesor;
+        this.profesor = java.util.Objects.requireNonNull(profesor);
     }
 
     public Profesor getProfesor() {
@@ -234,7 +293,7 @@ class Curso {
 }
 ```
 
-**Aterrizaje Java:** `private Profesor profesor;` es una referencia persistente en `Curso`, no una lista. `Curso` conoce al profesor; no se necesita que `Profesor` mantenga una lista de cursos para dibujar la relacion conceptual. La regla `1` requiere validar que el profesor no sea nulo.
+**Aterrizaje Java:** `private Profesor profesor;` declara una referencia conservada por `Curso`: no llama a un constructor ni crea otro `Profesor`. `Curso` puede recibir una instancia ya existente. No es necesario que `Profesor` almacene una lista de cursos para representar esta asociación navegable desde `Curso`. Si el dominio exige multiplicidad `1`, el constructor debe rechazar `null`, por ejemplo con `Objects.requireNonNull(profesor)`.
 
 ### Agregacion
 Cardinalidad sugerida: Equipo 0..* Jugadores, Jugador 0..1 Equipo.
@@ -281,7 +340,7 @@ class Equipo {
 | `HashMap<String, Jugador>` | Busca por codigo con rapidez habitual | Las claves deben ser unicas y estables |
 | Grafo | Modela relaciones complejas entre jugadores y equipos | Es excesivo para una plantilla simple |
 
-**Regla pendiente:** el ejemplo permite agregar el mismo jugador a varios equipos. La multiplicidad propuesta `0..1` solo se cumple si la aplicacion la valida. No debemos deducir reglas del negocio exclusivamente de la estructura de datos.
+**Regla pendiente:** la implementación simplificada permite agregar el mismo jugador a varios equipos, **en contradicción con la multiplicidad ilustrativa `0..1`**. Si esa multiplicidad es una regla real, debe validarse. Por ejemplo, `Jugador` podría conservar su `Equipo` actual y rechazar otra inscripción hasta que se retire del primero; también habría que sincronizar ambas referencias sin dejar el modelo inconsistente. `List`, `Set` o `Map` no resuelven por sí solos la pertenencia. Si el dominio permite varios equipos a la vez, la multiplicidad también debe cambiar.
 
 ### Composicion
 Cardinalidad sugerida: Orden 0..* Lineas, Linea 1 Orden.
@@ -322,7 +381,7 @@ class Orden {
 }
 ```
 
-**Aterrizaje Java:** `Orden` crea las `LineaPedido` internamente y controla la coleccion de detalles. Esto **ilustra** la composicion; la recoleccion de basura de Java no aplica por si sola una regla de negocio como "borrar todas las lineas al cancelar una orden". Esa politica se programa y se prueba.
+**Aterrizaje Java:** `Orden` crea las `LineaPedido` internamente y mantiene la colección privada. Eso es una **estrategia para proteger** el modelo, pero **`new` dentro de `Orden` no prueba por sí solo composición**. Una línea también podría crearse externamente y entregarse a la orden, siempre que el sistema impida pertenencias compuestas simultáneas. Otras clases pueden consultarla; eso no las convierte en propietarias. Si la orden desaparece del **modelo de dominio**, sus líneas todavía asociadas desaparecen con ella; esto **no equivale** a que el recolector de basura de Java las libere inmediatamente ni a que cancelar una orden de negocio exija borrarla.
 
 ### Dependencia
 Cardinalidad: uso temporal, no estructura fija.
@@ -351,14 +410,84 @@ class Reporte {
 }
 ```
 
-**Aterrizaje Java:** el parametro `Impresora impresora` se usa durante la llamada, pero `Reporte` no necesita conservarlo como atributo. Por eso dibujamos dependencia y no una asociacion persistente.
+**Aterrizaje Java:** el parámetro `Impresora impresora` se utiliza durante la llamada, pero `Reporte` no necesita crearlo ni conservarlo como atributo. **Este ejemplo** se modela como dependencia. No todas las dependencias son temporales: la noción es más amplia que este patrón de código. Incluso `Math.abs(-5)` usa una clase sin crear una instancia.
+
+## Ingeniería inversa: de Java a UML sin adivinar el dominio
+
+Una herramienta que analiza Java puede identificar **hechos sintácticos**: `extends`, `implements`, tipos de campos, métodos, argumentos, invocaciones y colecciones. Algunas relaciones son directamente observables (generalización y realización); otras requieren interpretación.
+
+| Indicio en el código | Inferencia razonable | Límite |
+| --- | --- | --- |
+| `extends` / `implements` | Generalización / realización | Puede omitirse del diagrama si no aporta al propósito |
+| Parámetro o llamada a otra clase | Dependencia de uso o de tipo | No determina pertenencia |
+| Campo `B b` o `List<B>` | Posible asociación estructural y multiplicidad candidata | No prueba rombo blanco o negro ni cardinalidad mínima |
+| Instanciación `new B()` | Creación de objeto B | No implica composición |
+| Campo `final` o colección privada | Restricciones sobre reasignación o acceso | No garantiza propietario exclusivo ni ciclo de vida |
+
+**Procedimiento recomendado:** (1) identificar los indicios estructurales; (2) declarar explícitamente los supuestos del dominio; (3) elegir las relaciones UML compatibles; (4) establecer multiplicidades e invariantes; (5) revisar el código y pruebas que hacen cumplir esas invariantes. Cuando una herramienta propone agregación o composición sin dichas reglas, trátala como **hipótesis**, no como verdad demostrada.
+
+Una clase de infraestructura (`Impresora`, `ClienteHttp`) puede participar en asociaciones, y dos clases de dominio pueden relacionarse por dependencia. Los nombres de los paquetes **no determinan** la flecha UML.
+
+## Invariantes y validaciones: el código debe cumplir el diagrama
+
+La multiplicidad `1` no aparece mágicamente por escribir `private Profesor profesor;`. Para exigir que todo curso tenga profesor:
+
+```java
+import java.util.Objects;
+
+class CursoValidado {
+    private final Profesor profesor;
+    CursoValidado(Profesor profesor) {
+        this.profesor = Objects.requireNonNull(profesor, "profesor obligatorio");
+    }
+}
+```
+
+En una composición `Orden`—`LineaPedido`, una estrategia defensiva consiste en **no exponer una colección modificable** y no aceptar una línea ya perteneciente a otra orden. Un ejemplo autocontenido de esa estrategia:
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+class OrdenSegura {
+    private final List<LineaSegura> lineas = new ArrayList<>();
+
+    public void agregarLinea(String producto, int cantidad) {
+        lineas.add(new LineaSegura(this, producto, cantidad));
+    }
+
+    public List<LineaSegura> lineas() {
+        return List.copyOf(lineas);
+    }
+}
+
+final class LineaSegura {
+    private final OrdenSegura orden;
+    private final String producto;
+    private final int cantidad;
+
+    // Solo OrdenSegura puede crear líneas en este ejemplo si ambas
+    // clases se anidan, o si se controla la construcción por otro medio.
+    LineaSegura(OrdenSegura orden, String producto, int cantidad) {
+        this.orden = Objects.requireNonNull(orden);
+        this.producto = Objects.requireNonNull(producto);
+        if (cantidad <= 0) throw new IllegalArgumentException("cantidad");
+        this.cantidad = cantidad;
+    }
+
+    OrdenSegura orden() { return orden; }
+}
+```
+
+**Advertencia precisa:** el constructor de `LineaSegura` tiene visibilidad de paquete, así que **este código aislado todavía no impide** que otra clase del mismo paquete fabrique líneas sin registrarlas. Para una garantía más fuerte habría que restringir la construcción (por ejemplo, con una clase interna privada) y comprobar todas las rutas de modificación. La demostración sirve para identificar qué invariantes faltan; no se presenta como una implementación cerrada de todas las reglas.
 
 ## Java, UML y reglas del dominio
 Java define las reglas del lenguaje; UML representa el diseño, pero **ninguno determina por sí solo las reglas del negocio**. Antes de añadir cédula, teléfono o fecha de nacimiento a `Cliente`, hay que confirmar qué necesita el cliente y qué exige o permite la normativa aplicable.
 
 Las multiplicidades mostradas son supuestos didácticos del dominio: **estos ejemplos Java no las validan automáticamente**.
 
-Para aterrizar un diagrama, haz cuatro preguntas: **que relacion representa**, **como se lee**, **que referencia o estructura la implementaria en Java** y **que regla del dominio habria que probar**. Una lista, un mapa o un grafo son opciones de implementacion, no significados universales de un rombo UML.
+Para aterrizar un diagrama, responde: **qué objetos se crean, reciben, usan o referencian**, **qué vínculo representa el diagrama**, **cómo se lee su multiplicidad**, **qué regla del dominio la justifica** y **cómo se implementa y prueba esa regla**. No confundas la creación con la propiedad ni la referencia con la copia del objeto. Una lista, un mapa o un grafo son opciones de implementacion, no significados universales de un rombo UML.
 
 ## Operaciones, casos de uso y Javadoc
 Un **caso de uso** describe un objetivo de un actor frente al sistema (por ejemplo, inscribir un estudiante). Un **metodo** es una operacion de software; un caso de uso puede coordinar varios metodos de varias clases. No asignes un codigo `CU-04` a cada metodo por costumbre: usalo solo cuando exista un requisito rastreable.
@@ -382,7 +511,7 @@ Este es un **ejemplo ilustrativo de contrato**, no un metodo implementado por el
 En cada patron, busca primero una intuicion visible (un semaforo, un personaje, un pedido o un dispositivo), luego la relacion UML, el codigo y una prueba de su comportamiento. El ejemplo debe ayudar a comprender, no convertirse en una analogia forzada.
 
 ## Como construir un diagrama desde cero
-1) Lee el problema y subraya sustantivos: suelen ser clases.
+1) Lee el problema y subraya sustantivos como **candidatos**, no como clases obligatorias. Evalúa identidad, estado, responsabilidades y límites del dominio.
 2) Identifica responsabilidades: se vuelven metodos.
 3) Identifica datos importantes: se vuelven atributos.
 4) Define relaciones: herencia, composicion, asociacion, etc.
@@ -394,6 +523,10 @@ En cada patron, busca primero una intuicion visible (un semaforo, un personaje, 
 - Confundir herencia con asociacion.
 - Olvidar cardinalidades cuando son importantes.
 - Dibujar flechas sin significado claro.
+- Concluir que `List<B>` significa agregación, o que `new B()` implica composición.
+- Confundir compartir una referencia con duplicar una instancia.
+- Suponer que un diagrama generado automáticamente conoce las reglas del dominio.
+- Creer que composición prohíbe que otras clases referencien las partes.
 
 ## Consejos para estudiar patrones de diseno
 - En cada patron, destaca la relacion principal que lo define.
