@@ -12,8 +12,10 @@
 </style><rect class="caja" x="22" y="42" width="272" height="128" rx="3"/><text class="nombre" x="158" y="73">ClienteStrategy</text><line x1="22" y1="88" x2="294" y2="88" stroke="#8b9aaa"/><text class="metodo" x="35" y="116">+ ejecutar(out): void</text><rect class="caja" x="335" y="32" width="310" height="172" rx="3"/><text class="nombre" x="490" y="63">MonstruoOscuro</text><line x1="335" y1="78" x2="645" y2="78" stroke="#8b9aaa"/><text class="metodo" x="348" y="106">- mapa: MapaLiminal</text><text class="metodo" x="348" y="130">- estrategia: EstrategiaMovimiento</text><text class="metodo" x="348" y="154">+ cambiarEstrategia(nueva)</text><rect class="interfaz" x="757" y="32" width="450" height="172" rx="3"/><text class="nombre" x="982" y="63">«interface» EstrategiaMovimiento</text><line x1="757" y1="78" x2="1207" y2="78" stroke="#8b9aaa"/><text class="metodo" x="770" y="106">+ elegirDestino(mapa, origen, objetivo)</text><rect class="caja" x="22" y="283" width="270" height="130" rx="3"/><text class="nombre" x="157" y="314">MapaLiminal</text><line x1="22" y1="329" x2="292" y2="329" stroke="#8b9aaa"/><text class="metodo" x="35" y="357">+ agregarSalida(...)</text><text class="metodo" x="35" y="381">+ conecta(origen, destino)</text><rect class="caja" x="354" y="332" width="240" height="114" rx="3"/><text class="nombre" x="474" y="363">Patrullar</text><line x1="354" y1="378" x2="594" y2="378" stroke="#8b9aaa"/><text class="metodo" x="367" y="406">+ elegirDestino(...)</text><rect class="caja" x="643" y="332" width="240" height="114" rx="3"/><text class="nombre" x="763" y="363">Perseguir</text><line x1="643" y1="378" x2="883" y2="378" stroke="#8b9aaa"/><text class="metodo" x="656" y="406">+ elegirDestino(...)</text><rect class="caja" x="932" y="332" width="240" height="114" rx="3"/><text class="nombre" x="1052" y="363">Esperar</text><line x1="932" y1="378" x2="1172" y2="378" stroke="#8b9aaa"/><text class="metodo" x="945" y="406">+ elegirDestino(...)</text><path class="linea dash" d="M294 112 H335"/><path class="linea" d="M322 102 L335 112 L322 122"/>
 <path class="linea" d="M645 112 H757"/><path class="linea" d="M744 102 L757 112 L744 122"/>
 <path class="linea" d="M488 204 L157 283"/><path class="linea" d="M174 270 L157 283 L179 282"/>
-<path class="linea dash" d="M474 332 L985 225 V204"/>
-<path class="linea dash" d="M763 332 L999 225 V204"/>
-<path class="linea dash" d="M1052 332 V204"/>
-<path class="triangulo" d="M1038 223 L1052 204 L1066 223 Z"/>
+<path class="linea dash" d="M474 332 L825 224"/>
+<path class="linea dash" d="M763 332 L965 224"/>
+<path class="linea dash" d="M1052 332 L1105 224"/>
+<path class="triangulo" d="M811 224 L825 204 L839 224 Z"/>
+<path class="triangulo" d="M951 224 L965 204 L979 224 Z"/>
+<path class="triangulo" d="M1091 224 L1105 204 L1119 224 Z"/>
 <text class="nota" x="620" y="513">Una estrategia decide; el contexto valida que el movimiento respete el mapa.</text></svg>
