@@ -14,9 +14,11 @@
 
 **Problema:** mezclar luces del tema amarillo con puertas de piscinas puede romper la coherencia visual de una escena.
 
-**Patrón:** `FabricaAmbiente` promete crear `LuzDelNivel` y `PuertaDelNivel`. `FabricaAmarilla` y `FabricaPiscinas` proporcionan familias compatibles.
+**Patrón:** `FabricaAmbiente` declara cómo crear `LuzDelNivel` y `PuertaDelNivel`. `FabricaAmarilla` fabrica `LuzAmarilla` y `PuertaAmarilla`; `FabricaPiscinas` fabrica `LuzPiscinas` y `PuertaPiscinas`. Son **cuatro clases concretas diferentes** que cumplen dos contratos comunes.
 
-**Java y UML:** el cliente solicita dos productos a través de **interfaces**. La clase `Escena` verifica que compartan el mismo `Tema`. No hay asociación de propiedad compuesta simplemente por conservar ambas referencias.
+**Java y UML:** `Escena` solicita los productos a través de la **interfaz de fábrica** y guarda referencias a los **contratos de producto**: no necesita conocer las cuatro clases concretas. El `Tema` sirve para validar la coherencia de la escena. La fábrica elige la familia; usar `new` y guardar atributos no demuestra propiedad compuesta en UML.
+
+**Distinción frente a Factory Method:** aquí la fábrica proporciona **dos productos relacionados**, no un único método de creación especializado en una subclase.
 
 **Resultado de consola:**
 
@@ -25,7 +27,7 @@ AMARILLO: fluorescente amarilla y puerta beige
 PISCINAS: reflejo azul y puerta blanca
 ~~~
 
-**Prueba:** se obtienen dos familias consistentes y se rechaza crear una escena mezclando sus productos.
+**Prueba:** se verifican tanto los **tipos concretos** de luz y puerta como su `Tema`. Una escena mezclada se rechaza, incluso cuando una fábrica defectuosa devuelve productos de familias distintas.
 
 **Cuándo no usarlo:** si solo hay un objeto que construir, puede bastar Factory Method o un constructor.
 
