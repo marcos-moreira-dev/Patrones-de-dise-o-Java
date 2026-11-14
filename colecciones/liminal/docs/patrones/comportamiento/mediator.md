@@ -25,3 +25,5 @@ Avisos de alarma: 1
 **Cuándo no usarlo:** una interacción de dos objetos que no va a crecer puede funcionar con una llamada directa.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/mediator/ClienteMediator.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/mediator/) · [PruebaMediator.java](../../../src/test/java/liminal/comportamiento/mediator/PruebaMediator.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

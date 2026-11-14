@@ -36,3 +36,5 @@ Esperar -> Pasillo amarillo
 **Alternativa legítima:** una única política de movimiento no requiere Strategy. Tiene valor cuando deben intercambiarse algoritmos sin duplicar el contexto.
 
 **Archivos:** [ClienteStrategy.java](../../../src/main/java/liminal/comportamiento/strategy/ClienteStrategy.java) · [PruebaStrategy.java](../../../src/test/java/liminal/comportamiento/strategy/PruebaStrategy.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/strategy/) · [PruebaStrategy.java](../../../src/test/java/liminal/comportamiento/strategy/PruebaStrategy.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

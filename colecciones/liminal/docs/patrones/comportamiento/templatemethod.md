@@ -27,3 +27,5 @@ Preparar linterna -> Observar piscina vacía -> Regresar al punto seguro
 **Cuándo no usarlo:** cuando las secuencias no comparten pasos o cuando se prefieren algoritmos intercambiables en tiempo de ejecución, evaluar Strategy.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/templatemethod/ClienteTemplateMethod.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/templatemethod/) · [PruebaTemplateMethod.java](../../../src/test/java/liminal/comportamiento/templatemethod/PruebaTemplateMethod.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

@@ -22,3 +22,5 @@ LINTERNA A-01
 **Cuándo no usarlo:** si cambian continuamente los tipos de elementos, añadir métodos a cada visitante se vuelve costoso.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/visitor/ClienteVisitor.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/visitor/) · [PruebaVisitor.java](../../../src/test/java/liminal/comportamiento/visitor/PruebaVisitor.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

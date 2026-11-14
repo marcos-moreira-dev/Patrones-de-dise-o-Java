@@ -25,3 +25,5 @@ Ajuste restaurado: intensidad 4, filtro azul false
 **Cuándo no usarlo:** si no existe posibilidad de deshacer ni conservar instantáneas, el patrón es innecesario.
 
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/memento/ClienteMemento.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/memento/) · [PruebaMemento.java](../../../src/test/java/liminal/comportamiento/memento/PruebaMemento.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).

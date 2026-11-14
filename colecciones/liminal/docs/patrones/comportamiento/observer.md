@@ -37,3 +37,5 @@ Luz -> APAGADA
 **Alternativa legítima:** con un solo dispositivo y una colaboración fija puede bastar una llamada directa. Observer aporta valor cuando cambian los receptores y sus suscripciones.
 
 **Archivos:** [ClienteObserver.java](../../../src/main/java/liminal/comportamiento/observer/ClienteObserver.java) · [PruebaObserver.java](../../../src/test/java/liminal/comportamiento/observer/PruebaObserver.java).
+
+**Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/observer/) · [PruebaObserver.java](../../../src/test/java/liminal/comportamiento/observer/PruebaObserver.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
