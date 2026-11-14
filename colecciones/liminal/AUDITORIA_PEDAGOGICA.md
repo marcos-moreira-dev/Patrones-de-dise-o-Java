@@ -66,11 +66,11 @@ Los ejemplos pertenecen a **un solo mundo de referencia**, pero tienen **paquete
 
 | Pendiente | Motivo | Prioridad sugerida |
 | --- | --- | --- |
-| **Revisión visual manual de SVG** tras las correcciones | La compilación y el parser XML no detectan superposición de flechas o texto | Media |
-| **Ilustraciones de objetos y criatura** | Existen tres ambientes originales; faltarían láminas específicas de linterna, puerta, interruptor y monstruo, si queremos un catálogo más ilustrado | Baja |
+| **Revisión visual de SVG** | **Avance:** se inspeccionó la estructura de los 23 UML y se renderizaron los esquemas de Observer y Abstract Factory. Se corrigió una superposición real en Observer y se reorganizó Abstract Factory; una inspección pixel a pixel de los demás diagramas sigue siendo opcional | Parcial |
+| **Ilustraciones de objetos y criatura** | **Completado como lámina única:** puerta beige, linterna, interruptor y monstruo oscuro en [galería visual](assets/README.md). Láminas individuales o transiciones animadas serían una mejora adicional | Resuelto para esta etapa |
 | **Laboratorio independiente de composición UML** | **Completado** en [Relaciones UML](docs/laboratorios/relaciones-uml.md): composición R-09, agregación local, asociaciones, referencias y baja lógica, con dos diagramas y pruebas | Resuelto |
 | **Completar `Interpreter` en la colección técnica original** | **Completado:** [Interpreter técnico](../../comportamiento/Interpreter/README.md) con expresiones anidadas, `BigDecimal` y pruebas; las dos colecciones ahora tienen 23 patrones | Resuelto |
-| **Abstract Factory con clases de producto concretas diferentes** | **Completado:** cada fábrica produce sus clases concretas de luz y puerta; se comprueban los tipos y se rechaza una mezcla de familias. El UML fue actualizado | Resuelto |
+| **Abstract Factory con clases de producto concretas diferentes** | **Completado:** las dos fábricas producen cuatro clases concretas de luz/puerta, con pruebas de tipos, rechazo de combinaciones y UML actualizado | Resuelto |
 | **Notificaciones con fallo de observador** | El Observer de consola es sincrónico y no ofrece transaccionalidad ante excepciones arbitrarias de callbacks. Ya se declara su alcance en la ficha | Baja; sería un diseño más avanzado |
 
 Los pendientes **no invalidan** el catálogo para estudiar los patrones por consola. Ninguna relación de composición o agregación UML debe introducirse para llenar una cuota de símbolos.
@@ -79,8 +79,15 @@ Los pendientes **no invalidan** el catálogo para estudiar los patrones por cons
 
 Se implementó [un laboratorio adicional de relaciones UML](docs/laboratorios/relaciones-uml.md), separado de los 23 GoF. Prueba que `RegistroExpedicion.cerrar()` invalida sus partes **en el modelo**, aunque un informe conserve una referencia Java. También diferencia agregación compartida de asociación y dependencia, con pruebas locales y CI en Linux/Windows.
 
-## 7. Recomendación de cierre
+## 7. Actualización: visuales y familias concretas (14 de noviembre de 2026)
 
-Considerar la colección **funcional y apta para estudio**. Antes de anunciar un cierre estrictamente editorial, inspeccionar visualmente los SVG corregidos; después, si se busca más atractivo, ampliar imágenes y añadir una breve demostración aparte de R-09. Conservar las **reglas del dominio como fuente normativa**: si cambian, actualizar documentación, Java, UML y pruebas en ese orden.
+- Se revisaron estructuralmente los **23 SVG GoF**; el renderizado de [Observer](docs/uml/observer.svg) reveló desbordamiento del atributo de observadores sobre su asociación y multiplicidad. Se dibujó un esquema más espacioso.
+- [Abstract Factory](docs/uml/abstractfactory.svg) pasó de dos tipos de producto reutilizados con configuraciones distintas a **cuatro clases concretas**: `LuzAmarilla`, `PuertaAmarilla`, `LuzPiscinas` y `PuertaPiscinas`. Se actualizaron sus pruebas y diagrama; el cliente `Escena` sigue trabajando con interfaces.
+- Se incorporó una lámina ilustrada de **puerta, linterna, interruptor y criatura oscura** en [la galería](assets/README.md) y se relacionó con R-05 a R-08 en el atlas. Una imagen no constituye evidencia de una regla.
+- Los chequeos automáticos validan estructura SVG, enlaces y archivos WebP, pero **no** garantizan por sí solos la legibilidad de todas las posiciones de texto y flechas en diferentes visores.
+
+## 8. Recomendación de cierre
+
+Considerar la colección **funcional y apta para estudio**. Antes de anunciar un cierre estrictamente editorial, inspeccionar visualmente los otros SVG si se busca perfección editorial. La galería de objetos y el laboratorio aparte de R-09 ya están incorporados. Conservar las **reglas del dominio como fuente normativa**: si cambian, actualizar documentación, Java, UML y pruebas en ese orden.
 
 [Volver al README](README.md) · [Ver atlas visual](GUIA_VISUAL.md) · [Consultar dominio](DOMINIO.md).
