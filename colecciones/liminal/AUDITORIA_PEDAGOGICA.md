@@ -68,14 +68,18 @@ Los ejemplos pertenecen a **un solo mundo de referencia**, pero tienen **paquete
 | --- | --- | --- |
 | **Revisión visual manual de SVG** tras las correcciones | La compilación y el parser XML no detectan superposición de flechas o texto | Media |
 | **Ilustraciones de objetos y criatura** | Existen tres ambientes originales; faltarían láminas específicas de linterna, puerta, interruptor y monstruo, si queremos un catálogo más ilustrado | Baja |
-| **Laboratorio independiente de composición UML** | R-09 define `RegistroExpedicion` / `EntradaRegistro`, pero no hay un ejercicio exclusivo que muestre su propiedad y ciclo de vida. No se fuerza un rombo negro dentro de patrones que no lo necesitan | Media opcional |
+| **Laboratorio independiente de composición UML** | **Completado** en [Relaciones UML](docs/laboratorios/relaciones-uml.md): composición R-09, agregación local, asociaciones, referencias y baja lógica, con dos diagramas y pruebas | Resuelto |
 | **Completar `Interpreter` en la colección técnica original** | Esa colección sigue teniendo 22 patrones; la liminal sí tiene los 23 | Media, trabajo separado |
 | **Abstract Factory con clases de producto concretas diferentes** | Las dos fábricas actuales comparten los tipos `LuzAmbiental` y `PuertaAmbiental` y varían `Tema`; es una aplicación funcional y sencilla, aunque una segunda variante podría enseñar también polimorfismo entre productos | Baja opcional |
 | **Notificaciones con fallo de observador** | El Observer de consola es sincrónico y no ofrece transaccionalidad ante excepciones arbitrarias de callbacks. Ya se declara su alcance en la ficha | Baja; sería un diseño más avanzado |
 
 Los pendientes **no invalidan** el catálogo para estudiar los patrones por consola. Ninguna relación de composición o agregación UML debe introducirse para llenar una cuota de símbolos.
 
-## 6. Recomendación de cierre
+## 6. Actualización: laboratorio UML completado
+
+Se implementó [un laboratorio adicional de relaciones UML](docs/laboratorios/relaciones-uml.md), separado de los 23 GoF. Prueba que `RegistroExpedicion.cerrar()` invalida sus partes **en el modelo**, aunque un informe conserve una referencia Java. También diferencia agregación compartida de asociación y dependencia, con pruebas locales y CI en Linux/Windows.
+
+## 7. Recomendación de cierre
 
 Considerar la colección **funcional y apta para estudio**. Antes de anunciar un cierre estrictamente editorial, inspeccionar visualmente los SVG corregidos; después, si se busca más atractivo, ampliar imágenes y añadir una breve demostración aparte de R-09. Conservar las **reglas del dominio como fuente normativa**: si cambian, actualizar documentación, Java, UML y pruebas en ese orden.
 
