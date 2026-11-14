@@ -27,27 +27,3 @@ public final class ClienteBridge {
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
-
-interface CanalAviso { String comunicar(String mensaje); }
-final class CanalRadio implements CanalAviso {
-    public String comunicar(String mensaje) { return "Radio: " + mensaje; }
-}
-final class CanalLuz implements CanalAviso {
-    public String comunicar(String mensaje) { return "Luz: " + mensaje; }
-}
-
-abstract class AlertaLiminal {
-    private final CanalAviso canal;
-    AlertaLiminal(CanalAviso canal) { this.canal = Objects.requireNonNull(canal); }
-
-    public final String emitir() { return canal.comunicar(mensaje()); }
-    protected abstract String mensaje();
-}
-final class AlertaPuerta extends AlertaLiminal {
-    AlertaPuerta(CanalAviso canal) { super(canal); }
-    protected String mensaje() { return "puerta bloqueada"; }
-}
-final class AlertaRuido extends AlertaLiminal {
-    AlertaRuido(CanalAviso canal) { super(canal); }
-    protected String mensaje() { return "ruido en el pasillo"; }
-}

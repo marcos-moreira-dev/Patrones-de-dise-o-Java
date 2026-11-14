@@ -38,27 +38,3 @@ public final class ClienteFlyweight {
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
-
-record Textura(String material, String color) {
-    Textura {
-        Objects.requireNonNull(material);
-        Objects.requireNonNull(color);
-        if (material.isBlank() || color.isBlank()) throw new IllegalArgumentException("Textura inválida");
-    }
-}
-record ClaveTextura(String material, String color) {}
-final class FabricaTexturas {
-    private final Map<ClaveTextura, Textura> texturas = new HashMap<>();
-    Textura obtener(String material, String color) {
-        Textura propuesta = new Textura(material, color);
-        return texturas.computeIfAbsent(new ClaveTextura(material, color), clave -> propuesta);
-    }
-    int cantidad() { return texturas.size(); }
-}
-record Pared(String id, Textura textura) {
-    Pared {
-        Objects.requireNonNull(id);
-        Objects.requireNonNull(textura);
-        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
-    }
-}

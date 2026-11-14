@@ -30,36 +30,3 @@ public final class ClienteDecorator {
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
-
-interface Linterna {
-    int alcance();
-    String descripcion();
-}
-
-record LinternaBasica(int alcance) implements Linterna {
-    LinternaBasica {
-        if (alcance < 0) throw new IllegalArgumentException("Alcance negativo");
-    }
-    public String descripcion() { return "linterna básica"; }
-}
-
-abstract class DecoradorLinterna implements Linterna {
-    protected final Linterna envuelta;
-    DecoradorLinterna(Linterna envuelta) { this.envuelta = Objects.requireNonNull(envuelta); }
-    public int alcance() { return envuelta.alcance(); }
-    public String descripcion() { return envuelta.descripcion(); }
-}
-final class LenteDeAlcance extends DecoradorLinterna {
-    private final int extra;
-    LenteDeAlcance(Linterna base, int extra) {
-        super(base);
-        if (extra < 0) throw new IllegalArgumentException("Mejora negativa");
-        this.extra = extra;
-    }
-    public int alcance() { return Math.addExact(super.alcance(), extra); }
-    public String descripcion() { return super.descripcion() + " con lente"; }
-}
-final class FiltroAzul extends DecoradorLinterna {
-    FiltroAzul(Linterna base) { super(base); }
-    public String descripcion() { return super.descripcion() + " y filtro azul"; }
-}
