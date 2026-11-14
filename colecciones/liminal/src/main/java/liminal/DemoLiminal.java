@@ -1,6 +1,13 @@
 package liminal;
 
 import java.util.Locale;
+import liminal.estructurales.adapter.ClienteAdapter;
+import liminal.estructurales.bridge.ClienteBridge;
+import liminal.estructurales.composite.ClienteComposite;
+import liminal.estructurales.decorator.ClienteDecorator;
+import liminal.estructurales.facade.ClienteFacade;
+import liminal.estructurales.flyweight.ClienteFlyweight;
+import liminal.estructurales.proxy.ClienteProxy;
 import liminal.creacionales.abstractfactory.ClienteAbstractFactory;
 import liminal.creacionales.builder.ClienteBuilder;
 import liminal.creacionales.factorymethod.ClienteFactoryMethod;
@@ -25,17 +32,31 @@ public final class DemoLiminal {
             case "abstractfactory" -> ejecutar("ABSTRACT FACTORY — Ambientes", () -> ClienteAbstractFactory.ejecutar(System.out));
             case "builder" -> ejecutar("BUILDER — Habitación", () -> ClienteBuilder.ejecutar(System.out));
             case "prototype" -> ejecutar("PROTOTYPE — Habitación", () -> ClientePrototype.ejecutar(System.out));
+            case "adapter" -> ejecutar("ADAPTER — Radio antigua", () -> ClienteAdapter.ejecutar(System.out));
+            case "bridge" -> ejecutar("BRIDGE — Alertas", () -> ClienteBridge.ejecutar(System.out));
+            case "composite" -> ejecutar("COMPOSITE — Grupos de luces", () -> ClienteComposite.ejecutar(System.out));
+            case "decorator" -> ejecutar("DECORATOR — Linterna", () -> ClienteDecorator.ejecutar(System.out));
+            case "facade" -> ejecutar("FACADE — Cruce seguro", () -> ClienteFacade.ejecutar(System.out));
+            case "flyweight" -> ejecutar("FLYWEIGHT — Texturas", () -> ClienteFlyweight.ejecutar(System.out));
+            case "proxy" -> ejecutar("PROXY — Cámara", () -> ClienteProxy.ejecutar(System.out));
             case "todos" -> {
                 ejecutar("SINGLETON — Panel de avisos", () -> ClienteSingleton.ejecutar(System.out));
                 ejecutar("FACTORY METHOD — Apariciones", () -> ClienteFactoryMethod.ejecutar(System.out));
                 ejecutar("ABSTRACT FACTORY — Ambientes", () -> ClienteAbstractFactory.ejecutar(System.out));
                 ejecutar("BUILDER — Habitación", () -> ClienteBuilder.ejecutar(System.out));
                 ejecutar("PROTOTYPE — Habitación", () -> ClientePrototype.ejecutar(System.out));
+                ejecutar("ADAPTER — Radio antigua", () -> ClienteAdapter.ejecutar(System.out));
+                ejecutar("BRIDGE — Alertas", () -> ClienteBridge.ejecutar(System.out));
+                ejecutar("COMPOSITE — Grupos de luces", () -> ClienteComposite.ejecutar(System.out));
+                ejecutar("DECORATOR — Linterna", () -> ClienteDecorator.ejecutar(System.out));
+                ejecutar("FACADE — Cruce seguro", () -> ClienteFacade.ejecutar(System.out));
+                ejecutar("FLYWEIGHT — Texturas", () -> ClienteFlyweight.ejecutar(System.out));
+                ejecutar("PROXY — Cámara", () -> ClienteProxy.ejecutar(System.out));
                 ejecutar("STATE — Puerta", () -> ClienteState.ejecutar(System.out));
                 ejecutar("STRATEGY — Monstruo oscuro", () -> ClienteStrategy.ejecutar(System.out));
                 ejecutar("OBSERVER — Interruptor", () -> ClienteObserver.ejecutar(System.out));
             }
-            default -> throw new IllegalArgumentException("Elige singleton, factorymethod, abstractfactory, builder, prototype, state, strategy, observer o todos");
+            default -> throw new IllegalArgumentException("Elige un patrón por su nombre en minúsculas o todos");
         }
     }
 
