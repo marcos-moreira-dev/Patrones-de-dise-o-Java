@@ -41,6 +41,8 @@ comprobar_menu 'Escribe 0, 1, 2 o 3.'
 comprobar_menu 'PATRONES CREACIONALES'
 comprobar_menu 'PATRONES ESTRUCTURALES'
 comprobar_menu 'PATRONES DE COMPORTAMIENTO'
+comprobar_menu '[Interpreter]'
+comprobar_menu 'Total calculado: $94.50'
 comprobar_menu 'Saliendo del programa'
 
 printf '\n[2/6] Arena Java: compilar, probar y empaquetar\n'
