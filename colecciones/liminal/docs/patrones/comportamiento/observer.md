@@ -6,6 +6,10 @@
 
 ![UML de Observer: interruptor mantiene referencias a observadores](../../uml/observer.svg)
 
+**Mira las notificaciones:** el UML presenta la relación entre clases; el siguiente diagrama resume lo que reciben la luz y la alarma tras las dos pulsaciones del cliente.
+
+![Secuencia de Observer: interruptor I-01 notifica a Luz L-01 y Alarma A-01](../../secuencias/notificaciones-observer.svg)
+
 **Escena.** Pulsas un interruptor en una oficina vacía. La luz se enciende y la alarma recibe un aviso. Al pulsarlo de nuevo, la luz se apaga. La alarma también puede dejar de recibir notificaciones.
 
 **Reglas del mundo:** [R-07](../../../DOMINIO.md). Una luz está ENCENDIDA o APAGADA. Un interruptor puede notificar a varios dispositivos.
