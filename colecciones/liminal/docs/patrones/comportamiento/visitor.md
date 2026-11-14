@@ -24,3 +24,7 @@ LINTERNA A-01
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/visitor/ClienteVisitor.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/visitor/) · [PruebaVisitor.java](../../../src/test/java/liminal/comportamiento/visitor/PruebaVisitor.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Visitante clásico frente a acyclic visitor o pattern matching:** el doble despacho evita que cada operación tenga que inspeccionar manualmente tipos concretos, pero añadir nuevos tipos de elemento obliga a revisar los visitantes. Pattern matching puede resultar más simple cuando la jerarquía es cerrada; no es automáticamente el mismo patrón GoF.

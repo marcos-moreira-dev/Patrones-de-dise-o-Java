@@ -27,3 +27,7 @@ Avisos de alarma: 1
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/mediator/ClienteMediator.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/mediator/) · [PruebaMediator.java](../../../src/test/java/liminal/comportamiento/mediator/PruebaMediator.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Coordinador de interacciones frente a bus de eventos:** un mediador centraliza reglas concretas entre colegas; publicar mensajes sin ese conocimiento puede ser otra arquitectura. Escoger en función de las interacciones reales, no del número de clases.

@@ -27,3 +27,7 @@ H-02: Piscina vacía
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/iterator/ClienteIterator.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/iterator/) · [PruebaIterator.java](../../../src/test/java/liminal/comportamiento/iterator/PruebaIterator.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Instantánea frente a iterador vivo:** recorrer una copia protege el recorrido ante cambios posteriores; recorrer una colección viva puede reflejar actualizaciones o detectar modificaciones concurrentes según su contrato. No confundir detección de modificación con una garantía general de seguridad entre hilos.

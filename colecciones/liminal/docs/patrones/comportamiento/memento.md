@@ -27,3 +27,7 @@ Ajuste restaurado: intensidad 4, filtro azul false
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/memento/ClienteMemento.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/memento/) · [PruebaMemento.java](../../../src/test/java/liminal/comportamiento/memento/PruebaMemento.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Instantánea completa o incremental:** guardar todo el estado es fácil de razonar; registrar solo cambios puede ahorrar recursos, pero exige una política de restauración más rigurosa. El cuidador no debe conocer ni modificar el estado interno protegido.

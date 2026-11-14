@@ -38,3 +38,7 @@ Esperar -> Pasillo amarillo
 **Archivos:** [ClienteStrategy.java](../../../src/main/java/liminal/comportamiento/strategy/ClienteStrategy.java) · [PruebaStrategy.java](../../../src/test/java/liminal/comportamiento/strategy/PruebaStrategy.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/strategy/) · [PruebaStrategy.java](../../../src/test/java/liminal/comportamiento/strategy/PruebaStrategy.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Clases frente a funciones/lambdas:** en Java una estrategia sin estado puede implementarse con una interfaz funcional y lambdas, pero una política con identidad y configuración propia suele leerse mejor como clase. La criatura no se duplica al cambiar de estrategia.

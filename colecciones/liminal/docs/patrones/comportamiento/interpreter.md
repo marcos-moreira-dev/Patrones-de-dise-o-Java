@@ -27,3 +27,7 @@ Luz L-01 ENCENDIDA
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/interpreter/ClienteInterpreter.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/interpreter/) · [PruebaInterpreter.java](../../../src/test/java/liminal/comportamiento/interpreter/PruebaInterpreter.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Gramática con más operadores o distintos evaluadores:** una expresión puede anidar otras expresiones y delegar recursivamente su interpretación. El Interpreter técnico de precios ya muestra esa ruta; no incorporar un parser general si las instrucciones liminales siguen siendo mínimas.

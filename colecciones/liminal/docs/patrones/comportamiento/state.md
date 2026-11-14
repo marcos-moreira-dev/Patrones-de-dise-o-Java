@@ -48,3 +48,7 @@ Abrir -> ABIERTA
 **Ejecutar:** desde la raíz del repositorio, compilar con el script de la colección y ejecutar `java -cp colecciones/liminal/out liminal.DemoLiminal state`.
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/state/) · [PruebaState.java](../../../src/test/java/liminal/comportamiento/state/PruebaState.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Estados compartidos o por instancia:** si el objeto estado no contiene datos propios, varias puertas pueden compartir una instancia; si conserva contexto mutable, cada puerta puede necesitar la suya. Las transiciones R-05 permanecen iguales y no se deduce composición de la simple referencia.

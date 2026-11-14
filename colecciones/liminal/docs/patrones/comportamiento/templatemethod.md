@@ -29,3 +29,7 @@ Preparar linterna -> Observar piscina vacía -> Regresar al punto seguro
 [Ver código y cliente](../../../src/main/java/liminal/comportamiento/templatemethod/ClienteTemplateMethod.java).
 
 **Explorar los archivos por separado:** [clases Java](../../../src/main/java/liminal/comportamiento/templatemethod/) · [PruebaTemplateMethod.java](../../../src/test/java/liminal/comportamiento/templatemethod/PruebaTemplateMethod.java) · [guía de lectura del código](../../../GUIA_LECTURA_CODIGO.md).
+
+## Otras implementaciones (sin código extra)
+
+**Hooks opcionales y métodos abstractos obligatorios:** un hook permite pequeñas variaciones sin duplicar el algoritmo, mientras un método abstracto exige especialización. Un Template Method con demasiados hooks puede ocultar el flujo principal.
