@@ -18,6 +18,12 @@ La colección técnica original y los microproyectos Arena Java y MiniSO **se co
 
 **[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones aplicadas, reglas contrastadas con Java y UML, pruebas y mejoras opcionales pendientes.
 
+## Laboratorio adicional de relaciones UML
+
+**[Asociación, agregación y composición: guía con dos diagramas](docs/laboratorios/relaciones-uml.md)**. Este ejercicio es **independiente de los 23 patrones GoF**: demuestra con referencias Java cómo un explorador puede estar en dos equipos y cómo un registro posee exclusivamente sus entradas activas (R-09).
+
+Se ejecuta por consola, se prueba automáticamente y no requiere JavaFX.
+
 ## Empieza aquí
 
 1. [Cómo se define un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md): supuestos, invariantes, restricciones, precondiciones, postcondiciones y contraejemplos.
