@@ -19,7 +19,8 @@ for esperado in 'STATE' 'STRATEGY' 'OBSERVER' 'Avisos:' 'Monstruo silencioso' 'A
     fi
 done
 laboratorio="$(java -cp out liminal.laboratorios.relaciones.ClienteRelacionesUml)"
-for esperado in 'ASOCIACIÓN:' 'AGREGACIÓN:' 'COMPOSICIÓN:' 'CIERRE:' 'ENTRADA activa: false'; do
+# Comprobar fragmentos ASCII: la consola de Windows puede recodificar las tildes.
+for esperado in 'ASOCIACI' 'AGREGACI' 'COMPOSICI' 'CIERRE:' 'ENTRADA activa: false'; do
     if [[ "$laboratorio" != *"$esperado"* ]]; then
         echo "ERROR: falta la relación UML en consola: $esperado" >&2
         exit 1
