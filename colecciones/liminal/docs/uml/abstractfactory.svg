@@ -52,22 +52,22 @@
 <text class="body" x="518" y="517">+ aspecto(): String</text>
 <text class="body" x="518" y="546">+ estado(): String</text>
 <rect class="box" x="30" y="725" width="340" height="142" rx="4"/>
-<text class="title" x="200" y="762">«record» LuzAmarilla</text>
+<text class="title" x="200" y="762">LuzAmarilla</text>
 <path class="sep" d="M30 780 H370"/>
 <text class="body" x="48" y="813">+ tema(): Tema</text>
 <text class="body" x="48" y="842">+ aspecto(): String</text>
 <rect class="box" x="390" y="725" width="340" height="142" rx="4"/>
-<text class="title" x="560" y="762">«record» LuzPiscinas</text>
+<text class="title" x="560" y="762">LuzPiscinas</text>
 <path class="sep" d="M390 780 H730"/>
 <text class="body" x="408" y="813">+ tema(): Tema</text>
 <text class="body" x="408" y="842">+ aspecto(): String</text>
 <rect class="box" x="750" y="725" width="350" height="142" rx="4"/>
-<text class="title" x="925" y="762">«record» PuertaAmarilla</text>
+<text class="title" x="925" y="762">PuertaAmarilla</text>
 <path class="sep" d="M750 780 H1100"/>
 <text class="body" x="768" y="813">+ tema(): Tema</text>
 <text class="body" x="768" y="842">+ estado(): String</text>
 <rect class="box" x="1120" y="725" width="360" height="142" rx="4"/>
-<text class="title" x="1300" y="762">«record» PuertaPiscinas</text>
+<text class="title" x="1300" y="762">PuertaPiscinas</text>
 <path class="sep" d="M1120 780 H1480"/>
 <text class="body" x="1138" y="813">+ tema(): Tema</text>
 <text class="body" x="1138" y="842">+ estado(): String</text>
