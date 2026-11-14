@@ -1,6 +1,6 @@
 # Expedición Liminal — PLAN DE IMPLEMENTACIÓN
 
-> **Estado:** plan previo al código; no se han creado ejemplos Java ni imágenes finales. **Versión de planificación:** 1.0 (2026-11-13).
+> **Estado:** contrato fijado y piloto State / Strategy / Observer implementado; restan 20 patrones e imágenes atmosféricas. **Versión de planificación:** 1.1 (2026-11-13).
 > Fuente normativa: [DOMINIO.md](DOMINIO.md). Método de modelado: [Cómo definir un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).
 
 ## 1. Meta didáctica
@@ -154,6 +154,20 @@ Estética liminal y analógica, inquietud tranquila, fotografía/videojuego de e
 6. **Lámina de estados**: una puerta abierta, cerrada y bloqueada.
 
 Preferir **imágenes originales generadas** después de fijar escenas y actores. Las fotos en línea solo pueden usarse cuando se verifican condiciones de licencia, atribución y permiso; registrar fuente y autor. Para mantener el repositorio liviano, exportar imágenes web optimizadas y usar SVG para UML. Las ilustraciones no son autoridad de reglas.
+
+## Piloto entregado (primera implementación)
+
+- `src/main/java/liminal/comportamiento/state/ClienteState.java`: puerta con objetos de estado y rechazo de transiciones inválidas (R-05, R-12).
+- `src/main/java/liminal/comportamiento/strategy/ClienteStrategy.java`: monstruo oscuro con estrategias intercambiables y validación de salidas del mapa (R-02, R-08).
+- `src/main/java/liminal/comportamiento/observer/ClienteObserver.java`: interruptor, luz y alarma mediante suscripciones (R-07).
+- `src/main/java/liminal/DemoLiminal.java`: entrada por consola para las tres escenas.
+- `src/test/java/`: pruebas de transiciones, referencias y casos inválidos.
+- `docs/uml/`: tres diagramas SVG; `docs/patrones/comportamiento/`: tres fichas explicativas.
+- `scripts/verificar.sh` y `scripts/verificar.ps1`: compilación Java 21 y ejecución reproducible.
+
+**Decisión pedagógica:** cada piloto agrupa sus clases auxiliares de paquete en un único archivo Java junto a su clase cliente pública. Java permite varias clases no públicas por archivo; esa concentración facilita leer el patrón como una pequeña historia. Si la complejidad crece, separar archivos sin alterar el contrato.
+
+**Limitación declarada:** el piloto no modela multijugador, concurrencia, físicas ni un motor gráfico. El mapa de Strategy maneja identificadores de habitaciones y conexiones dirigidas. En Observer, la notificación síncrona no se presenta como una transacción tolerante a excepciones arbitrarias de receptores.
 
 ## 8. Secuencia de desarrollo y compuertas de calidad
 
