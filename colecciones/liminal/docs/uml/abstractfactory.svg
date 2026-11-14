@@ -1,3 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="590" viewBox="0 0 1400 590" role="img" aria-labelledby="titulo descripcion"><title id="titulo">Abstract Factory: familias coherentes de dispositivos</title><desc id="descripcion">Las fábricas Amarilla y Piscinas implementan FabricaAmbiente; generan luces y puertas de su mismo tema.</desc><style>
-.b{fill:#f1f5ff;stroke:#3c6da1;stroke-width:2}.i{fill:#f4ecff;stroke:#8159a7;stroke-width:2}.l{stroke:#25374a;stroke-width:2.5;fill:none}.d{stroke-dasharray:9 7}.tri{fill:white;stroke:#25374a;stroke-width:2.5}.t{fill:#17283d;font:700 22px Arial,sans-serif;text-anchor:middle}.m{fill:#23364a;font:18px Arial,sans-serif}.n{fill:#475569;font:italic 18px Arial,sans-serif;text-anchor:middle}
-</style><rect class="b" x="32" y="45" width="318" height="124" rx="2"/><text class="t" x="191" y="79">ClienteAbstractFactory</text><path class="l" d="M32 97 H350"/><text class="m" x="46" y="127">+ ejecutar(out): void</text><rect class="i" x="468" y="30" width="460" height="160" rx="2"/><text class="t" x="698" y="64">«interface» FabricaAmbiente</text><path class="l" d="M468 82 H928"/><text class="m" x="482" y="112">+ crearLuz(): LuzDelNivel</text><text class="m" x="482" y="138">+ crearPuerta(): PuertaDelNivel</text><rect class="b" x="366" y="325" width="395" height="110" rx="2"/><text class="t" x="563.5" y="359">FabricaAmarilla</text><path class="l" d="M366 377 H761"/><text class="m" x="380" y="407">+ crearLuz / crearPuerta</text><rect class="b" x="798" y="325" width="405" height="110" rx="2"/><text class="t" x="1000.5" y="359">FabricaPiscinas</text><path class="l" d="M798 377 H1203"/><text class="m" x="812" y="407">+ crearLuz / crearPuerta</text><rect class="i" x="1000" y="30" width="372" height="128" rx="2"/><text class="t" x="1186" y="64">«interface» LuzDelNivel</text><path class="l" d="M1000 82 H1372"/><text class="m" x="1014" y="112">+ tema(): Tema</text><rect class="i" x="1000" y="185" width="372" height="128" rx="2"/><text class="t" x="1186" y="219">«interface» PuertaDelNivel</text><path class="l" d="M1000 237 H1372"/><text class="m" x="1014" y="267">+ tema(): Tema</text><path class="l d" d="M350 100 L468 100"/><path class="l d" d="M690 325 L690 213"/><path class="tri" d="M675 210 L690 190 L705 210 Z"/><path class="l d" d="M1000 325 L820 213"/><path class="tri" d="M805 210 L820 190 L835 210 Z"/><path class="l d" d="M928 90 L1000 90"/><path class="l d" d="M928 137 L990 240"/><text class="n" x="700" y="553">Tema AMARILLO o PISCINAS cambia la apariencia, no las reglas de las puertas.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Abstract Factory — fábrica de escenas con familias de productos</title>
+<desc id="descripcion">ClienteAbstractFactory utiliza Escena, que depende de FabricaAmbiente. FabricaAmarilla y FabricaPiscinas realizan FabricaAmbiente. LuzAmbiental realiza LuzDelNivel y PuertaAmbiental realiza PuertaDelNivel. Las fábricas crean productos con configuraciones AMARILLO y PISCINAS.</desc>
+<defs>
+<marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker></defs>
+<style>
+.box{fill:#eef5ff;stroke:#4272a5;stroke-width:2.3}.iface{fill:#f5edff;stroke:#845baa;stroke-width:2.3}
+.edge{stroke:#26394e;fill:none;stroke-width:2.5}.dashed{stroke-dasharray:9 6}
+.sep{stroke:#8ea1b8;stroke-width:1.4}.title{fill:#16273c;font:700 21px Arial,sans-serif;text-anchor:middle}
+.body{fill:#23364a;font:17px Arial,sans-serif}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}
+</style>
+<!-- Cliente -> Escena -> fábrica abstracta -->
+<path class="edge dashed" d="M320 128 H372" marker-end="url(#open)"/>
+<path class="edge dashed" d="M670 128 H765" marker-end="url(#open)"/>
+<!-- Las fábricas concretas implementan el contrato; marcador triangular hueco. -->
+<path class="edge dashed" d="M1207 350 V278 H1050 V235" marker-end="url(#tri)"/>
+<path class="edge dashed" d="M1230 560 V305 H1100 V235" marker-end="url(#tri)"/>
+<!-- La fábrica abstracta declara los productos abstractos. -->
+<path class="edge dashed" d="M835 235 L260 430" marker-end="url(#open)"/>
+<path class="edge dashed" d="M925 235 L670 430" marker-end="url(#open)"/>
+<!-- Los registros concretos realizan las interfaces de producto. -->
+<path class="edge dashed" d="M260 650 V570" marker-end="url(#tri)"/>
+<path class="edge dashed" d="M670 650 V570" marker-end="url(#tri)"/>
+<!-- Asociación estructural: Escena retiene dos productos, no su propiedad compuesta. -->
+<path class="edge" d="M521 205 V340 H175 V430" marker-end="url(#open)"/>
+<path class="edge" d="M587 205 V360 H615 V430" marker-end="url(#open)"/>
+<!-- Clases -->
+<rect class="box" x="30" y="70" width="290" height="125" rx="3"/>
+<text class="title" x="175" y="106">ClienteAbstractFactory</text><path class="sep" d="M30 124 H320"/>
+<text class="body" x="44" y="160">+ ejecutar(out): void</text>
+<rect class="box" x="372" y="65" width="298" height="140" rx="3"/>
+<text class="title" x="521" y="102">Escena</text><path class="sep" d="M372 120 H670"/>
+<text class="body" x="386" y="154">- luz: LuzDelNivel</text>
+<text class="body" x="386" y="180">- puerta: PuertaDelNivel</text>
+<rect class="iface" x="765" y="55" width="440" height="180" rx="3"/>
+<text class="title" x="985" y="92">«interface» FabricaAmbiente</text>
+<path class="sep" d="M765 111 H1205"/>
+<text class="body" x="779" y="146">+ crearLuz(): LuzDelNivel</text>
+<text class="body" x="779" y="172">+ crearPuerta(): PuertaDelNivel</text>
+<rect class="iface" x="65" y="430" width="390" height="140" rx="3"/>
+<text class="title" x="260" y="467">«interface» LuzDelNivel</text><path class="sep" d="M65 486 H455"/>
+<text class="body" x="79" y="521">+ tema(): Tema</text>
+<rect class="iface" x="475" y="430" width="390" height="140" rx="3"/>
+<text class="title" x="670" y="467">«interface» PuertaDelNivel</text><path class="sep" d="M475 486 H865"/>
+<text class="body" x="489" y="521">+ tema(): Tema</text>
+<rect class="box" x="65" y="650" width="390" height="140" rx="3"/>
+<text class="title" x="260" y="688">«record» LuzAmbiental</text><path class="sep" d="M65 706 H455"/>
+<text class="body" x="79" y="742">- tema: Tema</text>
+<rect class="box" x="475" y="650" width="390" height="140" rx="3"/>
+<text class="title" x="670" y="688">«record» PuertaAmbiental</text><path class="sep" d="M475 706 H865"/>
+<text class="body" x="489" y="742">- tema: Tema</text>
+<rect class="box" x="1030" y="350" width="420" height="155" rx="3"/>
+<text class="title" x="1240" y="387">FabricaAmarilla</text><path class="sep" d="M1030 405 H1450"/>
+<text class="body" x="1044" y="438">+ crearLuz(): LuzDelNivel</text>
+<text class="body" x="1044" y="465">+ crearPuerta(): PuertaDelNivel</text>
+<rect class="box" x="1030" y="560" width="420" height="155" rx="3"/>
+<text class="title" x="1240" y="597">FabricaPiscinas</text><path class="sep" d="M1030 615 H1450"/>
+<text class="body" x="1044" y="649">+ crearLuz(): LuzDelNivel</text>
+<text class="body" x="1044" y="676">+ crearPuerta(): PuertaDelNivel</text>
+<text class="note" x="750" y="830">Las familias usan los mismos records con Tema distinto: cambia la configuración, no el contrato.</text>
+</svg>
