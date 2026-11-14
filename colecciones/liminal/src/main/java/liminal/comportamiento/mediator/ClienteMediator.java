@@ -32,6 +32,18 @@ public final class ClienteMediator {
         } catch (IllegalArgumentException esperado) {
             if (alarma.avisos() != 1) throw new AssertionError("El rechazo no debe notificar");
         }
+        try {
+            new SensorRuido(" ", centro);
+            throw new AssertionError("Un sensor necesita un ID");
+        } catch (IllegalArgumentException esperado) {
+            // R-01.
+        }
+        try {
+            new Luz("");
+            throw new AssertionError("La luz necesita un ID");
+        } catch (IllegalArgumentException esperado) {
+            // R-01.
+        }
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
@@ -44,6 +56,7 @@ final class SensorRuido {
     private final Mediador mediador;
     SensorRuido(String id, Mediador mediador) {
         this.id = Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
         this.mediador = Objects.requireNonNull(mediador);
     }
     void detectar() { mediador.notificarRuido(id); }
@@ -51,14 +64,20 @@ final class SensorRuido {
 final class Luz {
     private final String id;
     private boolean encendida;
-    Luz(String id) { this.id = Objects.requireNonNull(id); }
+    Luz(String id) {
+        this.id = Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     void encender() { encendida = true; }
     boolean encendida() { return encendida; }
 }
 final class Alarma {
     private final String id;
     private int avisos;
-    Alarma(String id) { this.id = Objects.requireNonNull(id); }
+    Alarma(String id) {
+        this.id = Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     void avisar() { avisos++; }
     int avisos() { return avisos; }
 }
@@ -69,6 +88,7 @@ final class CentroControl implements Mediador {
 
     CentroControl(String sensorPermitido, Luz luz, Alarma alarma) {
         this.sensorPermitido = Objects.requireNonNull(sensorPermitido);
+        if (sensorPermitido.isBlank()) throw new IllegalArgumentException("Sensor sin ID");
         this.luz = Objects.requireNonNull(luz);
         this.alarma = Objects.requireNonNull(alarma);
     }
