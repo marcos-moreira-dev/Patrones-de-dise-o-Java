@@ -24,7 +24,7 @@ La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidade
 
 ### Ruta visual de estudio: Expedición Liminal
 
-Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. Las imágenes atmosféricas originales serán incorporadas en una etapa artística independiente.
+Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. La colección ya incluye tres imágenes atmosféricas originales; las láminas de objetos y criaturas serían una ampliación artística opcional.
 
 Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](colecciones/liminal/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](colecciones/liminal/PLAN.md). Empieza por el [README de la colección liminal](colecciones/liminal/README.md).
 
@@ -35,6 +35,12 @@ Antes de escribirlos se fijan las reglas del mundo y la metodología para deriva
 **[Laboratorio complementario de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md)**: composición, agregación y ciclo de vida, con diagramas y pruebas Java.
 
 Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
+
+### Dos colecciones y un laboratorio UML
+
+La **colección técnica original** también está completa con los **23 patrones GoF**. Su nuevo [Interpreter de precios](comportamiento/Interpreter/README.md) analiza un lenguaje mínimo y construye un árbol de expresiones con descuentos y recargos anidados.
+
+En la colección liminal incorporamos además un [laboratorio de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md), independiente de GoF, para distinguir composición, agregación compartida, asociación y dependencia. Los 23 patrones siguen contando como 23, no 24.
 
 ### Microproyectos con arquitectura real
 
