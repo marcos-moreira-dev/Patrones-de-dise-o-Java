@@ -23,7 +23,7 @@ if ! mvn -version | grep -Eq 'Java version:[[:space:]]*21([.]|$)'; then
     exit 1
 fi
 
-printf '\n[1/5] Patrones clasicos: compilar y recorrer el menu\n'
+printf '\n[1/6] Patrones clasicos: compilar y recorrer el menu\n'
 mkdir -p out/clasicos
 find creacionales estructurales comportamiento -name '*.java' -print0 \
     | xargs -0 javac -encoding UTF-8 -d out/clasicos App.java Main.java
@@ -43,20 +43,20 @@ comprobar_menu 'PATRONES ESTRUCTURALES'
 comprobar_menu 'PATRONES DE COMPORTAMIENTO'
 comprobar_menu 'Saliendo del programa'
 
-printf '\n[2/5] Arena Java: compilar, probar y empaquetar\n'
+printf '\n[2/6] Arena Java: compilar, probar y empaquetar\n'
 mvn -B -ntp -f proyectos/arena-java/pom.xml clean verify
 
-printf '\n[3/5] MiniSO: compilar, probar y empaquetar\n'
+printf '\n[3/6] MiniSO: compilar, probar y empaquetar\n'
 mvn -B -ntp -f proyectos/miniso/pom.xml clean verify
 
-printf '\n[4/5] Smoke test: arrancar JAR de Arena Java\n'
+printf '\n[4/6] Smoke test: arrancar JAR de Arena Java\n'
 salida_arena="$(printf '0\n' | java -jar proyectos/arena-java/target/arena-java-1.0.0-SNAPSHOT.jar)"
 if [[ "$salida_arena" != *'=== ARENA JAVA ==='* ]] || [[ "$salida_arena" != *'1 Arena'* ]]; then
     printf 'ERROR: no se observo la pantalla inicial de Arena Java\n' >&2
     exit 1
 fi
 
-printf '\n[5/5] Smoke test: planificar y consultar metricas en MiniSO\n'
+printf '\n[5/6] Smoke test: planificar y consultar metricas en MiniSO\n'
 salida_miniso="$(printf '2\ncrear demo 2 5 4\ntick 2\nestado\nmetricas\ncomparar\nsalir\n' | java -jar proyectos/miniso/target/miniso-1.0.0-SNAPSHOT.jar)"
 if [[ "$salida_miniso" != *'PID 1 termino y libero memoria'* ]] \
         || [[ "$salida_miniso" != *'memoria=0/32 KiB'* ]] \
@@ -66,4 +66,7 @@ if [[ "$salida_miniso" != *'PID 1 termino y libero memoria'* ]] \
     exit 1
 fi
 
-printf '\nVERIFICACION COMPLETA: 22 patrones clasicos, 2 microproyectos, 2 suites y 3 pruebas de consola correctas.\n'
+printf '\n[6/6] Expedicion Liminal: compilar, ejecutar pruebas y demos del piloto\n'
+bash colecciones/liminal/scripts/verificar.sh
+
+printf '\nVERIFICACION COMPLETA: 22 patrones clasicos, 2 microproyectos y 3 demos liminales verificadas.\n'
