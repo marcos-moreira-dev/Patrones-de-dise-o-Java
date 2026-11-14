@@ -24,8 +24,10 @@ public final class PruebaDirector {
                 "Reutilizar builder no modifica producto entregado");
 
         rechazar(() -> director.construirPasillo(" ", builder));
-        asegurar(builder.construir() == piscina || builder.construir() != null,
-                "Rechazo anterior no altera campos"); // se verificará por sus datos
+        Habitacion despuesDelRechazo = builder.construir();
+        asegurar(despuesDelRechazo.id().equals("H-02")
+                && despuesDelRechazo.ambiente().equals("Piscina vacía"),
+                "El rechazo de ID no altera los campos del Builder");
         rechazar(() -> builder.instalarLuces(-1));
         asegurar(builder.construir().luces() == 2, "El rechazo no altera las luces");
 
