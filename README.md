@@ -20,7 +20,7 @@ estudiar también las fases de construcción con Maven sin frameworks.
 3. Ejecuta el ejemplo, cambia una decisión y observa qué comportamiento se modifica.
 4. Revisa el Javadoc de los contratos: **qué garantiza cada método, qué recibe y qué devuelve**. La implementación puede llamar internamente a otros métodos sin que cada uno sea un caso de uso.
 
-La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidades, clases abstractas, interfaces (incluida la notación circular), enumeraciones, `record` y el paso del modelo a estructuras Java como `List` y `Map`.
+La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidades, clases abstractas, interfaces (incluida la notación circular), enumeraciones, `record` y el paso del modelo a estructuras Java como `List` y `Map`. También diferencia **clases, instancias, referencias, creación, uso y propiedad**, y explica por qué la ingeniería inversa de código Java no puede deducir por sí sola la semántica de agregación y composición.
 
 ### Microproyectos con arquitectura real
 
