@@ -31,6 +31,12 @@ public final class ClienteVisitor {
                 || !descripcion.resultados().get(2).contains("LINTERNA")) {
             throw new AssertionError("Despacho del visitante incorrecto");
         }
+        try {
+            new Puerta(" ");
+            throw new AssertionError("Una puerta necesita un ID");
+        } catch (IllegalArgumentException esperado) {
+            // R-01.
+        }
     }
     public static void main(String[] args) { ejecutar(System.out); }
 
@@ -43,15 +49,24 @@ interface Elemento {
     void aceptar(Visitante visitante);
 }
 record Puerta(String id) implements Elemento {
-    Puerta { Objects.requireNonNull(id); }
+    Puerta {
+        Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     public void aceptar(Visitante visitante) { visitante.visitar(this); }
 }
 record Luz(String id) implements Elemento {
-    Luz { Objects.requireNonNull(id); }
+    Luz {
+        Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     public void aceptar(Visitante visitante) { visitante.visitar(this); }
 }
 record Linterna(String id) implements Elemento {
-    Linterna { Objects.requireNonNull(id); }
+    Linterna {
+        Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     public void aceptar(Visitante visitante) { visitante.visitar(this); }
 }
 
