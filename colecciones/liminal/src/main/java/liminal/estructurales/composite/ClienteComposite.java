@@ -40,6 +40,18 @@ public final class ClienteComposite {
         } catch (IllegalArgumentException esperado) {
             if (!pasillo.hijos().equals(List.of(uno))) throw new AssertionError("Sin mutación parcial");
         }
+        try {
+            new LuzIndividual("");
+            throw new AssertionError("No debe existir una luz sin ID");
+        } catch (IllegalArgumentException esperado) {
+            // R-01.
+        }
+        try {
+            new GrupoLuces(" ");
+            throw new AssertionError("El grupo necesita un nombre");
+        } catch (IllegalArgumentException esperado) {
+            // R-01.
+        }
     }
     public static void main(String[] args) { ejecutar(System.out); }
 }
@@ -52,7 +64,10 @@ final class LuzIndividual implements Encendible {
     private final String id;
     private boolean encendida;
 
-    LuzIndividual(String id) { this.id = Objects.requireNonNull(id); }
+    LuzIndividual(String id) {
+        this.id = Objects.requireNonNull(id);
+        if (id.isBlank()) throw new IllegalArgumentException("ID vacío");
+    }
     String id() { return id; }
     boolean encendida() { return encendida; }
     public void encender() { encendida = true; }
@@ -63,7 +78,10 @@ final class GrupoLuces implements Encendible {
     private final String nombre;
     private final List<Encendible> hijos = new ArrayList<>();
 
-    GrupoLuces(String nombre) { this.nombre = Objects.requireNonNull(nombre); }
+    GrupoLuces(String nombre) {
+        this.nombre = Objects.requireNonNull(nombre);
+        if (nombre.isBlank()) throw new IllegalArgumentException("Nombre del grupo vacío");
+    }
     String nombre() { return nombre; }
     List<Encendible> hijos() { return List.copyOf(hijos); }
 
