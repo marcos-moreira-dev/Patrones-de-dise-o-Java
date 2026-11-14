@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640" role="img" aria-labelledby="titulo descripcion"><title id="titulo">Bridge — Alertas y canales</title><desc id="descripcion">AlertaLiminal delega al contrato CanalAviso; los tipos de alertas y canales varían independientemente.</desc>
+<defs><marker id="triangle" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker></defs>
+<style>.box{fill:#f1f5ff;stroke:#4272a5;stroke-width:2.4}.iface{fill:#f4ecff;stroke:#825cac;stroke-width:2.4}.sep{stroke:#8194ad;stroke-width:1.4}.title{fill:#18283d;font:700 21px Arial,sans-serif;text-anchor:middle}.body{fill:#23364a;font:17px Arial,sans-serif}.edge{fill:none;stroke:#25374a;stroke-width:2.4}.dashed{stroke-dasharray:8 6}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
+<path class="edge dashed" d="M310 112.5 L410 147.5" marker-end="url(#open)"/>
+<path class="edge" d="M800 147.5 L965 136.5" marker-end="url(#open)"/>
+<path class="edge" d="M377.5 348 L605 230" marker-end="url(#triangle)"/>
+<path class="edge" d="M732.5 348 L605 230" marker-end="url(#triangle)"/>
+<path class="edge dashed" d="M1155 320 L1155 208" marker-end="url(#triangle)"/>
+<path class="edge dashed" d="M1155 478 L1155 208" marker-end="url(#triangle)"/>
+<rect x="30" y="55" width="280" height="115" rx="3" class="box"/><text x="170" y="90" class="title">ClienteBridge</text><path d="M30 108 H310" class="sep"/><text x="44" y="139" class="body">+ ejecutar(out): void</text>
+<rect x="410" y="65" width="390" height="165" rx="3" class="box"/><text x="605" y="100" class="title">«abstract» AlertaLiminal</text><path d="M410 118 H800" class="sep"/><text x="424" y="149" class="body">- canal: CanalAviso</text><text x="424" y="175" class="body">+ emitir(): String</text>
+<rect x="965" y="65" width="380" height="143" rx="3" class="iface"/><text x="1155" y="100" class="title">«interface» CanalAviso</text><path d="M965 118 H1345" class="sep"/><text x="979" y="149" class="body">+ comunicar(mensaje): String</text>
+<rect x="220" y="348" width="315" height="123" rx="3" class="box"/><text x="377.5" y="383" class="title">AlertaPuerta</text><path d="M220 401 H535" class="sep"/><text x="234" y="432" class="body">+ mensaje(): String</text>
+<rect x="575" y="348" width="315" height="123" rx="3" class="box"/><text x="732.5" y="383" class="title">AlertaRuido</text><path d="M575 401 H890" class="sep"/><text x="589" y="432" class="body">+ mensaje(): String</text>
+<rect x="975" y="320" width="360" height="117" rx="3" class="box"/><text x="1155" y="355" class="title">CanalRadio</text><path d="M975 373 H1335" class="sep"/><text x="989" y="404" class="body">+ comunicar(...)</text>
+<rect x="975" y="478" width="360" height="117" rx="3" class="box"/><text x="1155" y="513" class="title">CanalLuz</text><path d="M975 531 H1335" class="sep"/><text x="989" y="562" class="body">+ comunicar(...)</text>
+<text class="note" x="700" y="626">Separar abstracción de implementación permite combinar alertas con distintos canales.</text></svg>
