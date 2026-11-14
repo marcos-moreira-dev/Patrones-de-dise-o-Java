@@ -1,5 +1,9 @@
 # Interpreter — Mensajes que el mundo entiende
 
+![Oficinas vacías con alfombra rosada y luces fluorescentes](../../../assets/ambientes/oficinas-oniricas.webp)
+
+*Referencia ambiental, no regla del mundo. Las invariantes están en [DOMINIO.md](../../../DOMINIO.md).*
+
 ![UML de Interpreter: analizador, expresiones y contexto](../../uml/interpreter.svg)
 
 **Escena.** En una terminal encuentras instrucciones mínimas: `ABRIR P-01` y `ENCENDER L-01`. No son comandos de un sistema operativo: es un **lenguaje inventado para la expedición**.
