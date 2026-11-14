@@ -1,16 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640" role="img" aria-labelledby="titulo descripcion">
-<title id="titulo">Iterator — Visitar habitaciones</title><desc id="descripcion">RegistroHabitaciones implementa Iterable; RecorridoHabitaciones implementa Iterator y devuelve una instantánea estable.</desc><defs>
-<marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#25374a" stroke-width="2"/></marker>
-<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#25374a" stroke-width="2"/></marker>
-</defs><style>.box{fill:#f1f5ff;stroke:#4272a5;stroke-width:2.4}.iface{fill:#f4ecff;stroke:#825cac;stroke-width:2.4}.sep{stroke:#8194ad;stroke-width:1.4}.title{fill:#18283d;font:700 20px Arial,sans-serif;text-anchor:middle}.body{fill:#23364a;font:17px Arial,sans-serif}.edge{fill:none;stroke:#25374a;stroke-width:2.4}.dash{stroke-dasharray:8 6}.note{fill:#475569;font:italic 17px Arial,sans-serif;text-anchor:middle}</style>
-<path class="edge dash" d="M357 158 L453 162.5" marker-end="url(#open)"/>
-<path class="edge dash" d="M858 162.5 L930 146" marker-end="url(#open)"/>
-<path class="edge dash" d="M1072.5 358 L1134 226" marker-end="url(#tri)"/>
-<path class="edge" d="M655.5 250 L507.5 365" marker-end="url(#open)"/>
-<path class="edge" d="M845 435.5 L705 425" marker-end="url(#open)"/>
-<rect x="45" y="93" width="312" height="130" rx="3" class="box"/><text class="title" x="201" y="127">ClienteIterator</text><path class="sep" d="M45 145 H357"/><text class="body" x="59" y="176">+ ejecutar(out)</text>
-<rect x="453" y="75" width="405" height="175" rx="3" class="box"/><text class="title" x="655.5" y="109">RegistroHabitaciones</text><path class="sep" d="M453 127 H858"/><text class="body" x="467" y="158">- habitaciones: List&lt;Habitacion&gt;</text><text class="body" x="467" y="183">+ iterator(): Iterator</text>
-<rect x="930" y="66" width="408" height="160" rx="3" class="iface"/><text class="title" x="1134" y="100">«interface» Iterator&lt;Habitacion&gt;</text><path class="sep" d="M930 118 H1338"/><text class="body" x="944" y="149">+ hasNext(): boolean</text><text class="body" x="944" y="174">+ next(): Habitacion</text>
-<rect x="845" y="358" width="455" height="155" rx="3" class="box"/><text class="title" x="1072.5" y="392">RecorridoHabitaciones</text><path class="sep" d="M845 410 H1300"/><text class="body" x="859" y="441">- instantanea: List&lt;Habitacion&gt;</text><text class="body" x="859" y="466">+ next(): Habitacion</text>
-<rect x="310" y="365" width="395" height="120" rx="3" class="box"/><text class="title" x="507.5" y="399">«record» Habitacion</text><path class="sep" d="M310 417 H705"/><text class="body" x="324" y="448">+ id(): String</text>
-<text class="note" x="700" y="627">El iterador recorre una instantánea sin exponer la lista modificable del registro.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Iterator — recorrer habitaciones sin exponer la colección</title>
+<desc id="descripcion">RegistroHabitaciones realiza Iterable de Habitacion y devuelve un RecorridoHabitaciones que realiza Iterator de Habitacion. Ambas estructuras referencian Habitacion sin copiar sus instancias. ClienteIterator usa el registro.</desc>
+<defs>
+<marker id="tri" viewBox="0 0 24 24" markerWidth="13" markerHeight="13" refX="22" refY="12" orient="auto"><path d="M2 2 L22 12 L2 22 Z" fill="white" stroke="#26394e" stroke-width="2"/></marker>
+<marker id="open" viewBox="0 0 24 24" markerWidth="10" markerHeight="10" refX="22" refY="12" orient="auto"><path d="M7 3 L22 12 L7 21" fill="none" stroke="#26394e" stroke-width="2"/></marker>
+</defs>
+<style>
+.box{fill:#eff5ff;stroke:#4173a5;stroke-width:2.4}.iface{fill:#f5eeff;stroke:#7959aa;stroke-width:2.4}
+.sep{stroke:#8c9bb1;stroke-width:1.5}.edge{fill:none;stroke:#26394e;stroke-width:2.4}
+.dash{stroke-dasharray:9 6}.title{fill:#142638;font:700 20px Arial,sans-serif;text-anchor:middle}
+.body{fill:#26394e;font:17px Arial,sans-serif}.note{fill:#415774;font:italic 17px Arial,sans-serif;text-anchor:middle}
+</style>
+<!-- Colaboraciones dibujadas detrás de las clases. -->
+<path class="edge dash" d="M320 160 L405 404" marker-end="url(#open)"/>
+<path class="edge dash" d="M610 325 V190" marker-end="url(#tri)"/>
+<path class="edge dash" d="M1140 325 V215" marker-end="url(#tri)"/>
+<path class="edge dash" d="M800 125 H930" marker-end="url(#open)"/>
+<path class="edge" d="M610 495 V565" marker-end="url(#open)"/>
+<text x="640" y="540" class="body">0..*</text>
+<path class="edge" d="M935 410 H855 V625 H805" marker-end="url(#open)"/>
+<text x="857" y="603" class="body">instantánea: 0..*</text>
+<!-- Clase cliente -->
+<rect class="box" x="40" y="95" width="280" height="130" rx="3"/>
+<text class="title" x="180" y="130">ClienteIterator</text>
+<path class="sep" d="M40 148 H320"/>
+<text class="body" x="54" y="181">+ ejecutar(out): void</text>
+<!-- Interfaces estándar de Java -->
+<rect class="iface" x="400" y="60" width="400" height="130" rx="3"/>
+<text class="title" x="600" y="96">«interface» Iterable&lt;Habitacion&gt;</text>
+<path class="sep" d="M400 114 H800"/>
+<text class="body" x="414" y="147">+ iterator(): Iterator</text>
+<rect class="iface" x="930" y="60" width="420" height="155" rx="3"/>
+<text class="title" x="1140" y="96">«interface» Iterator&lt;Habitacion&gt;</text>
+<path class="sep" d="M930 114 H1350"/>
+<text class="body" x="944" y="147">+ hasNext(): boolean</text>
+<text class="body" x="944" y="174">+ next(): Habitacion</text>
+<!-- Clases concretas -->
+<rect class="box" x="405" y="325" width="420" height="170" rx="3"/>
+<text class="title" x="615" y="361">RegistroHabitaciones</text>
+<path class="sep" d="M405 379 H825"/>
+<text class="body" x="419" y="411">- habitaciones: List&lt;Habitacion&gt;</text>
+<text class="body" x="419" y="439">+ iterator(): Iterator</text>
+<rect class="box" x="935" y="325" width="410" height="170" rx="3"/>
+<text class="title" x="1140" y="361">RecorridoHabitaciones</text>
+<path class="sep" d="M935 379 H1345"/>
+<text class="body" x="949" y="411">- instantanea: List&lt;Habitacion&gt;</text>
+<text class="body" x="949" y="439">+ next(): Habitacion</text>
+<rect class="box" x="405" y="565" width="400" height="115" rx="3"/>
+<text class="title" x="605" y="602">«record» Habitacion</text>
+<path class="sep" d="M405 620 H805"/>
+<text class="body" x="419" y="653">+ id(): String</text>
+<text class="note" x="700" y="726">Los dos contratos Iterable e Iterator son de Java; las listas almacenan referencias a objetos.</text>
+</svg>
