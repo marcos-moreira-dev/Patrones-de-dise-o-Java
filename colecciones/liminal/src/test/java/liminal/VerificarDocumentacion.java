@@ -123,8 +123,7 @@ public final class VerificarDocumentacion {
             comprobarAmpliacion();
             List<Path> documentosVisuales = new ArrayList<>(documentos);
             documentosVisuales.add(Path.of("docs", "laboratorios", "java", "class-vs-record.md"));
-            documentosVisuales.add(Path.of("docs", "variantes", "creacionales", "prototype", "copia-profunda.md"));
-            documentosVisuales.add(Path.of("docs", "variantes", "creacionales", "prototype", "registro-prototipos.md"));
+            documentosVisuales.addAll(listar(Path.of("docs", "variantes"), ".md"));
             documentosVisuales.add(Path.of("README.md"));
             documentosVisuales.add(Path.of("GUIA_VISUAL.md"));
             documentosVisuales.add(Path.of("assets", "README.md"));
@@ -154,36 +153,43 @@ public final class VerificarDocumentacion {
         }
     }
 
-    /** Verifica que las ampliaciones no sean código huérfano ni enlaces inexistentes. */
+    /** Solo el catálogo base tiene un UML propio por ficha; las variantes se verifican aparte. */
     private static void comprobarAmpliacion() throws IOException {
-        String[][] documentos = {
-                {"docs/laboratorios/java/class-vs-record.md", "ClaveTextura", "class"},
-                {"docs/variantes/creacionales/prototype/copia-profunda.md",
-                        "R-LOCAL-PROTOTYPE-01", "mermaid"},
-                {"docs/variantes/creacionales/prototype/registro-prototipos.md",
-                        "R-LOCAL-PROTOTYPE-02", "mermaid"}
-        };
-        for (String[] documento : documentos) {
-            Path ruta = Path.of(documento[0]);
-            String texto = Files.readString(ruta);
-            if (!texto.contains(documento[1]) || !texto.contains(documento[2])) {
-                throw new AssertionError("Ampliación sin contrato o explicación: " + ruta);
-            }
+        Path laboratorio = Path.of("docs", "laboratorios", "java", "class-vs-record.md");
+        String teoria = Files.readString(laboratorio);
+        if (!teoria.contains("ClaveTextura") || !teoria.contains("mermaid")) {
+            throw new AssertionError("Laboratorio class/record incompleto");
         }
-        String[] fuentes = {
-                "src/main/java/liminal/laboratorios/java/classvsrecord/ClienteClassVsRecord.java",
-                "src/test/java/liminal/laboratorios/java/classvsrecord/PruebaClassVsRecord.java",
-                "src/main/java/liminal/creacionales/prototype/variantes/copiaprofunda/ClienteCopiaProfunda.java",
-                "src/test/java/liminal/creacionales/prototype/variantes/copiaprofunda/PruebaCopiaProfunda.java",
-                "src/main/java/liminal/creacionales/prototype/variantes/registro/ClienteRegistroPrototipos.java",
-                "src/test/java/liminal/creacionales/prototype/variantes/registro/PruebaRegistroPrototipos.java"
-        };
-        for (String fuente : fuentes) {
-            if (!Files.isRegularFile(Path.of(fuente))) {
-                throw new AssertionError("Ampliación incompleta: " + fuente);
-            }
+        verificarEnlacesJava(laboratorio);
+
+        List<Path> variantes = listar(Path.of("docs", "variantes"), ".md");
+        if (variantes.size() != 7) {
+            throw new AssertionError("Se esperan 7 variantes GoF, no " + variantes.size());
         }
-        System.out.println("OK laboratorio Java y 2 variantes Prototype documentadas.");
+        for (Path ficha : variantes) {
+            String texto = Files.readString(ficha);
+            if (!texto.contains("R-LOCAL-") || !texto.contains("mermaid")
+                    || !texto.contains("Cliente") || !texto.contains("Prueba")) {
+                throw new AssertionError("Variante sin reglas, UML o ruta de lectura: " + ficha);
+            }
+            verificarEnlacesJava(ficha);
+        }
+        System.out.println("OK laboratorio class/record y 7/7 fichas de variantes.");
+    }
+
+    private static void verificarEnlacesJava(Path ficha) throws IOException {
+        Matcher enlaces = CODIGO.matcher(Files.readString(ficha));
+        int encontrados = 0;
+        while (enlaces.find()) {
+            Path ruta = ficha.getParent().resolve(enlaces.group(1)).normalize();
+            if (!Files.isRegularFile(ruta)) {
+                throw new AssertionError("Enlace Java roto: " + ficha + " -> " + ruta);
+            }
+            encontrados++;
+        }
+        if (encontrados < 2) {
+            throw new AssertionError("Faltan enlaces a cliente y prueba: " + ficha);
+        }
     }
 
     private static List<Path> listar(Path raiz, String extension) throws IOException {
