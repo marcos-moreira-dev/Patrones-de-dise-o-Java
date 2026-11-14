@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1060" height="268" viewBox="0 0 1060 268" role="img" aria-labelledby="titulo descripcion">
-  <title id="titulo">Composicion de Orden y LineaPedido</title>
-  <desc id="descripcion">El rombo negro indica que Orden es el todo. Una orden contiene cero o muchas lineas y cada linea pertenece a una orden.</desc>
+  <title id="titulo">Composición de Orden y LineaPedido</title>
+  <desc id="descripcion">El rombo negro indica que Orden es el todo. Una orden contiene cero o muchas líneas y cada línea pertenece a una orden.</desc>
   <style>
     .caja { fill: #f0f5ff; stroke: #3972bf; stroke-width: 2; }
     .division { stroke: #3972bf; stroke-width: 1.4; }
