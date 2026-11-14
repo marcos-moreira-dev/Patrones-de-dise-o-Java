@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Verifica el piloto con Java 21 y sin frameworks.
+# Verifica 23 patrones GoF, el laboratorio UML y la documentación con Java 21.
 set -euo pipefail
 raiz="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$raiz"
@@ -18,4 +18,11 @@ for esperado in 'STATE' 'STRATEGY' 'OBSERVER' 'Avisos:' 'Monstruo silencioso' 'A
         exit 1
     fi
 done
-printf 'OK: compilación, pruebas y salida por consola.\n'
+laboratorio="$(java -cp out liminal.laboratorios.relaciones.ClienteRelacionesUml)"
+for esperado in 'ASOCIACIÓN:' 'AGREGACIÓN:' 'COMPOSICIÓN:' 'CIERRE:' 'ENTRADA activa: false'; do
+    if [[ "$laboratorio" != *"$esperado"* ]]; then
+        echo "ERROR: falta la relación UML en consola: $esperado" >&2
+        exit 1
+    fi
+done
+printf 'OK: 23 patrones GoF, laboratorio UML, documentación y consola.\n'
