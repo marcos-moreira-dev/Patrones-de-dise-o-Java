@@ -16,6 +16,8 @@ La colección técnica original y los microproyectos Arena Java y MiniSO **se co
 
 **[Abrir el atlas visual](GUIA_VISUAL.md)**: las tres ambientaciones conectadas con las clases y las reglas R-XX del dominio. Consulta también la [procedencia de las ilustraciones](assets/README.md).
 
+**[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones aplicadas, reglas contrastadas con Java y UML, pruebas y mejoras opcionales pendientes.
+
 ## Empieza aquí
 
 1. [Cómo se define un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md): supuestos, invariantes, restricciones, precondiciones, postcondiciones y contraejemplos.
