@@ -57,7 +57,8 @@ public final class VerificarDocumentacion {
             comprobarUml(diagramas, "chainofresponsibility.svg", "siguiente: 0..1");
             comprobarUml(diagramas, "iterator.svg", "Iterable", "Iterator");
             comprobarUml(diagramas, "abstractfactory.svg",
-                    "LuzAmbiental", "PuertaAmbiental", "FabricaAmarilla", "FabricaPiscinas");
+                    "LuzAmarilla", "LuzPiscinas", "PuertaAmarilla", "PuertaPiscinas",
+                    "FabricaAmarilla", "FabricaPiscinas");
             comprobarUml(diagramas, "facade.svg", "salida(origen, destino)");
             for (Path fondo : fondos) validarWebp(fondo);
 
