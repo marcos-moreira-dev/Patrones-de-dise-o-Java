@@ -16,6 +16,7 @@ La clase [ClienteExpedicion](src/main/java/liminal/integrado/presentacion/Client
 3. [Tres guiones nuevos: piscinas, radio y luces](docs/ESCENARIOS_02_04.md): situaciones narrativas que reutilizan el dominio.
 4. [Arquitectura y UML](docs/ARQUITECTURA.md): entidades y colaboraciones implementadas, dependencias, buenas prácticas y alternativas.
 5. [Auditoría arquitectónica final](docs/AUDITORIA_FINAL.md): revisión de SOLID, límites, patrones, riesgos, pruebas y criterio de suficiencia.
+6. [Auditoría de comportamientos y narración](docs/AUDITORIA_COMPORTAMIENTOS.md): operaciones que sí cambian estados, consultas, eventos, métodos deliberadamente ausentes y frases verificables.
 
 **Autoridad del dominio:** [DOMINIO de los ejemplos liminales](../../colecciones/liminal/DOMINIO.md). Este integrador **hereda R-00…R-14** y agrega reglas `R-INT-01…R-INT-12` únicamente para su caso de estudio. Si se descubre una contradicción, se resuelve primero en documentación, nunca haciendo que un patrón imponga reglas narrativas.
 
@@ -36,5 +37,7 @@ Las clases del proyecto viven bajo `src/main/java/liminal/integrado/` y **no imp
 ## Verificación técnica independiente
 
 Desde la raíz del repositorio, el comando `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh` compila con `--release 21`, ejecuta [`PruebasExpedicion`](src/test/java/liminal/integrado/PruebasExpedicion.java), [`PruebasCriaturas`](src/test/java/liminal/integrado/PruebasCriaturas.java), [`PruebasVigilancia`](src/test/java/liminal/integrado/PruebasVigilancia.java) y [`PruebasGuiones`](src/test/java/liminal/integrado/PruebasGuiones.java), además de comprobar los cuatro clientes. Existe además un [workflow específico de GitHub Actions](../../.github/workflows/expedicion-liminal-integrada.yml) para Linux y Windows, sin alterar el workflow general.
+
+**La narración no sustituye al dominio:** los cuatro clientes describen estados y eventos reales; [la auditoría de comportamientos](docs/AUDITORIA_COMPORTAMIENTOS.md) distingue métodos mutadores, consultas, notificaciones y detalles que no se simulan.
 
 **Tres GoF integrados de forma explícita:** Strategy (comportamiento de la criatura), Observer (distribución de avisos del sensor) y Mediator (central que coordina receptores). `Expedicion` conserva internamente al monstruo y solo publica una vista `EstadoCriatura`; `ProcesarTurno` conecta el movimiento con el sensor. [Ver UML](docs/ARQUITECTURA.md) y [auditoría](docs/AUDITORIA_FINAL.md). El proyecto es suficiente para estudiar; no existe obligación de incorporar los 20 patrones restantes.

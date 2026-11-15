@@ -8,7 +8,7 @@
 | **03 — Radio que responde sola** | [ClienteRadio.java](../src/main/java/liminal/integrado/presentacion/ClienteRadio.java) | Señales pregrabadas según habitación y frecuencia | ¿Dónde vive el estado de sintonía y cómo se valida? |
 | **04 — Monstruo detrás de las luces** | [ClienteLuces.java](../src/main/java/liminal/integrado/presentacion/ClienteLuces.java) | La presencia del monstruo activa luz y alarma al entrar en una zona | ¿Cómo colaboran Strategy, Observer y Mediator sin acoplarse? |
 
-Los tres clientes exponen `ejecutar(): List<String>`, que crea su propio escenario y devuelve un relato **inmutable y reproducible**; el `main` solo lo imprime. [PruebasGuiones.java](../src/test/java/liminal/integrado/PruebasGuiones.java) puede verificar el resultado sin capturar `System.out`.
+Los tres clientes —y ahora también `ClienteExpedicion`— exponen `ejecutar(): List<String>`, que crea su propio escenario y devuelve un relato **inmutable y reproducible**; el `main` solo lo imprime. Las [reglas de narración comprobable](AUDITORIA_COMPORTAMIENTOS.md) evitan anunciar movimientos o encendidos si el modelo no los confirmó. [PruebasGuiones.java](../src/test/java/liminal/integrado/PruebasGuiones.java) puede verificar el resultado sin capturar `System.out`.
 
 ## 02. La piscina interminable
 

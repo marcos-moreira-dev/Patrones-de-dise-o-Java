@@ -44,7 +44,7 @@ public final class ClienteRadio {
         relato.add("RECEPCIÓN 1040 kHz: "
                 + radio.escucharEn(sesion.explorador().ubicacion()).orElse("solo estática"));
         if (radio.escucharEn(sesion.explorador().ubicacion()).isEmpty()) {
-            relato.add("La radio permanece en silencio: aquí no hay una emisión registrada.");
+            relato.add("Solo queda estática: aquí no hay una emisión registrada.");
         }
 
         avanzar(caso, Direccion.ESTE, relato);

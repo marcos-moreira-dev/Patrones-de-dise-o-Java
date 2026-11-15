@@ -54,7 +54,7 @@ public final class PruebasGuiones {
         contiene(guion, "CABINA 1040 kHz: ¿Sigues ahí?");
         contiene(guion, "CABINA 880 kHz: Sube al almacén.");
         contiene(guion, "ALMACÉN 880 kHz: Este mensaje fue grabado mañana.");
-        contiene(guion, "La radio permanece en silencio: aquí no hay una emisión registrada.");
+        contiene(guion, "Solo queda estática: aquí no hay una emisión registrada.");
         contiene(guion, "Cambias la sintonía de 1040 a 880 kHz sin salir de R-02.");
         igual(1L, contar(guion, "Cambias la sintonía de "));
         contiene(guion, "ESTE -> ACEPTADO | R-03 | turno=4");

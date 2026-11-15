@@ -77,3 +77,7 @@ La CI del **último commit** debe constatarse en [GitHub Actions](https://github
 Se añadieron [tres guiones](ESCENARIOS_02_04.md) a la expedición inicial: piscinas (identidad frente a apariencia y rutas de un solo sentido), radio (mensajes predefinidos, nueva regla **R-INT-12**) y luces (Strategy + Observer + Mediator en una sala distinta). Los tres clientes comparten **las clases de dominio** pero crean mapas independientes, sin un motor de guiones central. 
 
 La radio se implementó como un dispositivo sencillo, **sin incorporar Adapter/Bridge por decoración**. La cuarta prueba, `PruebasGuiones`, verifica los relatos reproducibles y los rechazos. Los riesgos documentados en la auditoría original permanecen válidos: esta ampliación es lúdica y didáctica, no infraestructura de producción.
+
+## 8. Auditoría dirigida de métodos y relatos
+
+Se completó la [auditoría de comportamientos](AUDITORIA_COMPORTAMIENTOS.md): inspección dirigida de **21 archivos de dominio** y revisión de los cuatro clientes. No se encontraron impresiones `System.out` ni marcadores `TODO/FIXME` en esos archivos de dominio. Los relatos ahora distinguen transiciones verificadas (ubicación de criatura, luz apagada→encendida, frecuencia de radio, rechazo de salida) de ambientación estática. Se reforzó [PruebasGuiones](../src/test/java/liminal/integrado/PruebasGuiones.java) para evitar que los clientes narren cambios que no ocurrieron. No se agregaron métodos `apagar`, `parpadear` ni `aparecer` sin reglas concretas.
