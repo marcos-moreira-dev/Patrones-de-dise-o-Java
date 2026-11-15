@@ -1,6 +1,6 @@
 # Plan del proyecto integrador — Expedición Liminal
 
-> **Estado (15 de noviembre de 2026): planificación, NO implementado.** El plan define el tercer bloque de aprendizaje del repositorio. No crea un motor ejecutable ni altera los 23 ejemplos liminales. Versión 1.0.
+> **Estado (15 de noviembre de 2026): arquitectura y escenario 01 especificados en `proyectos/expedicion-liminal-integrada/`, sin clases Java todavía.** La matriz 23/23 y los ejemplos aislados permanecen independientes. Versión 1.1.
 >
 > **Fuente normativa inicial:** [DOMINIO.md](DOMINIO.md). **Planes existentes:** [PLAN.md](PLAN.md), [PLAN_VARIANTES.md](PLAN_VARIANTES.md), [AUDITORIA_ANDAMIAJE.md](AUDITORIA_ANDAMIAJE.md). Cada cambio de dominio se justifica y prueba; los patrones no dictan las reglas del mundo.
 
@@ -147,4 +147,4 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 
 Antes de cualquier commit del integrador, marcar en el plan cuál etapa se está ejecutando y qué demuestra. No mezclar en el mismo commit cambios del integrador y refactorizaciones de demos aisladas. Ante un conflicto, el contrato explícito del dominio prevalece; actualizar cada área afectada solo cuando corresponda.
 
-**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada, y las cinco familias de escenarios están definidas en este plan. El siguiente trabajo del **integrador todavía no implementado** es concretar su primera historia, su diagrama de dominio y sus dependencias; después podrá iniciarse su etapa 1 de Java. Los ejemplos aislados no se reestructuran para integrarlos.
+**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada. El **[diseño del tercer proyecto](../../proyectos/expedicion-liminal-integrada/README.md)** contiene ahora [reglas locales](../../proyectos/expedicion-liminal-integrada/DOMINIO.md), [escenario 01](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md) y [arquitectura/UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). **Siguiente trabajo:** implementar Java y pruebas para la etapa 1. El monstruo oscuro se incorpora en etapa 2. No reestructurar los 23 patrones aislados.
