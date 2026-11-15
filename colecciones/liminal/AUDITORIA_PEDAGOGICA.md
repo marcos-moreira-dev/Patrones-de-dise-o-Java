@@ -126,3 +126,9 @@ A partir de una revisión de las carpetas del repositorio en GitHub, se detectó
 El catálogo base conserva los 23 patrones. Hay [siete variantes](PLAN_VARIANTES.md) con clientes propios, reglas locales, pruebas y fichas; el [laboratorio class/record](docs/laboratorios/java/class-vs-record.md) justifica la igualdad por valor en una clave de textura. Los roles principales que eran records pasaron a clases tradicionales cuando correspondía; cuatro records de datos/valor permanecen intencionalmente.
 
 La [primera auditoría estructural de andamiaje](AUDITORIA_ANDAMIAJE.md) separa modelo del dominio, roles GoF, soporte educativo y soporte de pruebas/compilación. **No** declara completada la revisión semántica línea por línea de todo el repositorio ni recomienda borrar código sin consumidores y pruebas identificados.
+
+## 12. Cierre académico editorial y límites de la revisión (15 de noviembre de 2026)
+
+La colección mantiene sus **23 GoF encapsulados**, siete variantes y dos laboratorios independientes. El integrador se desarrolló después en [su propia carpeta](../../proyectos/expedicion-liminal-integrada/README.md), por lo que no cambia los roles ni el número de patrones de esta colección. Se repasó la geometría y el contenido textual de sus **28 SVG** sin identificar elementos principales fuera del lienzo; las cajas internas contenidas por paneles del diagrama de objetos son deliberadas. **No se declara inspección visual rasterizada completa ni auditoría manual línea por línea de los Java**. La CI valida compilación, pruebas y verificadores de documentación, no esas dos actividades manuales opcionales.
+
+Para un recorrido de lectura que compare un patrón clásico, un ejemplo liminal y el integrador, consultar el [dictamen de cierre académico](../../docs/CIERRE_ACADEMICO_GOF.md).

@@ -20,11 +20,11 @@ La colección técnica original y los microproyectos Arena Java y MiniSO **se co
 
 **[Variantes GoF y laboratorio class/record](PLAN_VARIANTES.md)**: **siete variantes implementadas** en seis patrones y un laboratorio independiente sobre valores e identidad. Los **23 ejercicios principales** conservan sus clientes y su menú.
 
-**[Plan del proyecto integrador y alineación de los 23 ejemplos](PLAN_INTEGRADOR.md)**: tercera ruta de aprendizaje prevista, arquitectura centrada en el dominio, etapas, criterios de suficiencia y revisión editorial selectiva. **Solo planificado; no implementado todavía.**
+**[Integrador Expedición Liminal — cuatro guiones](../../proyectos/expedicion-liminal-integrada/README.md)**: tercera ruta **ya implementada** en Java 21, con dominio propio, Strategy, Observer y Mediator, pruebas y UML. El [plan y la alineación de los 23 ejemplos](PLAN_INTEGRADOR.md) conservan los criterios y la historia de su desarrollo. **Los ejemplos aislados no se fusionaron con el integrador.**
 
 **[Matriz de alineación de los 23 patrones](MATRIZ_ALINEACION.md)**: escenas, reglas R-XX, decisiones de diseño y 17 puntos de comentarios de ingeniería realmente presentes en Java; no convierte los ejemplos en un único programa.
 
-**[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones, pruebas y mejoras opcionales. **[Auditoría del andamiaje técnico](AUDITORIA_ANDAMIAJE.md)**: distingue el dominio, las clases GoF, los clientes de estudio y las herramientas de verificación.
+**[Cierre académico de los tres bloques](../../docs/CIERRE_ACADEMICO_GOF.md)**: estado, ruta de lectura y límites de revisión. **[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones, pruebas y mejoras opcionales. **[Auditoría del andamiaje técnico](AUDITORIA_ANDAMIAJE.md)**: distingue el dominio, las clases GoF, los clientes de estudio y las herramientas de verificación.
 
 ## Laboratorio adicional de relaciones UML
 

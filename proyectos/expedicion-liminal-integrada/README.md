@@ -1,5 +1,7 @@
 # Expedición Liminal Integrada — laboratorio de arquitectura
 
+> **Versión académica 1.0:** cuatro guiones reproducibles en Java 21, pruebas de dominio y documentación, tres patrones GoF integrados (Strategy, Observer y Mediator), sin interfaz interactiva. [Dictamen de cierre de los tres bloques](../../docs/CIERRE_ACADEMICO_GOF.md).
+
 > **Estado (15 de noviembre de 2026): proyecto integrador académico ampliado con cuatro guiones en Java 21.** Etapas 1 y 2, refuerzo de encapsulamiento y escena transversal con **Strategy, Observer y Mediator**, cuatro clientes deterministas y pruebas en Linux/Windows. Nuevas mecánicas no son requisitos.
 > Este es el **tercer bloque de estudio GoF** del repositorio: integración de patrones en un único dominio. No sustituye los [23 ejemplos liminales independientes](../../colecciones/liminal/README.md) ni la colección técnica clásica.
 

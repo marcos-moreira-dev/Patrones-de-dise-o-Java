@@ -1,6 +1,6 @@
 # Matriz de alineación de los 23 GoF liminales
 
-> **15 de noviembre de 2026 — pasada editorial selectiva completada.** Los 23 patrones permanecen aislados en su paquete. Se identificaron las escenas, las reglas normativas y las decisiones de ingeniería; se añadieron **17 sitios de comentarios breves** donde había un porqué técnico que merecía hacerse explícito. **No se cambió comportamiento Java, no se creó el integrador y no se auditaron exhaustivamente todas las líneas.**
+> **15 de noviembre de 2026 — pasada editorial selectiva completada.** Los 23 patrones permanecen aislados en su paquete. Se identificaron las escenas, las reglas normativas y las decisiones de ingeniería; se añadieron **17 sitios de comentarios breves** donde había un porqué técnico que merecía hacerse explícito. **En esa pasada no se cambió comportamiento Java ni se creó el integrador; tampoco se auditaron exhaustivamente todas las líneas.** El integrador se implementó **después**, en un bloque físicamente separado. [Estado actual de las tres rutas](../../docs/CIERRE_ACADEMICO_GOF.md).
 
 **Fuentes:** [DOMINIO.md](DOMINIO.md) (R-00…R-14), [PLAN_INTEGRADOR.md](PLAN_INTEGRADOR.md) (tres bloques y sus límites), [GUIA_LECTURA_CODIGO.md](GUIA_LECTURA_CODIGO.md) (orden de lectura), [PLAN_VARIANTES.md](PLAN_VARIANTES.md) (siete variantes, independientes de estos 23 ejemplos).
 
@@ -62,8 +62,8 @@ Una posible mala práctica no es necesariamente un defecto actual. No llamar *Go
 - **23/23** fichas contrastadas con su escena, reglas y responsabilidad principal.
 - **17** puntos de comentario en colaboradores seleccionados; **seis** casos deliberadamente sin comentario nuevo porque repetiría documentación o Javadoc.
 - **7 variantes** y **2 laboratorios** conservados en sus ubicaciones actuales: no se fusionaron con los 23 patrones.
-- **0** cambios de lógica de producción y **0** dependencias hacia un simulador que todavía no existe.
+- **0** cambios de lógica de producción durante esta pasada editorial y **0** dependencias desde los 23 ejemplos aislados hacia el **integrador actual**, que se construyó posteriormente.
 - La aprobación definitiva de compilación/pruebas corresponde a GitHub Actions para el commit final. Una revisión dirigida de responsabilidades y comentarios **no es** una inspección línea por línea de los 181 archivos Java de producción.
 - **Regla de parada:** con CI aprobada y sin una contradicción de dominio demostrada, esta etapa es **suficiente para estudiar los patrones**. No expandir comentarios, UML, variantes o arquitectura por cumplir cuotas.
 
-**Lo siguiente pertenece al proyecto integrador, no a estas carpetas:** concretar su primera historia de expedición, relaciones de paquetes y los invariantes de mapa/posición antes de escribir sus clases. No introducir todo el catálogo GoF en un único sistema por obligación.
+**Etapa posterior ya ejecutada:** el [proyecto integrador](../../proyectos/expedicion-liminal-integrada/README.md) concretó sus cuatro historias, paquetes e invariantes de mapa/posición **sin modificar estos 23 ejemplos ni obligar a integrar todos los GoF**. La matriz sigue siendo la guía de alineación de los ejemplos encapsulados.

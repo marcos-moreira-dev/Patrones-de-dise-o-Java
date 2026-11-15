@@ -13,6 +13,8 @@ compilación directa desde consola. Los dos microproyectos mantienen esa
 posibilidad y añaden cada uno un `pom.xml` **opcional**, documentado, para
 estudiar también las fases de construcción con Maven sin frameworks.
 
+**[Cierre académico 1.0 y ruta de lectura de los tres bloques](docs/CIERRE_ACADEMICO_GOF.md)**: estado verificado, decisiones de ingeniería, alcance de las auditorías y qué se deja expresamente fuera.
+
 ### Cómo estudiar este laboratorio
 
 1. Empieza por el problema que resuelve el patrón (puede ser un ejemplo cotidiano, un videojuego o un negocio).
@@ -48,7 +50,7 @@ En la colección liminal incorporamos además un [laboratorio de relaciones UML]
 
 ### Tercera ruta GoF: arquitectura liminal integrada (3 patrones y auditoría final)
 
-El **[proyecto integrador Expedición Liminal](proyectos/expedicion-liminal-integrada/README.md)** tiene un [escenario de exploración reproducible](proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md), reglas de [dominio](proyectos/expedicion-liminal-integrada/DOMINIO.md) y una [arquitectura en capas con UML](proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). Las etapas de estudio están implementadas en Java 21 con un cliente determinista, [pruebas del dominio](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasExpedicion.java), [Strategy](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasCriaturas.java) y [Observer/Mediator](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasVigilancia.java). El monstruo cambia comportamiento sin violar el mapa y un sensor alerta a la central. El integrador incluye también [tres guiones adicionales](proyectos/expedicion-liminal-integrada/docs/ESCENARIOS_02_04.md) sobre piscinas, radio y luces. Consulta la [auditoría arquitectónica final](proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md). Los ejemplos GoF clásicos y liminales aislados permanecen separados.
+El **[proyecto integrador Expedición Liminal](proyectos/expedicion-liminal-integrada/README.md)** tiene un [escenario de exploración reproducible](proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md), reglas de [dominio](proyectos/expedicion-liminal-integrada/DOMINIO.md) y una [arquitectura en capas con UML](proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). Las etapas de estudio están implementadas en Java 21 con cuatro clientes deterministas, [pruebas del dominio](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasExpedicion.java), [Strategy](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasCriaturas.java) y [Observer/Mediator](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasVigilancia.java). El monstruo cambia comportamiento sin violar el mapa y un sensor alerta a la central. El integrador incluye también [tres guiones adicionales](proyectos/expedicion-liminal-integrada/docs/ESCENARIOS_02_04.md) sobre piscinas, radio y luces. Consulta la [auditoría arquitectónica final](proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md) y la [auditoría de comportamientos reales](proyectos/expedicion-liminal-integrada/docs/AUDITORIA_COMPORTAMIENTOS.md). Los ejemplos GoF clásicos y liminales aislados permanecen separados.
 
 ### Microproyectos con arquitectura real
 

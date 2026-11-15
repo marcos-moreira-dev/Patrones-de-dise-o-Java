@@ -2,6 +2,8 @@
 
 > **Estado (15 de noviembre de 2026): integrador con cuatro guiones lúdicos, Strategy + Observer + Mediator, dominio y pruebas Java 21.** Matriz 23/23 y demos aisladas independientes. Versión 1.5.
 >
+> **Cierre editorial de los tres bloques:** [dictamen académico 1.0](../../docs/CIERRE_ACADEMICO_GOF.md). Los apartados de diseño previo conservan decisiones históricas, pero no significan que el código aún esté pendiente.
+>
 > **Fuente normativa inicial:** [DOMINIO.md](DOMINIO.md). **Planes existentes:** [PLAN.md](PLAN.md), [PLAN_VARIANTES.md](PLAN_VARIANTES.md), [AUDITORIA_ANDAMIAJE.md](AUDITORIA_ANDAMIAJE.md). Cada cambio de dominio se justifica y prueba; los patrones no dictan las reglas del mundo.
 
 ## 1. Tres bloques independientes y para qué sirve cada uno
@@ -14,7 +16,7 @@
 
 Los proyectos `arena-java` y `miniso` y los workflows/scripts generales existentes permanecen sin modificar. El integrador vive en `proyectos/expedicion-liminal-integrada/` y dispone de **su propio script y workflow de CI**.
 
-**No es un videojuego de entretenimiento como requisito.** Será un simulador lógico por consola con una expedición predeterminada reproducible. La lectura de arquitectura y Java es más importante que interactuar con él.
+**No es un videojuego de entretenimiento como requisito.** Es un simulador lógico por consola con **cuatro expediciones predeterminadas reproducibles**. La lectura de arquitectura y Java es más importante que interactuar con él.
 
 ## 2. Visión del mundo: espacios liminales sin reducirlo a abrir puertas
 

@@ -2,6 +2,8 @@
 
 **14 de noviembre de 2026. Auditoría estructural y revisión semántica parcial, exclusivamente de Expedición Liminal.** No se han eliminado archivos por esta auditoría. Falta comprobar por completo todos los ejemplos de esta colección. **Fuera de alcance:** patrones técnicos originales, Arena Java, MiniSO, scripts generales, workflow compartido y otros proyectos.
 
+> **Nota cronológica (15 de noviembre de 2026):** este archivo registra pasadas históricas de auditoría. Las menciones posteriores a un integrador «futuro» o «inexistente» describen **el estado en el momento de aquella pasada**, no el estado actual. El integrador ya está [implementado](../../proyectos/expedicion-liminal-integrada/README.md); el [dictamen académico vigente](../../docs/CIERRE_ACADEMICO_GOF.md) reúne los tres bloques.
+
 ## 1. Categorías para decidir
 
 | Código | Categoría | Pregunta | Política |
@@ -312,3 +314,9 @@ Se creó [PLAN_INTEGRADOR.md](PLAN_INTEGRADOR.md), enlazado desde README y PLAN,
 Se añadió la [matriz de alineación](MATRIZ_ALINEACION.md) con **23/23 filas** (escena, restricción R-XX, decisión de ingeniería, riesgo y enlace al punto de código), y una guía de lectura por responsabilidades. Se insertaron o precisaron **17 comentarios locales** en colaboradores reales de los ejemplos: nueve creacionales/estructurales y ocho de comportamiento. En otros seis patrones, la ficha y el Javadoc existente ya cubren la decisión; no se añadieron comentarios forzados. Los comentarios exponen **por qué se usa una solución** (acoplamiento, propiedad UML, estado, validaciones, excepciones y tipos) en lugar de describir instrucciones evidentes.
 
 **Alcance:** no se modificaron las operaciones Java, pruebas, UML, jerarquías ni paquetes; no se creó el integrador; ningún otro proyecto se incluyó. El inventario de 292 se debe exclusivamente a **un nuevo Markdown raíz**. CI del último commit determina el cierre técnico de esta pasada. La matriz sirve para estudiar y recordar pendientes, no demuestra una auditoría exhaustiva de cada línea del código fuente.
+
+## 29. Cierre editorial cronológico (15 de noviembre de 2026)
+
+Las secciones 27 y 28 conservan fielmente **lo que existía en su fecha**: en ese momento solo se había planificado el integrador y se había alineado la colección de 23 patrones. **Después** se implementó `proyectos/expedicion-liminal-integrada/`, con cuatro guiones, tres GoF en colaboración, UML y pruebas propias. Esto **no altera retroactivamente** las conclusiones ni el inventario de aquellas pasadas, ni crea una dependencia desde las demos aisladas.
+
+La pasada de cierre editorial comprobó **28 SVG de la colección** (23 UML base, 2 diagramas de laboratorio y 3 secuencias) mediante inspección textual/geométrica: no se detectaron cajas o posiciones de texto fuera de sus lienzos y las intersecciones de rectángulos de `referencias-objetos.svg` corresponden a **paneles que contienen cajas internas**. No se ha inspeccionado en un visor rasterizado, píxel a píxel, **cada uno de los 28 diagramas**; ese nivel de perfeccionamiento visual permanece opcional. Se comprobaron rutas de enlaces Markdown, compatibilidad de navegación y la CI Java 21 final. [Dictamen global, alcance y ruta de lectura](../../docs/CIERRE_ACADEMICO_GOF.md).
