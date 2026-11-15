@@ -211,7 +211,9 @@ public final class VerificarDocumentacion {
         }
         for (Path ficha : variantes) {
             String texto = Files.readString(ficha);
-            if (!texto.contains("R-LOCAL-") || !texto.contains("mermaid")
+            if (!texto.contains("R-LOCAL-")
+                    || !(texto.contains("```mermaid") || texto.contains("~~~mermaid"))
+                    || texto.contains("§")
                     || !texto.contains("Cliente") || !texto.contains("Prueba")) {
                 throw new AssertionError("Variante sin reglas, UML o ruta de lectura: " + ficha);
             }

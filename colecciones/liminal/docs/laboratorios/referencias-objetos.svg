@@ -28,7 +28,7 @@
 <text x="512" y="267" class="name">e:Explorador</text>
 <path d="M358 284 H666" class="sep"/>
 <text x="372" y="315" class="body">id=EX-01</text><rect x="55" y="433" width="219" height="104" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="164.5" y="467" class="name" font-size="16">r:RegistroExpedicion</text>
+<text x="164.5" y="467" class="name" style="font-size:16px">r:RegistroExpedicion</text>
 <path d="M55 484 H274" class="sep"/>
 <text x="69" y="515" class="body">abierto=true</text><rect x="358" y="433" width="308" height="106" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
 <text x="512" y="467" class="name">entrada:EntradaRegistro</text>
@@ -44,7 +44,7 @@
 <text x="1213.5" y="212" class="name">e:Explorador</text>
 <path d="M1048 229 H1379" class="sep"/>
 <text x="1062" y="260" class="body">sigue activo</text><rect x="761" y="367" width="219" height="117" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="870.5" y="401" class="name" font-size="16">r:RegistroExpedicion</text>
+<text x="870.5" y="401" class="name" style="font-size:16px">r:RegistroExpedicion</text>
 <path d="M761 418 H980" class="sep"/>
 <text x="775" y="449" class="body">abierto=false</text><rect x="1048" y="438" width="331" height="116" rx="4" fill="#FFF3DF" stroke="#B57824" stroke-width="2.4"/>
 <text x="1213.5" y="472" class="name">entrada:EntradaRegistro</text>
