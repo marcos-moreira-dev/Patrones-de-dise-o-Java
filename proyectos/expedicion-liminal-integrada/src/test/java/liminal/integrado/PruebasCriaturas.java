@@ -84,7 +84,10 @@ public final class PruebasCriaturas {
         igual(escena.cruce, monstruo.ubicacion());
         igual(1, expedicion.turnos());
         igual(explorador, expedicion.explorador());
-        esperarFallo(IllegalStateException.class, () -> expedicion.incorporarCriatura(intruso));
+        MonstruoOscuro otraValida = new MonstruoOscuro(
+                "M-03", escena.mapa, escena.observacion, new Esperar());
+        esperarFallo(IllegalStateException.class,
+                () -> expedicion.incorporarCriatura(otraValida));
 
         monstruo.cambiarEstrategia(new Perseguir());
         ResultadoTurno segundo = caso.procesar(Direccion.ESTE);
