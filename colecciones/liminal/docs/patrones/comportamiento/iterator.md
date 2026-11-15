@@ -12,7 +12,7 @@
 
 **Patrón:** `RegistroHabitaciones` implementa el contrato estándar de Java `Iterable<Habitacion>`. `RecorridoHabitaciones` implementa `Iterator<Habitacion>` con `hasNext()` y `next()`.
 
-**Qué sucede en Java:** el iterador recibe una **instantánea** de las referencias a habitaciones, no una copia de cada habitación; no expone una lista modificable del registro. En Java 21, `Iterator` e `Iterable` ya proporcionan estos contratos estándar.
+**Qué sucede en Java:** `RecorridoHabitaciones` crea **una única instantánea defensiva** de la lista que le entrega `RegistroHabitaciones`. Copia las referencias a habitaciones, no cada objeto `Habitacion`; añadir otra habitación al registro no cambia un recorrido ya iniciado. No se necesita duplicar la lista antes de llamar al constructor del iterador. En Java 21, `Iterator` e `Iterable` ya proporcionan estos contratos estándar.
 
 **Consola:**
 ~~~text

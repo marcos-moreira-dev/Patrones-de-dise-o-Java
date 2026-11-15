@@ -138,3 +138,13 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 ## 12. Criterio editorial ratificado: claridad humana
 
 Esta auditoría **no busca maximizar defensas, capas o clases auxiliares**. En cada uno de los 23 ejemplos se debe poder abrir `ClienteX.java`, seguir sus métodos con nombres del dominio, reconocer los participantes GoF, contrastar su UML y ejecutar una prueba separada. Una clase adicional solo se justifica si representa un rol real, una entidad necesaria o una decisión de ingeniería demostrable. Un `record` como valor puede permanecer si se justifica; no se introduce en roles GoF por ahorrar sintaxis. **No se modifica el código de proyectos ajenos a `colecciones/liminal/`.**
+
+## 13. Revisión transversal de las 23 rutas de lectura y los 23 UML principales
+
+Se leyeron las **23 fichas Markdown**, los **23 archivos `ClienteX.java`** y los textos de los **23 SVG principales**. Todas las fichas enlazan su SVG homónimo y todos los clientes mantienen demostraciones separadas de pruebas (sin `AssertionError` en la clase cliente). El patrón complejo puede tener métodos pedagógicos intermedios; los cortos no se fragmentan artificialmente.
+
+**Hallazgo Flyweight:** `docs/uml/flyweight.svg` declaraba `Map<Clave, Textura>`, aunque la fábrica Java utiliza `Map<ClaveTextura, Textura>`. Se corrigió el nombre de tipo; `ClaveTextura` sigue siendo un `record` objeto-valor, no una entidad ni un nuevo patrón. `VerificarDocumentacion` comprueba el nombre exacto en el SVG.
+
+**Simplificación Iterator:** `RegistroHabitaciones.iterator()` hacía `List.copyOf(habitaciones)` antes de pasarla a `RecorridoHabitaciones`, cuyo constructor **ya** aplica `List.copyOf`. Se elimina la copia redundante en el registro, manteniendo la única copia defensiva en el iterador. `PruebaIterator` ya verifica que un iterador abierto no ve las habitaciones añadidas después y que los IDs repetidos se rechazan. No se cambia su contrato.
+
+**Comprobado en este lote:** existencia, legibilidad del recorrido principal, separación cliente/prueba y correspondencia textual entre documentación y roles UML para los 23 patrones. **Pendiente todavía:** inspección pormenorizada de todos los atributos, multiplicidades, referencias y flechas de los SVG con su semántica Java, más la auditoría integral de las clases colaboradoras y de los laboratorios. La validación automatizada no equivale a inspección visual del trazado.

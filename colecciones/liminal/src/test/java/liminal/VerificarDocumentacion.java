@@ -75,6 +75,7 @@ public final class VerificarDocumentacion {
             comprobarUml(diagramas, "decorator.svg", "envuelta: 1");
             comprobarUml(diagramas, "chainofresponsibility.svg", "siguiente: 0..1");
             comprobarUml(diagramas, "iterator.svg", "Iterable", "Iterator");
+            comprobarUml(diagramas, "flyweight.svg", "Map&lt;ClaveTextura, Textura&gt;");
             comprobarUml(diagramas, "abstractfactory.svg",
                     "LuzAmarilla", "LuzPiscinas", "PuertaAmarilla", "PuertaPiscinas",
                     "FabricaAmarilla", "FabricaPiscinas");

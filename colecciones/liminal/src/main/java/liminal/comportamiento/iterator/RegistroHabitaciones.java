@@ -18,6 +18,6 @@ final class RegistroHabitaciones implements Iterable<Habitacion> {
     }
     int cantidad() { return habitaciones.size(); }
     public Iterator<Habitacion> iterator() {
-        return new RecorridoHabitaciones(List.copyOf(habitaciones));
+        return new RecorridoHabitaciones(habitaciones);
     }
 }
