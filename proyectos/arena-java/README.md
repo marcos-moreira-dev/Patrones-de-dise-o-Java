@@ -169,13 +169,6 @@ para argumentos imposibles o violaciones de contratos del programador.
 El `enum Estado` de `Partida` **no se presenta falsamente como el patrón
 State**: para los cuatro finales posibles no hace falta ese patrón.
 
-**Suscripciones durante un turno:** `ServicioPartida` publica los eventos de
-una acción válida utilizando una instantánea de sus observadores. Si uno
-suscribe un nuevo receptor mientras procesa `ATAQUE`, ese nuevo receptor
-participa **desde la siguiente acción**, no desde `RESPUESTA` del mismo
-turno. Es una política síncrona, sin hilos ni transacciones de eventos; los
-observadores deben ejecutar sus callbacks sin lanzar excepciones.
-
 ## Probar sin dependencias
 
 Después de compilar, desde la raíz:

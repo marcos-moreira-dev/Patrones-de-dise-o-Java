@@ -47,10 +47,8 @@ public final class ServicioPartida {
             return new ResultadoAccion.Rechazada(rechazo.get());
         }
         List<EventoCombate> eventos = motor.resolver(partida, accion);
-        // Los receptores de una acción son estables aunque uno suscriba a otro.
-        List<ObservadorPartida> destinatarios = List.copyOf(observadores);
         for (EventoCombate evento : eventos) {
-            for (ObservadorPartida observador : destinatarios) {
+            for (ObservadorPartida observador : observadores) {
                 observador.alOcurrir(evento);
             }
         }

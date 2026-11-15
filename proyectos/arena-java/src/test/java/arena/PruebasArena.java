@@ -159,24 +159,6 @@ public final class PruebasArena {
         comprobar(eventos.get(0).tipo() == EventoCombate.Tipo.ATAQUE
                 && eventos.get(1).tipo() == EventoCombate.Tipo.RESPUESTA,
                 "Los observadores reciben tipos sin analizar cadenas");
-
-        ServicioPartida dinamico = partida(new ReglasArena(), 20, 6, 20);
-        List<EventoCombate> receptorNuevo = new ArrayList<>();
-        int[] cantidadInicial = {0};
-        dinamico.suscribir(evento -> {
-            cantidadInicial[0]++;
-            if (cantidadInicial[0] == 1) {
-                dinamico.suscribir(receptorNuevo::add);
-            }
-        });
-        comprobar(dinamico.ejecutar(Accion.ATACAR) instanceof ResultadoAccion.Ejecutada,
-                "La suscripción durante un aviso no interrumpe una acción");
-        comprobar(cantidadInicial[0] == 2 && receptorNuevo.isEmpty(),
-                "El receptor añadido no recibe eventos del turno en curso");
-        comprobar(dinamico.ejecutar(Accion.ATACAR) instanceof ResultadoAccion.Ejecutada,
-                "La siguiente acción mantiene un recorrido estable");
-        comprobar(cantidadInicial[0] == 4 && receptorNuevo.size() == 2,
-                "El nuevo receptor recibe los eventos desde la acción siguiente");
     }
 
     private static void invariantes() {

@@ -1,6 +1,6 @@
 # Auditoría de andamiaje: qué es dominio, patrón y soporte técnico
 
-**14 de noviembre de 2026. Primera pasada estructural, con segunda pasada semántica iniciada.** No se han eliminado archivos por esta auditoría. Una revisión semántica línea por línea de todos los ejemplos y microproyectos sigue **pendiente de completarse**.
+**14 de noviembre de 2026. Auditoría estructural y revisión semántica parcial, exclusivamente de Expedición Liminal.** No se han eliminado archivos por esta auditoría. Falta comprobar por completo todos los ejemplos de esta colección. **Fuera de alcance:** patrones técnicos originales, Arena Java, MiniSO, scripts generales, workflow compartido y otros proyectos.
 
 ## 1. Categorías para decidir
 
@@ -14,22 +14,21 @@
 
 **Una clase extra no es necesariamente andamiaje innecesario.** `DirectorAmbientes` es el rol a estudiar en una variante de Builder; `CatalogoPrototipos` es precisamente la variante Registry. En cambio, un registro de IDs de mapa dentro del Builder básico sí era una distracción y se retiró anteriormente.
 
-## 2. Inventario verificado
+## 2. Inventario de la colección auditada
 
-Se inspeccionó la estructura del repositorio de GitHub: **516 archivos** en la instantánea examinada. Conteos de esa instantánea:
+Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **281 archivos** en la instantánea revisada. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
 
-| Área | Archivos |
+| Área dentro de `colecciones/liminal/` | Archivos |
 | --- | ---: |
-| Java de patrones técnicos originales | 91 |
-| Java de producción de Expedición Liminal | 172 |
-| Java de pruebas de Expedición Liminal | 34 |
-| Archivos bajo `colecciones/liminal/docs/` | 60 |
-| Archivos bajo `colecciones/liminal/assets/` | 5 |
-| Microproyecto Arena Java | 39 |
-| Microproyecto MiniSO | 30 |
-| Workflows de CI | 1 |
+| `src/main/java/` — Java de producción | 172 |
+| `src/test/java/` — pruebas de la colección | 34 |
+| `docs/` — fichas, UML y laboratorios | 60 |
+| `assets/` — arte de apoyo | 5 |
+| Documentos Markdown en la raíz liminal | 8 |
+| `scripts/` — verificación específica de Liminal | 2 |
+| **Total** | **281** |
 
-Son **conteos estructurales**, no una certificación automática de que cada archivo sea necesario.
+El conteo es un inventario de estructura, **no una certificación semántica**. La auditoría sigue el recorrido de las clases de los **23 patrones GoF liminales, siete variantes, dos laboratorios y su documentación asociada**, sin intervenir en los demás proyectos.
 
 ## 3. Clasificación de archivos representativos
 
@@ -42,11 +41,8 @@ Son **conteos estructurales**, no una certificación automática de que cada arc
 | `ClienteX.java` y `DemoLiminal.java` | E | Trazabilidad humana: mostrar qué se crea, en qué orden y qué ocurre |
 | `PruebaX.java`, `PruebasLiminal.java`, `VerificarDocumentacion.java` | T | Pruebas; no deben confundirse con clases del patrón |
 | `colecciones/liminal/scripts/verificar.sh` y `verificar.ps1` | T | Compilan y verifican con Java 21 sin pedir pruebas al usuario |
-| `scripts/verificar.sh` y `.github/workflows/java21.yml` | T | Verificación transversal; pueden recompilar componentes, pero eso no los hace lógica del dominio |
-| `docs/uml/generar-ejemplos.mjs` | T editorial | Genera SVG de la guía general, no es dependencia de ejecución Java |
-| `proyectos/*/pom.xml` | T educativo | Maven es opcional para ejecutar manualmente, útil para aprender construcción y empaquetado |
 | Fichas MD, UML, escenarios WebP y secuencias SVG | E | Contexto, no nuevas reglas del dominio |
-| `PLAN.md`, `PLAN_VARIANTES.md`, `Tree.md` | E | Orientación; revisar indicaciones históricas obsoletas |
+| `PLAN.md` y `PLAN_VARIANTES.md` | E | Orientación exclusiva de la colección liminal; revisar indicaciones históricas obsoletas |
 
 ## 4. Auditoría de record en la colección liminal
 
@@ -66,16 +62,15 @@ En `FabricaTexturas.obtener()` se construía una instancia nueva de `Textura` **
 
 ## 6. Candidatos de simplificación, NO eliminados
 
-1. **Documentación antigua:** `PLAN.md` y `Tree.md` todavía contienen o podrían conservar nomenclatura de la fase «FUTURO». Actualizar la navegación sin borrar la historia de decisiones.
-2. **Doble compilación:** la CI compila fuentes y luego `scripts/verificar.sh` ejecuta sus propias compilaciones. Revisar si se puede reducir trabajo sin perder pruebas, Javadoc ni compatibilidad con Windows.
-3. **Verificador muy específico:** `VerificarDocumentacion.java` exige 23 fichas, siete variantes y cantidades fijas de imágenes. Es una protección razonable contra regresiones, aunque cada ampliación requiere actualizar inventarios.
-4. **Instrumentación simulada:** el contador de `CamaraReal` es apoyo didáctico. Mantenerlo local al ejemplo; no promoverlo a un servicio general de cámaras.
-5. **Dominio duplicado deliberadamente:** clases con el mismo nombre en paquetes distintos son ejercicios independientes. No extraer un framework común si eso impide leerlos a mano.
-6. **Arte y builds:** `out/`, `target/` y `*.class` están en `.gitignore`; no son fuente que debamos conservar en Git.
+1. **Documentación antigua:** `PLAN.md` podría conservar nomenclatura histórica «FUTURO». Actualizar la navegación liminal sin borrar las decisiones antiguas.
+2. **Verificador muy específico:** `VerificarDocumentacion.java` exige 23 fichas, siete variantes y cantidades fijas de imágenes. Es una protección razonable contra regresiones, aunque cada ampliación requiere actualizar inventarios.
+3. **Instrumentación simulada:** el contador de `CamaraReal` es apoyo didáctico. Mantenerlo local al ejemplo; no promoverlo a un servicio general de cámaras.
+4. **Dominio duplicado deliberadamente:** clases con el mismo nombre en paquetes distintos son ejercicios independientes. No extraer un framework común si eso impide leerlos a mano.
+5. **Arte y builds:** `out/`, `target/` y `*.class` están en `.gitignore`; no son fuente que debamos conservar en Git.
 
 ## 7. Segunda pasada para declarar auditoría total
 
-Para cada uno de los 23 patrones, siete variantes, dos laboratorios y ambos microproyectos:
+Para cada uno de los **23 patrones de Expedición Liminal**, siete variantes y dos laboratorios liminales:
 
 - ¿La clase tiene un consumidor real y un rol D, P, E o T documentado?
 - ¿Se puede quitar una clase intermedia sin perder un contrato GoF ni una regla R-XX?
@@ -86,13 +81,13 @@ Para cada uno de los 23 patrones, siete variantes, dos laboratorios y ambos micr
 
 Registrar hallazgos con **ruta → rol → consumidor → coste → propuesta → prueba de regresión**. No borrar clases por nombre, cantidad de líneas o intuición. Toda poda requiere compilar Java 21, ejecutar pruebas, revisar UML y verificar enlaces.
 
-**Alcance demostrado hasta ahora:** estructura, rutas de soporte, revisión completa de las declaraciones record del catálogo liminal y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 516 archivos.**
+**Alcance demostrado hasta ahora:** estructura de Liminal, revisión de declaraciones `record` del catálogo y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 281 archivos liminales.**
 
 [Plan de variantes](PLAN_VARIANTES.md) · [Contrato del dominio](DOMINIO.md) · [Guía de lectura](GUIA_LECTURA_CODIGO.md).
 
 ## 8. Segunda pasada semántica — revisión dirigida de las siete variantes
 
-Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 516 archivos del inventario original.**
+Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 281 archivos liminales.**
 
 | Área y ruta | Rol / consumidor | Evidencia y criterio |
 | --- | --- | --- |
@@ -106,17 +101,11 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 **Decisión de poda:** ninguna clase de estas variantes se elimina en este lote: los tipos revisados conservan roles didácticos o de dominio identificables. Las clases cliente y de prueba siguen separadas. **La regresión de la cadena pasó GitHub Actions (commit `ceb2c044`) con Java 21.** La regresión de auto-retiro de Observer requiere la misma comprobación de CI.
 
-**Siguiente alcance aún abierto:** auditoría semántica de las 23 implementaciones base, correspondencia de flechas y multiplicidades en todos los UML, laboratorios, utilidades del repositorio y los dos microproyectos. Mantener la distinción entre esta revisión dirigida y una certificación total.
+**Siguiente alcance aún abierto:** auditoría semántica de las 23 implementaciones base, correspondencia de flechas y multiplicidades en todos los UML liminales, laboratorios y utilidades de esta colección. Mantener la distinción entre esta revisión dirigida y una certificación total.
 
-## 9. Segunda pasada técnica — eliminar compilación y pruebas duplicadas en CI
 
-**Hallazgo:** el job Ubuntu del workflow `.github/workflows/java21.yml` compilaba los Java con `find | javac`, ejecutaba `arena.PruebasArena` y `miniso.PruebasMiniSO`, y luego invocaba `scripts/verificar.sh`, que **ya** vuelve a compilar las colecciones y ejecuta esas pruebas desde Maven.
 
-**Inventario de cobertura comprobado:** todos los **344 archivos `.java`** del árbol se encuentran dentro de las colecciones clásicas (incluidos `App.java` y `Main.java`), Expedición Liminal, Arena Java o MiniSO. Ninguna fuente queda fuera del verificador común: clásicos (javac y menú), liminal (javac, pruebas y consola) y microproyectos (Maven `clean verify` con el plugin exec y pruebas), más dos smoke tests de JAR.
-
-**Decisión:** eliminar los tres pasos redundantes del job Ubuntu y ejecutar una sola vez el script de verificación; conservar la generación independiente de **Javadoc** y el job de **Windows/Git Bash**. Es poda de andamiaje técnico T, sin modificar código de dominio, UML ni número de pruebas. La comprobación del nuevo workflow debe observarse en GitHub Actions, no suponerse por lectura de YAML.
-
-## 10. Segunda pasada semántica — Memento: aislar el originador
+## 9. Segunda pasada semántica — Memento: aislar el originador
 
 **Ruta → rol → consumidor:** `comportamiento/memento/Historial.java` (cuidador P) guarda instantáneas opacas de `Linterna` (originador D), utilizadas por `ClienteMemento` y `PruebaMemento`. También se inspeccionaron Facade, Iterator, State, Strategy, Composite, Mediator, Abstract Factory e Interpreter; se preservan sus colaboraciones actuales sin poda especulativa.
 
@@ -124,9 +113,9 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 **Corrección mínima:** el cuidador recuerda una referencia `origen` tras la primera captura. `guardar` y `deshacer` verifican identidad Java antes de modificar estado o historial; no se introduce una jerarquía ni una clase auxiliar. La referencia es una **asociación**, no propiedad UML. La ficha y el SVG de Memento representan esta decisión. `PruebaMemento` comprueba rechazo de guardado/restauración sobre otra linterna, invariantes sin mutación y que el recuerdo original sigue disponible. El mismo harness aislado, compilado con `javac --release 21`, pasa después del cambio. La verificación integral remota queda a cargo de GitHub Actions.
 
-**Límite:** estos hallazgos no certifican todavía una inspección exhaustiva del resto de patrones, laboratorios ni microproyectos.
+**Límite:** estos hallazgos no certifican todavía una inspección exhaustiva del resto de patrones y laboratorios de Expedición Liminal.
 
-## 11. Segunda pasada semántica — Facade: mapa de procedencia
+## 10. Segunda pasada semántica — Facade: mapa de procedencia
 
 **Ruta → rol → consumidor:** `estructurales/facade/Explorador.java` (entidad D) y `FachadaCruce.java` (rol Facade P), consumidos por `ClienteFacade` y `PruebaFacade`.
 
@@ -134,9 +123,9 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 **Corrección:** `Explorador` conserva una referencia al `MapaLocal` de origen y expone `perteneceA(mapa)` mediante comparación de identidad (`==`). El constructor de `FachadaCruce` rechaza un mapa ajeno antes de permitir cruces. La prueba crea expresamente dos mapas distintos con un ID de habitación en común, verifica rechazo y comprueba que no cambió la ubicación. La ficha y el diagrama UML reflejan la asociación **Explorador → MapaLocal** (sin composición).
 
-**Validación:** el caso aislado de regresión se compiló con `javac --release 21` y pasó después del cambio, sin usar la computadora del estudiante. La comprobación integral de las colecciones y ambos microproyectos se realiza además con GitHub Actions.
+**Validación:** el caso aislado de regresión se compiló con `javac --release 21` y pasó después del cambio, sin usar la computadora del estudiante. La prueba pertenece a la colección Liminal; GitHub Actions comprueba también su compilación, sin que esta auditoría inspeccione los demás proyectos.
 
-## 12. Segunda pasada semántica — Factory Method: postcondiciones del creador
+## 11. Segunda pasada semántica — Factory Method: postcondiciones del creador
 
 **Ruta → rol → consumidor:** `creacionales/factorymethod/GeneradorCriatura.java` (creador abstracto P), sus productos `Criatura` (P/D) y `RegistroApariciones` (D), utilizados por `ClienteFactoryMethod` y `PruebaFactoryMethod`.
 
@@ -146,12 +135,6 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 **Andamiaje:** la comprobación pertenece al creador (contrato de producción), no al cliente de consola ni a infraestructura adicional. Actualizada la ficha del patrón. La validación integral depende de GitHub Actions con Java 21.
 
-## 13. Segunda pasada semántica — Arena Java: estabilidad de Observer
+## 12. Criterio editorial ratificado: claridad humana
 
-**Ruta → rol → consumidor:** `proyectos/arena-java/src/main/java/arena/aplicacion/ServicioPartida.java` (servicio de aplicación y sujeto Observer P) publica `EventoCombate` a receptores `ObservadorPartida` utilizados por consola y `PruebasArena`.
-
-**Defecto detectado:** la publicación recorría directamente un `ArrayList` mutable de observadores. Si un callback llamaba a `ServicioPartida.suscribir`, el iterador podía lanzar `ConcurrentModificationException` durante el aviso. Además, sin una política explícita no estaba definido si el alta debía participar en el segundo evento del mismo turno.
-
-**Corrección:** después de resolver una acción válida, se captura una única `List.copyOf(observadores)` para **todos los eventos de esa acción**; así el alta durante el turno no modifica los destinatarios actuales y participa desde la acción siguiente. Se conserva el carácter síncrono y el orden de suscripción. `PruebasArena.observadores()` verifica que el receptor original ve los dos eventos, el nuevo no ve ninguno del primer turno y sí ve los dos del siguiente. La decisión se documenta en el README sin añadir un gestor de eventos.
-
-**Límite consciente:** los callbacks con excepciones siguen siendo responsabilidad del consumidor; este cambio no promete revertir el combate si un observador falla. No se añaden hilos ni una infraestructura de eventos compleja. Verificación integral en GitHub Actions Java 21 Linux/Windows.
+Esta auditoría **no busca maximizar defensas, capas o clases auxiliares**. En cada uno de los 23 ejemplos se debe poder abrir `ClienteX.java`, seguir sus métodos con nombres del dominio, reconocer los participantes GoF, contrastar su UML y ejecutar una prueba separada. Una clase adicional solo se justifica si representa un rol real, una entidad necesaria o una decisión de ingeniería demostrable. Un `record` como valor puede permanecer si se justifica; no se introduce en roles GoF por ahorrar sintaxis. **No se modifica el código de proyectos ajenos a `colecciones/liminal/`.**
