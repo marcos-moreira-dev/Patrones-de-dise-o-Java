@@ -38,16 +38,24 @@ public final class MotorCombate {
                 motivo -> { throw new IllegalStateException("Accion invalida: " + motivo); });
 
         List<EventoCombate> eventos = new ArrayList<>();
-        Jugador heroe = partida.heroe();
-        Jugador rival = partida.rival();
+        ejecutarAccion(partida, accion, eventos);
+        if (accion == Accion.HUIR) return List.copyOf(eventos);
+        if (registrarVictoriaSiCorresponde(partida, eventos)) return List.copyOf(eventos);
+        if (aplicarTerreno(partida, accion, eventos)) return List.copyOf(eventos);
 
+        resolverRespuestaRival(partida, accion, eventos);
+        return List.copyOf(eventos);
+    }
+
+    private void ejecutarAccion(Partida partida, Accion accion, List<EventoCombate> eventos) {
+        Jugador heroe = partida.heroe();
         switch (accion) {
-            case ATACAR -> atacar(heroe, rival, false, eventos);
+            case ATACAR -> atacar(heroe, partida.rival(), false, eventos);
             case ESPECIAL -> {
                 if (!heroe.consumirEnergia(accion.costeEnergia())) {
                     throw new IllegalStateException("La energia cambio despues de validarse");
                 }
-                atacar(heroe, rival, true, eventos);
+                atacar(heroe, partida.rival(), true, eventos);
             }
             case DEFENDER -> {
                 heroe.recuperarEnergia(1);
@@ -60,16 +68,21 @@ public final class MotorCombate {
                 partida.finalizar(Partida.Estado.HUIDA);
                 agregar(eventos, Tipo.HUIDA,
                         heroe.nombre() + " escapa del bosque. Fin del encuentro.");
-                return List.copyOf(eventos);
             }
         }
+    }
 
-        if (!rival.estaVivo()) {
-            partida.finalizar(Partida.Estado.VICTORIA);
-            agregar(eventos, Tipo.VICTORIA, "Victoria: " + rival.nombre() + " ha sido derrotado.");
-            return List.copyOf(eventos);
-        }
+    private boolean registrarVictoriaSiCorresponde(Partida partida, List<EventoCombate> eventos) {
+        Jugador rival = partida.rival();
+        if (rival.estaVivo()) return false;
+        partida.finalizar(Partida.Estado.VICTORIA);
+        agregar(eventos, Tipo.VICTORIA, "Victoria: " + rival.nombre() + " ha sido derrotado.");
+        return true;
+    }
 
+    /** Devuelve true cuando el terreno termina la partida antes de la respuesta rival. */
+    private boolean aplicarTerreno(Partida partida, Accion accion, List<EventoCombate> eventos) {
+        Jugador heroe = partida.heroe();
         int terreno = partida.escenario().danioTerreno(partida.turno(), accion);
         if (terreno > 0) {
             heroe.recibirDanio(terreno);
@@ -80,13 +93,17 @@ public final class MotorCombate {
                     "El salto evita cualquier golpe del terreno este turno.");
         }
 
-        if (!heroe.estaVivo()) {
-            partida.finalizar(Partida.Estado.DERROTA);
-            agregar(eventos, Tipo.DERROTA,
-                    "Derrota: el terreno ha vencido a " + heroe.nombre() + ".");
-            return List.copyOf(eventos);
-        }
+        if (heroe.estaVivo()) return false;
+        partida.finalizar(Partida.Estado.DERROTA);
+        agregar(eventos, Tipo.DERROTA,
+                "Derrota: el terreno ha vencido a " + heroe.nombre() + ".");
+        return true;
+    }
 
+    private void resolverRespuestaRival(Partida partida, Accion accion,
+                                       List<EventoCombate> eventos) {
+        Jugador heroe = partida.heroe();
+        Jugador rival = partida.rival();
         int respuesta = 3 + azar.siguiente(3);
         if (accion == Accion.DEFENDER) {
             respuesta = Math.max(0, respuesta - 2);
@@ -102,7 +119,6 @@ public final class MotorCombate {
         } else {
             partida.avanzarTurno();
         }
-        return List.copyOf(eventos);
     }
 
     private void atacar(Jugador atacante, Jugador objetivo, boolean especial,
