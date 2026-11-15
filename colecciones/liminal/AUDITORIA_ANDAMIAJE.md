@@ -217,3 +217,11 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 **Corrección:** el UML ahora incluye una caja `Salida`, el atributo `MapaLocal.salidas`, una asociación navegable `MapaLocal → Salida` y otra `Salida → PuertaPaso` con multiplicidad `0..1` del lado de la puerta. No se dibujaron rombos: el código conserva referencias, sin demostrar propiedad compuesta. Se amplió la altura del SVG para evitar comprimir las seis cajas y se ajustó la ficha. La prueba documental verifica los campos y la multiplicidad; las pruebas de Facade ya cubren ausencia de salida, salida sin puerta, puerta cerrada y mapa ajeno. **No cambia código de dominio.**
 
 **Resto de auditoría UML:** cotejar relaciones y trazado del resto de los diagramas significativos; la verificación del texto y XML no sustituye la revisión visual completa.
+
+## 21. UML — Flyweight: asociación de la fábrica a la caché
+
+**Hallazgo:** el SVG de Flyweight dibujaba `FabricaTexturas → Textura` como una **dependencia discontinua**, pese a que `FabricaTexturas.texturas` es un `Map<ClaveTextura, Textura>` que **retiene referencias** a las instancias compartidas. `Pared → Textura` ya era una asociación continua.
+
+**Corrección:** se sustituyó la dependencia fábrica-textura por una **asociación navegable** y se rotuló con `0..*` del lado de las texturas, sin rombos de propiedad. Se mantuvo `ClaveTextura` como `record` de clave valor en el atributo Java, sin inventar una entidad adicional. La ficha explica la diferencia y la verificación documental comprueba el nombre de la clave y la multiplicidad. **Sin cambios en implementación ni clientes.**
+
+La auditoría semántica distingue entre la dependencia del cliente a la fábrica (uso) y las referencias almacenadas por la fábrica (estructura). Falta comprobar visualmente los SVG finales en los visores que utilizará el lector.

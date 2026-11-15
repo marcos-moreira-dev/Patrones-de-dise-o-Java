@@ -75,7 +75,8 @@ public final class VerificarDocumentacion {
             comprobarUml(diagramas, "decorator.svg", "envuelta: 1");
             comprobarUml(diagramas, "chainofresponsibility.svg", "siguiente: 0..1");
             comprobarUml(diagramas, "iterator.svg", "Iterable", "Iterator");
-            comprobarUml(diagramas, "flyweight.svg", "Map&lt;ClaveTextura, Textura&gt;");
+            comprobarUml(diagramas, "flyweight.svg",
+                    "Map&lt;ClaveTextura, Textura&gt;", "0..*");
             // UML: + público, # protegido y ~ paquete, conforme a las firmas Java.
             comprobarUml(diagramas, "factorymethod.svg", "# crearCriatura(...)");
             comprobarUml(diagramas, "chainofresponsibility.svg",
