@@ -1,6 +1,6 @@
 # Contrato del dominio — Expedición Liminal Integrada
 
-> **Estado:** reglas **R-INT-01…R-INT-09 implementadas y probadas** en Java 21. La criatura Strategy está integrada, pero no hay combate, IA compleja ni persistencia. Rige primero el [dominio liminal común](../../colecciones/liminal/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
+> **Estado:** reglas **R-INT-01…R-INT-11 implementadas y probadas** en Java 21. Strategy, Observer y Mediator colaboran sin combate, IA compleja ni persistencia. Rige primero el [dominio liminal común](../../colecciones/liminal/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
 
 ## 1. Lenguaje ubicuo y alcance
 
@@ -19,10 +19,12 @@
 | **R-INT-05** | Una solicitud rechazada por falta de salida o estado incompatible conserva posición, turno y estado de expedición. **No consume turno** | desde H-01, `NORTE` rechazado; turno sigue 0 | mover o incrementar contador antes de validar |
 | **R-INT-06** | Cada movimiento permitido consume **exactamente un turno**. Llegar a la meta H-05 finaliza la sesión; mover después es inválido y no altera el estado | H-01 → H-02 → H-03 → H-04 → H-05 = cuatro turnos | quinto movimiento después de la meta |
 | **R-INT-07** | La criatura de etapa 2 tiene ID y posición válida, máximo una estrategia activa por instante; su estrategia **propone** un destino que el mapa valida. Encuentro en una habitación **no causa daño** ni derrota | patrullar desde un origen con salida existente | teletransportar a una celda sin salida |
-| **R-INT-08** | Todas las acciones son síncronas y deterministas. `ProcesarTurno` intenta primero el movimiento del explorador; solo **después de un éxito**, ejecuta **una** acción de criatura si está registrada, incluso en el turno que alcanza la meta. Un intento rechazado nunca mueve a la criatura | repetir un guion reproduce la misma secuencia | criatura moviéndose por una acción rechazada o un hilo oculto |
-| **R-INT-09** | Una sesión admite **a lo sumo una criatura**, registrada antes del primer turno, que pertenece a la **misma instancia de mapa**. La estrategia puede cambiar, sin cambiar la criatura | incorporar M-01 en H-06 antes de avanzar | criatura de otro mapa, segunda criatura o incorporación tardía |
+| **R-INT-08** | Todas las acciones son síncronas y deterministas. `Expedicion.avanzar()` valida y mueve primero al explorador y solo **después de un éxito** procesa **una** acción de criatura, incluso al alcanzar la meta. `ProcesarTurno` comunica el resultado y después puede activar la vigilancia. Un paso rechazado no mueve la criatura ni dispara señales | repetir un guion reproduce la misma secuencia | criatura moviéndose por una acción rechazada o un hilo oculto |
+| **R-INT-09** | Una sesión admite **a lo sumo una criatura**, creada internamente antes del primer turno y del **mismo mapa**. Ningún cliente recibe la instancia mutable: `estadoCriatura()` entrega un `record` inmutable. Cambiar Strategy se hace mediante la sesión | incorporar M-01 en H-06 y consultar su vista | criatura de otro mapa, segunda criatura, acceso mutable o incorporación tardía |
+| **R-INT-10** | Un sensor vigila **una habitación por identidad**. La aplicación emite un `EventoRuido` **solo si el monstruo cambia de habitación y entra en la vigilada** después de un paso válido del explorador | M-01 llega a H-03 y se notifica SR-03 | evento por rechazo, por permanecer quieto o por otra habitación |
+| **R-INT-11** | Observer comunica eventos de forma síncrona y con instantánea estable de destinatarios. `CentroVigilancia` (Mediator) acepta señales del sensor autorizado y coordina encender luz y registrar alarma, sin que el sensor conozca sus receptores | suscriptor central recibe SR-03, activa ambos | suscriptor duplicado, sensor no autorizado o alterar destinatarios de la ronda actual |
 
-**Cobertura:** R-INT-01…R-INT-06 pertenecen al núcleo de etapa 1; R-INT-07…R-INT-09 corresponden a Strategy y coordinación de etapa 2. La persecución es **local**: si el explorador no está en una salida directa de la criatura, `Perseguir` espera; `Patrullar` escoge la primera salida en orden estable y `Esperar` no avanza. Ni la proximidad geométrica ni una estrategia habilitan teletransportes.
+**Cobertura:** R-INT-01…R-INT-06 pertenecen al núcleo de etapa 1; R-INT-07…R-INT-09 corresponden a Strategy, coordinación y protección de la sesión; R-INT-10…R-INT-11 corresponden al escenario de vigilancia Observer/Mediator. La persecución es **local**: si el explorador no está en una salida directa de la criatura, `Perseguir` espera; `Patrullar` escoge la primera salida en orden estable y `Esperar` no avanza. Ni la proximidad geométrica ni una estrategia habilitan teletransportes.
 
 ## 3. Precondiciones, postcondiciones y excepciones
 
@@ -49,7 +51,14 @@
 - **Pre:** el objetivo pertenece al mapa de la criatura y la estrategia activa no es nula.
 - **Post de éxito:** la nueva ubicación es la misma habitación o uno de los destinos de salidas dirigidas existentes.
 - **Post de rechazo:** una propuesta fuera de esas opciones produce `IllegalStateException` **sin mover a la criatura**; objetivo de otro mapa → `IllegalArgumentException`.
-- **Coordinación:** el caso de uso distingue **dos acciones del dominio**. Un movimiento válido del explorador ya confirmado **no se deshace** porque la propuesta posterior de la criatura sea inválida; el resultado sigue aceptado y el fallo de la criatura se narra por separado. Esto no finge una transacción global con rollback. Una solicitud rechazada del explorador, en cambio, no intenta ninguna acción de criatura.
+- **Coordinación:** `Expedicion.avanzar` procesa **dos acciones consecutivas del dominio** y produce `AvanceExpedicion`. Un movimiento válido del explorador no se deshace porque la propuesta posterior de la criatura sea inválida; el valor devuelto informa ese fallo por separado. Una solicitud rechazada del explorador no intenta ninguna acción de criatura. El caso de uso traduce estos datos sin adquirir una referencia mutable al monstruo.
+
+### Aviso de vigilancia
+
+- **Pre:** sensor y habitación vigilada existentes; solo `ProcesarTurno` decide llamar `detectarMovimiento` tras confirmar `criaturaSeMovio` y la coincidencia de habitación.
+- **Post:** Observer entrega `EventoRuido` a una instantánea de observadores; Mediator valida la ID del sensor, enciende luz y registra el aviso en alarma.
+- **Sin retroactividad:** el aviso no consume turno adicional ni modifica la posición del explorador o de la criatura.
+- **Límite:** los callbacks son síncronos; una excepción inesperada en un observador puede propagarse **después** de confirmar el turno. El proyecto no promete rollback ni reintentos automáticos de notificaciones. Esa política sería otra decisión de diseño, no un comportamiento GoF implícito.
 
 Las excepciones no deben usarse para inventar reglas de negocio; no se crean jerarquías de excepciones sin necesidad real.
 
@@ -60,12 +69,14 @@ Las excepciones no deben usarse para inventar reglas de negocio; no se crean jer
 | Identidad de habitación y coordenada fija | `Habitacion` | Imprimir consola o determinar la victoria |
 | Registro de habitaciones y salidas válidas | `MapaLiminal` | Decidir el turno o la estrategia de la criatura |
 | Ubicación actual del personaje | `Explorador` | Registrar mapa o almacenar las habitaciones de todo el mundo |
-| Meta, turno válido, finalización y admisión de criatura | `Expedicion` | Parsear comandos, decidir la estrategia o crear efectos visuales |
-| Coordinación de acciones sucesivas y resultado narrable | `ProcesarTurno` (aplicación) | Repetir validaciones de coordenadas/salidas que ya protege el dominio |
+| Meta, turno válido, finalización y propiedad de la criatura activa | `Expedicion` | Parsear comandos, decidir cómo avisar al sensor o crear efectos visuales |
+| Traducción del avance y coordinación del sensor | `ProcesarTurno` (aplicación) | Repetir las reglas de movimiento que ya protege `Expedicion` |
 | Preparación de dependencias y relato de consola | `ClienteExpedicion` | Manipular campos privados o realizar reglas del dominio |
-| Estrategia de movimiento del monstruo | `EstrategiaMovimiento` decide, `MonstruoOscuro` valida | Saltarse la validez del mapa o controlar los turnos del explorador |
+| Estrategia de movimiento del monstruo | `EstrategiaMovimiento` propone, `MonstruoOscuro` valida | Saltarse el mapa o decidir los turnos del explorador |
+| Distribución de señales | `SensorRuido` / `ObservadorRuido` | Conocer directamente la luz y la alarma |
+| Coordinación de dispositivos | `CentroVigilancia` / `LuzAlerta` / `Alarma` | Acoplar cada dispositivo a todos los demás |
 
-**Identidad y ciclo de vida:** `MapaLiminal` mantiene referencias a habitaciones y salidas, pero tener colecciones Java no implica por sí solo composición UML. El modelo deliberadamente no exige destruir habitaciones al cerrar una expedición. La sesión guarda referencias a explorador y criatura (si existe); son **asociaciones**, no composición UML automática. El cierre es **lógico**, no una orden al recolector de basura.
+**Identidad y ciclo de vida:** `MapaLiminal` mantiene referencias a habitaciones y salidas, pero tener colecciones Java no implica por sí solo composición UML. El modelo deliberadamente no exige destruir habitaciones al cerrar una expedición. La sesión guarda referencias a explorador y criatura (si existe). La criatura **pertenece al límite de mutación de la sesión**, pero esto no permite deducir por sí solo su composición UML ni el ciclo de vida de JVM; el cierre es **lógico**, no una orden al recolector de basura.
 
 ## 5. Referencias normativas y decisiones aplazadas
 
@@ -78,4 +89,4 @@ Las excepciones no deben usarse para inventar reglas de negocio; no se crean jer
 - **R-11/R-12:** reproducción determinista y rechazo atómico.
 - **R-13/R-14:** la estética no determina mecánicas y GoF no define las leyes del mundo.
 
-**Trazabilidad implementada:** `MapaLiminal` valida ID/posición/salidas y ofrece destinos dirigidos en orden estable e inmodificables; `Explorador` solo se mueve desde `Expedicion` (método de acceso de paquete); `Expedicion` protege turno, meta y registro de una criatura; `MonstruoOscuro` valida el destino propuesto por Strategy antes de mutar; `ProcesarTurno` secuencia las dos acciones y presenta sus resultados sin manipular los estados desde el cliente. Cambiar invariantes R-INT requiere actualizar este documento, el escenario y sus pruebas en un mismo trabajo.
+**Trazabilidad implementada:** `MapaLiminal` valida ID/posición/salidas y ofrece destinos dirigidos en orden estable e inmodificables; `Explorador` solo se mueve desde `Expedicion` (método de acceso de paquete); `Expedicion` crea y conserva su criatura, controla turnos y devuelve `AvanceExpedicion` y vistas `EstadoCriatura` sin exponer el objeto mutable; `MonstruoOscuro` valida el destino de Strategy antes de mutar; `ProcesarTurno` conecta el avance con `SensorRuido`, y `CentroVigilancia` coordina luz/alarma por Observer + Mediator. Cambiar invariantes R-INT requiere actualizar este documento, el escenario y sus pruebas en un mismo trabajo.

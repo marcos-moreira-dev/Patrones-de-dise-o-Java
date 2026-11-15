@@ -1,6 +1,6 @@
 # Plan del proyecto integrador — Expedición Liminal
 
-> **Estado (15 de noviembre de 2026): etapas 1 y 2 del integrador implementadas en Java 21 (dominio, turnos y Strategy para el monstruo); verificadas en CI.** La matriz 23/23 y los ejemplos aislados permanecen independientes. Versión 1.3.
+> **Estado (15 de noviembre de 2026): integrador académico cerrado (Strategy + Observer + Mediator, dominio, turnos y pruebas Java 21).** Matriz 23/23 y demos aisladas independientes. Versión 1.4.
 >
 > **Fuente normativa inicial:** [DOMINIO.md](DOMINIO.md). **Planes existentes:** [PLAN.md](PLAN.md), [PLAN_VARIANTES.md](PLAN_VARIANTES.md), [AUDITORIA_ANDAMIAJE.md](AUDITORIA_ANDAMIAJE.md). Cada cambio de dominio se justifica y prueba; los patrones no dictan las reglas del mundo.
 
@@ -10,7 +10,7 @@
 | --- | --- | --- | --- |
 | 1. GoF técnicos clásicos | Carpetas actuales de patrones técnicos (creacionales, estructurales, comportamiento) | Estudiar roles y teoría GoF | **No modificar** por este proyecto |
 | 2. GoF liminales aislados | `colecciones/liminal/` | Cada patrón en su propio paquete: cliente, clases, UML, prueba y ficha; siete variantes y dos laboratorios aparte | **Mantener autonomía.** No importar clases del integrador |
-| 3. Expedición Liminal integrada | **Implementado (etapas 1 y 2):** `proyectos/expedicion-liminal-integrada/` | Estudiar un dominio compartido, arquitectura, SOLID y colaboración real de patrones | No importar clases de las demos aisladas; compartir **contratos conceptuales**, no implementaciones |
+| 3. Expedición Liminal integrada | **Implementado y auditado:** `proyectos/expedicion-liminal-integrada/` | Estudiar un dominio compartido, arquitectura, SOLID y colaboración real de patrones | No importar clases de las demos aisladas; compartir **contratos conceptuales**, no implementaciones |
 
 Los proyectos `arena-java` y `miniso` y los workflows/scripts generales existentes permanecen sin modificar. El integrador vive en `proyectos/expedicion-liminal-integrada/` y dispone de **su propio script y workflow de CI**.
 
@@ -47,17 +47,20 @@ Las puertas son **solo una mecánica entre varias**. Mantener R-05 donde corresp
 **Elección inicial:** monolito modular Java 21; separación `presentacion → aplicacion → dominio`. El dominio no conoce consola, archivos, servicios, ni clases de aplicación. Puertos/adaptadores de estilo hexagonal **solo cuando se aísle una dependencia efectiva**. MVC completo no aporta sin interfaz de usuario compleja.
 
 ~~~text
-proyectos/expedicion-liminal-integrada/            (ETAPAS 1 y 2 IMPLEMENTADAS)
+proyectos/expedicion-liminal-integrada/            (CIERRE ACADÉMICO, 3 GoF INTEGRADOS)
 ├── README.md
 ├── DOMINIO.md                                      (reglas locales + vínculo normativo)
 ├── docs/
-│   └── arquitectura.md                             (paquetes, dependencias, decisiones)
+│   ├── ARQUITECTURA.md                             (diagramas, dependencias)
+│   ├── ESCENARIO_01.md                             (narrativa y turnos)
+│   └── AUDITORIA_FINAL.md                          (SOLID, riesgos, suficiencia)
 └── src/
     ├── main/java/liminal/integrado/
     │   ├── dominio/
     │   │   ├── mundo/                              (Posicion, Habitacion, Salida, MapaLiminal)
     │   │   ├── exploracion/                        (Explorador, Expedicion)
-    │   │   └── criaturas/                          (MonstruoOscuro, EstrategiaMovimiento)
+    │   │   ├── criaturas/                          (MonstruoOscuro, EstrategiaMovimiento)
+    │   │   └── vigilancia/                         (SensorRuido, CentroVigilancia, luz, alarma)
     │   ├── aplicacion/                             (ProcesarTurno, ResultadoTurno)
     │   └── presentacion/                           (ClienteExpedicion)
     └── test/java/liminal/integrado/                 (dominio + escenarios)
@@ -88,11 +91,11 @@ El cliente **orquesta** y narra: no decide si una salida es válida, no calcula 
 
 ## 6. Patrones integrados: selección justificada, nunca cuota 23/23
 
-**Naturales para una primera versión:** `Strategy` en comportamiento del monstruo; podrían aparecer `Facade` si se demuestra una coordinación repetida que simplifique al cliente, y `Factory Method` si la creación de tipos de criaturas se hace variable. No imponer ninguno antes de observar el problema.
+**Implementados y justificados:** `Strategy` para las políticas del monstruo, `Observer` para publicar los eventos del sensor y `Mediator` para coordinar la central con luz y alarma. Su ubicación, participantes, coste y prueba constan en [la auditoría](../../proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md). `Facade`, `Factory Method` y los otros 18 GoF no son necesarios en este integrador y permanecen en los ejemplos aislados.
 
-**Extensiones justificables más adelante:** `Observer/Mediator` (señales), `Proxy` (cámara), `Decorator/Memento` (linterna), `Iterator/Visitor` (consulta), `Builder/Abstract Factory/Prototype/Flyweight` (creación y configuración), `Command/State/Chain` (acciones), `Adapter/Bridge/Interpreter` (comunicación e instrucciones), `Template Method` (rutinas). `Singleton` exige especial cautela: solo introducirlo ante un alcance único real, no para completar la lista.
+**Extensiones opcionales, no pendientes:** `Proxy` (cámara), `Decorator/Memento` (linterna), `Iterator/Visitor` (consulta), `Builder/Abstract Factory/Prototype/Flyweight` (creación y configuración), `Command/State/Chain` (acciones), `Adapter/Bridge/Interpreter` (comunicación e instrucciones), `Template Method` (rutinas). `Singleton` exige especial cautela: solo introducirlo ante un alcance único real, no para completar la lista.
 
-Un **mapa de patrones** en `docs/arquitectura.md` registrará por cada patrón **utilizado**: problema real, clases participantes, justificación frente a solución simple, dependencia introducida, regla R-XX y prueba. Los no usados se listan como “no necesario en este integrador”, sin crear código testimonial.
+El **mapa de los tres patrones usados** aparece en [AUDITORIA_FINAL.md](../../proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md): problema, clases, justificación, dependencia, reglas R-INT y pruebas. Los otros 20 patrones **no se implementan por cuota** y siguen disponibles como ejemplos aislados.
 
 ## 7. Alineación innegociable de los 23 ejemplos liminales aislados
 
@@ -136,10 +139,10 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 | **0 — Contrato y alineación** | [Matriz 23/23](MATRIZ_ALINEACION.md) y comentarios de ingeniería acotados | Matriz y 17 comentarios escritos, sin alterar el comportamiento | **Alineación editorial realizada**; validar con CI final |
 | **1 — Núcleo mínimo** | **Completado:** mapa bidimensional, salidas dirigidas, explorador, expedición y procesamiento de turnos | Cliente determinista, cuatro pasos válidos, dos rechazos y pruebas | Java 21 con CI específica en Ubuntu/Windows |
 | **2 — Criatura y caso de uso** | **Completado:** criatura con Strategy (`Patrullar`, `Perseguir`, `Esperar`) integrada por `ProcesarTurno` | Identidad estable, no teletransporte, encuentro narrado y expedición finalizada | Pruebas específicas Java 21 y CI Linux/Windows |
-| **3 — Integración selectiva** | Solo después: señales, cámara, linterna o registro, según la necesidad de estudio | 1–2 colaboraciones transversales reales con patrón y coste documentados | Cada añadido tiene escenario, responsabilidad, prueba y alternativa sencilla |
-| **4 — Cierre editorial conjunto** | UML de paquetes y 1–2 secuencias, mapa de dependencias, matriz de trazabilidad, comentarios selectivos en aislados | Tres rutas de estudio visibles desde índices, CI final | No hay errores conocidos de compilación, invariantes, enlaces, navegación o separación |
+| **3 — Integración selectiva** | **Completada:** sensor SR-03, Observer y Mediator coordinan luz y alarma | Un evento real del guion, suscripciones y pruebas dedicadas | Sin red, cámaras, frameworks ni patrones decorativos |
+| **4 — Cierre editorial conjunto** | **Completado:** UML/diagramas actualizados, [auditoría final](../../proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md), trazabilidad y enlaces | Tres rutas de estudio visibles, pruebas y riesgos delimitados | CI Linux/Windows, sin mezcla de proyectos |
 
-**Regla de suficiencia para el integrador:** las etapas 1 y 2 están **terminadas**: existe una expedición completa, dominio coherente, capas, pruebas deterministas y una Strategy integrada. **El nivel académico básico es suficiente.** Las etapas 3 y 4 son enriquecimiento y cierre editorial **opcionales**, no una obligación de introducir los 23 patrones. La **alineación de los aislados** alcanza suficiencia al cerrar la etapa 0 y resolver únicamente hallazgos concretos, con un chequeo final después.
+**Regla de suficiencia para el integrador:** las etapas 1 a 4 están **terminadas**, con una expedición completa, dominio coherente, capas, pruebas deterministas, Strategy, Observer, Mediator y auditoría explícita. **El proyecto académico es suficiente y se detiene aquí**. Los 20 GoF restantes se estudian en sus ejemplos aislados, sin obligación de integrarlos. La **alineación de los aislados** alcanza suficiencia al cerrar la etapa 0 y resolver únicamente hallazgos concretos, con un chequeo final después.
 
 **No objetivos:** JavaFX, gráficos, física, combate, red, persistencia, multijugador, IA compleja, aleatoriedad libre, servicios HTTP, interfaz interactiva obligatoria, framework pesado, 23 patrones integrados por cuota, monolito de 23 demos conectadas, ni cambios a otros proyectos.
 
@@ -147,4 +150,4 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 
 Antes de cualquier commit del integrador, marcar en el plan cuál etapa se está ejecutando y qué demuestra. No mezclar en el mismo commit cambios del integrador y refactorizaciones de demos aisladas. Ante un conflicto, el contrato explícito del dominio prevalece; actualizar cada área afectada solo cuando corresponda.
 
-**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada. El **[diseño del tercer proyecto](../../proyectos/expedicion-liminal-integrada/README.md)** contiene ahora [reglas locales](../../proyectos/expedicion-liminal-integrada/DOMINIO.md), [escenario 01](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md) y [arquitectura/UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). **Estado actual:** etapa 2 terminada con criatura y Strategy sobre el mapa compartido, pruebas de no teletransporte, identidad, rechazo de estrategia y encuentro narrado. **No hay trabajo obligatorio adicional en el integrador académico básico**; si se decide ampliar, elegir solo una situación transversal valiosa (por ejemplo, ruido y avisos), no intentar unir los 23 GoF. El contrato queda documentado en su `DOMINIO.md` y `docs/ARQUITECTURA.md`. No reestructurar los 23 patrones aislados.
+**Cierre:** los tres bloques de aprendizaje están enlazados e independientes. Los 23 ejemplos GoF liminales siguen [alineados](MATRIZ_ALINEACION.md); el integrador finaliza con [Strategy + Observer + Mediator](../../proyectos/expedicion-liminal-integrada/README.md), [UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md) y [auditoría final](../../proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md). No hay trabajo obligatorio adicional; futuras mejoras solo ante defectos comprobados o nuevas metas de estudio.
