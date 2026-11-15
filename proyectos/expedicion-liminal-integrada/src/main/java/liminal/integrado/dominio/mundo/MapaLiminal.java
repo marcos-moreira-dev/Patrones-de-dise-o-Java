@@ -102,7 +102,7 @@ public final class MapaLiminal {
         Map<Direccion, Salida> opciones = salidasPorOrigen.get(origen.id());
         Salida salida = opciones == null ? null : opciones.get(direccion);
         if (salida == null) {
-            throw new IllegalStateException("No hay salida dirigida hacia " + direccion);
+            throw new MovimientoRechazadoException("No hay salida dirigida hacia " + direccion);
         }
         return salida;
     }
