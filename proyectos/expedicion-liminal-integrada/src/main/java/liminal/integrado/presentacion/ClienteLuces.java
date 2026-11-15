@@ -27,6 +27,10 @@ public final class ClienteLuces {
     }
 
     public static List<String> ejecutar() {
+        return reproducirGuion(prepararEscena());
+    }
+
+    private static EscenaLuces prepararEscena() {
         MapaLiminal mapa = new MapaLiminal("LUCES", 3, 2);
         Habitacion inicio = mapa.agregarHabitacion("L-01", "Refugio sin ventanas", new Posicion(0, 1));
         mapa.agregarHabitacion("L-02", "Corredor de tubos apagados", new Posicion(1, 1));
@@ -47,6 +51,14 @@ public final class ClienteLuces {
         sensor.suscribir(new CentroVigilancia("CENTRAL-OSCURA", sensor.id(), luz, alarma));
         ProcesarTurno caso = new ProcesarTurno(sesion, sensor);
 
+        return new EscenaLuces(sesion, caso, luz, alarma);
+    }
+
+    private static List<String> reproducirGuion(EscenaLuces escena) {
+        Expedicion sesion = escena.sesion();
+        ProcesarTurno caso = escena.caso();
+        LuzAlerta luz = escena.luz();
+        Alarma alarma = escena.alarma();
         List<String> relato = new ArrayList<>();
         relato.add("EL MONSTRUO DETRÁS DE LAS LUCES — fluorescentes apagados");
         relato.add("LUZ INICIAL: " + (luz.encendida() ? "ENCENDIDA" : "APAGADA"));
@@ -87,4 +99,6 @@ public final class ClienteLuces {
             relato.add("El paso falla; la sombra permanece en " + despues + ".");
         }
     }
+    private record EscenaLuces(Expedicion sesion, ProcesarTurno caso, LuzAlerta luz, Alarma alarma) {}
+
 }

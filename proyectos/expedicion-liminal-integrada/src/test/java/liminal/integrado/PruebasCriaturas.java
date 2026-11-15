@@ -21,8 +21,11 @@ public final class PruebasCriaturas {
 
     public static void main(String[] args) {
         probarEstrategiasAisladas();
-        probarSesionProtegida();
+        probarEncapsulamientoCriatura();
+        probarFinalizacionYTurnos();
+        probarIncorporacionTardia();
         probarPropuestaInvalida();
+        probarFalloInesperadoDeEstrategia();
         probarEsperaSinSalidas();
         System.out.println("OK: Strategy, identidad, encapsulamiento, rutas y turnos.");
     }
@@ -52,7 +55,7 @@ public final class PruebasCriaturas {
                 () -> new MonstruoOscuro("M-02", e.mapa, duplicada, new Patrullar()));
     }
 
-    private static void probarSesionProtegida() {
+    private static void probarEncapsulamientoCriatura() {
         Escena e = escena();
         Explorador explorador = new Explorador("EX", e.mapa, e.inicio);
         Expedicion sesion = new Expedicion("EXP", e.mapa, explorador, e.oficinas);
@@ -81,12 +84,21 @@ public final class PruebasCriaturas {
                 "Encuentro sin combate");
         igual(1, sesion.turnos());
         igual(e.cruce, sesion.estadoCriatura().orElseThrow().ubicacion());
-        igual(e.observacion, fotografiaInicial.ubicacion()); // La vista previa NO se actualiza.
+        igual(e.observacion, fotografiaInicial.ubicacion()); // Vista previa inmutable.
         comprobar(fotografiaInicial != sesion.estadoCriatura().orElseThrow(),
                 "Cada consulta devuelve un dato, no la entidad");
         comprobar(sesion.explorador() == explorador, "Explorador con identidad estable");
+    }
 
+    private static void probarFinalizacionYTurnos() {
+        Escena e = escena();
+        Expedicion sesion = new Expedicion("EXP-F", e.mapa,
+                new Explorador("EX-F", e.mapa, e.inicio), e.oficinas);
+        sesion.incorporarCriatura("M-F", e.observacion, new Patrullar());
+        ProcesarTurno caso = new ProcesarTurno(sesion);
+        comprobar(caso.procesar(Direccion.ESTE).aceptado(), "Primer turno aceptado");
         sesion.cambiarEstrategiaCriatura(new Perseguir());
+
         ResultadoTurno segundo = caso.procesar(Direccion.ESTE);
         comprobar(segundo.aceptado() && segundo.finalizada(), "Meta alcanzada");
         igual(e.oficinas, sesion.estadoCriatura().orElseThrow().ubicacion());
@@ -95,12 +107,36 @@ public final class PruebasCriaturas {
                 () -> sesion.cambiarEstrategiaCriatura(new Esperar()));
         comprobar(!caso.procesar(Direccion.OESTE).aceptado(), "Turno posterior rechazado");
         igual(2, sesion.turnos());
+    }
 
+    private static void probarIncorporacionTardia() {
+        Escena e = escena();
         Expedicion tardia = new Expedicion("EXP-T", e.mapa,
                 new Explorador("EX-T", e.mapa, e.inicio), e.oficinas);
         tardia.avanzar(Direccion.ESTE);
         esperarFallo(IllegalStateException.class,
                 () -> tardia.incorporarCriatura("M-X", e.observacion, new Esperar()));
+    }
+
+    private static void probarFalloInesperadoDeEstrategia() {
+        Escena e = escena();
+        Expedicion sesion = new Expedicion("EXP-ERROR", e.mapa,
+                new Explorador("EX-ERROR", e.mapa, e.inicio), e.oficinas);
+        sesion.incorporarCriatura("M-ERROR", e.observacion,
+                (actual, objetivo, rutas) -> {
+                    throw new IllegalStateException("Fallo inesperado de Strategy");
+                });
+
+        try {
+            new ProcesarTurno(sesion).procesar(Direccion.ESTE);
+            throw new AssertionError("El error interno no debe convertirse en rechazo normal");
+        } catch (IllegalStateException esperado) {
+            igual("Fallo inesperado de Strategy", esperado.getMessage());
+        }
+        // El movimiento del explorador ya se confirmó: no hay rollback implícito.
+        igual(1, sesion.turnos());
+        igual(e.cruce, sesion.explorador().ubicacion());
+        igual(e.observacion, sesion.estadoCriatura().orElseThrow().ubicacion());
     }
 
     private static void probarPropuestaInvalida() {

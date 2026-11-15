@@ -8,6 +8,7 @@ import liminal.integrado.dominio.criaturas.MonstruoOscuro;
 import liminal.integrado.dominio.mundo.Direccion;
 import liminal.integrado.dominio.mundo.Habitacion;
 import liminal.integrado.dominio.mundo.MapaLiminal;
+import liminal.integrado.dominio.mundo.MovimientoRechazadoException;
 
 /** Sesión de dominio: mantiene identidad, turnos, meta y criatura sin consola. */
 public final class Expedicion {
@@ -67,7 +68,7 @@ public final class Expedicion {
 
     public AvanceExpedicion avanzar(Direccion direccion) {
         Objects.requireNonNull(direccion);
-        if (finalizada) throw new IllegalStateException("La expedición ya finalizó");
+        if (finalizada) throw new MovimientoRechazadoException("La expedición ya finalizó");
         // Si falla el paso del explorador, no hay turno ni acción de criatura.
         Habitacion nueva = explorador.mover(direccion);
         turnos++;
@@ -78,7 +79,7 @@ public final class Expedicion {
         boolean rechazada = false;
         try {
             criatura.avanzar(nueva);
-        } catch (IllegalStateException propuestaInvalida) {
+        } catch (MovimientoRechazadoException propuestaInvalida) {
             // Dos acciones sucesivas: no se revierte el movimiento ya válido
             // del explorador cuando una Strategy propone una ruta ilegal.
             rechazada = true;
