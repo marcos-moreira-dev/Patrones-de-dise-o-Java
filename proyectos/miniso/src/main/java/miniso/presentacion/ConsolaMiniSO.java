@@ -69,45 +69,21 @@ public final class ConsolaMiniSO {
         return null;
     }
 
+    /** Traduce la orden a un caso de uso; las reglas quedan en aplicación y dominio. */
     private void ejecutar(SimuladorSO so, SistemaArchivosVirtual archivos, String orden, String args) {
         try {
             switch (orden) {
                 case "ayuda" -> ayuda();
-                case "crear" -> {
-                    String[] p = args.split("\\s+");
-                    if (p.length != 4) { salida.println("Uso: crear <nombre> <cpu> <prioridad> <KiB>"); break; }
-                    ResultadoAlta resultado = so.crearProceso(p[0], Integer.parseInt(p[1]),
-                            Integer.parseInt(p[2]), Integer.parseInt(p[3]));
-                    salida.println(resultado.detalle());
-                }
-                case "tick" -> {
-                    int cantidad = args.isEmpty() ? 1 : Integer.parseInt(args);
-                    if (cantidad < 1 || cantidad > 1000) {
-                        salida.println("Elige entre 1 y 1000 ticks"); break;
-                    }
-                    for (int i = 0; i < cantidad; i++) {
-                        EventoTick evento = so.avanzarTick();
-                        salida.println("[t=" + evento.reloj() + "] " + evento.detalle());
-                    }
-                }
+                case "crear" -> ejecutarCrear(so, args);
+                case "tick" -> ejecutarTicks(so, args);
                 case "io" -> mostrar(so.solicitarIo(Integer.parseInt(args)));
-                case "ps" -> {
-                    salida.println("PID | NOMBRE | ESTADO | CPU | PRIORIDAD | KiB | E/S");
-                    for (VistaProceso p : so.listarProcesos()) {
-                        salida.printf("%d | %s | %s | %d | %d | %d | %d%n", p.pid(), p.nombre(),
-                                p.estado(), p.cpuRestante(), p.prioridad(), p.memoriaKiB(), p.esperaIo());
-                    }
-                }
+                case "ps" -> mostrarProcesos(so);
                 case "estado" -> salida.println("t=" + so.reloj() + ", CPU PID=" + so.pidEnCpu()
                         + ", memoria=" + so.memoriaUsadaKiB() + "/" + so.capacidadKiB() + " KiB");
                 case "metricas" -> mostrarMetricas(so);
                 case "comparar" -> compararPoliticas();
                 case "mkdir" -> mostrar(archivos.crearDirectorio(args));
-                case "write" -> {
-                    String[] p = args.split("\\s+", 2);
-                    if (p.length != 2) { salida.println("Uso: write /ruta/archivo texto"); break; }
-                    mostrar(archivos.escribir(p[0], p[1]));
-                }
+                case "write" -> ejecutarEscritura(archivos, args);
                 case "cat" -> salida.println(archivos.leer(args).orElse("Archivo inexistente o ruta invalida"));
                 case "tree" -> salida.print(archivos.arbol());
                 default -> salida.println("Orden desconocida: " + orden + ". Escribe ayuda.");
@@ -115,6 +91,46 @@ public final class ConsolaMiniSO {
         } catch (NumberFormatException e) {
             salida.println("Se esperaba un numero entero valido. Escribe ayuda.");
         }
+    }
+
+    private void ejecutarCrear(SimuladorSO so, String args) {
+        String[] p = args.split("\\s+");
+        if (p.length != 4) {
+            salida.println("Uso: crear <nombre> <cpu> <prioridad> <KiB>");
+            return;
+        }
+        ResultadoAlta resultado = so.crearProceso(p[0], Integer.parseInt(p[1]),
+                Integer.parseInt(p[2]), Integer.parseInt(p[3]));
+        salida.println(resultado.detalle());
+    }
+
+    private void ejecutarTicks(SimuladorSO so, String args) {
+        int cantidad = args.isEmpty() ? 1 : Integer.parseInt(args);
+        if (cantidad < 1 || cantidad > 1000) {
+            salida.println("Elige entre 1 y 1000 ticks");
+            return;
+        }
+        for (int i = 0; i < cantidad; i++) {
+            EventoTick evento = so.avanzarTick();
+            salida.println("[t=" + evento.reloj() + "] " + evento.detalle());
+        }
+    }
+
+    private void mostrarProcesos(SimuladorSO so) {
+        salida.println("PID | NOMBRE | ESTADO | CPU | PRIORIDAD | KiB | E/S");
+        for (VistaProceso p : so.listarProcesos()) {
+            salida.printf("%d | %s | %s | %d | %d | %d | %d%n", p.pid(), p.nombre(),
+                    p.estado(), p.cpuRestante(), p.prioridad(), p.memoriaKiB(), p.esperaIo());
+        }
+    }
+
+    private void ejecutarEscritura(SistemaArchivosVirtual archivos, String args) {
+        String[] p = args.split("\\s+", 2);
+        if (p.length != 2) {
+            salida.println("Uso: write /ruta/archivo texto");
+            return;
+        }
+        mostrar(archivos.escribir(p[0], p[1]));
     }
 
     private void mostrar(ResultadoOperacion resultado) {
