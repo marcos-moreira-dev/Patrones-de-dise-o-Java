@@ -285,3 +285,20 @@ Se recorrieron **los 41 archivos Markdown bajo `colecciones/liminal/`**: ocho do
 **Dictamen del lote:** la colección permanece funcional y navegable, con cambios circunscritos a Expedición Liminal. La auditoría de **estructura, rutas pedagógicas, enlaces, documentación técnica y pruebas automatizadas** queda cerrada. La **lectura semántica exhaustiva de todas las clases colaboradoras** y una **inspección visual rasterizada o manual de cada SVG** siguen siendo tareas distinguibles; no se presentan como realizadas. El análisis del contenido de 25 SVG y sus coordenadas sí está hecho, pero no certifica cómo pinta cada visor los textos o los conectores.
 
 **Orden de lo que resta antes de declarar una auditoría totalmente exhaustiva:** (1) verificar semánticamente una por una las clases colaboradoras todavía no examinadas en detalle, mediante código, dominio y casos límite; (2) revisar los 25 renders SVG originales en un visor con capacidad de imagen, si está disponible, corrigiendo solo solapes o flechas comprobados; (3) ejecutar una última CI y dejar el dictamen integral sin tareas pendientes. En ningún paso se incluyen proyectos externos.
+
+## 26. Auditoría de colaboradores — criterio de suficiencia y revisión dirigida
+
+### Hallazgo puntual en Strategy
+
+`MapaLiminal.destinosDesde(origen)` hacía `List.copyOf(new ArrayList<>(vecinos.get(origen)))`: la colección se copiaba una vez al construir el `ArrayList` y de nuevo al construir la lista inmutable. Se sustituyó por **`List.copyOf(vecinos.get(origen))`**, eliminando el contenedor temporal sin alterar el orden de inserción del `LinkedHashSet`. La prueba de Strategy ahora conserva una instantánea de destinos, agrega otra salida válida y verifica que **la instantánea original no cambia** y que la lista nueva conserva el orden. La ficha explicita esta propiedad. No se introdujo una clase nueva.
+
+### Decisión de cierre: cuándo ya es suficiente
+
+**Hay dos niveles distintos y no deben confundirse.**
+
+1. **Suficiente para entregar y estudiar:** los 23 GoF tienen clientes, clases legibles y pruebas; las siete variantes y los dos laboratorios son autónomos; las decisiones de `class`/`record` están justificadas; las reglas de dominio que cada escena utiliza tienen casos relevantes de éxito/rechazo; las fichas, diagramas y enlaces no presentan bloqueos conocidos; la verificación integral de Java 21 pasa en Linux y Windows. **Un catálogo que cumple estos puntos puede darse por listo**, aunque no se haya revisado exhaustivamente cada línea ni probado el render de todos los SVG en cada visor.
+2. **Auditoría exhaustiva sin reservas:** además de lo anterior, todas las clases deben pasar una inspección manual de cada operación y condición límite, y los SVG deben inspeccionarse *ya renderizados* en un visor. Esto es una aspiración editorial adicional, **no un requisito para enseñar los patrones** ni un motivo para refactorizar por refactorizar.
+
+**Regla de parada para evitar sobreingeniería:** si el nivel 1 está satisfecho y no queda ningún error reproducible que altere roles GoF, reglas de identidad/movimiento, ejemplos visibles, pruebas o enlaces, **se declara suficiente y se deja de agregar andamiaje**. Más clases, controles, abstracciones, variantes o pruebas no equivalen necesariamente a mejor material didáctico.
+
+**Estado de esta pasada:** lectura dirigida de los colaboradores principales creacionales, estructurales y de comportamiento con énfasis en identidad, referencias, acceso, movimiento y contratos de colección. Las correcciones puntuales ya documentadas no justifican rediseñar las familias de patrones. Es importante no presentar esta pasada como verificación manual exhaustiva de los 181 archivos Java principales, que incluyen variantes y laboratorios. Si CI confirma el cambio, no hay bloqueador técnico conocido para el nivel 1.

@@ -20,9 +20,9 @@
 
 **Qué sucede realmente en Java:** el monstruo se crea **una sola vez**. `cambiarEstrategia(new Perseguir())` sustituye una referencia a la estrategia, **no** crea otro monstruo. `avanzar()` valida que el destino exista y que sea la misma habitación o una salida directa.
 
-**Reglas locales del ejemplo:** la patrulla escoge la **primera salida registrada**, la persecución solo avanza si el objetivo es adyacente y la espera conserva la posición. Estas decisiones no son leyes universales de Backrooms ni son requisitos del patrón Strategy.
+**Reglas locales del ejemplo:** la patrulla escoge la **primera salida registrada**, la persecución solo avanza si el objetivo es adyacente y la espera conserva la posición. El mapa entrega con `destinosDesde()` una **instantánea inmutable y ordenada** de las salidas del origen; añadir otra salida después no modifica una lista ya obtenida. Estas decisiones no son leyes universales de Backrooms ni son requisitos del patrón Strategy.
 
-**Pruebas:** tras cambiar de estrategia, el monstruo conserva identidad; no puede llegar a una habitación inexistente; tampoco puede aceptar un destino no conectado propuesto por una implementación defectuosa.
+**Pruebas:** tras cambiar de estrategia, el monstruo conserva identidad; no puede llegar a una habitación inexistente; tampoco puede aceptar un destino no conectado propuesto por una implementación defectuosa. También se verifica que las salidas mantienen orden de registro y que una instantánea anterior no cambia al agregar otra.
 
 **Salida de consola prevista:**
 

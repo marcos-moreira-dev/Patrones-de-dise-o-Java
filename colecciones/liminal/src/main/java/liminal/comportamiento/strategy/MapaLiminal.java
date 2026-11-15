@@ -1,6 +1,5 @@
 package liminal.comportamiento.strategy;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -33,7 +32,7 @@ final class MapaLiminal {
     }
     List<String> destinosDesde(String origen) {
         exigirHabitacion(origen);
-        return List.copyOf(new ArrayList<>(vecinos.get(origen)));
+        return List.copyOf(vecinos.get(origen));
     }
     void exigirHabitacion(String nombre) {
         if (!contiene(nombre)) throw new IllegalArgumentException("Habitación inexistente: " + nombre);

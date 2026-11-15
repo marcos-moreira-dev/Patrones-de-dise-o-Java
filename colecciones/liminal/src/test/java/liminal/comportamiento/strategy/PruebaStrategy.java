@@ -1,5 +1,7 @@
 package liminal.comportamiento.strategy;
 
+import java.util.List;
+
 public final class PruebaStrategy {
     private PruebaStrategy() {}
 
@@ -11,7 +13,15 @@ public final class PruebaStrategy {
         mapa.agregarSalida("S-01", "Pasillo", "Piscina");
         mapa.agregarSalida("S-02", "Piscina", "Pasillo");
         esperarFallo(() -> mapa.agregarSalida("S-03", "Pasillo", "Fuera"));
-        comprobar(mapa.destinosDesde("Pasillo").size() == 1, "Salida inválida no altera el mapa");
+        List<String> destinosIniciales = mapa.destinosDesde("Pasillo");
+        comprobar(destinosIniciales.equals(List.of("Piscina")),
+                "Salida inválida no altera el mapa");
+        // Una nueva salida no modifica la instantánea que ya recibió el cliente.
+        mapa.agregarSalida("S-03", "Pasillo", "Oficina");
+        comprobar(destinosIniciales.equals(List.of("Piscina")),
+                "La instantánea no debe cambiar al agregar otra salida");
+        comprobar(mapa.destinosDesde("Pasillo").equals(List.of("Piscina", "Oficina")),
+                "La lista de destinos respeta el orden de inserción");
         MonstruoOscuro monstruo = new MonstruoOscuro("M-01", mapa, "Pasillo", new Patrullar());
         MonstruoOscuro mismaInstancia = monstruo;
         monstruo.avanzar("Oficina");
