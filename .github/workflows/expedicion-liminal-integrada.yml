@@ -1,0 +1,38 @@
+name: Expedicion Liminal Integrada Java 21
+
+on:
+  pull_request:
+    paths:
+      - 'proyectos/expedicion-liminal-integrada/**'
+      - '.github/workflows/expedicion-liminal-integrada.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'proyectos/expedicion-liminal-integrada/**'
+      - '.github/workflows/expedicion-liminal-integrada.yml'
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Compilar, probar y ejecutar escenario integrado
+        run: bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Compilar, probar y ejecutar escenario integrado en Git Bash
+        run: bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh
+
