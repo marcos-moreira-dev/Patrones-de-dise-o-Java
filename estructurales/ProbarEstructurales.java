@@ -32,7 +32,7 @@ import estructurales.Flyweight.FlyweightFactory;
 import estructurales.Proxy.ProxyService;
 import estructurales.Proxy.Service;
 
-// --- (Demo cruzada) Iterator / Observer desde comportamiento
+// --- Demostraciones cruzadas opcionales: no se ejecutan en el menú estructural
 import comportamiento.Iterator.ConcreteAggregate;
 import comportamiento.Iterator.Iterator;
 import comportamiento.Observer.ConcreteObserver;
@@ -46,7 +46,7 @@ public class ProbarEstructurales {
         System.out.println("=== ProbarEstructurales ===");
     }
 
-    /** Ejecuta los patrones estructurales y dos demostraciones cruzadas. */
+    /** Ejecuta únicamente los siete patrones estructurales. */
     public void ejecutarTodo() {
         probarAdapter();
         probarBridge();
@@ -55,10 +55,6 @@ public class ProbarEstructurales {
         probarFacade();
         probarFlyweight();
         probarProxy();
-
-        // demos cruzadas
-        probarIterator();
-        probarObserver();
     }
 
     // ----------- ADAPTER -----------
