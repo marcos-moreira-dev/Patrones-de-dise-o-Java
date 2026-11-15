@@ -1,6 +1,6 @@
 # Plan del proyecto integrador — Expedición Liminal
 
-> **Estado (15 de noviembre de 2026): etapa 1 del integrador implementada en Java 21 con pruebas en Linux/Windows; etapa 2 (monstruo Strategy) pendiente.** La matriz 23/23 y los ejemplos aislados permanecen independientes. Versión 1.2.
+> **Estado (15 de noviembre de 2026): etapas 1 y 2 del integrador implementadas en Java 21 (dominio, turnos y Strategy para el monstruo); verificadas en CI.** La matriz 23/23 y los ejemplos aislados permanecen independientes. Versión 1.3.
 >
 > **Fuente normativa inicial:** [DOMINIO.md](DOMINIO.md). **Planes existentes:** [PLAN.md](PLAN.md), [PLAN_VARIANTES.md](PLAN_VARIANTES.md), [AUDITORIA_ANDAMIAJE.md](AUDITORIA_ANDAMIAJE.md). Cada cambio de dominio se justifica y prueba; los patrones no dictan las reglas del mundo.
 
@@ -10,7 +10,7 @@
 | --- | --- | --- | --- |
 | 1. GoF técnicos clásicos | Carpetas actuales de patrones técnicos (creacionales, estructurales, comportamiento) | Estudiar roles y teoría GoF | **No modificar** por este proyecto |
 | 2. GoF liminales aislados | `colecciones/liminal/` | Cada patrón en su propio paquete: cliente, clases, UML, prueba y ficha; siete variantes y dos laboratorios aparte | **Mantener autonomía.** No importar clases del integrador |
-| 3. Expedición Liminal integrada | **Propuesto:** `proyectos/expedicion-liminal-integrada/` | Estudiar un dominio compartido, arquitectura, SOLID y colaboración real de patrones | No importar clases de las demos aisladas; compartir **contratos conceptuales**, no implementaciones |
+| 3. Expedición Liminal integrada | **Implementado (etapas 1 y 2):** `proyectos/expedicion-liminal-integrada/` | Estudiar un dominio compartido, arquitectura, SOLID y colaboración real de patrones | No importar clases de las demos aisladas; compartir **contratos conceptuales**, no implementaciones |
 
 Los proyectos `arena-java` y `miniso` y los workflows/scripts generales existentes permanecen sin modificar. El integrador vive en `proyectos/expedicion-liminal-integrada/` y dispone de **su propio script y workflow de CI**.
 
@@ -47,7 +47,7 @@ Las puertas son **solo una mecánica entre varias**. Mantener R-05 donde corresp
 **Elección inicial:** monolito modular Java 21; separación `presentacion → aplicacion → dominio`. El dominio no conoce consola, archivos, servicios, ni clases de aplicación. Puertos/adaptadores de estilo hexagonal **solo cuando se aísle una dependencia efectiva**. MVC completo no aporta sin interfaz de usuario compleja.
 
 ~~~text
-proyectos/expedicion-liminal-integrada/            (ETAPA 1 IMPLEMENTADA)
+proyectos/expedicion-liminal-integrada/            (ETAPAS 1 y 2 IMPLEMENTADAS)
 ├── README.md
 ├── DOMINIO.md                                      (reglas locales + vínculo normativo)
 ├── docs/
@@ -135,11 +135,11 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 | --- | --- | --- | --- |
 | **0 — Contrato y alineación** | [Matriz 23/23](MATRIZ_ALINEACION.md) y comentarios de ingeniería acotados | Matriz y 17 comentarios escritos, sin alterar el comportamiento | **Alineación editorial realizada**; validar con CI final |
 | **1 — Núcleo mínimo** | **Completado:** mapa bidimensional, salidas dirigidas, explorador, expedición y procesamiento de turnos | Cliente determinista, cuatro pasos válidos, dos rechazos y pruebas | Java 21 con CI específica en Ubuntu/Windows |
-| **2 — Criatura y caso de uso** | Introducir una criatura y su comportamiento cambiable; objetivo de salida | Recorrido completo narrado, Strategy justificado y un evento relevante | Pruebas de identidad, ubicación, rutas y resultado; no depende de consola interactiva |
+| **2 — Criatura y caso de uso** | **Completado:** criatura con Strategy (`Patrullar`, `Perseguir`, `Esperar`) integrada por `ProcesarTurno` | Identidad estable, no teletransporte, encuentro narrado y expedición finalizada | Pruebas específicas Java 21 y CI Linux/Windows |
 | **3 — Integración selectiva** | Solo después: señales, cámara, linterna o registro, según la necesidad de estudio | 1–2 colaboraciones transversales reales con patrón y coste documentados | Cada añadido tiene escenario, responsabilidad, prueba y alternativa sencilla |
 | **4 — Cierre editorial conjunto** | UML de paquetes y 1–2 secuencias, mapa de dependencias, matriz de trazabilidad, comentarios selectivos en aislados | Tres rutas de estudio visibles desde índices, CI final | No hay errores conocidos de compilación, invariantes, enlaces, navegación o separación |
 
-**Regla de suficiencia para el integrador:** la **etapa 2** ya puede ser una versión académica *terminada* si presenta una expedición completa, dominio coherente, capas y pruebas deterministas. Las etapas 3 y 4 son enriquecimiento y cierre editorial, no una obligación de introducir los 23 patrones. La **alineación de los aislados** alcanza suficiencia al cerrar la etapa 0 y resolver únicamente hallazgos concretos, con un chequeo final después.
+**Regla de suficiencia para el integrador:** las etapas 1 y 2 están **terminadas**: existe una expedición completa, dominio coherente, capas, pruebas deterministas y una Strategy integrada. **El nivel académico básico es suficiente.** Las etapas 3 y 4 son enriquecimiento y cierre editorial **opcionales**, no una obligación de introducir los 23 patrones. La **alineación de los aislados** alcanza suficiencia al cerrar la etapa 0 y resolver únicamente hallazgos concretos, con un chequeo final después.
 
 **No objetivos:** JavaFX, gráficos, física, combate, red, persistencia, multijugador, IA compleja, aleatoriedad libre, servicios HTTP, interfaz interactiva obligatoria, framework pesado, 23 patrones integrados por cuota, monolito de 23 demos conectadas, ni cambios a otros proyectos.
 
@@ -147,4 +147,4 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 
 Antes de cualquier commit del integrador, marcar en el plan cuál etapa se está ejecutando y qué demuestra. No mezclar en el mismo commit cambios del integrador y refactorizaciones de demos aisladas. Ante un conflicto, el contrato explícito del dominio prevalece; actualizar cada área afectada solo cuando corresponda.
 
-**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada. El **[diseño del tercer proyecto](../../proyectos/expedicion-liminal-integrada/README.md)** contiene ahora [reglas locales](../../proyectos/expedicion-liminal-integrada/DOMINIO.md), [escenario 01](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md) y [arquitectura/UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). **Siguiente trabajo:** implementar la criatura de la etapa 2 y su Strategy sobre el mismo mapa, con pruebas de no teletransporte, identidad y un evento narrativo. La etapa 1 ya compila y tiene pruebas específicas. No reestructurar los 23 patrones aislados.
+**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada. El **[diseño del tercer proyecto](../../proyectos/expedicion-liminal-integrada/README.md)** contiene ahora [reglas locales](../../proyectos/expedicion-liminal-integrada/DOMINIO.md), [escenario 01](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md) y [arquitectura/UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). **Estado actual:** etapa 2 terminada con criatura y Strategy sobre el mapa compartido, pruebas de no teletransporte, identidad, rechazo de estrategia y encuentro narrado. **No hay trabajo obligatorio adicional en el integrador académico básico**; si se decide ampliar, elegir solo una situación transversal valiosa (por ejemplo, ruido y avisos), no intentar unir los 23 GoF. El contrato queda documentado en su `DOMINIO.md` y `docs/ARQUITECTURA.md`. No reestructurar los 23 patrones aislados.
