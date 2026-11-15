@@ -13,6 +13,7 @@ javac --release 21 -encoding UTF-8 -d out "${fuentes[@]}"
 java -cp out liminal.integrado.PruebasExpedicion
 java -cp out liminal.integrado.PruebasCriaturas
 java -cp out liminal.integrado.PruebasVigilancia
+java -cp out liminal.integrado.PruebasGuiones
 salida="$(java -cp out liminal.integrado.presentacion.ClienteExpedicion)"
 for esperado in 'RECHAZADO' 'ACEPTADO' 'H-05' 'turnos=4' 'FINALIZADA' 'PATRULLAR' 'PERSEGUIR' 'ESPERAR' 'Presencia oscura' 'ruido detectado' 'CENTRAL: luz ENCENDIDA' 'Alarma: 1'; do
     if [[ "$salida" != *"$esperado"* ]]; then
@@ -20,5 +21,12 @@ for esperado in 'RECHAZADO' 'ACEPTADO' 'H-05' 'turnos=4' 'FINALIZADA' 'PATRULLAR
         exit 1
     fi
 done
-printf 'OK: Expedición Liminal Integrada (Strategy, Observer y Mediator), Java 21.\n'
+for clase in ClientePiscinas ClienteRadio ClienteLuces; do
+    salida_guion="$(java -cp out "liminal.integrado.presentacion.$clase")"
+    if [[ "$salida_guion" != *"SALIDA ENCONTRADA"* ]]; then
+        echo "ERROR: $clase no completó la expedición" >&2
+        exit 1
+    fi
+done
+printf 'OK: Expedición Liminal Integrada (4 guiones, Strategy/Observer/Mediator), Java 21.\n'
 
