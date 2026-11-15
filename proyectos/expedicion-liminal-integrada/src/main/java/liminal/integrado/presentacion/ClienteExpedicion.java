@@ -29,49 +29,67 @@ public final class ClienteExpedicion {
     /** Narración verificable sin capturar System.out en las pruebas. */
     public static List<String> ejecutar() {
         Escena escena = prepararExpedicion();
-        Expedicion expedicion = escena.expedicion();
-        ProcesarTurno procesar = new ProcesarTurno(expedicion, escena.sensor());
+        ProcesarTurno caso = new ProcesarTurno(escena.expedicion(), escena.sensor());
         List<String> relato = new ArrayList<>();
+        narrarInicio(escena, relato);
+
+        List<Direccion> recorrido = List.of(Direccion.NORTE, Direccion.ESTE,
+                Direccion.ESTE, Direccion.NORTE, Direccion.ESTE, Direccion.OESTE);
+        for (int paso = 0; paso < recorrido.size(); paso++) {
+            cambiarEstrategiaSegunPaso(paso, escena.expedicion(), relato);
+            narrarTurno(escena, caso, recorrido.get(paso), relato);
+        }
+        narrarCierre(escena, relato);
+        return List.copyOf(relato);
+    }
+
+    private static void narrarInicio(Escena escena, List<String> relato) {
+        Expedicion expedicion = escena.expedicion();
         relato.add("EXPEDICIÓN LIMINAL — " + expedicion.id());
         relato.add("Comienzas en " + expedicion.explorador().ubicacion().nombre()
                 + "; un zumbido fluorescente acompaña el pasillo.");
         relato.add("Monstruo oscuro M-01: PATRULLAR desde "
                 + expedicion.estadoCriatura().orElseThrow().ubicacion().id());
+    }
 
-        int paso = 0;
-        for (Direccion orden : List.of(Direccion.NORTE, Direccion.ESTE,
-                Direccion.ESTE, Direccion.NORTE, Direccion.ESTE, Direccion.OESTE)) {
-            if (paso == 2) {
-                expedicion.cambiarEstrategiaCriatura(new Perseguir());
-                relato.add("Monstruo oscuro: PERSEGUIR");
-            } else if (paso == 3) {
-                expedicion.cambiarEstrategiaCriatura(new Esperar());
-                relato.add("Monstruo oscuro: ESPERAR");
-            }
-            String criaturaAntes = expedicion.estadoCriatura().orElseThrow().ubicacion().id();
-            boolean luzAntes = escena.luz().encendida();
-            ResultadoTurno resultado = procesar.procesar(orden);
-            paso++;
-            relato.add(orden + " -> " + (resultado.aceptado() ? "ACEPTADO" : "RECHAZADO")
-                    + " | " + resultado.mensaje() + " | " + resultado.habitacionId()
-                    + " | turnos=" + resultado.turnos()
-                    + " | " + (resultado.finalizada() ? "FINALIZADA" : "ACTIVA"));
-            String criaturaDespues = expedicion.estadoCriatura().orElseThrow().ubicacion().id();
-            if (resultado.aceptado() && !criaturaAntes.equals(criaturaDespues)) {
-                relato.add("Una silueta abandona " + criaturaAntes + " y alcanza "
-                        + criaturaDespues + ".");
-            }
-            if (!luzAntes && escena.luz().encendida()) {
-                relato.add("La luz de alerta se enciende: la central recibió un aviso.");
-            }
-            if (!resultado.aceptado()) {
-                relato.add("No logras avanzar; permaneces en " + resultado.habitacionId()
-                        + " sin consumir otro turno.");
-            }
+    private static void cambiarEstrategiaSegunPaso(int paso, Expedicion expedicion,
+                                                    List<String> relato) {
+        if (paso == 2) {
+            expedicion.cambiarEstrategiaCriatura(new Perseguir());
+            relato.add("Monstruo oscuro: PERSEGUIR");
+        } else if (paso == 3) {
+            expedicion.cambiarEstrategiaCriatura(new Esperar());
+            relato.add("Monstruo oscuro: ESPERAR");
         }
+    }
+
+    private static void narrarTurno(Escena escena, ProcesarTurno caso,
+                                    Direccion orden, List<String> relato) {
+        Expedicion expedicion = escena.expedicion();
+        String criaturaAntes = expedicion.estadoCriatura().orElseThrow().ubicacion().id();
+        boolean luzAntes = escena.luz().encendida();
+        ResultadoTurno resultado = caso.procesar(orden);
+        relato.add(orden + " -> " + (resultado.aceptado() ? "ACEPTADO" : "RECHAZADO")
+                + " | " + resultado.mensaje() + " | " + resultado.habitacionId()
+                + " | turnos=" + resultado.turnos()
+                + " | " + (resultado.finalizada() ? "FINALIZADA" : "ACTIVA"));
+        String criaturaDespues = expedicion.estadoCriatura().orElseThrow().ubicacion().id();
+        if (resultado.aceptado() && !criaturaAntes.equals(criaturaDespues)) {
+            relato.add("Una silueta abandona " + criaturaAntes + " y alcanza "
+                    + criaturaDespues + ".");
+        }
+        if (!luzAntes && escena.luz().encendida()) {
+            relato.add("La luz de alerta se enciende: la central recibió un aviso.");
+        }
+        if (!resultado.aceptado()) {
+            relato.add("No logras avanzar; permaneces en " + resultado.habitacionId()
+                    + " sin consumir otro turno.");
+        }
+    }
+
+    private static void narrarCierre(Escena escena, List<String> relato) {
         relato.add("CENTRAL: luz " + (escena.luz().encendida() ? "ENCENDIDA" : "APAGADA")
                 + " | Alarma: " + escena.alarma().avisos());
-        return List.copyOf(relato);
     }
 
     private static Escena prepararExpedicion() {
