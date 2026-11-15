@@ -25,7 +25,8 @@ final class Interruptor {
 
     void pulsar() {
         activado = !activado;
-        // Copia estable si alguien modifica suscripciones durante una notificación.
+        // Se fijan los destinatarios de esta ronda, aunque un callback cambie
+        // las suscripciones. Son referencias copiadas, no observadores clonados.
         for (ObservadorInterruptor observador : List.copyOf(observadores.values())) {
             observador.alCambiar(activado);
         }

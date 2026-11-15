@@ -9,6 +9,8 @@ interface EstadoPuerta {
     default EstadoPuerta desbloquear(String llave, String esperada) {
         throw invalido("desbloquear");
     }
+    // Una transición prohibida depende del estado del objeto, no del argumento:
+    // por eso la operación rechazada lanza IllegalStateException.
     private IllegalStateException invalido(String accion) {
         return new IllegalStateException("No se puede " + accion + " desde " + nombre());
     }

@@ -16,6 +16,8 @@ final class CentroControl implements Mediador {
 
     public void notificarRuido(String idSensor) {
         if (!sensorPermitido.equals(idSensor)) throw new IllegalArgumentException("Sensor no registrado");
+        // El sensor anuncia el hecho; el mediador conoce a los receptores
+        // y evita que el sensor dependa directamente de luz y alarma.
         luz.encender();
         alarma.avisar();
     }

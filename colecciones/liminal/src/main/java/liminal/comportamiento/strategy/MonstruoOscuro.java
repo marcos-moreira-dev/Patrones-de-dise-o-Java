@@ -28,6 +28,8 @@ final class MonstruoOscuro {
             (!ubicacion.equals(destino) && !mapa.conecta(ubicacion, destino))) {
             throw new IllegalStateException("La estrategia propuso un destino inválido");
         }
+        // Strategy propone un destino; el monstruo conserva la responsabilidad
+        // de validar el mapa antes de cambiar su única ubicación (R-08/R-12).
         ubicacion = destino;
     }
 }

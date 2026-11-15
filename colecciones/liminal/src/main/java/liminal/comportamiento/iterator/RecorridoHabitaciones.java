@@ -8,6 +8,8 @@ final class RecorridoHabitaciones implements Iterator<Habitacion> {
     private final List<Habitacion> instantanea;
     private int indice;
     RecorridoHabitaciones(List<Habitacion> instantanea) {
+        // Se copia la estructura de la lista, no los objetos Habitacion:
+        // nuevos registros no alteran un recorrido que ya empezó.
         this.instantanea = List.copyOf(instantanea);
     }
     public boolean hasNext() { return indice < instantanea.size(); }
