@@ -3,6 +3,7 @@ package liminal.integrado.dominio.mundo;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -78,6 +79,18 @@ public final class MapaLiminal {
                 Objects.requireNonNull(posicion));
         if (habitacion == null) throw new IllegalArgumentException("Celda sin habitación");
         return habitacion;
+    }
+
+    public List<Habitacion> destinosDesde(Habitacion origen) {
+        Objects.requireNonNull(origen);
+        if (habitacionesPorId.get(origen.id()) != origen) {
+            throw new IllegalArgumentException("La habitación pertenece a otro mapa");
+        }
+        Map<Direccion, Salida> opciones = salidasPorOrigen.get(origen.id());
+        // EnumMap ofrece un orden estable; toList() devuelve una instantánea
+        // no modificable y no permite que una Strategy altere las salidas.
+        return opciones == null ? List.of()
+                : opciones.values().stream().map(Salida::destino).toList();
     }
 
     public Salida salidaDesde(Habitacion origen, Direccion direccion) {

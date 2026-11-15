@@ -11,12 +11,13 @@ mkdir -p out
 mapfile -d '' fuentes < <(find src/main/java src/test/java -type f -name '*.java' -print0)
 javac --release 21 -encoding UTF-8 -d out "${fuentes[@]}"
 java -cp out liminal.integrado.PruebasExpedicion
+java -cp out liminal.integrado.PruebasCriaturas
 salida="$(java -cp out liminal.integrado.presentacion.ClienteExpedicion)"
-for esperado in 'RECHAZADO' 'ACEPTADO' 'H-05' 'turnos=4' 'FINALIZADA'; do
+for esperado in 'RECHAZADO' 'ACEPTADO' 'H-05' 'turnos=4' 'FINALIZADA' 'PATRULLAR' 'PERSEGUIR' 'ESPERAR' 'Presencia oscura'; do
     if [[ "$salida" != *"$esperado"* ]]; then
         echo "ERROR: falta el fragmento de consola: $esperado" >&2
         exit 1
     fi
 done
-printf 'OK: Expedición Liminal Integrada (etapa 1), Java 21.\n'
+printf 'OK: Expedición Liminal Integrada (etapas 1 y 2), Java 21.\n'
 

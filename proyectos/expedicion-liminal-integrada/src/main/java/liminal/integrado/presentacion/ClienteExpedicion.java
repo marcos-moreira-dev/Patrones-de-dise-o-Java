@@ -3,6 +3,10 @@ package liminal.integrado.presentacion;
 import java.util.List;
 import liminal.integrado.aplicacion.ProcesarTurno;
 import liminal.integrado.aplicacion.ResultadoTurno;
+import liminal.integrado.dominio.criaturas.Esperar;
+import liminal.integrado.dominio.criaturas.MonstruoOscuro;
+import liminal.integrado.dominio.criaturas.Patrullar;
+import liminal.integrado.dominio.criaturas.Perseguir;
 import liminal.integrado.dominio.exploracion.Expedicion;
 import liminal.integrado.dominio.exploracion.Explorador;
 import liminal.integrado.dominio.mundo.Direccion;
@@ -17,12 +21,24 @@ public final class ClienteExpedicion {
     public static void main(String[] args) {
         Expedicion expedicion = prepararExpedicion();
         ProcesarTurno procesar = new ProcesarTurno(expedicion);
+        MonstruoOscuro criatura = expedicion.criatura();
         System.out.println("EXPEDICIÓN LIMINAL — " + expedicion.id());
         System.out.println("Comienzas en " + expedicion.explorador().ubicacion().nombre());
+        System.out.println("Monstruo oscuro M-01: PATRULLAR desde "
+                + criatura.ubicacion().id());
 
+        int paso = 0;
         for (Direccion orden : List.of(Direccion.NORTE, Direccion.ESTE,
                 Direccion.ESTE, Direccion.NORTE, Direccion.ESTE, Direccion.OESTE)) {
+            if (paso == 2) {
+                criatura.cambiarEstrategia(new Perseguir());
+                System.out.println("Monstruo oscuro: PERSEGUIR");
+            } else if (paso == 3) {
+                criatura.cambiarEstrategia(new Esperar());
+                System.out.println("Monstruo oscuro: ESPERAR");
+            }
             ResultadoTurno resultado = procesar.procesar(orden);
+            paso++;
             System.out.println(orden + " -> " + (resultado.aceptado() ? "ACEPTADO" : "RECHAZADO")
                     + " | " + resultado.mensaje() + " | " + resultado.habitacionId()
                     + " | turnos=" + resultado.turnos()
@@ -46,7 +62,11 @@ public final class ClienteExpedicion {
         mapa.agregarSalida("S-06", "H-04", "H-05");
         mapa.agregarSalida("S-07", "H-02", "H-06");
         mapa.agregarSalida("S-08", "H-06", "H-02");
-        return new Expedicion("EXP-01", mapa, new Explorador("EX-01", mapa, inicio), meta);
+        Expedicion expedicion = new Expedicion(
+                "EXP-01", mapa, new Explorador("EX-01", mapa, inicio), meta);
+        expedicion.incorporarCriatura(new MonstruoOscuro(
+                "M-01", mapa, mapa.habitacion("H-06"), new Patrullar()));
+        return expedicion;
     }
 }
 
