@@ -68,7 +68,7 @@ public final class PruebasExpedicion {
         igual(b, explorador.ubicacion());
         igual(0, sesion.turnos());
         mapa.agregarSalida("S-1", "B", "A");
-        igual(a, sesion.avanzar(Direccion.OESTE));
+        igual(a, sesion.avanzar(Direccion.OESTE).habitacion());
         igual(a, explorador.ubicacion());
         igual(1, sesion.turnos());
 
