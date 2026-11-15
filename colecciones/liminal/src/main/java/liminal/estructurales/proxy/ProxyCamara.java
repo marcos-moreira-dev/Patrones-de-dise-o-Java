@@ -14,6 +14,8 @@ final class ProxyCamara implements Camara {
     }
     public String observar(String pase) {
         if (!paseCorrecto.equals(pase)) throw new IllegalArgumentException("Pase incorrecto");
+        // El control de acceso precede a la creación diferida:
+        // un pase incorrecto no debe siquiera instanciar la cámara real.
         if (real == null) {
             real = new CamaraReal(habitacion);
             creaciones++;

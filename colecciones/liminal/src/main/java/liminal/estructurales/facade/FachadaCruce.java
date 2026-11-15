@@ -13,6 +13,8 @@ final class FachadaCruce {
             throw new IllegalArgumentException("El explorador pertenece a otro mapa");
         }
     }
+    // La fachada coordina; el mapa conoce las salidas y el explorador su ubicación.
+    // Solo se cambia la ubicación después de validar todas las precondiciones.
     void cruzar(String destino) {
         if (!mapa.contiene(destino)) throw new IllegalArgumentException("Destino inexistente");
         Salida salida = mapa.salida(explorador.ubicacion(), destino);

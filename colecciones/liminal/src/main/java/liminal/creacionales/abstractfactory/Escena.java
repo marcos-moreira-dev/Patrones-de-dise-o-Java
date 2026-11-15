@@ -14,6 +14,8 @@ final class Escena {
     Escena(LuzDelNivel luz, PuertaDelNivel puerta) {
         this.luz = Objects.requireNonNull(luz);
         this.puerta = Objects.requireNonNull(puerta);
+        // La coherencia entre productos pertenece a Escena, no a cada cliente
+        // que utiliza luces y puertas de la misma familia.
         if (luz.tema() != puerta.tema()) {
             throw new IllegalArgumentException("Familias incompatibles");
         }

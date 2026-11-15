@@ -8,6 +8,8 @@ import java.util.Set;
 
 final class GrupoLuces implements Encendible {
     private final String nombre;
+    // Un grupo mantiene referencias compartibles, no propiedad física exclusiva:
+    // Composite (GoF) no implica automáticamente composición UML.
     private final List<Encendible> hijos = new ArrayList<>();
 
     GrupoLuces(String nombre) {

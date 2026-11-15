@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 final class PanelAvisos {
+    // La instancia única es una decisión de esta demo, no una ley del mundo liminal.
     private static final PanelAvisos UNICO = new PanelAvisos();
     private final List<String> avisos = new ArrayList<>();
 
