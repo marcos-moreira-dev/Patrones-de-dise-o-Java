@@ -1,6 +1,6 @@
 # Contrato del dominio — Expedición Liminal Integrada
 
-> **Estado:** reglas **R-INT-01…R-INT-11 implementadas y probadas** en Java 21. Strategy, Observer y Mediator colaboran sin combate, IA compleja ni persistencia. Rige primero el [dominio liminal común](../../colecciones/liminal/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
+> **Estado:** reglas **R-INT-01…R-INT-12 implementadas y probadas** en Java 21. Strategy, Observer y Mediator colaboran sin combate, IA compleja ni persistencia. Rige primero el [dominio liminal común](../../colecciones/liminal/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
 
 ## 1. Lenguaje ubicuo y alcance
 
@@ -24,7 +24,9 @@
 | **R-INT-10** | Un sensor vigila **una habitación por identidad**. La aplicación emite un `EventoRuido` **solo si el monstruo cambia de habitación y entra en la vigilada** después de un paso válido del explorador | M-01 llega a H-03 y se notifica SR-03 | evento por rechazo, por permanecer quieto o por otra habitación |
 | **R-INT-11** | Observer comunica eventos de forma síncrona y con instantánea estable de destinatarios. `CentroVigilancia` (Mediator) acepta señales del sensor autorizado y coordina encender luz y registrar alarma, sin que el sensor conozca sus receptores | suscriptor central recibe SR-03, activa ambos | suscriptor duplicado, sensor no autorizado o alterar destinatarios de la ronda actual |
 
-**Cobertura:** R-INT-01…R-INT-06 pertenecen al núcleo de etapa 1; R-INT-07…R-INT-09 corresponden a Strategy, coordinación y protección de la sesión; R-INT-10…R-INT-11 corresponden al escenario de vigilancia Observer/Mediator. La persecución es **local**: si el explorador no está en una salida directa de la criatura, `Perseguir` espera; `Patrullar` escoge la primera salida en orden estable y `Esperar` no avanza. Ni la proximidad geométrica ni una estrategia habilitan teletransportes.
+| **R-INT-12** | `RadioLiminal` emite mensajes ficticios **predefinidos por identidad de habitación y frecuencia positiva**; escuchar no consume turno. Solo se registran textos no vacíos para habitaciones del mismo mapa y no se admiten emisiones duplicadas para la misma habitación y frecuencia | R-02 recibe una señal en 1040 kHz y otra en 880 kHz | lugar ajeno, frecuencia inválida, texto vacío o señal duplicada |
+
+**Cobertura:** R-INT-01…R-INT-06 pertenecen al núcleo de etapa 1; R-INT-07…R-INT-09 corresponden a Strategy, coordinación y protección de la sesión; R-INT-10…R-INT-11 corresponden al escenario de vigilancia Observer/Mediator; R-INT-12 pertenece a [la radio de los guiones complementarios](docs/ESCENARIOS_02_04.md). La persecución es **local**: si el explorador no está en una salida directa de la criatura, `Perseguir` espera; `Patrullar` escoge la primera salida en orden estable y `Esperar` no avanza. Ni la proximidad geométrica ni una estrategia habilitan teletransportes.
 
 ## 3. Precondiciones, postcondiciones y excepciones
 
@@ -60,6 +62,10 @@
 - **Sin retroactividad:** el aviso no consume turno adicional ni modifica la posición del explorador o de la criatura.
 - **Límite:** los callbacks son síncronos; una excepción inesperada en un observador puede propagarse **después** de confirmar el turno. El proyecto no promete rollback ni reintentos automáticos de notificaciones. Esa política sería otra decisión de diseño, no un comportamiento GoF implícito.
 
+### Mensajes de radio
+
+Un registro exige habitación del mismo mapa, frecuencia positiva y texto no vacío. Si falla, no se modifica el catálogo. Una sintonía inválida no cambia la frecuencia actual. La ausencia de una señal se expresa mediante `Optional.empty()`, no mediante una excepción, y escuchar no consume un turno. Son emisiones predefinidas, no radio en tiempo real.
+
 Las excepciones no deben usarse para inventar reglas de negocio; no se crean jerarquías de excepciones sin necesidad real.
 
 ## 4. Qué propiedades pertenecen a cada responsabilidad
@@ -75,6 +81,7 @@ Las excepciones no deben usarse para inventar reglas de negocio; no se crean jer
 | Estrategia de movimiento del monstruo | `EstrategiaMovimiento` propone, `MonstruoOscuro` valida | Saltarse el mapa o decidir los turnos del explorador |
 | Distribución de señales | `SensorRuido` / `ObservadorRuido` | Conocer directamente la luz y la alarma |
 | Coordinación de dispositivos | `CentroVigilancia` / `LuzAlerta` / `Alarma` | Acoplar cada dispositivo a todos los demás |
+| Emisiones predefinidas | `RadioLiminal` (dominio/comunicaciones) | Conocer la consola o manipular turnos de expedición |
 
 **Identidad y ciclo de vida:** `MapaLiminal` mantiene referencias a habitaciones y salidas, pero tener colecciones Java no implica por sí solo composición UML. El modelo deliberadamente no exige destruir habitaciones al cerrar una expedición. La sesión guarda referencias a explorador y criatura (si existe). La criatura **pertenece al límite de mutación de la sesión**, pero esto no permite deducir por sí solo su composición UML ni el ciclo de vida de JVM; el cierre es **lógico**, no una orden al recolector de basura.
 
