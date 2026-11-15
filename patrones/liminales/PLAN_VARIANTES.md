@@ -37,7 +37,7 @@ Cuando una variante necesite un supuesto nuevo, escribir una ficha `R-LOCAL-<PAT
 Se mantiene intacta la ejecución actual de `DemoLiminal todos` y el conteo de **23 patrones base**. Los ejemplos nuevos viven **dentro de la carpeta de su patrón**, pero en subpaquetes de variantes para no mezclar roles ni imports.
 
 ```text
-colecciones/liminal/
+patrones/liminales/
 ├── README.md
 ├── DOMINIO.md
 ├── PLAN.md
@@ -46,19 +46,19 @@ colecciones/liminal/
 ├── docs/
 │   ├── patrones/creacionales/prototype.md  ← ficha principal, breve
 │   ├── variantes/
-│   │   ├── creacionales/
+│   │   ├── patrones/clasicos/creacionales/
 │   │   │   ├── prototype/
 │   │   │   │   ├── copia-profunda.md
 │   │   │   │   └── registro-prototipos.md
 │   │   │   └── builder/director.md
-│   │   ├── estructurales/proxy/cache.md
-│   │   └── comportamiento/
+│   │   ├── patrones/clasicos/estructurales/proxy/cache.md
+│   │   └── patrones/clasicos/comportamiento/
 │   │       ├── command/deshacer.md
 │   │       ├── chainofresponsibility/pipeline.md
 │   │       └── observer/push-pull.md
 │   └── laboratorios/java/class-vs-record.md
 ├── src/main/java/liminal/
-│   ├── creacionales/
+│   ├── patrones/clasicos/creacionales/
 │   │   ├── builder/
 │   │   │   ├── ClienteBuilder.java         ← base, NO mover
 │   │   │   ├── ConstructorHabitacion.java
@@ -69,8 +69,8 @@ colecciones/liminal/
 │   │       └── variantes/
 │   │           ├── copiaprofunda/
 │   │           └── registro/
-│   ├── estructurales/proxy/variantes/cache/
-│   ├── comportamiento/
+│   ├── patrones/clasicos/estructurales/proxy/variantes/cache/
+│   ├── patrones/clasicos/comportamiento/
 │   │   ├── command/variantes/deshacer/
 │   │   ├── chainofresponsibility/variantes/pipeline/
 │   │   └── observer/variantes/pushpull/
@@ -91,7 +91,7 @@ Las rutas anteriores corresponden a la **estructura implementada** (los nombres 
 
 - **Participantes GoF principales** (creador, producto-entidad, observador, estrategia, comando, etc.): preferir `class` / `interface` tradicionales y atributos/constructores/métodos visibles.
 - Hacer **inventario** de usos existentes de `record` antes de cambiar nada; no aplicar reemplazos automáticos en lote.
-- Revisión completada: `creacionales/builder/Habitacion.java` y `creacionales/prototype/HabitacionPrototipo.java` **eran records** y ya se convirtieron en clases inmutables con atributos y constructores explícitos. Los principales roles GoF de otras carpetas se alinearon de la misma forma. **Identidad Java (`==`), ID de dominio y valor no son equivalentes.**
+- Revisión completada: `patrones/clasicos/creacionales/builder/Habitacion.java` y `patrones/clasicos/creacionales/prototype/HabitacionPrototipo.java` **eran records** y ya se convirtieron en clases inmutables con atributos y constructores explícitos. Los principales roles GoF de otras carpetas se alinearon de la misma forma. **Identidad Java (`==`), ID de dominio y valor no son equivalentes.**
 - Mantener la consola y pruebas del patrón intactas; modificar UML y fichas si el tipo o los métodos cambian.
 - Si un `record` representa un simple valor, no es automáticamente un error técnico. Sin embargo, en la ruta clásica debe justificarse; los ejemplos en los que su sintaxis sea el objetivo pertenecen al laboratorio Java moderno.
 
@@ -167,7 +167,7 @@ Las descripciones pedagógicas largas van en Markdown; comentarios Java cortos. 
 
 **Cobertura editorial completada:** los 17 patrones sin segunda implementación incluyen una sección breve «Otras implementaciones (sin código extra)». La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) tiene clasificación y candidatos de simplificación.
 
-**Aún no demostrado por esta etapa:** una auditoría semántica línea por línea de los **292 archivos de `colecciones/liminal/`**, o una auditoría visual exhaustiva de sus diagramas UML. No mezclar esas tareas con la verificación de compilación.
+**Aún no demostrado por esta etapa:** una auditoría semántica línea por línea de los **292 archivos de `patrones/liminales/`**, o una auditoría visual exhaustiva de sus diagramas UML. No mezclar esas tareas con la verificación de compilación.
 
 ### Etapas de implementación originalmente planificadas
 

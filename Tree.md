@@ -1,45 +1,50 @@
 # Mapa de carpetas del laboratorio
 
-Este mapa muestra **las responsabilidades**, no una copia rígida de la
-salida de `tree` de una computadora. Para ver cada archivo real, consulta
-el explorador de GitHub o ejecuta `git ls-files` desde la raíz.
+Este mapa muestra las responsabilidades de cada bloque. Para el listado real
+de archivos utiliza el explorador de GitHub o `git ls-files` desde la raíz.
 
 ```text
 Patrones-de-dise-o-Java/
-├── creacionales/                 Patrones de creación y ProbarCreacionales
-├── estructurales/                Patrones estructurales y ProbarEstructurales
-├── comportamiento/               Patrones de comportamiento y ProbarComportamiento
-├── colecciones/liminal/           23 patrones narrativos y 7 variantes
-│   ├── DOMINIO.md                 Invariantes, reglas y glosario
-│   ├── PLAN_VARIANTES.md          Estado de ampliación y criterios
-│   ├── AUDITORIA_ANDAMIAJE.md     Dominio, patrón y soporte técnico
-│   ├── docs/patrones/             23 fichas y sus UML SVG
-│   ├── docs/variantes/            7 fichas opcionales con UML Mermaid
-│   ├── docs/laboratorios/         UML relacional y class vs record
-│   ├── src/main/java/liminal/     Clientes, patrones y variantes por paquete
-│   ├── src/test/java/liminal/     Pruebas por patrón y de laboratorio
-│   └── assets/                    Tres ambientes y lámina original de objetos
-├── docs/uml/                     Diagramas de la guía UML y su generador
+├── patrones/
+│   ├── clasicos/                          23 ejemplos GoF técnicos tradicionales
+│   │   ├── creacionales/                  Incluye ProbarCreacionales.java
+│   │   ├── estructurales/                 Incluye ProbarEstructurales.java
+│   │   ├── comportamiento/                Incluye ProbarComportamiento.java
+│   │   ├── App.java                       Menú de las tres familias GoF
+│   │   └── Main.java                      Punto de entrada del menú
+│   └── liminales/                         23 ejemplos GoF narrativos y 7 variantes
+│       ├── DOMINIO.md                     Reglas e invariantes liminales
+│       ├── GUIA_LECTURA_CODIGO.md         Recorrido: cliente, roles, UML y pruebas
+│       ├── docs/patrones/                 23 fichas con UML
+│       ├── docs/variantes/                Siete variantes opcionales
+│       ├── docs/laboratorios/             Relaciones UML y class vs record
+│       ├── src/main/java/liminal/         Clientes y roles GoF por paquete
+│       ├── src/test/java/liminal/         Pruebas por patrón y laboratorio
+│       ├── assets/                        Imágenes originales
+│       └── scripts/verificar.sh           Prueba independiente de la colección
 ├── proyectos/
-│   ├── arena-java/               Videojuego de combate por turnos
-│   │   ├── src/main/java/arena/   Dominio, aplicación, infraestructura, presentación
-│   │   ├── src/test/java/arena/   Pruebas sin frameworks
-│   │   └── docs/uml/             Diagramas SVG y fuentes PlantUML
-│   └── miniso/                   Simulador de planificación de CPU y archivos
-│       ├── src/main/java/miniso/ Dominio, aplicación, estructuras, presentación
-│       ├── src/test/java/miniso/ Pruebas deterministas
-│       └── docs/uml/             Diagramas SVG y fuentes PlantUML
-├── scripts/verificar.sh          Comando único de validación
-├── .github/workflows/java21.yml Integración continua
-├── UML_GUIDE.md                  Símbolos, multiplicidades y Java aplicado
-├── CONTRIBUTING.md              Rutina profesional de trabajo
-├── App.java y Main.java          Menú de los patrones clásicos
-└── README.md                     Punto de entrada
+│   ├── arena-java/                        Combate por turnos
+│   │   ├── src/main/java/arena/           Dominio, aplicación, infraestructura, presentación
+│   │   └── src/test/java/arena/           Pruebas independientes
+│   ├── miniso/                            Simulador educativo de CPU, E/S y archivos
+│   │   ├── src/main/java/miniso/          Dominio, aplicación, estructuras, presentación
+│   │   └── src/test/java/miniso/          Pruebas y métricas deterministas
+│   └── expedicion-liminal-integrada/      Integrador independiente Strategy/Observer/Mediator
+│       ├── src/main/java/liminal/integrado/
+│       ├── src/test/java/liminal/integrado/
+│       └── scripts/verificar.sh
+├── docs/                                  Cierre académico, modelado y UML transversal
+├── scripts/verificar.sh                   Verificación global de las dos colecciones y tres proyectos
+├── .github/workflows/                     Java 21, Javadoc y pruebas en Ubuntu/Windows
+├── UML_GUIDE.md                           Guía transversal de relaciones UML
+├── CONTRIBUTING.md                        Reglas de contribución y pruebas
+└── README.md                              Índice principal
 ```
 
-Los dos microproyectos tienen su propio `pom.xml`, `README.md` y `BUILD.md`.
-Las salidas regenerables `target/`, `out/` y `*.class` están ignoradas por Git.
+Los dos catálogos GoF y el proyecto integrador tienen compilaciones autónomas.
+Los tres proyectos permanecen juntos en `proyectos/` sin acoplar sus paquetes Java.
+Arena y MiniSO tienen `pom.xml`, `BUILD.md`, `README.md` y JAR opcionales;
+el integrador utiliza su propio script Java 21 sin requerir Maven.
 
-En los ejemplos clásicos, los paquetes Java siguen la jerarquía
-`creacionales.*`, `estructurales.*` y `comportamiento.*`. En los microproyectos
-se practican paquetes organizados por responsabilidades reales.
+Desde la raíz del repositorio, ejecuta `bash scripts/verificar.sh` para validar
+los tres proyectos y las dos colecciones GoF.

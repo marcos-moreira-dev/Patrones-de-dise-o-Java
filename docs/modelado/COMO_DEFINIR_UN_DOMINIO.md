@@ -175,8 +175,8 @@ Un dominio está suficientemente definido para comenzar una demo cuando podemos 
 
 ## 8. Aplicación al repositorio
 
-- [Expedición Liminal — DOMINIO.md](../../colecciones/liminal/DOMINIO.md): reglas concretas del mundo ficticio.
-- [Expedición Liminal — PLAN.md](../../colecciones/liminal/PLAN.md): mapeo de patrones, archivos y controles de calidad.
+- [Expedición Liminal — DOMINIO.md](../../patrones/liminales/DOMINIO.md): reglas concretas del mundo ficticio.
+- [Expedición Liminal — PLAN.md](../../patrones/liminales/PLAN.md): mapeo de patrones, archivos y controles de calidad.
 - [Guía UML](../../UML_GUIDE.md): notación y distinción entre referencias Java y relaciones semánticas.
 
 **Criterio editorial:** nombres del dominio en español sencillo; los nombres oficiales de patrones GoF conservan su denominación; pocas explicaciones dentro del código, explicación extensa en Markdown y UML.

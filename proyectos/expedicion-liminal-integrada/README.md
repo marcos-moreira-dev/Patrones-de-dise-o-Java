@@ -3,7 +3,7 @@
 > **Versión académica 1.0:** cuatro guiones reproducibles en Java 21, pruebas de dominio y documentación, tres patrones GoF integrados (Strategy, Observer y Mediator), sin interfaz interactiva. [Dictamen de cierre de los tres bloques](../../docs/CIERRE_ACADEMICO_GOF.md).
 
 > **Estado (15 de noviembre de 2026): proyecto integrador académico ampliado con cuatro guiones en Java 21.** Etapas 1 y 2, refuerzo de encapsulamiento y escena transversal con **Strategy, Observer y Mediator**, cuatro clientes deterministas y pruebas en Linux/Windows. Nuevas mecánicas no son requisitos.
-> Este es el **tercer bloque de estudio GoF** del repositorio: integración de patrones en un único dominio. No sustituye los [23 ejemplos liminales independientes](../../colecciones/liminal/README.md) ni la colección técnica clásica.
+> Este es el **tercer bloque de estudio GoF** del repositorio: integración de patrones en un único dominio. No sustituye los [23 ejemplos liminales independientes](../../patrones/liminales/README.md) ni la colección técnica clásica.
 
 ## Qué se estudia aquí
 
@@ -20,7 +20,7 @@ La clase [ClienteExpedicion](src/main/java/liminal/integrado/presentacion/Client
 5. [Auditoría arquitectónica final](docs/AUDITORIA_FINAL.md): revisión de SOLID, límites, patrones, riesgos, pruebas y criterio de suficiencia.
 6. [Auditoría de comportamientos y narración](docs/AUDITORIA_COMPORTAMIENTOS.md): operaciones que sí cambian estados, consultas, eventos, métodos deliberadamente ausentes y frases verificables.
 
-**Autoridad del dominio:** [DOMINIO de los ejemplos liminales](../../colecciones/liminal/DOMINIO.md). Este integrador **hereda R-00…R-14** y agrega reglas `R-INT-01…R-INT-12` únicamente para su caso de estudio. Si se descubre una contradicción, se resuelve primero en documentación, nunca haciendo que un patrón imponga reglas narrativas.
+**Autoridad del dominio:** [DOMINIO de los ejemplos liminales](../../patrones/liminales/DOMINIO.md). Este integrador **hereda R-00…R-14** y agrega reglas `R-INT-01…R-INT-12` únicamente para su caso de estudio. Si se descubre una contradicción, se resuelve primero en documentación, nunca haciendo que un patrón imponga reglas narrativas.
 
 ## Límites del primer módulo
 
@@ -30,11 +30,11 @@ La clase [ClienteExpedicion](src/main/java/liminal/integrado/presentacion/Client
 - **Tres guiones complementarios (implementados):** piscinas de aspecto idéntico, radio con emisiones por frecuencia y luces activadas por una criatura; clientes independientes sobre un dominio común.
 - **Opcional, no pendiente:** cámaras, linterna, inventario, registros y más patrones. No añadirlos para completar artificialmente los 23 GoF.
 
-**Regla de parada:** con una expedición completa, verificable por pruebas, un dominio consistente y una arquitectura comprensible, el integrador será **suficiente para estudiar**. Más funcionalidades son opcionales. El [plan común](../../colecciones/liminal/PLAN_INTEGRADOR.md) conserva la ruta de los tres bloques.
+**Regla de parada:** con una expedición completa, verificable por pruebas, un dominio consistente y una arquitectura comprensible, el integrador será **suficiente para estudiar**. Más funcionalidades son opcionales. El [plan común](../../patrones/liminales/PLAN_INTEGRADOR.md) conserva la ruta de los tres bloques.
 
 ## Separación física
 
-Las clases del proyecto viven bajo `src/main/java/liminal/integrado/` y **no importan implementaciones** de `colecciones/liminal/src/main/java`. Se reutiliza el **conocimiento y las reglas**, no los tipos Java de las demos.
+Las clases del proyecto viven bajo `src/main/java/liminal/integrado/` y **no importan implementaciones** de `patrones/liminales/src/main/java`. Se reutiliza el **conocimiento y las reglas**, no los tipos Java de las demos.
 
 ## Verificación técnica independiente
 

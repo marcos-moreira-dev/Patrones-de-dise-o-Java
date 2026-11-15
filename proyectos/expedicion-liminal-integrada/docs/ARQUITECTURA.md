@@ -287,7 +287,7 @@ No se reclama una demostración formal de los cinco SOLID. SRP/OCP y dependencia
 | **Observer** | Entregar eventos del sensor a sus observadores | [PruebasVigilancia.java](../src/test/java/liminal/integrado/PruebasVigilancia.java) |
 | **Mediator** | Activar luz y alarma por coordinación central | [PruebasVigilancia.java](../src/test/java/liminal/integrado/PruebasVigilancia.java) |
 
-Los otros **20 GoF** se conservan en los [23 ejemplos liminales autónomos](../../../colecciones/liminal/MATRIZ_ALINEACION.md). No son requisitos pendientes de este simulador.
+Los otros **20 GoF** se conservan en los [23 ejemplos liminales autónomos](../../../patrones/liminales/MATRIZ_ALINEACION.md). No son requisitos pendientes de este simulador.
 
 **Verificación:** `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh` compila Java 21, ejecuta cuatro programas de pruebas y comprueba los cuatro clientes por consola. El [workflow propio](../../../.github/workflows/expedicion-liminal-integrada.yml) corre en Ubuntu y Windows; el workflow general preserva los otros proyectos.
 

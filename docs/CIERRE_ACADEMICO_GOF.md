@@ -6,17 +6,17 @@
 
 | Ruta | Código y material | Papel pedagógico | Estado |
 | --- | --- | --- | --- |
-| **1 — 23 GoF clásicos** | [Carpetas técnicas](../README.md#-estructura-del-proyecto), por ejemplo [State](../comportamiento/State/Context.java) | Aprender el contrato y la estructura GoF tradicional con clases Java | **Listo para estudiar** |
-| **2 — 23 GoF liminales aislados** | [Colección](../colecciones/liminal/README.md), [matriz 23/23](../colecciones/liminal/MATRIZ_ALINEACION.md), [7 variantes](../colecciones/liminal/PLAN_VARIANTES.md), [2 laboratorios](../colecciones/liminal/AUDITORIA_PEDAGOGICA.md) | Estudiar cada patrón sin depender de otros, con dominio, UML, cliente, prueba y variantes justificadas | **Listo para estudiar** |
+| **1 — 23 GoF clásicos** | [Carpetas técnicas](../README.md#-estructura-del-proyecto), por ejemplo [State](../patrones/clasicos/comportamiento/State/Context.java) | Aprender el contrato y la estructura GoF tradicional con clases Java | **Listo para estudiar** |
+| **2 — 23 GoF liminales aislados** | [Colección](../patrones/liminales/README.md), [matriz 23/23](../patrones/liminales/MATRIZ_ALINEACION.md), [7 variantes](../patrones/liminales/PLAN_VARIANTES.md), [2 laboratorios](../patrones/liminales/AUDITORIA_PEDAGOGICA.md) | Estudiar cada patrón sin depender de otros, con dominio, UML, cliente, prueba y variantes justificadas | **Listo para estudiar** |
 | **3 — Integrador liminal** | [Proyecto](../proyectos/expedicion-liminal-integrada/README.md) y [cuatro guiones](../proyectos/expedicion-liminal-integrada/docs/ESCENARIOS_02_04.md) | Estudiar la colaboración real de Strategy, Observer y Mediator, capas, invariantes y SOLID sin motor de juego | **Listo para estudiar** |
 
 La colección 2 y la ruta 3 comparten **ideas y reglas normativas**, no las mismas clases Java; sus compilaciones y clientes permanecen independientes. No se modificaron las carpetas técnicas, Arena Java ni MiniSO en esta pasada de cierre.
 
 ## 2. Ruta corta para revisar el código sin perderse
 
-**Primera lectura — State técnico tradicional.** Abre [`State.java`](../comportamiento/State/State.java) y [`Context.java`](../comportamiento/State/Context.java). Identifica el contrato de estados, la delegación del contexto y por qué el ejemplo utiliza dos estados genéricos. Su objetivo es **aislar el mecanismo**, no representar una puerta ni un juego.
+**Primera lectura — State técnico tradicional.** Abre [`State.java`](../patrones/clasicos/comportamiento/State/State.java) y [`Context.java`](../patrones/clasicos/comportamiento/State/Context.java). Identifica el contrato de estados, la delegación del contexto y por qué el ejemplo utiliza dos estados genéricos. Su objetivo es **aislar el mecanismo**, no representar una puerta ni un juego.
 
-**Segunda lectura — State liminal aislado.** Abre [la ficha State](../colecciones/liminal/docs/patrones/comportamiento/state.md), [`ClienteState.java`](../colecciones/liminal/src/main/java/liminal/comportamiento/state/ClienteState.java), [`Puerta.java`](../colecciones/liminal/src/main/java/liminal/comportamiento/state/Puerta.java) y el diagrama UML de la ficha. Compara `abrir`, `cerrar`, `bloquear` y `desbloquear` con las transiciones permitidas. Las pruebas no viven dentro del cliente. **Una puerta concreta** sirve para aprender la misma estructura del patrón sin forzarla en todos los ejercicios.
+**Segunda lectura — State liminal aislado.** Abre [la ficha State](../patrones/liminales/docs/patrones/comportamiento/state.md), [`ClienteState.java`](../patrones/liminales/src/main/java/liminal/comportamiento/state/ClienteState.java), [`Puerta.java`](../patrones/liminales/src/main/java/liminal/comportamiento/state/Puerta.java) y el diagrama UML de la ficha. Compara `abrir`, `cerrar`, `bloquear` y `desbloquear` con las transiciones permitidas. Las pruebas no viven dentro del cliente. **Una puerta concreta** sirve para aprender la misma estructura del patrón sin forzarla en todos los ejercicios.
 
 **Tercera lectura — colaboración integrada.** Abre el [escenario 01](../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md), [`ClienteExpedicion.java`](../proyectos/expedicion-liminal-integrada/src/main/java/liminal/integrado/presentacion/ClienteExpedicion.java), [`ProcesarTurno.java`](../proyectos/expedicion-liminal-integrada/src/main/java/liminal/integrado/aplicacion/ProcesarTurno.java) y [`Expedicion.java`](../proyectos/expedicion-liminal-integrada/src/main/java/liminal/integrado/dominio/exploracion/Expedicion.java). Después sigue el camino del evento desde [`SensorRuido`](../proyectos/expedicion-liminal-integrada/src/main/java/liminal/integrado/dominio/vigilancia/SensorRuido.java) a la [central](../proyectos/expedicion-liminal-integrada/src/main/java/liminal/integrado/dominio/vigilancia/CentroVigilancia.java). Al final, compara las [otras tres excursiones](../proyectos/expedicion-liminal-integrada/docs/ESCENARIOS_02_04.md): piscinas, radio y luces. **No están obligadas a incorporar otros 20 patrones GoF**.
 
@@ -40,7 +40,7 @@ La CI verifica compilación y pruebas, **no prueba por sí misma** todos los arg
 
 No faltan 20 patrones adicionales en el integrador, un sistema de puertas completo en todas las excursiones, gráficos 3D, JavaFX, interfaces HTTP, base de datos, juego interactivo, persistencia, combate o nuevas capas vacías. Los métodos actuales **alteran estados, consultan valores o publican eventos reales** donde el guion los necesita. Su narración es independiente del dominio.
 
-Tampoco se necesita borrar «andamiaje técnico» que mantiene pruebas, navegación y demostraciones reproducibles. El informe [`AUDITORIA_ANDAMIAJE.md`](../colecciones/liminal/AUDITORIA_ANDAMIAJE.md) explica su clasificación y los límites de auditoría.
+Tampoco se necesita borrar «andamiaje técnico» que mantiene pruebas, navegación y demostraciones reproducibles. El informe [`AUDITORIA_ANDAMIAJE.md`](../patrones/liminales/AUDITORIA_ANDAMIAJE.md) explica su clasificación y los límites de auditoría.
 
 ## 5. Dictamen y regla de parada
 

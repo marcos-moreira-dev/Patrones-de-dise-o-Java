@@ -62,7 +62,7 @@ H-02: Piscina vacía / luces 2 / puerta no
 **Orden para leer:** [ClienteDirector.java](../../../../src/main/java/liminal/creacionales/builder/variantes/director/ClienteDirector.java) → [DirectorAmbientes.java](../../../../src/main/java/liminal/creacionales/builder/variantes/director/DirectorAmbientes.java) → [ConstructorEscenario.java](../../../../src/main/java/liminal/creacionales/builder/variantes/director/ConstructorEscenario.java) → [ConstructorHabitacion.java](../../../../src/main/java/liminal/creacionales/builder/variantes/director/ConstructorHabitacion.java) → [Habitacion.java](../../../../src/main/java/liminal/creacionales/builder/variantes/director/Habitacion.java) → [PruebaDirector.java](../../../../src/test/java/liminal/creacionales/builder/variantes/director/PruebaDirector.java).
 
 ```bash
-java -cp colecciones/liminal/out liminal.creacionales.builder.variantes.director.ClienteDirector
+java -cp patrones/liminales/out liminal.creacionales.builder.variantes.director.ClienteDirector
 ```
 
 **Cuándo no usar Director:** si solo hay una construcción aislada con pasos claros, el Builder fluido original es suficiente y tiene menos clases. Añadir Director no hace automáticamente más profesional el diseño.

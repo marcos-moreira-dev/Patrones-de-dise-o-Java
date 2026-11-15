@@ -11,7 +11,7 @@
 | Bloque | Ubicación actual/propuesta | Propósito | Política de dependencia |
 | --- | --- | --- | --- |
 | 1. GoF técnicos clásicos | Carpetas actuales de patrones técnicos (creacionales, estructurales, comportamiento) | Estudiar roles y teoría GoF | **No modificar** por este proyecto |
-| 2. GoF liminales aislados | `colecciones/liminal/` | Cada patrón en su propio paquete: cliente, clases, UML, prueba y ficha; siete variantes y dos laboratorios aparte | **Mantener autonomía.** No importar clases del integrador |
+| 2. GoF liminales aislados | `patrones/liminales/` | Cada patrón en su propio paquete: cliente, clases, UML, prueba y ficha; siete variantes y dos laboratorios aparte | **Mantener autonomía.** No importar clases del integrador |
 | 3. Expedición Liminal integrada | **Implementado y auditado:** `proyectos/expedicion-liminal-integrada/` | Estudiar un dominio compartido, arquitectura, SOLID y colaboración real de patrones | No importar clases de las demos aisladas; compartir **contratos conceptuales**, no implementaciones |
 
 Los proyectos `arena-java` y `miniso` y los workflows/scripts generales existentes permanecen sin modificar. El integrador vive en `proyectos/expedicion-liminal-integrada/` y dispone de **su propio script y workflow de CI**.

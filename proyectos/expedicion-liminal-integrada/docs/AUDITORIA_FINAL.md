@@ -50,7 +50,7 @@
 | **Observer** | `SensorRuido`, `ObservadorRuido`, `EventoRuido`, `CentroVigilancia` | Difundir una detección sin acoplar sensor y receptores | R-INT-10/11 |
 | **Mediator** | `CentroVigilancia`, `LuzAlerta`, `Alarma` | Coordinar dos reacciones ante un mismo evento | R-INT-11 |
 
-Los otros **20 GoF** —Singleton, Factory Method, Abstract Factory, Builder, Prototype, Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy, Chain of Responsibility, Command, Interpreter, Iterator, Memento, State, Template Method y Visitor— se estudian en el [catálogo de ejemplos encapsulados](../../../colecciones/liminal/MATRIZ_ALINEACION.md), **no son deuda** del integrador. Introducir un bus de eventos, fábricas, comandos, un controlador MVC o una cámara sin necesidad sería sobreingeniería.
+Los otros **20 GoF** —Singleton, Factory Method, Abstract Factory, Builder, Prototype, Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy, Chain of Responsibility, Command, Interpreter, Iterator, Memento, State, Template Method y Visitor— se estudian en el [catálogo de ejemplos encapsulados](../../../patrones/liminales/MATRIZ_ALINEACION.md), **no son deuda** del integrador. Introducir un bus de eventos, fábricas, comandos, un controlador MVC o una cámara sin necesidad sería sobreingeniería.
 
 ## 5. Limitaciones conocidas, no bloqueantes para la meta académica
 
@@ -65,7 +65,7 @@ La auditoría no promete ausencia absoluta de defectos. Identifica y documenta l
 ## 6. Regla de cierre: tres rutas independientes
 
 - **Bloque 1:** catálogo clásico GoF intacto.
-- **Bloque 2:** 23 patrones liminales aislados, siete variantes y dos laboratorios; [alineación editorial](../../../colecciones/liminal/MATRIZ_ALINEACION.md) conservada.
+- **Bloque 2:** 23 patrones liminales aislados, siete variantes y dos laboratorios; [alineación editorial](../../../patrones/liminales/MATRIZ_ALINEACION.md) conservada.
 - **Bloque 3:** integrador Java 21, dominio R-INT-01…R-INT-12, **tres GoF colaborando**, diagramas y pruebas propias.
 
 Se considera **suficiente** cuando el lector puede justificar dónde vive una regla, cómo colaboran clases de paquetes distintos, por qué se usan esos tres patrones, cómo se rechaza un estado inválido y qué complejidad deliberadamente se descartó. No hace falta ejecutar manualmente el cliente, construir una interfaz o insertar los restantes 20 GoF.

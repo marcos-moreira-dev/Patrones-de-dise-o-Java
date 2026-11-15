@@ -40,13 +40,13 @@ bash scripts/verificar.sh
 
 Este comando **no modifica el SO real**. Comprueba que Java y Maven usan
 JDK 21; compila y ejecuta el menú de los patrones clásicos (incluida una
-entrada inválida), ejecuta las suites de Arena y MiniSO, construye los dos
+entrada inválida), ejecuta las suites de Arena y MiniSO, verifica el integrador liminal, construye los dos
 JAR y prueba automáticamente que arrancan y responden a comandos.
 
 El resultado final esperado es:
 
 ```text
-VERIFICACION COMPLETA: 23 patrones clasicos, 2 microproyectos y 23 demos liminales, mas laboratorio UML.
+VERIFICACION COMPLETA: 23 patrones clasicos, 3 proyectos y 23 demos liminales, mas laboratorio UML.
 ```
 
 Un comando que termina con código **0** significa que no se detectaron
@@ -60,6 +60,7 @@ Para depurar cada fase por separado:
 ```bash
 mvn -f proyectos/arena-java/pom.xml clean verify
 mvn -f proyectos/miniso/pom.xml clean verify
+bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh
 java -jar proyectos/arena-java/target/arena-java-1.0.0-SNAPSHOT.jar
 java -jar proyectos/miniso/target/miniso-1.0.0-SNAPSHOT.jar
 ```

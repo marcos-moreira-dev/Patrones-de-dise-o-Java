@@ -28,25 +28,25 @@ La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidade
 
 Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. La colección incluye tres imágenes atmosféricas originales y una lámina con puerta, linterna, interruptor y monstruo oscuro; nuevas láminas serían una ampliación opcional.
 
-Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](colecciones/liminal/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](colecciones/liminal/PLAN.md). Empieza por el [README de la colección liminal](colecciones/liminal/README.md).
+Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](patrones/liminales/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](patrones/liminales/PLAN.md). Empieza por el [README de la colección liminal](patrones/liminales/README.md).
 
-La ampliación **está implementada**: [siete variantes GoF de ingeniería y laboratorio `class` frente a `record`](colecciones/liminal/PLAN_VARIANTES.md). Los 23 ejercicios principales siguen siendo la ruta de entrada; [la auditoría del andamiaje](colecciones/liminal/AUDITORIA_ANDAMIAJE.md) distingue clases del dominio, roles GoF y herramientas de verificación.
+La ampliación **está implementada**: [siete variantes GoF de ingeniería y laboratorio `class` frente a `record`](patrones/liminales/PLAN_VARIANTES.md). Los 23 ejercicios principales siguen siendo la ruta de entrada; [la auditoría del andamiaje](patrones/liminales/AUDITORIA_ANDAMIAJE.md) distingue clases del dominio, roles GoF y herramientas de verificación.
 
-![Pasillo amarillo inspirado en espacios liminales, con luces fluorescentes y alfombra](colecciones/liminal/assets/ambientes/pasillo-amarillo.webp)
+![Pasillo amarillo inspirado en espacios liminales, con luces fluorescentes y alfombra](patrones/liminales/assets/ambientes/pasillo-amarillo.webp)
 
-**[Ver el atlas visual de los escenarios](colecciones/liminal/GUIA_VISUAL.md)** · [Galería de ilustraciones originales](colecciones/liminal/assets/README.md).
+**[Ver el atlas visual de los escenarios](patrones/liminales/GUIA_VISUAL.md)** · [Galería de ilustraciones originales](patrones/liminales/assets/README.md).
 
-**[Laboratorio complementario de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md)**: composición, agregación y ciclo de vida, con diagramas y pruebas Java.
+**[Laboratorio complementario de relaciones UML](patrones/liminales/docs/laboratorios/relaciones-uml.md)**: composición, agregación y ciclo de vida, con diagramas y pruebas Java.
 
-**[Guía de lectura del código liminal](colecciones/liminal/GUIA_LECTURA_CODIGO.md)**: la misma organización de clases y clientes que en los ejemplos clásicos, con archivos individuales para cada tipo y pruebas separadas.
+**[Guía de lectura del código liminal](patrones/liminales/GUIA_LECTURA_CODIGO.md)**: la misma organización de clases y clientes que en los ejemplos clásicos, con archivos individuales para cada tipo y pruebas separadas.
 
-Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
+Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash patrones/liminales/scripts/verificar.sh` (Java 21).
 
 ### Dos colecciones y un laboratorio UML
 
-La **colección técnica original** también está completa con los **23 patrones GoF**. Su nuevo [Interpreter de precios](comportamiento/Interpreter/README.md) analiza un lenguaje mínimo y construye un árbol de expresiones con descuentos y recargos anidados.
+La **colección técnica original** también está completa con los **23 patrones GoF**. Su nuevo [Interpreter de precios](patrones/clasicos/comportamiento/Interpreter/README.md) analiza un lenguaje mínimo y construye un árbol de expresiones con descuentos y recargos anidados.
 
-En la colección liminal incorporamos además un [laboratorio de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md), independiente de GoF, para distinguir composición, agregación compartida, asociación y dependencia. Los 23 patrones siguen contando como 23, no 24.
+En la colección liminal incorporamos además un [laboratorio de relaciones UML](patrones/liminales/docs/laboratorios/relaciones-uml.md), independiente de GoF, para distinguir composición, agregación compartida, asociación y dependencia. Los 23 patrones siguen contando como 23, no 24.
 
 ### Tercera ruta GoF: arquitectura liminal integrada (3 patrones y auditoría final)
 
@@ -96,28 +96,28 @@ FCFS, Round Robin y prioridad. Son **ticks simulados**, no benchmarks del PC.
 
 ```
 Patrones-de-dise-o-Java/
-├── creacionales/                      (GoF técnicos)
-├── estructurales/                     (GoF técnicos)
-├── comportamiento/                    (GoF técnicos)
+├── patrones/clasicos/creacionales/                      (GoF técnicos)
+├── patrones/clasicos/estructurales/                     (GoF técnicos)
+├── patrones/clasicos/comportamiento/                    (GoF técnicos)
 ├── colecciones/
 │   └── liminal/                       (23 GoF aislados y variantes)
 ├── proyectos/
 │   ├── arena-java/
 │   ├── miniso/
 │   └── expedicion-liminal-integrada/  (tercer bloque GoF, 3 patrones)
-├── App.java
-├── Main.java
+├── patrones/clasicos/App.java
+├── patrones/clasicos/Main.java
 ├── README.md
 └── Tree.md
 ```
 
 * Los ejemplos clásicos **sí declaran paquetes Java** (`creacionales.SingletonInstance`,
-  `estructurales.Adapter`, etc.); únicamente `App.java` y `Main.java` permanecen
+  `estructurales.Adapter`, etc.); únicamente `patrones/clasicos/App.java` y `patrones/clasicos/Main.java` permanecen
   en el paquete predeterminado para iniciar el menú.
 * Los microproyectos también tienen paquetes, agrupados por responsabilidades
   de arquitectura (`dominio`, `aplicacion`, etc.). Ninguno requiere Maven para
   *definir* esos paquetes.
-* `Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
+* `patrones/clasicos/Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
 * El **integrador liminal** se verifica por separado con `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh`; tiene un workflow propio en Linux y Windows y no altera la ejecución de los ejemplos clásicos, las 23 demos liminales, Arena Java ni MiniSO.
 
 ---
@@ -143,7 +143,7 @@ En Git Bash o Linux, desde la **raíz**:
 ```bash
 mkdir -p out/clasicos
 find creacionales estructurales comportamiento -name '*.java' -print0 \
-  | xargs -0 javac -encoding UTF-8 -d out/clasicos App.java Main.java
+  | xargs -0 javac -encoding UTF-8 -d out/clasicos patrones/clasicos/App.java patrones/clasicos/Main.java
 java -cp out/clasicos Main
 ```
 
@@ -152,7 +152,7 @@ En PowerShell, también desde la **raíz**:
 ```powershell
 New-Item -ItemType Directory -Force out\clasicos | Out-Null
 $fuentes = Get-ChildItem .\creacionales, .\estructurales, .\comportamiento -Recurse -Filter *.java | ForEach-Object FullName
-javac -encoding UTF-8 -d out\clasicos .\App.java .\Main.java $fuentes
+javac -encoding UTF-8 -d out\clasicos .\patrones/clasicos/App.java .\patrones/clasicos/Main.java $fuentes
 java -cp out\clasicos Main
 ```
 
@@ -163,7 +163,7 @@ selecciona `1` (creacionales), `2` (estructurales), `3` (comportamiento)
 o `0` para salir. Una entrada inválida vuelve a solicitar la opción.
 
 Por ejemplo, `SingletonInstance` está en
-`creacionales/SingletonInstance/SingletonInstance.java` y **no tiene
+`patrones/clasicos/creacionales/SingletonInstance/SingletonInstance.java` y **no tiene
 `main` propio**: para verlo funcionar, ejecuta `Main` y elige `1`.
 El compilador respeta los paquetes sin necesitar Maven o Gradle.
 

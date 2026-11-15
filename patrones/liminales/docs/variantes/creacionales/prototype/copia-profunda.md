@@ -61,7 +61,7 @@ PROFUNDA modificada: 20
 Ejecutar, después de compilar con el script de la colección:
 
 ```bash
-java -cp colecciones/liminal/out liminal.creacionales.prototype.variantes.copiaprofunda.ClienteCopiaProfunda
+java -cp patrones/liminales/out liminal.creacionales.prototype.variantes.copiaprofunda.ClienteCopiaProfunda
 ```
 
 **Cuándo elegir cuál:** superficial si compartir la configuración es intencional; profunda si hace falta independencia de modificaciones y se acepta crear más objetos. Ninguna es «la variante más profesional» en todos los contextos.

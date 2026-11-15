@@ -60,7 +60,7 @@ El cliente pide resultados por clave; `PrototipoRegistrable` conserva la capacid
 **Ruta de lectura:** [ClienteRegistroPrototipos](../../../../src/main/java/liminal/creacionales/prototype/variantes/registro/ClienteRegistroPrototipos.java) → [CatalogoPrototipos](../../../../src/main/java/liminal/creacionales/prototype/variantes/registro/CatalogoPrototipos.java) → [PrototipoRegistrable](../../../../src/main/java/liminal/creacionales/prototype/variantes/registro/PrototipoRegistrable.java) → [PlantillaRegistrada](../../../../src/main/java/liminal/creacionales/prototype/variantes/registro/PlantillaRegistrada.java) → [PruebaRegistroPrototipos](../../../../src/test/java/liminal/creacionales/prototype/variantes/registro/PruebaRegistroPrototipos.java).
 
 ```bash
-java -cp colecciones/liminal/out liminal.creacionales.prototype.variantes.registro.ClienteRegistroPrototipos
+java -cp patrones/liminales/out liminal.creacionales.prototype.variantes.registro.ClienteRegistroPrototipos
 ```
 
 **Cuándo no usarlo:** si solo hay una plantilla fija y se construye una única habitación, llamar directamente al prototipo resulta más simple que mantener un catálogo.

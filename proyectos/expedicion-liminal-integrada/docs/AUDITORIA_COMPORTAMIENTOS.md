@@ -44,7 +44,7 @@ Se admite una **descripción ambiental estática** («zumbido fluorescente», «
 
 - **Apagar un foco:** actualmente no existe `LuzAlerta.apagar()`. Tendría sentido si una escena exigiera `encendida = false`, una transición observada y una prueba. Añadirlo por simetría no es obligatorio.
 - **Parpadear:** requeriría un estado o evento explícito de intermitencia y una semántica reproducible. Escribir «parpadea» sin tal evento sería una representación engañosa.
-- **Abrir una puerta:** en el [patrón State aislado](../../../colecciones/liminal/src/main/java/liminal/comportamiento/state/Puerta.java) sí existen `abrir`, `cerrar`, `bloquear`, `desbloquear`. En **este integrador** las `Salida` son enlaces dirigidos, no puertas físicas. Importar la demo State para adornar este mapa rompería la separación.
+- **Abrir una puerta:** en el [patrón State aislado](../../../patrones/liminales/src/main/java/liminal/comportamiento/state/Puerta.java) sí existen `abrir`, `cerrar`, `bloquear`, `desbloquear`. En **este integrador** las `Salida` son enlaces dirigidos, no puertas físicas. Importar la demo State para adornar este mapa rompería la separación.
 - **Aparecer/desaparecer monstruo:** `Expedicion.incorporarCriatura` ya añade una entidad antes del primer turno; no es un mecanismo de aparición/desaparición dinámica. Si se exigiera, habría que definir cuándo ocurre, efectos sobre el turno y cómo lo observan los clientes.
 - **Reproducir radio y alarma:** hoy hay **mensajes y eventos**, no audio. Su valor didáctico está en estado, referencias, notificaciones y coordinación.
 

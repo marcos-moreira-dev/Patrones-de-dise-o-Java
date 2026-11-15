@@ -1,7 +1,7 @@
 # Auditoría pedagógica y semántica — Expedición Liminal
 
 **Fecha:** 14 de noviembre de 2026.  
-**Alcance:** los 23 patrones GoF de `colecciones/liminal/`, sus clases cliente, las reglas del dominio, los diagramas UML, las fichas Markdown y la verificación Java 21.
+**Alcance:** los 23 patrones GoF de `patrones/liminales/`, sus clases cliente, las reglas del dominio, los diagramas UML, las fichas Markdown y la verificación Java 21.
 
 ## 1. Criterios utilizados
 
@@ -47,7 +47,7 @@ Se comprueba:
 Desde la raíz del repositorio, la verificación se ejecuta con:
 
 ```bash
-bash colecciones/liminal/scripts/verificar.sh
+bash patrones/liminales/scripts/verificar.sh
 ```
 
 La auditoría no requiere que el lector ejecute nada para aceptar los cambios revisados en GitHub; las ejecuciones automáticas del repositorio proporcionan la evidencia técnica.
@@ -69,7 +69,7 @@ Los ejemplos pertenecen a **un solo mundo de referencia**, pero tienen **paquete
 | **Revisión visual de SVG** | Se revisó la estructura y la distribución textual de los 23 UML mediante análisis de cajas/etiquetas. Ya se había corregido una superposición real en Observer y reorganizado Abstract Factory. La inspección visual píxel a píxel de cada visor continúa siendo opcional | Parcial |
 | **Ilustraciones de objetos y criatura** | **Completado como lámina única:** puerta beige, linterna, interruptor y monstruo oscuro en [galería visual](assets/README.md). Láminas individuales o transiciones animadas serían una mejora adicional | Resuelto para esta etapa |
 | **Laboratorio independiente de composición UML** | **Completado** en [Relaciones UML](docs/laboratorios/relaciones-uml.md): composición R-09, agregación local, asociaciones, referencias y baja lógica, con dos diagramas y pruebas | Resuelto |
-| **Completar `Interpreter` en la colección técnica original** | **Completado:** [Interpreter técnico](../../comportamiento/Interpreter/README.md) con expresiones anidadas, `BigDecimal` y pruebas; las dos colecciones ahora tienen 23 patrones | Resuelto |
+| **Completar `Interpreter` en la colección técnica original** | **Completado:** [Interpreter técnico](../clasicos/comportamiento/Interpreter/README.md) con expresiones anidadas, `BigDecimal` y pruebas; las dos colecciones ahora tienen 23 patrones | Resuelto |
 | **Abstract Factory con clases de producto concretas diferentes** | **Completado:** las dos fábricas producen cuatro clases concretas de luz/puerta, con pruebas de tipos, rechazo de combinaciones y UML actualizado | Resuelto |
 | **Notificaciones con fallo de observador** | El Observer de consola es sincrónico y no ofrece transaccionalidad ante excepciones arbitrarias de callbacks. Ya se declara su alcance en la ficha | Baja; sería un diseño más avanzado |
 
