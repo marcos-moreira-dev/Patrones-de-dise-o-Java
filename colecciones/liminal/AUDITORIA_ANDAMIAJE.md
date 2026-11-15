@@ -225,3 +225,39 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 **Corrección:** se sustituyó la dependencia fábrica-textura por una **asociación navegable** y se rotuló con `0..*` del lado de las texturas, sin rombos de propiedad. Se mantuvo `ClaveTextura` como `record` de clave valor en el atributo Java, sin inventar una entidad adicional. La ficha explica la diferencia y la verificación documental comprueba el nombre de la clave y la multiplicidad. **Sin cambios en implementación ni clientes.**
 
 La auditoría semántica distingue entre la dependencia del cliente a la fábrica (uso) y las referencias almacenadas por la fábrica (estructura). Falta comprobar visualmente los SVG finales en los visores que utilizará el lector.
+
+## 22. Matriz de revisión dirigida — 23 patrones base
+
+Esta tabla registra la **responsabilidad mínima que se ha contrastado entre Java, cliente y pruebas**. No clasifica por tamaño: una clase solo se considera andamio descartable si eliminarla no borra un rol, regla o demostración. Las demostraciones se mantienen autónomas, sin extraer un dominio monolítico compartido.
+
+| Patrón | Colaboración y decisión | Clasificación / resultado |
+| --- | --- | --- |
+| **Singleton** | `PanelAvisos`: instancia única para la demo; limpieza para aislar pruebas | P/E; conservar, no regla universal del mundo |
+| **Factory Method** | Creador abstracto, dos creadores concretos y productos `Criatura`; registro de IDs | P/D; contrato de identidad y habitación corregido |
+| **Abstract Factory** | Dos familias de luces/puertas con interfaces y coherencia de `Tema` | P/D; conservar productos concretos distintos |
+| **Builder** | `ConstructorHabitacion` configura y entrega `Habitacion` | P; conservar versión base sin Director ni mapa |
+| **Prototype** | `HabitacionPrototipo` conserva configuración y exige nueva identidad | P/D; conservar copia de nombres inmutables |
+| **Adapter** | `AdaptadorRadioAntigua` traduce `Comunicador` a la radio existente | P; conservar delegación a objeto |
+| **Bridge** | `AlertaLiminal` separa mensaje y `CanalAviso` | P; conservar dos dimensiones intercambiables |
+| **Composite** | `GrupoLuces` y `LuzIndividual` realizan `Encendible` | P/D; prueba de ciclos y referencias compartidas; sin propiedad exclusiva |
+| **Decorator** | `DecoradorLinterna` envuelve la base y suma mejoras | P; conservar referencia, no copiar base |
+| **Facade** | `FachadaCruce` consulta `MapaLocal → Salida → PuertaPaso` antes de mover | P/D; conservar descriptor; mapa ajeno y estado inalcanzable corregidos |
+| **Flyweight** | `FabricaTexturas` reutiliza `Textura` por clave valor | P/D; caché y asociación `0..*` documentadas |
+| **Proxy** | `ProxyCamara` verifica pase y difiere creación de `CamaraReal` | P; contador de creación como evidencia local E |
+| **Chain of Responsibility** | Tres validadores sucesivos, primer rechazo, salida sin puerta | P/D; conservar cadena y `SolicitudCruce` inmutable |
+| **Command** | `PanelBotones` invoca órdenes que referencian `Puerta` o `Luz` | P/D; invocador y receptores separados |
+| **Interpreter** | `InterpreteOrdenes` analiza dos instrucciones y produce expresiones | P/D; gramática mínima; no inventar lenguaje complejo |
+| **Iterator** | `RegistroHabitaciones` y `RecorridoHabitaciones` implementan contratos Java | P/D; instantánea defensiva única |
+| **Mediator** | `SensorRuido` informa a `CentroControl`, que coordina luz y alarma | P/D; conservar mediación sin mensajería adicional |
+| **Memento** | `Linterna` crea `Recuerdo` opaco y `Historial` lo custodia | P/D; historial restringido al mismo originador |
+| **Observer** | `Interruptor` notifica receptores sin poseerlos | P/D; prueba de cambio de suscripciones durante aviso |
+| **State** | `Puerta` delega en tres clases de estado y verifica transiciones | P/D; único ejemplo base con bloqueo completo de R-05 |
+| **Strategy** | `MonstruoOscuro` intercambia comportamientos dentro de un mapa dirigido | P/D; valida destino incluso frente a estrategia defectuosa |
+| **Template Method** | `RutaExploracion.recorrer` fija el orden; subclases observan | P; conservar método `final` y punto de extensión protegido |
+| **Visitor** | `Elemento.aceptar` delega a visitantes por doble despacho | P; conservar interfaces y visitantes independientes |
+
+**Conclusión de esta pasada de responsabilidades:** no se identificó una clase participante GoF entera cuya eliminación sea segura y mejore la enseñanza. La única poda de producción de este bloque fue la constante de estado inalcanzable en Facade. `Salida`, `RegistroApariciones`, `Historial`, `Tema` y los contratos polimórficos son colaboradores con un propósito rastreable, **no capas técnicas decorativas**.
+
+**Fuentes de validación:** pruebas de `PruebasLiminal` (23 casos base, siete variantes, dos laboratorios), verificación de fichas y SVG por `VerificarDocumentacion` y GitHub Actions con Java 21. Los checks de texto de un SVG no garantizan que sus flechas y etiquetas queden bien dispuestas visualmente.
+
+**Para el cierre final aún falta:** (1) inspección gráfica de relaciones, etiquetas y posibles superposiciones de los 23 SVG y de los laboratorios; (2) última revisión de navegación, enlaces y comentarios/editorial entre siete variantes y los dos laboratorios; (3) confirmar en una ejecución final que las pruebas y ejemplos completos pasan en Linux y Windows, y emitir un dictamen de cierre. No se incluyen otros proyectos.
