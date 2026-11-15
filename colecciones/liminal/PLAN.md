@@ -5,7 +5,9 @@
 
 La [auditoría pedagógica de noviembre de 2026](AUDITORIA_PEDAGOGICA.md) corrigió restricciones de movimiento e identidad, añadió pruebas y afinó seis diagramas de patrones.
 
-**Ampliación implementada:** [siete variantes de seis patrones y laboratorio `class` / `record`](PLAN_VARIANTES.md), separados de los 23 ejercicios base. La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) clasifica roles y pendientes sin eliminar código imprescindible.
+**Ampliación implementada:** [siete variantes de seis patrones y laboratorio `class` / `record`](PLAN_VARIANTES.md), separados de los 23 ejercicios base.
+
+**Tercer bloque futuro:** [Plan del integrador liminal y alineación editorial de los ejemplos aislados](PLAN_INTEGRADOR.md). Esta propuesta es un proyecto separado de la colección de 23 demos; no convierte este plan original de ejemplos GoF en un videojuego. La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) clasifica roles y pendientes sin eliminar código imprescindible.
 
 **Laboratorio R-09 incorporado:** [Relaciones UML y ciclo de vida](docs/laboratorios/relaciones-uml.md) como actividad extra, no como patrón número 24. Se integra en las pruebas Java 21 y tiene dos diagramas adicionales sin modificar el inventario de 23 SVG GoF. Los pendientes restantes están clasificados por prioridad en ese documento.
 
