@@ -199,3 +199,13 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 **Próximos pasos hasta la auditoría cerrada:** (1) comparar cada relación UML significativa con las referencias, multiplicidades y restricciones del código, incluyendo inspección gráfica; (2) terminar la lectura semántica de las clases colaboradoras de los 23 patrones y documentar solo hallazgos reproducibles; (3) revisar la relación coste-beneficio de los verificadores/scripts locales; (4) ejecutar la comprobación integral final y emitir un dictamen de cierre sin prometer corrección de cuestiones fuera del alcance.
 
 **Restricción de alcance:** no se auditan ni modifican Arena Java, MiniSO, la colección técnica original ni el workflow global. La CI compartida puede ejecutarlos automáticamente, pero eso no los incorpora a este encargo.
+
+## 19. Auditoría semántica dirigida — Facade, Observer y Composite
+
+**Facade (S, simplificación local):** `EstadoPaso` contenía `BLOQUEADA`, pero `PuertaPaso` solo iniciaba en `CERRADA` y permitía pasar a `ABIERTA`, sin `bloquear` ni `desbloquear`. Era un estado **inalcanzable** que sugería mecánicas inexistentes para el ejemplo. Se retiró exclusivamente de este enum; `State` conserva los **tres estados** y enseña el bloqueo autorizado de R-05. Se añadieron comprobaciones explícitas de cierre/apertura y la ficha distingue los dos alcances. No se añadió infraestructura ni se cambió la ruta de cruce.
+
+**Observer (P/D, prueba de robustez existente):** `Interruptor.pulsar` ya utilizaba `List.copyOf(observadores.values())`. La prueba no ejercitaba la modificación de suscripciones desde un callback. Ahora verifica un receptor que se da de baja y suscribe otro durante el aviso: los receptores ya presentes se notifican, el nuevo no recibe el aviso actual y entra en los posteriores. La ficha define explícitamente este comportamiento de instantánea.
+
+**Composite (P/UML, propiedad por referencia):** `GrupoLuces` ya permitía que **dos grupos distintos referencien la misma luz**, porque carece deliberadamente de propiedad exclusiva. La prueba ahora muestra que apagar la luz mediante un grupo afecta a esa misma instancia desde el otro. También prueba el rechazo sin mutación de un duplicado **en el mismo grupo**. La ficha conecta ambos comportamientos con asociación UML en vez de asumir composición.
+
+**Evaluación de andamiaje:** se eliminó **una constante de enum** inalcanzable, sin retirar clases, roles GoF ni colaboradores. Las dos ampliaciones de prueba documentan políticas existentes, no agregan defensas ni funciones al código de producción. Se conserva el estilo sencillo de consola. Las pruebas virtuales con Java 21 deben ratificar el cambio.

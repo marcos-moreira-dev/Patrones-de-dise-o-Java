@@ -18,11 +18,11 @@
 
 **Solución GoF.** `Interruptor` mantiene un conjunto ordenado de receptores bajo el contrato `ObservadorInterruptor`. `Luz` y `Alarma` implementan ese contrato. `ClienteObserver` crea los objetos, los suscribe y pulsa el interruptor.
 
-**Qué sucede realmente en Java:** `suscribir(luz)` guarda una **referencia** al mismo objeto `Luz`, no una copia. `pulsar()` recorre los observadores actuales e invoca `alCambiar`. Es una asociación navegable desde el interruptor, con multiplicidad `0..*`, **sin semántica de propiedad compuesta**.
+**Qué sucede realmente en Java:** `suscribir(luz)` guarda una **referencia** al mismo objeto `Luz`, no una copia. `pulsar()` toma una **instantánea de los receptores**, pero no copia los dispositivos, y luego invoca `alCambiar`. Si un receptor se retira o suscribe a otro durante el aviso, el recorrido actual sigue con sus destinatarios originales; el cambio tiene efecto en la próxima pulsación. Es una asociación navegable desde el interruptor, con multiplicidad `0..*`, **sin semántica de propiedad compuesta**.
 
 **Reglas locales:** IDs de observador únicos por interruptor; al activar, `Alarma` incrementa su contador; al desactivar no lo incrementa. La demostración es síncrona y no modela concurrencia ni tolerancia a fallos entre observadores.
 
-**Pruebas:** dos observadores reciben el cambio; duplicar un ID se rechaza sin alterar las suscripciones; al retirar la alarma ya no recibe avisos.
+**Pruebas:** dos observadores reciben el cambio; duplicar un ID se rechaza sin alterar las suscripciones; al retirar la alarma ya no recibe avisos. También se comprueba el auto-retiro durante un callback y la suscripción de un receptor nuevo, sin alterar el aviso que ya estaba en curso.
 
 **Salida de consola prevista:**
 

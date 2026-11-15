@@ -18,6 +18,24 @@ public final class PruebaComposite {
         if (!uno.encendida() || !dos.encendida()) throw new AssertionError("Encendido recursivo");
         edificio.apagar();
         if (uno.encendida() || dos.encendida()) throw new AssertionError("Apagado recursivo");
+
+        // Dos grupos pueden referenciar la misma luz: esto no es propiedad exclusiva.
+        GrupoLuces otroGrupo = new GrupoLuces("Otro pasillo");
+        otroGrupo.agregar(uno);
+        edificio.encender();
+        otroGrupo.apagar();
+        if (uno.encendida() || !dos.encendida()) {
+            throw new AssertionError("Los dos grupos deben compartir la misma instancia de luz");
+        }
+        edificio.apagar();
+        try {
+            pasillo.agregar(uno);
+            throw new AssertionError("El mismo grupo no admite la misma referencia dos veces");
+        } catch (IllegalArgumentException esperado) {
+            if (!pasillo.hijos().equals(List.of(uno))) {
+                throw new AssertionError("Rechazar duplicados no debe mutar el grupo");
+            }
+        }
         try {
             pasillo.agregar(edificio);
             throw new AssertionError("No se aceptan ciclos");

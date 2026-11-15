@@ -11,6 +11,9 @@ public final class PruebaFacade {
         mapa.agregarHabitacion("H-03");
         mapa.agregarHabitacion("H-04");
         PuertaPaso puerta = new PuertaPaso("P-01");
+        if (puerta.estado() != EstadoPaso.CERRADA || puerta.transitable()) {
+            throw new AssertionError("Facade inicia con puerta cerrada");
+        }
         mapa.agregarSalida("H-01", "H-02", puerta);
         mapa.agregarSalida("H-02", "H-03", null); // Pasillo sin puerta.
         Explorador explorador = new Explorador("E-01", "H-01", mapa);
@@ -26,6 +29,9 @@ public final class PruebaFacade {
         esperarFallo(() -> fachada.cruzar("H-02"));
         if (!explorador.ubicacion().equals("H-01")) throw new AssertionError("La puerta cerrada no permite pasar");
         puerta.abrir();
+        if (puerta.estado() != EstadoPaso.ABIERTA || !puerta.transitable()) {
+            throw new AssertionError("Facade solo necesita apertura para el cruce");
+        }
         esperarFallo(() -> fachada.cruzar("H-03"));
         if (!explorador.ubicacion().equals("H-01")) throw new AssertionError("Salida inexistente no cambia ubicación");
         fachada.cruzar("H-02");

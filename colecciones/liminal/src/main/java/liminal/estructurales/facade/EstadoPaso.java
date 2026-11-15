@@ -1,3 +1,3 @@
 package liminal.estructurales.facade;
 
-enum EstadoPaso { CERRADA, ABIERTA, BLOQUEADA }
+enum EstadoPaso { CERRADA, ABIERTA }

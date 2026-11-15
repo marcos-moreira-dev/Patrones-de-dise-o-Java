@@ -12,7 +12,7 @@
 
 **Consola:** `Luz L-01: ENCENDIDA` y `Luz L-02: ENCENDIDA`.
 
-**Pruebas:** encender/apagar grupos anidados y rechazar ciclos sin mutar el grupo.
+**Pruebas:** encender/apagar grupos anidados y rechazar ciclos sin mutar el grupo. Dos grupos independientes pueden apuntar a **la misma instancia** de `LuzIndividual`: apagarla desde uno de ellos también la apaga para quien la comparte. Se rechaza añadir dos veces la misma referencia al mismo grupo. Esto aclara por qué la relación UML es una asociación, no composición exclusiva.
 
 **Alternativa:** si siempre hay dos luces fijas, llamarlas directamente es más sencillo.
 

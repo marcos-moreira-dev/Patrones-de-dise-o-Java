@@ -8,7 +8,7 @@
 
 **Escena:** un explorador desea pasar de H-01 a H-02. Para ello debe comprobar que ambas habitaciones existen, que hay una **salida dirigida** y que, **si existe una puerta**, está abierta.
 
-**Dominio:** R-02, R-03, R-04, R-05 y R-12. Un movimiento rechazado **no cambia** la habitación actual.
+**Dominio:** R-02, R-03, R-04, R-05 y R-12. Un movimiento rechazado **no cambia** la habitación actual. En **este ejercicio** `PuertaPaso` solo necesita los estados `CERRADA` y `ABIERTA`: no hay mecanismo de cerradura ni operación de bloqueo. El tercer estado permitido por R-05, `BLOQUEADA`, se implementa y practica en **[State](../comportamiento/state.md)**; declararlo aquí sin una forma de alcanzarlo distraería del objetivo de Facade.
 
 **Problema:** si cada cliente repite las validaciones del mapa, puerta y explorador, es fácil olvidar una condición.
 
