@@ -100,7 +100,9 @@ public final class VerificarDocumentacion {
             comprobarUml(diagramas, "abstractfactory.svg",
                     "LuzAmarilla", "LuzPiscinas", "PuertaAmarilla", "PuertaPiscinas",
                     "FabricaAmarilla", "FabricaPiscinas");
-            comprobarUml(diagramas, "facade.svg", "salida(origen, destino)");
+            comprobarUml(diagramas, "facade.svg",
+                    "salida(origen, destino)", "salidas: Map&lt;Ruta, Salida&gt;",
+                    "puerta: PuertaPaso", "0..1");
             comprobarUml(diagramas, "observer.svg",
                     "ObservadorInterruptor", "observadores: Map", "0..*");
             String[][] rutas = {

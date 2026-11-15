@@ -209,3 +209,11 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 **Composite (P/UML, propiedad por referencia):** `GrupoLuces` ya permitía que **dos grupos distintos referencien la misma luz**, porque carece deliberadamente de propiedad exclusiva. La prueba ahora muestra que apagar la luz mediante un grupo afecta a esa misma instancia desde el otro. También prueba el rechazo sin mutación de un duplicado **en el mismo grupo**. La ficha conecta ambos comportamientos con asociación UML en vez de asumir composición.
 
 **Evaluación de andamiaje:** se eliminó **una constante de enum** inalcanzable, sin retirar clases, roles GoF ni colaboradores. Las dos ampliaciones de prueba documentan políticas existentes, no agregan defensas ni funciones al código de producción. Se conserva el estilo sencillo de consola. Las pruebas virtuales con Java 21 deben ratificar el cambio.
+
+## 20. UML — Facade: cadena de asociaciones y puerta opcional
+
+**Hallazgo:** el diagrama anterior mostraba cinco clases y trazaba una relación directa desde `MapaLocal` hasta `PuertaPaso`, pero Java realmente declara `MapaLocal.salidas: Map<Ruta, Salida>`, mientras `Salida.puerta` es la referencia opcional a `PuertaPaso`. Omitir `Salida` podía hacer pensar que no existe una entidad intermedia y volver a confundir «sin salida» con «salida sin puerta».
+
+**Corrección:** el UML ahora incluye una caja `Salida`, el atributo `MapaLocal.salidas`, una asociación navegable `MapaLocal → Salida` y otra `Salida → PuertaPaso` con multiplicidad `0..1` del lado de la puerta. No se dibujaron rombos: el código conserva referencias, sin demostrar propiedad compuesta. Se amplió la altura del SVG para evitar comprimir las seis cajas y se ajustó la ficha. La prueba documental verifica los campos y la multiplicidad; las pruebas de Facade ya cubren ausencia de salida, salida sin puerta, puerta cerrada y mapa ajeno. **No cambia código de dominio.**
+
+**Resto de auditoría UML:** cotejar relaciones y trazado del resto de los diagramas significativos; la verificación del texto y XML no sustituye la revisión visual completa.

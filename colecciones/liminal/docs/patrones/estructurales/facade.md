@@ -16,7 +16,7 @@
 
 **Integridad R-03:** el explorador conserva una referencia al mapa en el que fue creado; la fachada exige **esa misma instancia de mapa**, aunque otro tenga habitaciones con los mismos IDs. Así se evita un cruce artificial entre expediciones con mapas distintos. La validación de identidad de referencia ocurre al construir la fachada, sin mover al explorador.
 
-**Java y UML:** la fachada y el explorador guardan referencias a objetos que **utilizan** para verificar el cruce; son asociaciones, no relaciones de propiedad compuesta. El método solo actualiza la ubicación **al final** de todas las comprobaciones.
+**Java y UML:** la fachada y el explorador guardan referencias a objetos que **utilizan** para verificar el cruce; son asociaciones, no relaciones de propiedad compuesta. El mapa guarda referencias a objetos `Salida` identificados por `Ruta`; cada `Salida` puede tener **cero o una** `PuertaPaso`. Por eso el diagrama muestra `MapaLocal → Salida → PuertaPaso`, en lugar de fingir que el mapa contiene directamente una puerta. El método solo actualiza la ubicación **al final** de todas las comprobaciones.
 
 **Consola:** `Inicio: H-01` seguido de `Cruce correcto: H-02`.
 
