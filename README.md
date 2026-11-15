@@ -15,6 +15,11 @@ estudiar también las fases de construcción con Maven sin frameworks.
 
 **[Cierre académico 1.0 y ruta de lectura de los tres bloques](docs/CIERRE_ACADEMICO_GOF.md)**: estado verificado, decisiones de ingeniería, alcance de las auditorías y qué se deja expresamente fuera.
 
+### Acceso rápido
+
+- **Patrones GoF:** [catálogo clásico](patrones/clasicos/README.md) y [colección liminal](patrones/liminales/README.md); consulta el [índice de patrones](patrones/README.md).
+- **Proyectos independientes:** [Arena Java](proyectos/arena-java/README.md), [MiniSO](proyectos/miniso/README.md) y [Expedición Liminal Integrada](proyectos/expedicion-liminal-integrada/README.md), reunidos en [proyectos/](proyectos/README.md).
+
 ### Cómo estudiar este laboratorio
 
 1. Empieza por el problema que resuelve el patrón (puede ser un ejemplo cotidiano, un videojuego o un negocio).
@@ -40,7 +45,7 @@ La ampliación **está implementada**: [siete variantes GoF de ingeniería y lab
 
 **[Guía de lectura del código liminal](patrones/liminales/GUIA_LECTURA_CODIGO.md)**: la misma organización de clases y clientes que en los ejemplos clásicos, con archivos individuales para cada tipo y pruebas separadas.
 
-Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash patrones/liminales/scripts/verificar.sh` (Java 21).
+Los dos catálogos GoF están reunidos en `patrones/`; los tres proyectos independientes se encuentran en `proyectos/`. Para comprobar el catálogo completo: `bash patrones/liminales/scripts/verificar.sh` (Java 21).
 
 ### Dos colecciones y un laboratorio UML
 
@@ -52,7 +57,7 @@ En la colección liminal incorporamos además un [laboratorio de relaciones UML]
 
 El **[proyecto integrador Expedición Liminal](proyectos/expedicion-liminal-integrada/README.md)** tiene un [escenario de exploración reproducible](proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md), reglas de [dominio](proyectos/expedicion-liminal-integrada/DOMINIO.md) y una [arquitectura en capas con UML](proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). Las etapas de estudio están implementadas en Java 21 con cuatro clientes deterministas, [pruebas del dominio](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasExpedicion.java), [Strategy](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasCriaturas.java) y [Observer/Mediator](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasVigilancia.java). El monstruo cambia comportamiento sin violar el mapa y un sensor alerta a la central. El integrador incluye también [tres guiones adicionales](proyectos/expedicion-liminal-integrada/docs/ESCENARIOS_02_04.md) sobre piscinas, radio y luces. Consulta la [auditoría arquitectónica final](proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md) y la [auditoría de comportamientos reales](proyectos/expedicion-liminal-integrada/docs/AUDITORIA_COMPORTAMIENTOS.md). Los ejemplos GoF clásicos y liminales aislados permanecen separados.
 
-### Microproyectos con arquitectura real
+### Tres proyectos independientes
 
 El primer microproyecto es **[Arena Java](proyectos/arena-java/README.md)**:
 un juego pequeño de combate por turnos, con dos escenarios, renderizado ASCII,
@@ -80,7 +85,7 @@ siguen sin requerir Maven.
 La [guía para contribuir](CONTRIBUTING.md) explica preparación, pruebas,
 revisión de PR y **criterios de terminado**. En Git Bash, desde la raíz del
 repositorio, basta este comando para comprobar los patrones clásicos,
-construir y probar ambos microproyectos y comprobar que sus JAR arrancan:
+verificar Arena, MiniSO y el integrador liminal, además de los dos JAR Maven:
 
 ```bash
 bash scripts/verificar.sh
@@ -94,19 +99,25 @@ FCFS, Round Robin y prioridad. Son **ticks simulados**, no benchmarks del PC.
 
 ## 📁 Estructura del proyecto
 
-```
+```text
 Patrones-de-dise-o-Java/
-├── patrones/clasicos/creacionales/                      (GoF técnicos)
-├── patrones/clasicos/estructurales/                     (GoF técnicos)
-├── patrones/clasicos/comportamiento/                    (GoF técnicos)
-├── colecciones/
-│   └── liminal/                       (23 GoF aislados y variantes)
+├── patrones/
+│   ├── clasicos/
+│   │   ├── creacionales/
+│   │   ├── estructurales/
+│   │   ├── comportamiento/
+│   │   ├── App.java
+│   │   └── Main.java
+│   └── liminales/
+│       ├── src/                 (23 GoF aislados, variantes y pruebas)
+│       ├── docs/                (fichas, UML y laboratorios)
+│       └── assets/              (ilustraciones)
 ├── proyectos/
 │   ├── arena-java/
 │   ├── miniso/
-│   └── expedicion-liminal-integrada/  (tercer bloque GoF, 3 patrones)
-├── patrones/clasicos/App.java
-├── patrones/clasicos/Main.java
+│   └── expedicion-liminal-integrada/
+├── docs/
+├── scripts/verificar.sh
 ├── README.md
 └── Tree.md
 ```
@@ -124,7 +135,7 @@ Patrones-de-dise-o-Java/
 
 ## ⚙️ Compilación y ejecución desde consola
 
-### Opción recomendada: verificar los tres componentes del laboratorio
+### Opción recomendada: verificar las dos colecciones y los tres proyectos
 
 Desde la **raíz del repositorio**, en Git Bash (Windows) o Linux:
 
@@ -132,8 +143,8 @@ Desde la **raíz del repositorio**, en Git Bash (Windows) o Linux:
 bash scripts/verificar.sh
 ```
 
-Compila y ejecuta el menú de patrones clásicos, prueba Arena y MiniSO,
-construye sus dos JAR y verifica que arrancan. Consulta
+Compila las dos colecciones GoF, prueba Arena y MiniSO, construye sus dos JAR,
+verifica su arranque y ejecuta las pruebas de los cuatro guiones del integrador. Consulta
 [CONTRIBUTING.md](CONTRIBUTING.md) para los criterios de aceptación.
 
 ### Compilar solo los patrones clásicos con `javac`
@@ -142,7 +153,7 @@ En Git Bash o Linux, desde la **raíz**:
 
 ```bash
 mkdir -p out/clasicos
-find creacionales estructurales comportamiento -name '*.java' -print0 \
+find patrones/clasicos/creacionales patrones/clasicos/estructurales patrones/clasicos/comportamiento -name '*.java' -print0 \
   | xargs -0 javac -encoding UTF-8 -d out/clasicos patrones/clasicos/App.java patrones/clasicos/Main.java
 java -cp out/clasicos Main
 ```
@@ -151,8 +162,8 @@ En PowerShell, también desde la **raíz**:
 
 ```powershell
 New-Item -ItemType Directory -Force out\clasicos | Out-Null
-$fuentes = Get-ChildItem .\creacionales, .\estructurales, .\comportamiento -Recurse -Filter *.java | ForEach-Object FullName
-javac -encoding UTF-8 -d out\clasicos .\patrones/clasicos/App.java .\patrones/clasicos/Main.java $fuentes
+$fuentes = Get-ChildItem .\patrones\clasicos\creacionales, .\patrones\clasicos\estructurales, .\patrones\clasicos\comportamiento -Recurse -Filter *.java | ForEach-Object FullName
+javac -encoding UTF-8 -d out\clasicos .\patrones\clasicos\App.java .\patrones\clasicos\Main.java $fuentes
 java -cp out\clasicos Main
 ```
 

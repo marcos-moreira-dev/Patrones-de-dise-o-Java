@@ -40,17 +40,17 @@ Cada patrón tiene su propia carpeta y **un tipo superior Java por archivo**:
 patrones/liminales/
 ├── src/main/java/liminal/
 │   ├── DemoLiminal.java               ← lanzador con métodos por categoría
-│   ├── patrones/clasicos/creacionales/
+│   ├── creacionales/
 │   │   └── builder/
 │   │       ├── ClienteBuilder.java    ← ejecución visible
 │   │       ├── ConstructorHabitacion.java
 │   │       └── Habitacion.java
-│   ├── patrones/clasicos/estructurales/
+│   ├── estructurales/
 │   │   └── decorator/                 ← Cliente, interfaz y envolturas separados
-│   └── patrones/clasicos/comportamiento/
+│   └── comportamiento/
 │       └── strategy/                  ← Cliente, estrategias y monstruo separados
 └── src/test/java/liminal/
-    └── patrones/clasicos/creacionales/builder/
+    └── creacionales/builder/
         └── PruebaBuilder.java         ← pruebas fuera del cliente
 ```
 

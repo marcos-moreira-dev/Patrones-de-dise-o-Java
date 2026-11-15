@@ -40,13 +40,13 @@ bash scripts/verificar.sh
 
 Este comando **no modifica el SO real**. Comprueba que Java y Maven usan
 JDK 21; compila y ejecuta el menú de los patrones clásicos (incluida una
-entrada inválida), ejecuta las suites de Arena y MiniSO, verifica el integrador liminal, construye los dos
-JAR y prueba automáticamente que arrancan y responden a comandos.
+entrada inválida), ejecuta las suites de Arena y MiniSO, construye sus dos JAR,
+verifica su arranque y ejecuta las pruebas del integrador liminal.
 
 El resultado final esperado es:
 
 ```text
-VERIFICACION COMPLETA: 23 patrones clasicos, 3 proyectos y 23 demos liminales, mas laboratorio UML.
+VERIFICACION COMPLETA: 23 patrones clasicos, 23 patrones liminales, laboratorio UML y 3 proyectos.
 ```
 
 Un comando que termina con código **0** significa que no se detectaron
@@ -67,8 +67,8 @@ java -jar proyectos/miniso/target/miniso-1.0.0-SNAPSHOT.jar
 
 En **PowerShell**, los mismos comandos `mvn` y `java` funcionan, con rutas
 entre comillas si es necesario. El script `.sh` se ejecuta desde Git Bash.
-Si todavía no has instalado Maven, cada proyecto explica la compilación
-directa con `javac` en su respectivo `BUILD.md`.
+Si todavía no has instalado Maven, Arena y MiniSO explican la compilación
+directa con `javac` en sus respectivos `BUILD.md`; el integrador dispone de su propio script Java 21.
 
 ## Matriz mínima de validación
 
