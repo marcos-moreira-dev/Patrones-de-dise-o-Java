@@ -21,6 +21,10 @@ public final class ClienteRadio {
     }
 
     public static List<String> ejecutar() {
+        return reproducirGuion(prepararEscena());
+    }
+
+    private static EscenaRadio prepararEscena() {
         MapaLiminal mapa = new MapaLiminal("RADIO", 3, 2);
         Habitacion inicio = mapa.agregarHabitacion("R-01", "Recepción vacía", new Posicion(0, 1));
         Habitacion cabina = mapa.agregarHabitacion("R-02", "Cabina de radio", new Posicion(1, 1));
@@ -39,6 +43,13 @@ public final class ClienteRadio {
         Expedicion sesion = new Expedicion("EXP-RADIO", mapa,
                 new Explorador("EX-R", mapa, inicio), meta);
         ProcesarTurno caso = new ProcesarTurno(sesion);
+        return new EscenaRadio(sesion, caso, radio);
+    }
+
+    private static List<String> reproducirGuion(EscenaRadio escena) {
+        Expedicion sesion = escena.sesion();
+        ProcesarTurno caso = escena.caso();
+        RadioLiminal radio = escena.radio();
         List<String> relato = new ArrayList<>();
         relato.add("LA RADIO QUE RESPONDE SOLA — emisiones predefinidas");
         relato.add("RECEPCIÓN 1040 kHz: "
@@ -73,4 +84,6 @@ public final class ClienteRadio {
         relato.add(orden + " -> " + (r.aceptado() ? "ACEPTADO" : "RECHAZADO")
                 + " | " + r.habitacionId() + " | turno=" + r.turnos());
     }
+    private record EscenaRadio(Expedicion sesion, ProcesarTurno caso, RadioLiminal radio) {}
+
 }
