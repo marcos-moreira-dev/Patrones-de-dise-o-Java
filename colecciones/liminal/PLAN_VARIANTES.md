@@ -1,6 +1,6 @@
 # Expedición Liminal — Plan de variantes GoF y laboratorio `class` / `record`
 
-> **Estado: 7/7 variantes implementadas, laboratorio Java terminado, 17/17 fichas restantes comparadas por escrito y primera auditoría de andamiaje realizada.** Versión 1.2 — 14 de noviembre de 2026. **Pendiente:** auditoría semántica exhaustiva de los 23 patrones de **Expedición Liminal**, siete variantes y dos laboratorios. Los patrones técnicos originales y los microproyectos están fuera del alcance.
+> **Estado: 7/7 variantes implementadas, laboratorio Java terminado, 17/17 fichas restantes comparadas por escrito y primera auditoría de andamiaje realizada.** Versión 1.2 — 14 de noviembre de 2026. **Estado de auditoría:** clientes y fichas de los 23 GoF, siete variantes, dos laboratorios, enlaces y revisión textual/geométrica de UML comprobados; **pendiente** lectura semántica exhaustiva de todas las clases colaboradoras y revisión visual rasterizada de los diagramas. Los patrones técnicos originales y los microproyectos están fuera del alcance.
 > Esta hoja de ruta amplía el catálogo existente; no sustituye [PLAN.md](PLAN.md) ni modifica las reglas de [DOMINIO.md](DOMINIO.md). No añadir nuevas mecánicas al mundo simplemente para justificar una variante.
 
 ## 1. Resultado que queremos conseguir
@@ -196,6 +196,6 @@ Si una variante se vuelve más compleja que el problema que debía enseñar, sim
 
 ## 10. Primer paso implementado y próximas revisiones
 
-**Completado:** la [variante de copia profunda](docs/variantes/creacionales/prototype/copia-profunda.md) distingue referencias mutables; el [catálogo de prototipos](docs/variantes/creacionales/prototype/registro-prototipos.md) garantiza IDs locales; el [laboratorio Java](docs/laboratorios/java/class-vs-record.md) muestra cuándo una clave de caché justifica `record`. Siguiente revisión: documentación de alternativas en los otros 17 patrones y auditoría más profunda de clases accesorias.
+**Completado:** la [variante de copia profunda](docs/variantes/creacionales/prototype/copia-profunda.md) distingue referencias mutables; el [catálogo de prototipos](docs/variantes/creacionales/prototype/registro-prototipos.md) garantiza IDs locales; el [laboratorio Java](docs/laboratorios/java/class-vs-record.md) muestra cuándo una clave de caché justifica `record`. Las 17 fichas adicionales ya comparan alternativas, las siete variantes tienen sus pruebas, y la [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) documenta qué se verificó y qué queda fuera de una certificación exhaustiva.
 
 [Catálogo principal](README.md) · [Dominio normativo](DOMINIO.md) · [Guía de lectura de clases](GUIA_LECTURA_CODIGO.md) · [Guía de modelado de dominios](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).
