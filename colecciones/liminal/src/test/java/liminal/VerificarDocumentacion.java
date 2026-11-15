@@ -154,7 +154,11 @@ public final class VerificarDocumentacion {
             validarSvg(clasesRelaciones);
             validarSvg(objetosRelaciones);
             comprobarUml(laboratorio, "relaciones-uml.svg",
-                    "RegistroExpedicion", "EquipoExploracion", "VistaEntrada");
+                    "RegistroExpedicion", "EquipoExploracion", "VistaEntrada",
+                    "EntradaRegistro", "~ buscar(id): Habitacion",
+                    "~ anotar(id, texto)", "~ consultar(): String");
+            comprobarUml(laboratorio, "referencias-objetos.svg",
+                    "EquipoExploracion", "RegistroExpedicion", "InformeExpedicion");
             comprobarUml(laboratorio, "referencias-objetos.svg",
                     "entrada:EntradaRegistro", "activa=false");
             System.out.println("OK laboratorio UML, dos diagramas y reglas enlazadas.");

@@ -35,7 +35,7 @@ El contrato normativo está en [DOMINIO.md](../../DOMINIO.md).
 | Asociación de lectura | `InformeExpedicion → VistaEntrada` | Consulta, pero no se vuelve otro dueño |
 | Realización (triángulo hueco) | `EntradaRegistro ⇢ VistaEntrada` | La clase privada implementa la interfaz de lectura |
 
-**Los rombos van del lado del «todo»**, junto a `EquipoExploracion` o `RegistroExpedicion`. No se dibujan porque alguien use una lista o llame a un constructor.
+**Los rombos van del lado del «todo»**, junto a `EquipoExploracion` o `RegistroExpedicion`. No se dibujan porque alguien use una lista o llame a un constructor. El UML muestra `EntradaRegistro` como **clase privada anidada de `RegistroExpedicion`**, y los métodos de los colaboradores sin modificador público usan `~` (acceso de paquete). En el diagrama de objetos, las etiquetas `equipoLuces`, `equipoBusqueda`, `r` e `informe` señalan instancias de sus tipos Java completos.
 
 ## 3. Diagrama de objetos: antes y después
 

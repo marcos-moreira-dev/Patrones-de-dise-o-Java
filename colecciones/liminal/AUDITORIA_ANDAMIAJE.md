@@ -261,3 +261,11 @@ Esta tabla registra la **responsabilidad mínima que se ha contrastado entre Jav
 **Fuentes de validación:** pruebas de `PruebasLiminal` (23 casos base, siete variantes, dos laboratorios), verificación de fichas y SVG por `VerificarDocumentacion` y GitHub Actions con Java 21. Los checks de texto de un SVG no garantizan que sus flechas y etiquetas queden bien dispuestas visualmente.
 
 **Para el cierre final aún falta:** (1) inspección gráfica de relaciones, etiquetas y posibles superposiciones de los 23 SVG y de los laboratorios; (2) última revisión de navegación, enlaces y comentarios/editorial entre siete variantes y los dos laboratorios; (3) confirmar en una ejecución final que las pruebas y ejemplos completos pasan en Linux y Windows, y emitir un dictamen de cierre. No se incluyen otros proyectos.
+
+## 23. Revisión geométrica y semántica de UML y diagramas del laboratorio
+
+Se inspeccionó el contenido SVG de los **23 diagramas principales** y los **dos diagramas del laboratorio UML**, comprobando tamaños de cajas, posiciones de texto, etiquetas, tipos y relaciones relevantes. La comprobación geométrica es aproximada; **no equivale a una inspección visual píxel a píxel**.
+
+Hallazgos corregidos en el laboratorio: (1) se acortó el título de `EntradaRegistro` y se declaró su condición de clase anidada privada en un subtítulo; (2) se representó el atributo correcto `Map<String, EntradaRegistro>` en `RegistroExpedicion`; (3) se ajustó a `~` la visibilidad de métodos que no son públicos en Java; (4) se repartieron en dos líneas atributos largos para que sean legibles; (5) el diagrama de objetos muestra los nombres reales de tipos `EquipoExploracion`, `RegistroExpedicion`, `InformeExpedicion` en lugar de alias de tipos inexistentes; (6) se acortó una nota extensa que se aproximaba al borde derecho. Los enlaces y tests documentales ahora comprueban varios de estos detalles.
+
+No se cambió lógica Java ni el número de tipos o participantes de patrones. Queda pendiente la **revisión final editorial de enlaces/variantes** y la emisión del dictamen de cierre, dejando constancia de las limitaciones de la inspección visual rasterizada.

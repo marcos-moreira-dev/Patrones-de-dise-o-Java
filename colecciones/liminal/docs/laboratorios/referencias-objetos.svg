@@ -17,37 +17,41 @@
 <text x="984" y="219" class="caption">misma instancia</text>
 <path class="edge" d="M980 569 L1048 506" marker-end="url(#nav)"/>
 <text x="984" y="558" class="caption">referencia Java</text><rect x="55" y="151" width="219" height="118" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="164.5" y="185" class="name">equipoLuces:Equipo</text>
-<path d="M55 202 H274" class="sep"/>
-<text x="69" y="233" class="body">activo=true</text><rect x="55" y="279" width="219" height="118" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="164.5" y="313" class="name">equipoBusqueda:Equipo</text>
-<path d="M55 330 H274" class="sep"/>
-<text x="69" y="361" class="body">activo=true</text><rect x="358" y="233" width="308" height="122" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="164.5" y="177" class="name">equipoLuces:</text>
+<text x="164.5" y="198" class="caption" text-anchor="middle">EquipoExploracion</text>
+<path d="M55 212 H274" class="sep"/>
+<text x="69" y="243" class="body">activo=true</text><rect x="55" y="279" width="219" height="118" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="164.5" y="305" class="name">equipoBusqueda:</text>
+<text x="164.5" y="326" class="caption" text-anchor="middle">EquipoExploracion</text>
+<path d="M55 340 H274" class="sep"/>
+<text x="69" y="371" class="body">activo=true</text><rect x="358" y="233" width="308" height="122" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
 <text x="512" y="267" class="name">e:Explorador</text>
 <path d="M358 284 H666" class="sep"/>
 <text x="372" y="315" class="body">id=EX-01</text><rect x="55" y="433" width="219" height="104" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="164.5" y="467" class="name">r:Registro</text>
+<text x="164.5" y="467" class="name" font-size="16">r:RegistroExpedicion</text>
 <path d="M55 484 H274" class="sep"/>
 <text x="69" y="515" class="body">abierto=true</text><rect x="358" y="433" width="308" height="106" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
 <text x="512" y="467" class="name">entrada:EntradaRegistro</text>
 <path d="M358 484 H666" class="sep"/>
 <text x="372" y="515" class="body">activa=true</text><rect x="358" y="571" width="308" height="84" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="512" y="605" class="name">informe:Informe</text>
+<text x="512" y="605" class="name">informe:InformeExpedicion</text>
 <path d="M358 622 H666" class="sep"/>
 <text x="372" y="653" class="body">observa entrada</text><rect x="761" y="178" width="219" height="116" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="870.5" y="212" class="name">equipoBusqueda:Equipo</text>
-<path d="M761 229 H980" class="sep"/>
-<text x="775" y="260" class="body">activo=true</text><rect x="1048" y="178" width="331" height="116" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
+<text x="870.5" y="204" class="name">equipoBusqueda:</text>
+<text x="870.5" y="225" class="caption" text-anchor="middle">EquipoExploracion</text>
+<path d="M761 239 H980" class="sep"/>
+<text x="775" y="270" class="body">activo=true</text><rect x="1048" y="178" width="331" height="116" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
 <text x="1213.5" y="212" class="name">e:Explorador</text>
 <path d="M1048 229 H1379" class="sep"/>
 <text x="1062" y="260" class="body">sigue activo</text><rect x="761" y="367" width="219" height="117" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="870.5" y="401" class="name">r:Registro</text>
+<text x="870.5" y="401" class="name" font-size="16">r:RegistroExpedicion</text>
 <path d="M761 418 H980" class="sep"/>
 <text x="775" y="449" class="body">abierto=false</text><rect x="1048" y="438" width="331" height="116" rx="4" fill="#FFF3DF" stroke="#B57824" stroke-width="2.4"/>
 <text x="1213.5" y="472" class="name">entrada:EntradaRegistro</text>
 <path d="M1048 489 H1379" class="sep"/>
 <text x="1062" y="520" class="body">activa=false</text><rect x="761" y="517" width="219" height="111" rx="4" fill="#EBF3FF" stroke="#376B9A" stroke-width="2.4"/>
-<text x="870.5" y="551" class="name">informe:Informe</text>
-<path d="M761 568 H980" class="sep"/>
-<text x="775" y="599" class="body">retiene referencia</text><text class="caption" x="1055" y="400">Sin vínculo de propiedad: entradas activas = 0</text>
+<text x="870.5" y="543" class="name">informe:</text>
+<text x="870.5" y="564" class="caption" text-anchor="middle">InformeExpedicion</text>
+<path d="M761 575 H980" class="sep"/>
+<text x="775" y="606" class="body">retiene referencia</text><text class="caption" x="1055" y="400">Sin propiedad: 0 entradas activas</text>
 <text x="720" y="697" class="caption" text-anchor="middle">La baja lógica del dominio no es destrucción instantánea por el recolector de basura de Java.</text></svg>
