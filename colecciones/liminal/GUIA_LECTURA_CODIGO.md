@@ -92,7 +92,7 @@ java -cp colecciones/liminal/out liminal.creacionales.builder.ClienteBuilder
 
 Los 23 ejemplos comparten las reglas de [DOMINIO.md](DOMINIO.md), **pero no son un videojuego monolítico**. Una `Habitacion` en Builder no tiene que ser la **misma clase Java** que una `Habitacion` en Iterator: están en paquetes distintos y demuestran responsabilidades diferentes. Lo que sí comparten es el vocabulario y las restricciones del mundo.
 
-El [integrador liminal planificado](PLAN_INTEGRADOR.md) tendrá **su propio núcleo de dominio compartido**, sin importar clases de estas 23 demos aisladas. **No hace falta conectar los ejemplos para aprender GoF**: una arquitectura integrada es una ruta de estudio distinta, con casos de uso y dependencias propios.
+El [integrador liminal implementado](../../proyectos/expedicion-liminal-integrada/README.md) tiene **su propio núcleo de dominio compartido**, sin importar clases de estas 23 demos aisladas. **No hace falta conectar los ejemplos para aprender GoF**: la arquitectura integrada es otra ruta de estudio, con casos de uso y dependencias propios. El [plan histórico](PLAN_INTEGRADOR.md) conserva las decisiones del proceso.
 
 Los comentarios de código deben ser breves: explicar una decisión no evidente, no reescribir la ficha del patrón dentro de cada método. Las explicaciones más extensas pertenecen a los Markdown.
 
@@ -108,4 +108,4 @@ Las siete implementaciones alternativas están en subcarpetas `variantes/` del *
 
 Después de leer el cliente, pregúntate: **(1)** ¿qué invariante corresponde al dominio y qué parte coordina el caso de uso? **(2)** ¿cuál es la dependencia importante y por qué su dirección tiene sentido? **(3)** ¿estamos compartiendo una referencia, copiando una colección o transfiriendo propiedad? **(4)** ¿la excepción expresa argumento inválido, transición de estado inválida u otro fallo? **(5)** ¿el patrón evita acoplamiento, duplicación, herencia combinatoria o una clase omnisciente, o sería más simple prescindir de él?
 
-Consulta la [matriz de los 23 escenarios y decisiones](MATRIZ_ALINEACION.md): se incorporaron **17 comentarios breves** en puntos significativos; no se agregaron comentarios de relleno para cubrir cada clase. La **arquitectura modular del integrador** es una etapa separada y pendiente, no la interpretación de estas demostraciones autónomas.
+Consulta la [matriz de los 23 escenarios y decisiones](MATRIZ_ALINEACION.md): se incorporaron **17 comentarios breves** en puntos significativos; no se agregaron comentarios de relleno para cubrir cada clase. La **arquitectura modular del integrador** es una [ruta independiente ya implementada](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md), no la interpretación de estas demostraciones autónomas.

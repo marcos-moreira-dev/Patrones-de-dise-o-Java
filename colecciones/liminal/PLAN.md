@@ -1,13 +1,13 @@
 # Expedición Liminal — PLAN DE IMPLEMENTACIÓN
 
 > **Estado:** 23 patrones GoF con cliente, prueba, UML y ficha. Tres ambientes originales y una lámina de cuatro objetos/criatura integrados; revisión visual de Observer y Abstract Factory realizada, restante inspección gráfica ampliada opcional. **Versión de planificación:** 1.6 (2026-11-14).
-> Fuente normativa: [DOMINIO.md](DOMINIO.md). Método de modelado: [Cómo definir un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).
+> Fuente normativa: [DOMINIO.md](DOMINIO.md). Método de modelado: [Cómo definir un dominio](../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md). Los «FUTURO» del árbol de la sección 2 son **etiquetas históricas del diseño inicial**, no pendientes actuales. [Estado de cierre académico](../../docs/CIERRE_ACADEMICO_GOF.md).
 
 La [auditoría pedagógica de noviembre de 2026](AUDITORIA_PEDAGOGICA.md) corrigió restricciones de movimiento e identidad, añadió pruebas y afinó seis diagramas de patrones.
 
 **Ampliación implementada:** [siete variantes de seis patrones y laboratorio `class` / `record`](PLAN_VARIANTES.md), separados de los 23 ejercicios base.
 
-**Tercer bloque futuro:** [Plan del integrador liminal y alineación editorial de los ejemplos aislados](PLAN_INTEGRADOR.md). Esta propuesta es un proyecto separado de la colección de 23 demos; no convierte este plan original de ejemplos GoF en un videojuego. La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) clasifica roles y pendientes sin eliminar código imprescindible.
+**Tercer bloque ya realizado:** [Expedición Liminal Integrada](../../proyectos/expedicion-liminal-integrada/README.md), con [plan histórico y alineación](PLAN_INTEGRADOR.md). El proyecto es separado de las 23 demostraciones; no convierte este plan original de ejemplos GoF en un videojuego. La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) clasifica roles y pendientes sin eliminar código imprescindible.
 
 **Laboratorio R-09 incorporado:** [Relaciones UML y ciclo de vida](docs/laboratorios/relaciones-uml.md) como actividad extra, no como patrón número 24. Se integra en las pruebas Java 21 y tiene dos diagramas adicionales sin modificar el inventario de 23 SVG GoF. Los pendientes restantes están clasificados por prioridad en ese documento.
 
