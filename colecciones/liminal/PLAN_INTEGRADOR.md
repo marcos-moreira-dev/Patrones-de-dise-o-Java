@@ -124,16 +124,16 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 
 ### Orden editorial de la alineación
 
-1. Crear una **matriz breve por patrón** (23 filas) con escena, problema GoF, reglas R-XX, relación UML, comentario de ingeniería pertinente (o “no hace falta”), riesgo real y estado.
+1. **Completado:** crear la [matriz de alineación de 23 patrones](MATRIZ_ALINEACION.md) con escenas, roles, reglas R-XX, decisiones pertinentes, riesgo editorial y trazabilidad de comentarios.
 2. Resolver solo errores demostrados de vocabulario/reglas/código/UML; documentación y pruebas en el mismo cambio.
-3. Añadir comentarios puntuales donde el código ya contenga decisiones no evidentes: por ejemplo Strategy/identidad, Composite/propiedad, Observer/instantáneas, Facade/invariantes, Prototype/genéricos, Factory Method/registro. **No inventar arquitectura por comentar.**
-4. Cerrar con CI Java 21 y confirmar que **ninguna modificación afectó la colección técnica clásica ni Arena Java/MiniSO**.
+3. **Completado:** 17 comentarios puntuales explican decisiones no evidentes en colaboradores reales; otros seis patrones se apoyan en sus fichas/Javadoc. **No inventar arquitectura por comentar.**
+4. Verificar en CI Java 21 y confirmar que **ninguna modificación afectó la colección técnica clásica ni Arena Java/MiniSO**. La alineación es suficiente cuando CI pase y no haya contradicción reproducible.
 
 ## 8. Etapas y condiciones verificables de cierre
 
 | Etapa | Trabajo | Resultado medible | Criterio de salida |
 | --- | --- | --- | --- |
-| **0 — Contrato y alineación** | Conservar este plan; inventariar escenas y reglas de los aislados | Matriz 23/23, decisiones y alcance declarados | No hay contradicciones conocidas entre vocabulario y R-XX; no se han mezclado proyectos |
+| **0 — Contrato y alineación** | [Matriz 23/23](MATRIZ_ALINEACION.md) y comentarios de ingeniería acotados | Matriz y 17 comentarios escritos, sin alterar el comportamiento | **Alineación editorial realizada**; validar con CI final |
 | **1 — Núcleo mínimo** | Crear nueva carpeta cuando se apruebe implementar; mapa bidimensional + salidas, entidad explorador, turnos | Cliente determinista con recorrido válido y rechazo; pruebas | Compila Java 21; invariantes R-01…R-04 y R-12 aplicables pasan |
 | **2 — Criatura y caso de uso** | Introducir una criatura y su comportamiento cambiable; objetivo de salida | Recorrido completo narrado, Strategy justificado y un evento relevante | Pruebas de identidad, ubicación, rutas y resultado; no depende de consola interactiva |
 | **3 — Integración selectiva** | Solo después: señales, cámara, linterna o registro, según la necesidad de estudio | 1–2 colaboraciones transversales reales con patrón y coste documentados | Cada añadido tiene escenario, responsabilidad, prueba y alternativa sencilla |
@@ -147,4 +147,4 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 
 Antes de cualquier commit del integrador, marcar en el plan cuál etapa se está ejecutando y qué demuestra. No mezclar en el mismo commit cambios del integrador y refactorizaciones de demos aisladas. Ante un conflicto, el contrato explícito del dominio prevalece; actualizar cada área afectada solo cuando corresponda.
 
-**Próximo paso razonable:** desarrollar la **matriz de alineación editorial de los 23 aislados**, identificar cinco escenarios narrativos y definir la primera historia/diagrama de dominio del integrador. Después se puede iniciar la etapa 1 de Java **solo cuando la planificación esté suficientemente alineada**.
+**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada, y las cinco familias de escenarios están definidas en este plan. El siguiente trabajo del **integrador todavía no implementado** es concretar su primera historia, su diagrama de dominio y sus dependencias; después podrá iniciarse su etapa 1 de Java. Los ejemplos aislados no se reestructuran para integrarlos.

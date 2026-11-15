@@ -16,7 +16,7 @@
 
 ## 2. Inventario de la colección auditada
 
-Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **291 archivos** en el inventario actualizado al plan integrador del 15 de noviembre de 2026. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
+Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **292 archivos** en el inventario actualizado tras incorporar la matriz de alineación el 15 de noviembre de 2026. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
 
 | Área dentro de `colecciones/liminal/` | Archivos |
 | --- | ---: |
@@ -24,9 +24,9 @@ Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **291 archivos
 | `src/test/java/` — pruebas de la colección | 34 |
 | `docs/` — fichas, UML y laboratorios | 60 |
 | `assets/` — arte de apoyo | 5 |
-| Documentos Markdown en la raíz liminal | 9 |
+| Documentos Markdown en la raíz liminal | 10 |
 | `scripts/` — verificación específica de Liminal | 2 |
-| **Total** | **291** |
+| **Total** | **292** |
 
 El conteo es un inventario de estructura, **no una certificación semántica**. La auditoría sigue el recorrido de las clases de los **23 patrones GoF liminales, siete variantes, dos laboratorios y su documentación asociada**, sin intervenir en los demás proyectos.
 
@@ -81,13 +81,13 @@ Para cada uno de los **23 patrones de Expedición Liminal**, siete variantes y d
 
 Registrar hallazgos con **ruta → rol → consumidor → coste → propuesta → prueba de regresión**. No borrar clases por nombre, cantidad de líneas o intuición. Toda poda requiere compilar Java 21, ejecutar pruebas, revisar UML y verificar enlaces.
 
-**Alcance demostrado hasta ahora:** estructura de Liminal, revisión de declaraciones `record` del catálogo y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 291 archivos liminales.**
+**Alcance demostrado hasta ahora:** estructura de Liminal, revisión de declaraciones `record` del catálogo y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 292 archivos liminales.**
 
 [Plan de variantes](PLAN_VARIANTES.md) · [Contrato del dominio](DOMINIO.md) · [Guía de lectura](GUIA_LECTURA_CODIGO.md).
 
 ## 8. Segunda pasada semántica — revisión dirigida de las siete variantes
 
-Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 291 archivos liminales.**
+Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 292 archivos liminales.**
 
 | Área y ruta | Rol / consumidor | Evidencia y criterio |
 | --- | --- | --- |
@@ -183,7 +183,7 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 
 ## 18. Estado de cierre y siguientes pasos (inventario actualizado)
 
-**Inventario actualizado: 291 archivos en `colecciones/liminal/`**: 181 fuentes Java principales, 34 Java de prueba, 60 documentos/diagramas bajo `docs/`, cinco activos, **nueve documentos raíz** y dos scripts. El incremento previo de nueve archivos principales proviene de **separar los mismos nueve tipos existentes** en el laboratorio UML; no se agregaron nueve clases. El documento raíz número nueve es `PLAN_INTEGRADOR.md`: **solo planificación**, no nuevas clases ni nuevo proyecto implementado.
+**Inventario actualizado: 292 archivos en `colecciones/liminal/`**: 181 fuentes Java principales, 34 Java de prueba, 60 documentos/diagramas bajo `docs/`, cinco activos, **diez documentos raíz** y dos scripts. El incremento previo de nueve archivos principales proviene de **separar los mismos nueve tipos existentes** en el laboratorio UML; no se agregaron nueve clases. Los documentos raíz noveno y décimo son `PLAN_INTEGRADOR.md` y `MATRIZ_ALINEACION.md`: **solo planificación y trazabilidad editorial**, no un proyecto integrador implementado.
 
 | Frente exclusivo de Expedición Liminal | Evidencia de esta etapa | Estado |
 | --- | --- | --- |
@@ -306,3 +306,9 @@ Se recorrieron **los 41 archivos Markdown bajo `colecciones/liminal/`**: ocho do
 ## 27. Referencia de planificación para el tercer bloque (15 de noviembre de 2026)
 
 Se creó [PLAN_INTEGRADOR.md](PLAN_INTEGRADOR.md), enlazado desde README y PLAN, para registrar sin ambigüedades **tres bloques didácticos separados**: patrones técnicos clásicos, 23 patrones liminales encapsulados y futuro proyecto integrador. El nuevo archivo delimita arquitectura centrada en el dominio, simulación determinista, mapa bidimensional con salidas dirigidas, etapas y reglas de suficiencia, además de una **pista editorial independiente** de alineación de los 23 ejemplos existentes. Esta actualización es exclusivamente documental: el simulador todavía no existe y no se modificaron clases Java, pruebas, scripts ni proyectos ajenos.
+
+## 28. Alineación editorial de los 23 patrones encapsulados
+
+Se añadió la [matriz de alineación](MATRIZ_ALINEACION.md) con **23/23 filas** (escena, restricción R-XX, decisión de ingeniería, riesgo y enlace al punto de código), y una guía de lectura por responsabilidades. Se insertaron o precisaron **17 comentarios locales** en colaboradores reales de los ejemplos: nueve creacionales/estructurales y ocho de comportamiento. En otros seis patrones, la ficha y el Javadoc existente ya cubren la decisión; no se añadieron comentarios forzados. Los comentarios exponen **por qué se usa una solución** (acoplamiento, propiedad UML, estado, validaciones, excepciones y tipos) en lugar de describir instrucciones evidentes.
+
+**Alcance:** no se modificaron las operaciones Java, pruebas, UML, jerarquías ni paquetes; no se creó el integrador; ningún otro proyecto se incluyó. El inventario de 292 se debe exclusivamente a **un nuevo Markdown raíz**. CI del último commit determina el cierre técnico de esta pasada. La matriz sirve para estudiar y recordar pendientes, no demuestra una auditoría exhaustiva de cada línea del código fuente.

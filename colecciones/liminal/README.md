@@ -22,6 +22,8 @@ La colección técnica original y los microproyectos Arena Java y MiniSO **se co
 
 **[Plan del proyecto integrador y alineación de los 23 ejemplos](PLAN_INTEGRADOR.md)**: tercera ruta de aprendizaje prevista, arquitectura centrada en el dominio, etapas, criterios de suficiencia y revisión editorial selectiva. **Solo planificado; no implementado todavía.**
 
+**[Matriz de alineación de los 23 patrones](MATRIZ_ALINEACION.md)**: escenas, reglas R-XX, decisiones de diseño y 17 puntos de comentarios de ingeniería realmente presentes en Java; no convierte los ejemplos en un único programa.
+
 **[Auditoría pedagógica y semántica](AUDITORIA_PEDAGOGICA.md)**: correcciones, pruebas y mejoras opcionales. **[Auditoría del andamiaje técnico](AUDITORIA_ANDAMIAJE.md)**: distingue el dominio, las clases GoF, los clientes de estudio y las herramientas de verificación.
 
 ## Laboratorio adicional de relaciones UML
