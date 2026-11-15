@@ -38,9 +38,6 @@ public class App {
         estructurales.probarFacade();
         estructurales.probarFlyweight();
         estructurales.probarProxy();
-        estructurales.probarIterator();
-        estructurales.probarObserver();
-        
     }
 
     /** Presenta los ejemplos de comportamiento en la consola principal. */
