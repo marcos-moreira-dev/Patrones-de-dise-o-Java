@@ -134,6 +134,20 @@ public final class VerificarDocumentacion {
                     || !teoria.contains("referencias-objetos.svg")) {
                 throw new AssertionError("Falta teoría o enlaces del laboratorio UML");
             }
+            // Cada colaborador UML aparece en la carpeta con su propio nombre y archivo.
+            Path clasesJava = Path.of("src", "main", "java", "liminal", "laboratorios", "relaciones");
+            for (String tipo : List.of("Habitacion", "MapaLiminal", "Explorador",
+                    "EquipoExploracion", "VistaEntrada", "RegistroExpedicion",
+                    "InformeExpedicion", "ServicioConsulta", "Reglas")) {
+                Path fuente = clasesJava.resolve(tipo + ".java");
+                if (!Files.isRegularFile(fuente)) {
+                    throw new AssertionError("Falta colaborador navegable UML: " + tipo);
+                }
+                Matcher declarado = TIPO_SUPERIOR.matcher(Files.readString(fuente));
+                if (!declarado.find() || !tipo.equals(declarado.group(1)) || declarado.find()) {
+                    throw new AssertionError("El archivo UML debe tener un único tipo superior: " + fuente);
+                }
+            }
             validarSvg(clasesRelaciones);
             validarSvg(objetosRelaciones);
             comprobarUml(laboratorio, "relaciones-uml.svg",

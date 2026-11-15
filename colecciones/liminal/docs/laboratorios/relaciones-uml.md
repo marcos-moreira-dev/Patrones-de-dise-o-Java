@@ -67,6 +67,8 @@ boolean mismaInstancia = e.ubicacion() == pasillo; // true
 
 `mapa.agregarHabitacion(pasillo)` **conserva una referencia**, no copia la habitación. El registro, por su parte, crea sus entradas en una clase anidada privada y entrega `VistaEntrada`: el código externo puede consultarlas, pero no transferirlas a otro registro mediante su API.
 
+**Navegación por clases:** el cliente ya no esconde los colaboradores en el mismo archivo. Puedes abrir por separado [`Habitacion.java`](../../src/main/java/liminal/laboratorios/relaciones/Habitacion.java), [`MapaLiminal.java`](../../src/main/java/liminal/laboratorios/relaciones/MapaLiminal.java), [`Explorador.java`](../../src/main/java/liminal/laboratorios/relaciones/Explorador.java), [`EquipoExploracion.java`](../../src/main/java/liminal/laboratorios/relaciones/EquipoExploracion.java), [`RegistroExpedicion.java`](../../src/main/java/liminal/laboratorios/relaciones/RegistroExpedicion.java) y [`InformeExpedicion.java`](../../src/main/java/liminal/laboratorios/relaciones/InformeExpedicion.java). El contrato [`VistaEntrada`](../../src/main/java/liminal/laboratorios/relaciones/VistaEntrada.java) y el servicio de consulta también tienen sus propios archivos. **`EntradaRegistro` permanece como clase anidada privada** dentro de `RegistroExpedicion`: esa restricción sí enseña el control de creación de las partes compuestas.
+
 ## 5. Consola y pruebas
 
 Una vez compilado con el verificador de la colección, ejecuta desde la raíz del repositorio:

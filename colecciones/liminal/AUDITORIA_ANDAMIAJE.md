@@ -172,3 +172,11 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 **Sin cambios de código Java:** los diagramas representan el acceso real, no prescriben que se vuelva `public` toda la implementación. No se agregaron tipos ni capas. `VerificarDocumentacion` comprueba los símbolos principales. Para los demás cuatro diagramas sin modificación en este lote (Builder, Decorator, Proxy y Visitor), las operaciones dibujadas coinciden con su visibilidad de interfaz o método público en la revisión dirigida.
 
 **Límite:** esta es la revisión textual de visibilidad de operaciones representadas; queda pendiente cotejar exhaustivamente las relaciones gráficas (sentido, multiplicidades, intersecciones y cobertura de tipos), variantes y laboratorios.
+
+## 17. Laboratorio de relaciones UML — clases navegables sin alterar el modelo
+
+**Hallazgo editorial:** `ClienteRelacionesUml.java` incluía **diez tipos superiores** (el cliente y nueve colaboradores) en un solo archivo. El código era válido, pero al abrir la carpeta en GitHub no se veían `MapaLiminal`, `Explorador`, `EquipoExploracion`, `RegistroExpedicion`, etc. Esto contrariaba el criterio de navegación del catálogo liminal: reconocer cada responsabilidad por nombre antes de abrir el código.
+
+**Corrección:** se trasladaron los nueve tipos superiores a nueve archivos `.java` con sus nombres, manteniendo paquetes, nombres, visibilidad y comportamiento. `ClienteRelacionesUml.java` queda dedicado al recorrido visible del ejemplo. **No hay clases nuevas.** `RegistroExpedicion.EntradaRegistro` sigue anidada y privada, porque restringir quién puede crearla es una parte pedagógica de la composición R-09; no se separa artificialmente.
+
+**Pruebas y documentación:** `VerificarDocumentacion` comprueba que cada colaborador tiene su propio archivo con un solo tipo superior; las pruebas `PruebaRelacionesUml` y la demostración de consola siguen validando referencias, equipos compartidos y cierre lógico. La ficha proporciona enlaces directos al código de cada participante. CI valida compilación y ejecución con Java 21, sin requerir instalaciones del estudiante.
