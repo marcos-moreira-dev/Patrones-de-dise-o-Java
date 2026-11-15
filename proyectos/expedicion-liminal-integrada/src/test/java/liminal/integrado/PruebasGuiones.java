@@ -5,6 +5,7 @@ import liminal.integrado.dominio.comunicaciones.RadioLiminal;
 import liminal.integrado.dominio.mundo.Habitacion;
 import liminal.integrado.dominio.mundo.MapaLiminal;
 import liminal.integrado.dominio.mundo.Posicion;
+import liminal.integrado.presentacion.ClienteExpedicion;
 import liminal.integrado.presentacion.ClienteLuces;
 import liminal.integrado.presentacion.ClientePiscinas;
 import liminal.integrado.presentacion.ClienteRadio;
@@ -14,11 +15,23 @@ public final class PruebasGuiones {
     private PruebasGuiones() {}
 
     public static void main(String[] args) {
+        oficinas();
         piscinas();
         radio();
         luces();
         comprobarContratoRadio();
         System.out.println("OK: piscina, radio y fluorescentes con dominio compartido.");
+    }
+
+    private static void oficinas() {
+        List<String> relato = ClienteExpedicion.ejecutar();
+        igual(relato, ClienteExpedicion.ejecutar());
+        contiene(relato, "La luz de alerta se enciende: la central recibió un aviso.");
+        igual(1L, contar(relato, "La luz de alerta se enciende:"));
+        igual(2L, contar(relato, "Una silueta abandona "));
+        igual(2L, contar(relato, "No logras avanzar; permaneces en "));
+        contiene(relato, "CENTRAL: luz ENCENDIDA | Alarma: 1");
+        contiene(relato, "FINALIZADA");
     }
 
     private static void piscinas() {
@@ -28,7 +41,10 @@ public final class PruebasGuiones {
         contiene(guion, "OESTE -> RECHAZADO | P-03 | turno=2");
         contiene(guion, "NORTE -> ACEPTADO | P-04 | turno=3");
         contiene(guion, "SALIDA ENCONTRADA");
+        contiene(guion, "Los azulejos parecen iguales, pero ahora estás en P-03, no en P-02.");
+        contiene(guion, "Buscas el regreso hacia OESTE; ninguna salida lo permite.");
         igual(1L, contar(guion, "RECHAZADO"));
+        igual(1L, contar(guion, "Buscas el regreso hacia OESTE"));
     }
 
     private static void radio() {
@@ -38,6 +54,9 @@ public final class PruebasGuiones {
         contiene(guion, "CABINA 1040 kHz: ¿Sigues ahí?");
         contiene(guion, "CABINA 880 kHz: Sube al almacén.");
         contiene(guion, "ALMACÉN 880 kHz: Este mensaje fue grabado mañana.");
+        contiene(guion, "La radio permanece en silencio: aquí no hay una emisión registrada.");
+        contiene(guion, "Cambias la sintonía de 1040 a 880 kHz sin salir de R-02.");
+        igual(1L, contar(guion, "Cambias la sintonía de "));
         contiene(guion, "ESTE -> ACEPTADO | R-03 | turno=4");
         contiene(guion, "SALIDA ENCONTRADA");
     }
@@ -48,6 +67,9 @@ public final class PruebasGuiones {
         contiene(guion, "LUZ INICIAL: APAGADA");
         igual(2L, contar(guion, "RECHAZADO:"));
         igual(1L, contar(guion, "ruido detectado"));
+        igual(1L, contar(guion, "Los fluorescentes de alerta se encienden tras la detección."));
+        igual(2L, contar(guion, "La sombra se desplaza de "));
+        igual(2L, contar(guion, "El paso falla; la sombra permanece en "));
         contiene(guion, "CENTRAL: LUZ ENCENDIDA | ALARMA 1");
         contiene(guion, "SALIDA ENCONTRADA");
     }
