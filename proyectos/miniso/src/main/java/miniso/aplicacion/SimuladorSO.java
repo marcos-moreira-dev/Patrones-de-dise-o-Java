@@ -83,54 +83,81 @@ public final class SimuladorSO {
      */
     public EventoTick avanzarTick() {
         reloj++;
+        despacharSiEsNecesario();
+        contabilizarEsperaEnCola();
+        EventoTick evento = ejecutarCpu();
+        avanzarEntradasSalidas();
+        return evento;
+    }
+
+    /** Despacha antes de medir espera: el elegido no espera este tick. */
+    private void despacharSiEsNecesario() {
         if (ejecutando == null) {
             ejecutando = planificador.siguiente();
             ticksConsecutivos = 0;
             if (ejecutando != null) ejecutando.comenzarCpu();
         }
-        // Espera de cola = un tick en LISTO sin recibir CPU. El proceso que
-        // termina E/S al final del tick empieza a esperar desde el siguiente.
+    }
+
+    /** Un proceso que sale de E/S al final del tick espera desde el siguiente. */
+    private void contabilizarEsperaEnCola() {
         for (Proceso proceso : procesos.values()) {
             if (proceso.estado() == EstadoProceso.LISTO) {
                 mediciones.get(proceso.pid()).listo++;
             }
         }
-        EventoTick evento;
+    }
+
+    /** Ejecuta una unidad de CPU y conserva el resultado del tick anterior. */
+    private EventoTick ejecutarCpu() {
         if (ejecutando == null) {
-            evento = new EventoTick(reloj, EventoTick.Tipo.OCIOSO, 0, "CPU ociosa");
             ultimoPidEnTick = 0;
-        } else {
-            Proceso proceso = ejecutando;
-            Medicion medicion = mediciones.get(proceso.pid());
-            if (medicion.primerCpu < 0) medicion.primerCpu = reloj;
-            if (ultimoPidEnTick != 0 && ultimoPidEnTick != proceso.pid()) cambiosDeProceso++;
-            ultimoPidEnTick = proceso.pid();
-            medicion.cpu++;
-            ticksCpuOcupados++;
-            proceso.consumirCpu();
-            ticksConsecutivos++;
-            if (proceso.estado() == EstadoProceso.TERMINADO) {
-                medicion.fin = reloj;
-                memoriaUsadaKiB -= proceso.memoriaKiB();
-                evento = new EventoTick(reloj, EventoTick.Tipo.FINALIZACION,
-                        proceso.pid(), "PID " + proceso.pid() + " termino y libero memoria");
-                ejecutando = null;
-                ticksConsecutivos = 0;
-            } else {
-                boolean rotacion = planificador.debeCederCpu(ticksConsecutivos);
-                evento = new EventoTick(reloj, EventoTick.Tipo.EJECUCION, proceso.pid(),
-                        "PID " + proceso.pid() + ": " + proceso.cpuRestante()
-                        + (proceso.cpuRestante() == 1 ? " tick restante" : " ticks restantes")
-                        + (rotacion ? " (fin del quantum)" : ""));
-                if (rotacion) {
-                    proceso.ponerListo();
-                    planificador.admitir(proceso);
-                    ejecutando = null;
-                    ticksConsecutivos = 0;
-                }
-            }
+            return new EventoTick(reloj, EventoTick.Tipo.OCIOSO, 0, "CPU ociosa");
         }
-        // Las E/S avanzan en paralelo con la CPU, nunca consumen un tick de ella.
+
+        Proceso proceso = ejecutando;
+        Medicion medicion = mediciones.get(proceso.pid());
+        if (medicion.primerCpu < 0) medicion.primerCpu = reloj;
+        if (ultimoPidEnTick != 0 && ultimoPidEnTick != proceso.pid()) cambiosDeProceso++;
+        ultimoPidEnTick = proceso.pid();
+        medicion.cpu++;
+        ticksCpuOcupados++;
+        proceso.consumirCpu();
+        ticksConsecutivos++;
+
+        if (proceso.estado() == EstadoProceso.TERMINADO) {
+            return terminarProceso(proceso, medicion);
+        }
+        return continuarProceso(proceso);
+    }
+
+    private EventoTick terminarProceso(Proceso proceso, Medicion medicion) {
+        medicion.fin = reloj;
+        memoriaUsadaKiB -= proceso.memoriaKiB();
+        EventoTick evento = new EventoTick(reloj, EventoTick.Tipo.FINALIZACION,
+                proceso.pid(), "PID " + proceso.pid() + " termino y libero memoria");
+        ejecutando = null;
+        ticksConsecutivos = 0;
+        return evento;
+    }
+
+    private EventoTick continuarProceso(Proceso proceso) {
+        boolean rotacion = planificador.debeCederCpu(ticksConsecutivos);
+        EventoTick evento = new EventoTick(reloj, EventoTick.Tipo.EJECUCION, proceso.pid(),
+                "PID " + proceso.pid() + ": " + proceso.cpuRestante()
+                + (proceso.cpuRestante() == 1 ? " tick restante" : " ticks restantes")
+                + (rotacion ? " (fin del quantum)" : ""));
+        if (rotacion) {
+            proceso.ponerListo();
+            planificador.admitir(proceso);
+            ejecutando = null;
+            ticksConsecutivos = 0;
+        }
+        return evento;
+    }
+
+    /** Las E/S avanzan después de CPU; no consumen su tick ni adelantan el despacho. */
+    private void avanzarEntradasSalidas() {
         for (Proceso proceso : procesos.values()) {
             if (proceso.estado() == EstadoProceso.BLOQUEADO) {
                 mediciones.get(proceso.pid()).io++;
@@ -140,7 +167,6 @@ public final class SimuladorSO {
                 }
             }
         }
-        return evento;
     }
 
     /** CU-SO03: el proceso que tiene CPU cede el procesador para esperar E/S. */
