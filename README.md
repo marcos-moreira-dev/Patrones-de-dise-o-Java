@@ -46,9 +46,9 @@ La **colección técnica original** también está completa con los **23 patrone
 
 En la colección liminal incorporamos además un [laboratorio de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md), independiente de GoF, para distinguir composición, agregación compartida, asociación y dependencia. Los 23 patrones siguen contando como 23, no 24.
 
-### Tercera ruta GoF: arquitectura liminal integrada (en diseño)
+### Tercera ruta GoF: arquitectura liminal integrada (etapa 1 implementada)
 
-El **[proyecto integrador Expedición Liminal](proyectos/expedicion-liminal-integrada/README.md)** tiene un [escenario de exploración reproducible](proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md), reglas de [dominio](proyectos/expedicion-liminal-integrada/DOMINIO.md) y una [arquitectura en capas con UML](proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). **Aún no hay implementación Java**: este tercer bloque estudiará la colaboración real de patrones dentro de un dominio compartido sin fusionar los ejemplos GoF clásicos ni los liminales aislados.
+El **[proyecto integrador Expedición Liminal](proyectos/expedicion-liminal-integrada/README.md)** tiene un [escenario de exploración reproducible](proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md), reglas de [dominio](proyectos/expedicion-liminal-integrada/DOMINIO.md) y una [arquitectura en capas con UML](proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). La **etapa 1 está implementada en Java 21** con un cliente determinista y [pruebas autónomas](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasExpedicion.java). La etapa 2 incorporará la criatura con Strategy. Los ejemplos GoF clásicos y liminales aislados permanecen separados.
 
 ### Microproyectos con arquitectura real
 

@@ -1,6 +1,6 @@
 # Contrato del dominio — Expedición Liminal Integrada
 
-> **Estado:** especificación previa al código. Rige primero el [dominio liminal común](../../colecciones/liminal/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
+> **Estado:** reglas **R-INT-01…R-INT-06 implementadas y probadas** en Java 21; R-INT-07/08 preparan la futura criatura. Rige primero el [dominio liminal común](../../colecciones/liminal/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
 
 ## 1. Lenguaje ubicuo y alcance
 
@@ -21,7 +21,7 @@
 | **R-INT-07** | La criatura de etapa 2 tiene ID y posición válida, máximo una estrategia activa por instante; su estrategia **propone** un destino que el mapa valida. Encuentro en una habitación **no causa daño** ni derrota | patrullar desde un origen con salida existente | teletransportar a una celda sin salida |
 | **R-INT-08** | Todas las acciones son síncronas y deterministas; sin reloj ni azar implícito. En etapa 1 solo avanza el explorador; en etapa 2, después del movimiento permitido, se procesará como máximo **una** acción de criatura en orden explícito | repetición del mismo guion produce el mismo resultado | procesamiento oculto en hilos o orden aleatorio |
 
-Las reglas R-INT-01 a R-INT-06 son necesarias para la **etapa 1**. Las reglas R-INT-07 y R-INT-08 anticipan la etapa 2 y no obligan a crear sus clases hoy.
+Las reglas R-INT-01 a R-INT-06 están cubiertas por la **etapa 1**. Las reglas R-INT-07 y la parte de criatura de R-INT-08 anticipan la etapa 2; el orden determinista de acciones ya se aplica al explorador.
 
 ## 3. Precondiciones, postcondiciones y excepciones
 
@@ -70,4 +70,4 @@ Las excepciones no deben usarse para inventar reglas de negocio. En etapas futur
 - **R-11/R-12:** reproducción determinista y rechazo atómico.
 - **R-13/R-14:** la estética no determina mecánicas y GoF no define las leyes del mundo.
 
-**Pendiente hasta implementar:** la lista exacta de nombres de clases y operaciones puede simplificarse, pero cambiar invariantes R-INT requiere modificar este documento, el escenario y sus pruebas en un mismo trabajo.
+**Trazabilidad implementada:** `MapaLiminal` valida ID/posición/salidas, `Explorador` solo se mueve desde `Expedicion` (su método de movimiento tiene acceso de paquete), `Expedicion` protege turno y meta, y `ProcesarTurno` presenta rechazos de dominio sin que el cliente manipule estados. Cambiar invariantes R-INT requiere actualizar este documento, el escenario y sus pruebas en un mismo trabajo.

@@ -1,6 +1,6 @@
 # Plan del proyecto integrador — Expedición Liminal
 
-> **Estado (15 de noviembre de 2026): arquitectura y escenario 01 especificados en `proyectos/expedicion-liminal-integrada/`, sin clases Java todavía.** La matriz 23/23 y los ejemplos aislados permanecen independientes. Versión 1.1.
+> **Estado (15 de noviembre de 2026): etapa 1 del integrador implementada en Java 21 con pruebas en Linux/Windows; etapa 2 (monstruo Strategy) pendiente.** La matriz 23/23 y los ejemplos aislados permanecen independientes. Versión 1.2.
 >
 > **Fuente normativa inicial:** [DOMINIO.md](DOMINIO.md). **Planes existentes:** [PLAN.md](PLAN.md), [PLAN_VARIANTES.md](PLAN_VARIANTES.md), [AUDITORIA_ANDAMIAJE.md](AUDITORIA_ANDAMIAJE.md). Cada cambio de dominio se justifica y prueba; los patrones no dictan las reglas del mundo.
 
@@ -12,7 +12,7 @@
 | 2. GoF liminales aislados | `colecciones/liminal/` | Cada patrón en su propio paquete: cliente, clases, UML, prueba y ficha; siete variantes y dos laboratorios aparte | **Mantener autonomía.** No importar clases del integrador |
 | 3. Expedición Liminal integrada | **Propuesto:** `proyectos/expedicion-liminal-integrada/` | Estudiar un dominio compartido, arquitectura, SOLID y colaboración real de patrones | No importar clases de las demos aisladas; compartir **contratos conceptuales**, no implementaciones |
 
-Los proyectos `arena-java` y `miniso` y los workflows/scripts globales están fuera de alcance. El nombre de carpeta propuesto no existe todavía y podrá fijarse antes de crear código.
+Los proyectos `arena-java` y `miniso` y los workflows/scripts generales existentes permanecen sin modificar. El integrador vive en `proyectos/expedicion-liminal-integrada/` y dispone de **su propio script y workflow de CI**.
 
 **No es un videojuego de entretenimiento como requisito.** Será un simulador lógico por consola con una expedición predeterminada reproducible. La lectura de arquitectura y Java es más importante que interactuar con él.
 
@@ -47,7 +47,7 @@ Las puertas son **solo una mecánica entre varias**. Mantener R-05 donde corresp
 **Elección inicial:** monolito modular Java 21; separación `presentacion → aplicacion → dominio`. El dominio no conoce consola, archivos, servicios, ni clases de aplicación. Puertos/adaptadores de estilo hexagonal **solo cuando se aísle una dependencia efectiva**. MVC completo no aporta sin interfaz de usuario compleja.
 
 ~~~text
-proyectos/expedicion-liminal-integrada/            (PROPUESTO, no creado)
+proyectos/expedicion-liminal-integrada/            (ETAPA 1 IMPLEMENTADA)
 ├── README.md
 ├── DOMINIO.md                                      (reglas locales + vínculo normativo)
 ├── docs/
@@ -134,7 +134,7 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 | Etapa | Trabajo | Resultado medible | Criterio de salida |
 | --- | --- | --- | --- |
 | **0 — Contrato y alineación** | [Matriz 23/23](MATRIZ_ALINEACION.md) y comentarios de ingeniería acotados | Matriz y 17 comentarios escritos, sin alterar el comportamiento | **Alineación editorial realizada**; validar con CI final |
-| **1 — Núcleo mínimo** | Crear nueva carpeta cuando se apruebe implementar; mapa bidimensional + salidas, entidad explorador, turnos | Cliente determinista con recorrido válido y rechazo; pruebas | Compila Java 21; invariantes R-01…R-04 y R-12 aplicables pasan |
+| **1 — Núcleo mínimo** | **Completado:** mapa bidimensional, salidas dirigidas, explorador, expedición y procesamiento de turnos | Cliente determinista, cuatro pasos válidos, dos rechazos y pruebas | Java 21 con CI específica en Ubuntu/Windows |
 | **2 — Criatura y caso de uso** | Introducir una criatura y su comportamiento cambiable; objetivo de salida | Recorrido completo narrado, Strategy justificado y un evento relevante | Pruebas de identidad, ubicación, rutas y resultado; no depende de consola interactiva |
 | **3 — Integración selectiva** | Solo después: señales, cámara, linterna o registro, según la necesidad de estudio | 1–2 colaboraciones transversales reales con patrón y coste documentados | Cada añadido tiene escenario, responsabilidad, prueba y alternativa sencilla |
 | **4 — Cierre editorial conjunto** | UML de paquetes y 1–2 secuencias, mapa de dependencias, matriz de trazabilidad, comentarios selectivos en aislados | Tres rutas de estudio visibles desde índices, CI final | No hay errores conocidos de compilación, invariantes, enlaces, navegación o separación |
@@ -147,4 +147,4 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 
 Antes de cualquier commit del integrador, marcar en el plan cuál etapa se está ejecutando y qué demuestra. No mezclar en el mismo commit cambios del integrador y refactorizaciones de demos aisladas. Ante un conflicto, el contrato explícito del dominio prevalece; actualizar cada área afectada solo cuando corresponda.
 
-**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada. El **[diseño del tercer proyecto](../../proyectos/expedicion-liminal-integrada/README.md)** contiene ahora [reglas locales](../../proyectos/expedicion-liminal-integrada/DOMINIO.md), [escenario 01](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md) y [arquitectura/UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). **Siguiente trabajo:** implementar Java y pruebas para la etapa 1. El monstruo oscuro se incorpora en etapa 2. No reestructurar los 23 patrones aislados.
+**Próximo paso razonable:** la [alineación editorial de los 23 aislados](MATRIZ_ALINEACION.md) está realizada. El **[diseño del tercer proyecto](../../proyectos/expedicion-liminal-integrada/README.md)** contiene ahora [reglas locales](../../proyectos/expedicion-liminal-integrada/DOMINIO.md), [escenario 01](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md) y [arquitectura/UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). **Siguiente trabajo:** implementar la criatura de la etapa 2 y su Strategy sobre el mismo mapa, con pruebas de no teletransporte, identidad y un evento narrativo. La etapa 1 ya compila y tiene pruebas específicas. No reestructurar los 23 patrones aislados.

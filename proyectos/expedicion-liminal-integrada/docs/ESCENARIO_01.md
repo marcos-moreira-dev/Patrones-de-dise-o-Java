@@ -1,6 +1,6 @@
 # Escenario 01 — El ruido detrás de las oficinas
 
-> **Diseño para una ejecución automática por consola; no implementado todavía.** El interés principal es leer código Java que represente una expedición coherente. La secuencia es deliberadamente pequeña y completamente determinista.
+> **Etapa 1 implementada en Java 21 y probada** mediante [ClienteExpedicion](../src/main/java/liminal/integrado/presentacion/ClienteExpedicion.java) y [PruebasExpedicion](../src/test/java/liminal/integrado/PruebasExpedicion.java). La secuencia es pequeña y determinista; la criatura de etapa 2 aún no está implementada.
 
 ## 1. Escena narrativa
 
@@ -59,7 +59,7 @@ y=2 │      vacío        │      vacío        │      vacío        │    
 | 5 | ESTE | Cruza S-06 | H-05 | 4 | FINALIZADA |
 | 6 | OESTE | Rechazo por sesión terminada | H-05 | 4 | FINALIZADA |
 
-El cliente contará esta historia sin `Scanner`. No hace falta que el estudiante la juegue. La **prueba** verificará que cada paso ocurrió en la misma instancia de explorador, y que ningún rechazo modificó el modelo.
+El cliente **cuenta esta historia sin `Scanner`**. No hace falta que el estudiante la juegue. La **prueba** confirma que cada paso ocurre en la misma instancia de explorador y que ningún rechazo modifica el modelo; también verifica identidades, coordenadas, límites y salidas no inversas.
 
 ## 5. Cuando entre el monstruo (etapa 2)
 
@@ -80,4 +80,4 @@ No es una exigencia de la primera entrega: el dominio y los turnos deben quedar 
 - Dos ejecuciones con el mismo mapa y guion producen la misma secuencia de resultados.
 - No hay referencias a clases de las 23 demos liminales aisladas ni a Arena Java o MiniSO.
 
-**Criterio de cierre de etapa 1:** todas las pruebas anteriores pasan en Java 21 y el lector puede identificar sin confusión dónde vive cada regla.
+**Cierre de etapa 1:** existe código Java 21 que recorre H-01 → H-05, conserva posición y turnos frente a rechazos y termina al alcanzar la meta. El verificador independiente `scripts/verificar.sh` y GitHub Actions ejecutan sus pruebas en Linux y Windows. **Siguiente:** incorporar al monstruo oscuro mediante Strategy, sin comprometer el dominio ni añadir combate.

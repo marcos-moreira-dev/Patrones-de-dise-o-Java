@@ -1,6 +1,6 @@
-# Arquitectura propuesta — Expedición Liminal Integrada
+# Arquitectura implementada (etapa 1) — Expedición Liminal Integrada
 
-> **Diseño preliminar sin clases implementadas.** Primera entrega: **monolito modular Java 21 con capas dirigidas al dominio**. Es suficiente para enseñar estructuras y responsabilidades; no se impone una arquitectura hexagonal completa, MVC ni un framework sin un motivo real.
+> **Etapa 1 implementada:** **monolito modular Java 21 con capas dirigidas al dominio**, cliente determinista y pruebas específicas. Es suficiente para enseñar estructuras y responsabilidades; no se impone una arquitectura hexagonal completa, MVC ni un framework sin un motivo real.
 
 ## 1. Dependencias de paquetes
 
@@ -25,7 +25,7 @@ flowchart TD
 - **No hay dependencia entre el proyecto integrado y las 23 demos encapsuladas.** La relación entre ambas es **documental/normativa**.
 - Todavía no hay `infraestructura/`; crear un puerto de almacenamiento sería una abstracción prematura cuando todo está en memoria.
 
-## 2. UML de relaciones principales (propuesta, no código existente)
+## 2. UML de relaciones principales (código de etapa 1)
 
 ~~~mermaid
 classDiagram
@@ -49,24 +49,25 @@ classDiagram
     }
     class Salida {
         -String id
-        -String origenId
-        -String destinoId
+        -Habitacion origen
+        -Habitacion destino
         -Direccion direccion
     }
     class MapaLiminal {
         -String id
-        -Map~String,Habitacion~ habitaciones
-        -Map~Posicion,Habitacion~ celdas
-        -Map~String,Salida~ salidas
+        -Map~String,Habitacion~ habitacionesPorId
+        -Map~Posicion,Habitacion~ habitacionesPorPosicion
+        -Map~String,Salida~ salidasPorId
         +agregarHabitacion()
         +agregarSalida()
+        +habitacion()
         +salidaDesde()
     }
     class Explorador {
         -String id
         -MapaLiminal mapa
         -Habitacion ubicacion
-        +mover(Direccion) Habitacion
+        ~mover(Direccion) Habitacion
     }
     class Expedicion {
         -String id
@@ -82,14 +83,17 @@ classDiagram
     class ResultadoTurno {
         <<record>>
         +boolean aceptado
-        +int turno
-        +String ubicacion
+        +String habitacionId
+        +int turnos
         +boolean finalizada
+        +String mensaje
     }
     MapaLiminal --> "0..*" Habitacion : registra
     MapaLiminal --> "0..*" Salida : registra
     Habitacion --> "1" Posicion : coordenada
     Salida --> Direccion : dirección
+    Salida --> "1" Habitacion : origen
+    Salida --> "1" Habitacion : destino
     Explorador --> "1" MapaLiminal : conoce
     Explorador --> "1" Habitacion : ubicación actual
     Expedicion --> "1" Explorador : participante
@@ -124,7 +128,7 @@ src/test/java/liminal/integrado/
 └── PruebasExpedicion.java              // aceptación y regresiones
 ~~~
 
-**Importante:** estos nombres son un contrato orientativo para la primera implementación, no una instrucción para generar clases de relleno. Si una operación o participante carece de responsabilidad observable, debe simplificarse antes de codificarlo.
+**Implementación actual:** estos archivos existen. `Explorador.mover()` tiene **acceso de paquete**: la aplicación y el cliente no pueden invocarlo directamente para evitar saltarse los turnos de `Expedicion`. Los índices por ID y por coordenadas son de `MapaLiminal`, no copias de las habitaciones.
 
 ## 4. Flujo de responsabilidades de un turno
 
@@ -161,7 +165,7 @@ Si el mapa no dispone de salida, el dominio rechaza **antes** de cambiar ubicaci
 | `ClienteExpedicion` crea el escenario | Deja explícitas las dependencias para aprender | DI container o factoría general de todo el universo innecesarios |
 | Introducir patrones **después** del problema | OCP/SRP/DIP donde realmente aportan, no como ritual | Un interfaz por objeto o Singleton global sin necesidad |
 
-## 6. Estrategia de pruebas y futura integración CI
+## 6. Estrategia de pruebas e integración CI
 
 **Primero el dominio**, luego el caso de uso y por último el relato de consola:
 
@@ -172,11 +176,11 @@ Si el mapa no dispone de salida, el dominio rechaza **antes** de cambiar ubicaci
 5. Reproducibilidad: mismo escenario produce los mismos resultados.
 6. Compilación Java 21, pruebas en Linux y Windows **sin usar el computador del estudiante**.
 
-El workflow existente del repositorio compila archivos `*.java`, pero para certificar el nuevo proyecto habrá que asegurar también que **sus pruebas se ejecutan**, no declarar «probado» algo que solo compiló. Preferir un comando local del proyecto y una verificación explícita en CI cuando ya exista Java.
+Se creó `scripts/verificar.sh`: compila solo este proyecto con Java 21, ejecuta `PruebasExpedicion` y verifica el resultado de consola. El [workflow dedicado](../../../.github/workflows/expedicion-liminal-integrada.yml) ejecuta ese script en Ubuntu y Windows. El workflow general conserva sus tareas anteriores. **Compilar no equivale a probar**, por eso hay ambas verificaciones.
 
 ## 7. Definición de suficiente
 
-**Etapa 1 es suficiente** cuando las reglas R-INT-01…R-INT-06 y el guion de [ESCENARIO_01.md](ESCENARIO_01.md) tienen código y pruebas aprobadas; el lector puede seguir las dependencias sin estudiar otro proyecto.
+**Etapa 1 ya implementada:** las reglas R-INT-01…R-INT-06 y el guion de [ESCENARIO_01.md](ESCENARIO_01.md) están representados en Java y en pruebas. Esta base es **suficiente como laboratorio de capas y dominio**.
 
 **Etapa 2 es suficiente para cerrar el proyecto integrador básico** cuando incorpora el monstruo con una Strategy justificada, mantiene todos los invariantes y ejecuta una expedición completa con un suceso narrativo. Los eventos, cámaras, inventarios y demás GoF son **opcionales**.
 
