@@ -8,6 +8,6 @@
 <path class="edge" d="M1015 385 L712.5 308" marker-end="url(#tri)"/>
 <rect x="42" y="118" width="340" height="135" rx="3" class="box"/><text class="title" x="212" y="152">ClienteTemplateMethod</text><path class="sep" d="M42 170 H382"/><text class="body" x="56" y="201">+ ejecutar(out)</text>
 <rect x="495" y="88" width="435" height="220" rx="3" class="box"/><text class="title" x="712.5" y="122">«abstract» RutaExploracion</text><path class="sep" d="M495 140 H930"/><text class="body" x="509" y="171">+ recorrer(): List&lt;String&gt; {final}</text><text class="body" x="509" y="196"># observar(): String</text>
-<rect x="305" y="385" width="390" height="120" rx="3" class="box"/><text class="title" x="500" y="419">RutaOficina</text><path class="sep" d="M305 437 H695"/><text class="body" x="319" y="468">+ observar(): String</text>
-<rect x="820" y="385" width="390" height="120" rx="3" class="box"/><text class="title" x="1015" y="419">RutaPiscina</text><path class="sep" d="M820 437 H1210"/><text class="body" x="834" y="468">+ observar(): String</text>
+<rect x="305" y="385" width="390" height="120" rx="3" class="box"/><text class="title" x="500" y="419">RutaOficina</text><path class="sep" d="M305 437 H695"/><text class="body" x="319" y="468"># observar(): String</text>
+<rect x="820" y="385" width="390" height="120" rx="3" class="box"/><text class="title" x="1015" y="419">RutaPiscina</text><path class="sep" d="M820 437 H1210"/><text class="body" x="834" y="468"># observar(): String</text>
 <text class="note" x="700" y="627">Las dos rutas conservan la misma secuencia de pasos y cambian solo su observación.</text></svg>

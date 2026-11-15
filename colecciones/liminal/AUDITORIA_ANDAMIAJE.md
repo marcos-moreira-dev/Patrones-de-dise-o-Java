@@ -148,3 +148,11 @@ Se leyeron las **23 fichas Markdown**, los **23 archivos `ClienteX.java`** y los
 **Simplificación Iterator:** `RegistroHabitaciones.iterator()` hacía `List.copyOf(habitaciones)` antes de pasarla a `RecorridoHabitaciones`, cuyo constructor **ya** aplica `List.copyOf`. Se elimina la copia redundante en el registro, manteniendo la única copia defensiva en el iterador. `PruebaIterator` ya verifica que un iterador abierto no ve las habitaciones añadidas después y que los IDs repetidos se rechazan. No se cambia su contrato.
 
 **Comprobado en este lote:** existencia, legibilidad del recorrido principal, separación cliente/prueba y correspondencia textual entre documentación y roles UML para los 23 patrones. **Pendiente todavía:** inspección pormenorizada de todos los atributos, multiplicidades, referencias y flechas de los SVG con su semántica Java, más la auditoría integral de las clases colaboradoras y de los laboratorios. La validación automatizada no equivale a inspección visual del trazado.
+
+## 14. UML — modificadores y puntos de extensión GoF
+
+**Hallazgo concreto:** las subclases de `Factory Method`, los tres validadores de `Chain of Responsibility` y las dos rutas de `Template Method` mostraban con `+` sus métodos redefinidos, mientras que Java declara `protected` (`#` en UML). En la base de Chain, `verificar` es de acceso de paquete (`~`), no público; su operación abstracta protegida `detectarRechazo` no estaba dibujada.
+
+**Corrección editorial, sin cambios de lógica:** se corrigieron los tres SVG; ahora distinguen `public`, `protected` y acceso de paquete en las operaciones afectadas. `VerificarDocumentacion` incorpora verificaciones de los símbolos. La distinción es central: el punto de extensión accesible a una subclase no necesariamente forma parte de la API pública. Se evita añadir infraestructura o clases para representar un mero modificador.
+
+**Aún pendiente:** la auditoría de accesibilidad del resto de operaciones UML y el cotejo visual de líneas/multiplicidades de la colección. No se atribuye revisión detallada completa a esta corrección puntual.
