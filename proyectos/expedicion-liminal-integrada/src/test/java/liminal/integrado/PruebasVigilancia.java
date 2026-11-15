@@ -28,6 +28,7 @@ public final class PruebasVigilancia {
         comprobarCentro();
         comprobarSuscripciones();
         comprobarIntegracionConTurnos();
+        comprobarEsperaSinMovimiento();
         System.out.println("OK: Observer, Mediator, eventos y límites de aplicación.");
     }
 
@@ -107,7 +108,10 @@ public final class PruebasVigilancia {
         comprobar(!turno.procesar(Direccion.OESTE).aceptado(), "Finalizada");
         igual(1, alarma.avisos());
 
-        // Una Strategy sin movimiento no dispara el sensor, aunque la criatura esté en C.
+    }
+
+    private static void comprobarEsperaSinMovimiento() {
+        // Una Strategy que espera no activa el sensor por mera presencia.
         MapaLiminal solo = new MapaLiminal("M2", 2, 1);
         Habitacion uno = solo.agregarHabitacion("U", "Inicio", new Posicion(0, 0));
         Habitacion dos = solo.agregarHabitacion("V", "Meta", new Posicion(1, 0));
