@@ -1,6 +1,6 @@
 # Plan del proyecto integrador — Expedición Liminal
 
-> **Estado (15 de noviembre de 2026): integrador académico cerrado (Strategy + Observer + Mediator, dominio, turnos y pruebas Java 21).** Matriz 23/23 y demos aisladas independientes. Versión 1.4.
+> **Estado (15 de noviembre de 2026): integrador con cuatro guiones lúdicos, Strategy + Observer + Mediator, dominio y pruebas Java 21.** Matriz 23/23 y demos aisladas independientes. Versión 1.5.
 >
 > **Fuente normativa inicial:** [DOMINIO.md](DOMINIO.md). **Planes existentes:** [PLAN.md](PLAN.md), [PLAN_VARIANTES.md](PLAN_VARIANTES.md), [AUDITORIA_ANDAMIAJE.md](AUDITORIA_ANDAMIAJE.md). Cada cambio de dominio se justifica y prueba; los patrones no dictan las reglas del mundo.
 
@@ -151,3 +151,9 @@ Esta matriz cubre los **23 patrones base**. La clasificación es **editorial**, 
 Antes de cualquier commit del integrador, marcar en el plan cuál etapa se está ejecutando y qué demuestra. No mezclar en el mismo commit cambios del integrador y refactorizaciones de demos aisladas. Ante un conflicto, el contrato explícito del dominio prevalece; actualizar cada área afectada solo cuando corresponda.
 
 **Cierre:** los tres bloques de aprendizaje están enlazados e independientes. Los 23 ejemplos GoF liminales siguen [alineados](MATRIZ_ALINEACION.md); el integrador finaliza con [Strategy + Observer + Mediator](../../proyectos/expedicion-liminal-integrada/README.md), [UML](../../proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md) y [auditoría final](../../proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md). No hay trabajo obligatorio adicional; futuras mejoras solo ante defectos comprobados o nuevas metas de estudio.
+
+## 10. Variedad narrativa: tres guiones complementarios
+
+El integrador conserva [la expedición de oficinas](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md) y añade [piscinas, radio y luces](../../proyectos/expedicion-liminal-integrada/docs/ESCENARIOS_02_04.md): tres relatos con clientes y mapas independientes, **pero sobre el mismo dominio**. Las piscinas enseñan identidad y conexiones dirigidas; la radio, mensajes predefinidos según lugar y frecuencia (R-INT-12); las luces, la colaboración existente Strategy + Observer + Mediator. [PruebasGuiones](../../proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasGuiones.java) y el verificador validan los cuatro relatos.
+
+**La regla de parada se mantiene:** no hay interacción manual obligatoria ni motor gráfico, ni nuevos GoF por cuota, y los 23 ejemplos encapsulados no dependen del integrador.

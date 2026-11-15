@@ -6,7 +6,7 @@
 
 | Pregunta de ingeniería | Evidencia | Conclusión |
 | --- | --- | --- |
-| ¿Hay dominio real e invariantes? | [DOMINIO.md](../DOMINIO.md), R-INT-01…R-INT-11 | Sí: identidad, rutas dirigidas, sesiones, criatura y vigilancia |
+| ¿Hay dominio real e invariantes? | [DOMINIO.md](../DOMINIO.md), R-INT-01…R-INT-12 | Sí: identidad, rutas dirigidas, sesiones, criatura y vigilancia |
 | ¿La consola decide reglas del mundo? | [ClienteExpedicion](../src/main/java/liminal/integrado/presentacion/ClienteExpedicion.java) | No: prepara y relata un escenario determinista |
 | ¿Un cliente puede mover al monstruo de la sesión fuera de turno? | [Expedicion](../src/main/java/liminal/integrado/dominio/exploracion/Expedicion.java) + [EstadoCriatura](../src/main/java/liminal/integrado/dominio/criaturas/EstadoCriatura.java) | No por API pública: la sesión crea su instancia privada y devuelve una vista inmutable |
 | ¿Una Strategy puede teletransportar? | [MonstruoOscuro](../src/main/java/liminal/integrado/dominio/criaturas/MonstruoOscuro.java), [MapaLiminal](../src/main/java/liminal/integrado/dominio/mundo/MapaLiminal.java) | No: la entidad comprueba rutas antes de mutar |
@@ -40,6 +40,7 @@
 | [scripts/verificar.sh](../scripts/verificar.sh) | Compilación Java 21, tres pruebas y fragmentos de consola del escenario |
 | CI del integrador Linux/Windows | Compilación y pruebas en ambos entornos |
 | CI general Java 21 | Verificación de ejemplos clásicos, liminales aislados, Arena Java y MiniSO |
+| [PruebasGuiones.java](../src/test/java/liminal/integrado/PruebasGuiones.java) | Piscinas con igual apariencia, señales de radio según habitación/frecuencia y evento de luces una sola vez |
 
 ## 4. Tres patrones que sí se justifican
 
@@ -65,8 +66,14 @@ La auditoría no promete ausencia absoluta de defectos. Identifica y documenta l
 
 - **Bloque 1:** catálogo clásico GoF intacto.
 - **Bloque 2:** 23 patrones liminales aislados, siete variantes y dos laboratorios; [alineación editorial](../../../colecciones/liminal/MATRIZ_ALINEACION.md) conservada.
-- **Bloque 3:** integrador Java 21, dominio R-INT-01…R-INT-11, **tres GoF colaborando**, diagramas y pruebas propias.
+- **Bloque 3:** integrador Java 21, dominio R-INT-01…R-INT-12, **tres GoF colaborando**, diagramas y pruebas propias.
 
 Se considera **suficiente** cuando el lector puede justificar dónde vive una regla, cómo colaboran clases de paquetes distintos, por qué se usan esos tres patrones, cómo se rechaza un estado inválido y qué complejidad deliberadamente se descartó. No hace falta ejecutar manualmente el cliente, construir una interfaz o insertar los restantes 20 GoF.
 
 La CI del **último commit** debe constatarse en [GitHub Actions](https://github.com/marcos-moreira-dev/Patrones-de-dise-o-Java/actions) antes de afirmar cierre técnico definitivo; esta auditoría documental no la sustituye.
+
+## 7. Auditoría de la ampliación lúdica (15 de noviembre de 2026)
+
+Se añadieron [tres guiones](ESCENARIOS_02_04.md) a la expedición inicial: piscinas (identidad frente a apariencia y rutas de un solo sentido), radio (mensajes predefinidos, nueva regla **R-INT-12**) y luces (Strategy + Observer + Mediator en una sala distinta). Los tres clientes comparten **las clases de dominio** pero crean mapas independientes, sin un motor de guiones central. 
+
+La radio se implementó como un dispositivo sencillo, **sin incorporar Adapter/Bridge por decoración**. La cuarta prueba, `PruebasGuiones`, verifica los relatos reproducibles y los rechazos. Los riesgos documentados en la auditoría original permanecen válidos: esta ampliación es lúdica y didáctica, no infraestructura de producción.

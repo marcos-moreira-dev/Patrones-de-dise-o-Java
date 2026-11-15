@@ -2,23 +2,26 @@
 
 > **15 de noviembre de 2026.** Proyecto de estudio Java 21: mapa y expedición, criatura con **Strategy**, sensor con **Observer**, central con **Mediator**. UML ajustado al código implementado; no se promete un motor gráfico, una arquitectura hexagonal completa ni características de producción.
 
-**Lecturas relacionadas:** [escenario](ESCENARIO_01.md), [reglas del dominio](../DOMINIO.md), [auditoría final](AUDITORIA_FINAL.md).
+**Lecturas relacionadas:** [oficinas](ESCENARIO_01.md), [tres guiones complementarios](ESCENARIOS_02_04.md), [reglas del dominio](../DOMINIO.md), [auditoría final](AUDITORIA_FINAL.md).
 
 ## 1. Capas y dirección de dependencias
 
 ~~~mermaid
 flowchart TD
-    P["presentacion: ClienteExpedicion"]
+    P["presentacion: cuatro clientes de guion"]
     A["aplicacion: ProcesarTurno y ResultadoTurno"]
     E["dominio/exploracion: Expedicion, Explorador y AvanceExpedicion"]
     M["dominio/mundo: mapa, habitaciones, salidas y posiciones"]
     C["dominio/criaturas: MonstruoOscuro, Strategy, EstadoCriatura"]
     V["dominio/vigilancia: SensorRuido, Observer, CentroVigilancia, receptores"]
+    R["dominio/comunicaciones: RadioLiminal"]
     P --> A
     P -. "construye escenario" .-> E
     P -. "construye mapa" .-> M
     P -. "configura Strategy" .-> C
     P -. "conecta vigilancia" .-> V
+    P -. "sintoniza la radio" .-> R
+    R --> M
     A --> E
     A --> M
     A --> V
@@ -240,18 +243,24 @@ src/main/java/liminal/integrado/
 │   │   ├── MonstruoOscuro.java, EstadoCriatura.java
 │   │   ├── EstrategiaMovimiento.java
 │   │   └── Patrullar.java, Perseguir.java, Esperar.java
-│   └── vigilancia/
-│       ├── SensorRuido.java, ObservadorRuido.java, EventoRuido.java
-│       └── CentroVigilancia.java, LuzAlerta.java, Alarma.java
+│   ├── vigilancia/
+│   │   ├── SensorRuido.java, ObservadorRuido.java, EventoRuido.java
+│   │   └── CentroVigilancia.java, LuzAlerta.java, Alarma.java
+│   └── comunicaciones/
+│       └── RadioLiminal.java
 ├── aplicacion/
 │   └── ProcesarTurno.java, ResultadoTurno.java
 └── presentacion/
-    └── ClienteExpedicion.java
+    ├── ClienteExpedicion.java
+    ├── ClientePiscinas.java
+    ├── ClienteRadio.java
+    └── ClienteLuces.java
 
 src/test/java/liminal/integrado/
 ├── PruebasExpedicion.java
 ├── PruebasCriaturas.java
-└── PruebasVigilancia.java
+├── PruebasVigilancia.java
+└── PruebasGuiones.java
 ~~~
 
 ## 6. Decisiones arquitectónicas y malos olores evitados
@@ -266,6 +275,7 @@ src/test/java/liminal/integrado/
 | Mediador coordina luz y alarma | Responsabilidad de colaboración concreta | Todos los dispositivos dependiendo de todos |
 | `ProcesarTurno` conecta dominio y sensor | Separación aplicación/dominio | Monstruo con referencias a la vista y los receptores |
 | Cliente prepara dependencias directamente | Composition root sencilla | Contenedor DI, puertos o servicios sin necesidad |
+| Radio como dispositivo de dominio pequeño | Mensajes por habitación/frecuencia y validación local | Forzar Adapter o Bridge sin necesidad |
 
 No se reclama una demostración formal de los cinco SOLID. SRP/OCP y dependencia hacia contratos resultan observables; ISP está representado modestamente por interfaces pequeñas. Ningún principio obliga a inventar interfaces para todos los objetos.
 
@@ -279,6 +289,6 @@ No se reclama una demostración formal de los cinco SOLID. SRP/OCP y dependencia
 
 Los otros **20 GoF** se conservan en los [23 ejemplos liminales autónomos](../../../colecciones/liminal/MATRIZ_ALINEACION.md). No son requisitos pendientes de este simulador.
 
-**Verificación:** `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh` compila Java 21, ejecuta tres pruebas y comprueba salida de consola. El [workflow propio](../../../.github/workflows/expedicion-liminal-integrada.yml) corre en Ubuntu y Windows; el workflow general preserva los otros proyectos.
+**Verificación:** `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh` compila Java 21, ejecuta cuatro programas de pruebas y comprueba los cuatro clientes por consola. El [workflow propio](../../../.github/workflows/expedicion-liminal-integrada.yml) corre en Ubuntu y Windows; el workflow general preserva los otros proyectos.
 
-**Definición de suficiente:** reglas coherentes, expedición completa, tres GoF justificados que colaboran, código y UML correspondientes, pruebas aprobadas y límites documentados. No se exige interacción manual, gráficos, persistencia ni todos los GoF integrados.
+**Definición de suficiente:** cuatro expediciones narrativas contrastantes, reglas coherentes, tres GoF justificados que colaboran, código y UML correspondientes, pruebas aprobadas y límites documentados. No se exige interacción manual, gráficos, persistencia ni todos los GoF integrados.
