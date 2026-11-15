@@ -12,14 +12,19 @@ import liminal.integrado.dominio.mundo.Direccion;
 import liminal.integrado.dominio.mundo.Habitacion;
 import liminal.integrado.dominio.mundo.MapaLiminal;
 import liminal.integrado.dominio.mundo.Posicion;
+import liminal.integrado.dominio.vigilancia.Alarma;
+import liminal.integrado.dominio.vigilancia.CentroVigilancia;
+import liminal.integrado.dominio.vigilancia.LuzAlerta;
+import liminal.integrado.dominio.vigilancia.SensorRuido;
 
 /** Cliente de estudio: prepara la expedición y relata un guion reproducible. */
 public final class ClienteExpedicion {
     private ClienteExpedicion() {}
 
     public static void main(String[] args) {
-        Expedicion expedicion = prepararExpedicion();
-        ProcesarTurno procesar = new ProcesarTurno(expedicion);
+        Escena escena = prepararExpedicion();
+        Expedicion expedicion = escena.expedicion();
+        ProcesarTurno procesar = new ProcesarTurno(expedicion, escena.sensor());
         System.out.println("EXPEDICIÓN LIMINAL — " + expedicion.id());
         System.out.println("Comienzas en " + expedicion.explorador().ubicacion().nombre());
         System.out.println("Monstruo oscuro M-01: PATRULLAR desde "
@@ -42,9 +47,11 @@ public final class ClienteExpedicion {
                     + " | turnos=" + resultado.turnos()
                     + " | " + (resultado.finalizada() ? "FINALIZADA" : "ACTIVA"));
         }
+        System.out.println("CENTRAL: luz " + (escena.luz().encendida() ? "ENCENDIDA" : "APAGADA")
+                + " | Alarma: " + escena.alarma().avisos());
     }
 
-    private static Expedicion prepararExpedicion() {
+    private static Escena prepararExpedicion() {
         MapaLiminal mapa = new MapaLiminal("MAP-01", 4, 3);
         Habitacion inicio = mapa.agregarHabitacion("H-01", "Pasillo amarillo", new Posicion(0, 1));
         mapa.agregarHabitacion("H-02", "Cruce de fluorescentes", new Posicion(1, 1));
@@ -63,6 +70,15 @@ public final class ClienteExpedicion {
         Expedicion expedicion = new Expedicion(
                 "EXP-01", mapa, new Explorador("EX-01", mapa, inicio), meta);
         expedicion.incorporarCriatura("M-01", mapa.habitacion("H-06"), new Patrullar());
-        return expedicion;
+
+        // Observer notifica al centro; Mediator coordina dos receptores.
+        SensorRuido sensor = new SensorRuido("SR-03", mapa.habitacion("H-03"));
+        LuzAlerta luz = new LuzAlerta();
+        Alarma alarma = new Alarma();
+        sensor.suscribir(new CentroVigilancia("CV-01", sensor.id(), luz, alarma));
+        return new Escena(expedicion, sensor, luz, alarma);
     }
+
+    private record Escena(Expedicion expedicion, SensorRuido sensor,
+                          LuzAlerta luz, Alarma alarma) {}
 }

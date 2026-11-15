@@ -12,12 +12,13 @@ mapfile -d '' fuentes < <(find src/main/java src/test/java -type f -name '*.java
 javac --release 21 -encoding UTF-8 -d out "${fuentes[@]}"
 java -cp out liminal.integrado.PruebasExpedicion
 java -cp out liminal.integrado.PruebasCriaturas
+java -cp out liminal.integrado.PruebasVigilancia
 salida="$(java -cp out liminal.integrado.presentacion.ClienteExpedicion)"
-for esperado in 'RECHAZADO' 'ACEPTADO' 'H-05' 'turnos=4' 'FINALIZADA' 'PATRULLAR' 'PERSEGUIR' 'ESPERAR' 'Presencia oscura'; do
+for esperado in 'RECHAZADO' 'ACEPTADO' 'H-05' 'turnos=4' 'FINALIZADA' 'PATRULLAR' 'PERSEGUIR' 'ESPERAR' 'Presencia oscura' 'ruido detectado' 'CENTRAL: luz ENCENDIDA' 'Alarma: 1'; do
     if [[ "$salida" != *"$esperado"* ]]; then
         echo "ERROR: falta el fragmento de consola: $esperado" >&2
         exit 1
     fi
 done
-printf 'OK: Expedición Liminal Integrada (etapas 1 y 2), Java 21.\n'
+printf 'OK: Expedición Liminal Integrada (Strategy, Observer y Mediator), Java 21.\n'
 
