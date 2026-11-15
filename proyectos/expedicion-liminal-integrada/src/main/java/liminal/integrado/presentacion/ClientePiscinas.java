@@ -44,6 +44,15 @@ public final class ClientePiscinas {
             ResultadoTurno resultado = caso.procesar(orden);
             relato.add(orden + " -> " + (resultado.aceptado() ? "ACEPTADO" : "RECHAZADO")
                     + " | " + resultado.habitacionId() + " | turno=" + resultado.turnos());
+            if (resultado.aceptado() && resultado.habitacionId().equals(segunda.id())) {
+                relato.add("Los azulejos parecen iguales, pero ahora estás en "
+                        + segunda.id() + ", no en " + primera.id() + ".");
+            }
+            if (!resultado.aceptado() && resultado.habitacionId().equals(segunda.id())) {
+                relato.add("Buscas el regreso hacia OESTE; ninguna salida lo permite."
+                        + " Sigues en " + segunda.id() + " durante el turno "
+                        + resultado.turnos() + ".");
+            }
         }
         relato.add("SALIDA " + (sesion.finalizada() ? "ENCONTRADA" : "NO ENCONTRADA"));
         return List.copyOf(relato);

@@ -50,21 +50,41 @@ public final class ClienteLuces {
         List<String> relato = new ArrayList<>();
         relato.add("EL MONSTRUO DETRÁS DE LAS LUCES — fluorescentes apagados");
         relato.add("LUZ INICIAL: " + (luz.encendida() ? "ENCENDIDA" : "APAGADA"));
-        narrar(caso.procesar(Direccion.NORTE), relato); // Rechazo: el monstruo no se mueve.
-        narrar(caso.procesar(Direccion.ESTE), relato);  // Patrulla: L-04 -> L-02.
+        narrarAccion(sesion, caso, Direccion.NORTE, luz, relato); // Rechazo sin efectos.
+        narrarAccion(sesion, caso, Direccion.ESTE, luz, relato);  // Criatura L-04 -> L-02.
         sesion.cambiarEstrategiaCriatura(new Perseguir());
-        narrar(caso.procesar(Direccion.ESTE), relato);  // Persigue: L-02 -> L-03, aviso.
+        relato.add("La presencia cambia de patrulla a persecución.");
+        narrarAccion(sesion, caso, Direccion.ESTE, luz, relato);  // Criatura L-02 -> L-03.
         sesion.cambiarEstrategiaCriatura(new Esperar());
-        narrar(caso.procesar(Direccion.OESTE), relato); // No hay inversa; no hay segundo aviso.
-        narrar(caso.procesar(Direccion.NORTE), relato); // Llega a la meta; la criatura espera.
+        relato.add("La presencia deja de perseguirte.");
+        narrarAccion(sesion, caso, Direccion.OESTE, luz, relato); // Rechazo sin otra alerta.
+        narrarAccion(sesion, caso, Direccion.NORTE, luz, relato); // Meta, sin nueva alerta.
         relato.add("CENTRAL: LUZ " + (luz.encendida() ? "ENCENDIDA" : "APAGADA")
                 + " | ALARMA " + alarma.avisos());
         relato.add("SALIDA " + (sesion.finalizada() ? "ENCONTRADA" : "NO ENCONTRADA"));
         return List.copyOf(relato);
     }
 
-    private static void narrar(ResultadoTurno resultado, List<String> relato) {
+    /**
+     * La presentación observa el estado anterior y posterior: nunca anuncia
+     * una entrada, un encendido ni un rechazo que el dominio no confirmó.
+     */
+    private static void narrarAccion(Expedicion sesion, ProcesarTurno caso,
+                                    Direccion orden, LuzAlerta luz, List<String> relato) {
+        String antes = sesion.estadoCriatura().orElseThrow().ubicacion().id();
+        boolean luzAntes = luz.encendida();
+        ResultadoTurno resultado = caso.procesar(orden);
         relato.add((resultado.aceptado() ? "ACEPTADO: " : "RECHAZADO: ")
                 + resultado.habitacionId() + " | " + resultado.mensaje());
+        String despues = sesion.estadoCriatura().orElseThrow().ubicacion().id();
+        if (resultado.aceptado() && !antes.equals(despues)) {
+            relato.add("La sombra se desplaza de " + antes + " a " + despues + ".");
+        }
+        if (!luzAntes && luz.encendida()) {
+            relato.add("Los fluorescentes de alerta se encienden tras la detección.");
+        }
+        if (!resultado.aceptado()) {
+            relato.add("El paso falla; la sombra permanece en " + despues + ".");
+        }
     }
 }

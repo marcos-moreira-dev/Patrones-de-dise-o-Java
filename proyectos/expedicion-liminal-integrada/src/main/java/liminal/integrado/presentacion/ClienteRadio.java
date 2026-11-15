@@ -43,11 +43,20 @@ public final class ClienteRadio {
         relato.add("LA RADIO QUE RESPONDE SOLA — emisiones predefinidas");
         relato.add("RECEPCIÓN 1040 kHz: "
                 + radio.escucharEn(sesion.explorador().ubicacion()).orElse("solo estática"));
+        if (radio.escucharEn(sesion.explorador().ubicacion()).isEmpty()) {
+            relato.add("La radio permanece en silencio: aquí no hay una emisión registrada.");
+        }
 
         avanzar(caso, Direccion.ESTE, relato);
         relato.add("CABINA 1040 kHz: "
                 + radio.escucharEn(sesion.explorador().ubicacion()).orElse("solo estática"));
+        int anteriorKhz = radio.frecuenciaKhz();
         radio.sintonizar(880);
+        if (radio.frecuenciaKhz() != anteriorKhz) {
+            relato.add("Cambias la sintonía de " + anteriorKhz + " a "
+                    + radio.frecuenciaKhz() + " kHz sin salir de "
+                    + sesion.explorador().ubicacion().id() + ".");
+        }
         relato.add("CABINA 880 kHz: "
                 + radio.escucharEn(sesion.explorador().ubicacion()).orElse("solo estática"));
         avanzar(caso, Direccion.NORTE, relato);
