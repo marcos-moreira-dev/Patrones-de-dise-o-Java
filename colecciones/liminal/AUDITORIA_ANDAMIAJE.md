@@ -156,3 +156,11 @@ Se leyeron las **23 fichas Markdown**, los **23 archivos `ClienteX.java`** y los
 **Corrección editorial, sin cambios de lógica:** se corrigieron los tres SVG; ahora distinguen `public`, `protected` y acceso de paquete en las operaciones afectadas. `VerificarDocumentacion` incorpora verificaciones de los símbolos. La distinción es central: el punto de extensión accesible a una subclase no necesariamente forma parte de la API pública. Se evita añadir infraestructura o clases para representar un mero modificador.
 
 **Aún pendiente:** la auditoría de accesibilidad del resto de operaciones UML y el cotejo visual de líneas/multiplicidades de la colección. No se atribuye revisión detallada completa a esta corrección puntual.
+
+## 15. UML — visibilidad de colaboradores estructurales y creacionales
+
+La revisión transversal identificó llamadas de **acceso de paquete** representadas erróneamente como `+` (públicas) en siete diagramas. Se cambió a `~` en los métodos correspondientes de `PanelAvisos` (Singleton), `HabitacionPrototipo` (lectores de identidad y lista), `RadioAntigua` (Adapter), `GrupoLuces.agregar` (Composite), `FachadaCruce`/`MapaLocal`/`PuertaPaso` (Facade) y `FabricaTexturas.obtener` (Flyweight). En Bridge, las operaciones `mensaje()` de `AlertaPuerta` y `AlertaRuido` son `protected` y ahora figuran con `#`, no `+`.
+
+**Razonamiento:** enseñar `+` como público cuando Java no lo es desorienta al estudiante sobre el contrato real. Se dejan intactos el código de las clases y su estructura de roles GoF. `VerificarDocumentacion` incorpora aserciones de cadenas para estas visibilidades. Los tests estructurales no sustituyen la inspección visual de flechas ni de solapamientos.
+
+**Avance UML:** revisiones de visibilidad aplicadas a Factory Method, Chain, Template Method y a estos siete diagramas adicionales; quedan por inspeccionar las visibilidades del resto de diagramas de comportamiento y los laboratorios.

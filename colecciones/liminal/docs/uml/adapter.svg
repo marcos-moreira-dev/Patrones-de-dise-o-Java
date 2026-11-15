@@ -8,5 +8,5 @@
 <rect x="35" y="100" width="300" height="126" rx="3" class="box"/><text x="185" y="135" class="title">ClienteAdapter</text><path d="M35 153 H335" class="sep"/><text x="49" y="184" class="body">+ ejecutar(out): void</text>
 <rect x="450" y="65" width="380" height="155" rx="3" class="iface"/><text x="640" y="100" class="title">«interface» Comunicador</text><path d="M450 118 H830" class="sep"/><text x="464" y="149" class="body">+ enviar(aviso): void</text>
 <rect x="410" y="370" width="415" height="150" rx="3" class="box"/><text x="617.5" y="405" class="title">AdaptadorRadioAntigua</text><path d="M410 423 H825" class="sep"/><text x="424" y="454" class="body">- radio: RadioAntigua</text><text x="424" y="480" class="body">+ enviar(aviso): void</text>
-<rect x="925" y="370" width="355" height="150" rx="3" class="box"/><text x="1102.5" y="405" class="title">RadioAntigua</text><path d="M925 423 H1280" class="sep"/><text x="939" y="454" class="body">+ emitirPorFrecuencia(...)</text>
+<rect x="925" y="370" width="355" height="150" rx="3" class="box"/><text x="1102.5" y="405" class="title">RadioAntigua</text><path d="M925 423 H1280" class="sep"/><text x="939" y="454" class="body">~ emitirPorFrecuencia(...)</text>
 <text class="note" x="700" y="626">La radio no cambia su API; el adaptador traduce enviar a emitirPorFrecuencia.</text></svg>
