@@ -37,6 +37,10 @@ public final class PruebasExpedicion {
         esperarFallo(IllegalArgumentException.class,
                 () -> mapa.agregarHabitacion("D", "Fuera", new Posicion(4, 1)));
         igual(3, mapa.cantidadHabitaciones());
+        comprobar(mapa.habitacion(new Posicion(0, 1)) == a,
+                "La posición recupera la misma entidad, no una copia");
+        esperarFallo(IllegalArgumentException.class,
+                () -> mapa.habitacion(new Posicion(3, 2)));
 
         mapa.agregarSalida("S-01", "A", "B");
         esperarFallo(IllegalArgumentException.class,
@@ -59,11 +63,14 @@ public final class PruebasExpedicion {
         igual(new Posicion(0, 0), a.posicion());
         comprobar(a != b, "Habitaciones con mismo nombre son entidades distintas");
         Explorador explorador = new Explorador("E", mapa, b);
-        esperarFallo(IllegalStateException.class, () -> explorador.mover(Direccion.OESTE));
+        Expedicion sesion = new Expedicion("EXP-DIR", mapa, explorador, a);
+        esperarFallo(IllegalStateException.class, () -> sesion.avanzar(Direccion.OESTE));
         igual(b, explorador.ubicacion());
+        igual(0, sesion.turnos());
         mapa.agregarSalida("S-1", "B", "A");
-        igual(a, explorador.mover(Direccion.OESTE));
+        igual(a, sesion.avanzar(Direccion.OESTE));
         igual(a, explorador.ubicacion());
+        igual(1, sesion.turnos());
 
         MapaLiminal otro = new MapaLiminal("M-2", 2, 1);
         Habitacion otraA = otro.agregarHabitacion("A", "Pasillo", new Posicion(0, 0));

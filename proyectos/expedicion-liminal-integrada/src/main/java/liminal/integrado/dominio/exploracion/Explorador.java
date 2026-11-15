@@ -26,7 +26,9 @@ public final class Explorador {
     public Habitacion ubicacion() { return ubicacion; }
     public boolean perteneceA(MapaLiminal otro) { return mapa == otro; }
 
-    public Habitacion mover(Direccion direccion) {
+    // Solo Expedicion (mismo paquete) ordena movimientos; un cliente no puede
+    // saltarse el contador de turnos usando la referencia al explorador.
+    Habitacion mover(Direccion direccion) {
         Salida salida = mapa.salidaDesde(ubicacion, Objects.requireNonNull(direccion));
         ubicacion = salida.destino();
         return ubicacion;

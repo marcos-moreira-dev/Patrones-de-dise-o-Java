@@ -73,6 +73,13 @@ public final class MapaLiminal {
         return habitacion;
     }
 
+    public Habitacion habitacion(Posicion posicion) {
+        Habitacion habitacion = habitacionesPorPosicion.get(
+                Objects.requireNonNull(posicion));
+        if (habitacion == null) throw new IllegalArgumentException("Celda sin habitación");
+        return habitacion;
+    }
+
     public Salida salidaDesde(Habitacion origen, Direccion direccion) {
         Objects.requireNonNull(origen);
         Objects.requireNonNull(direccion);
