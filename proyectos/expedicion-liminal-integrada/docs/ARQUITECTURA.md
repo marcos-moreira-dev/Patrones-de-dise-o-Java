@@ -1,34 +1,38 @@
-# Arquitectura implementada (etapas 1 y 2) — Expedición Liminal Integrada
+# Arquitectura final — Expedición Liminal Integrada
 
-> **Etapas 1 y 2 implementadas:** **monolito modular Java 21 con capas dirigidas al dominio**, Strategy en criaturas, cliente determinista y pruebas específicas. Es suficiente para enseñar estructuras y responsabilidades; no se impone una arquitectura hexagonal completa, MVC ni un framework sin un motivo real.
+> **15 de noviembre de 2026.** Proyecto de estudio Java 21: mapa y expedición, criatura con **Strategy**, sensor con **Observer**, central con **Mediator**. UML ajustado al código implementado; no se promete un motor gráfico, una arquitectura hexagonal completa ni características de producción.
 
-## 1. Dependencias de paquetes
+**Lecturas relacionadas:** [escenario](ESCENARIO_01.md), [reglas del dominio](../DOMINIO.md), [auditoría final](AUDITORIA_FINAL.md).
+
+## 1. Capas y dirección de dependencias
 
 ~~~mermaid
 flowchart TD
-    P["presentacion<br/>ClienteExpedicion"]
-    A["aplicacion<br/>ProcesarTurno + ResultadoTurno"]
-    E["dominio/exploracion<br/>Expedicion + Explorador"]
-    M["dominio/mundo<br/>Mapa + Habitacion + Salida + Posicion + Direccion"]
-    C["dominio/criaturas<br/>MonstruoOscuro + 3 estrategias"]
+    P["presentacion: ClienteExpedicion"]
+    A["aplicacion: ProcesarTurno y ResultadoTurno"]
+    E["dominio/exploracion: Expedicion, Explorador y AvanceExpedicion"]
+    M["dominio/mundo: mapa, habitaciones, salidas y posiciones"]
+    C["dominio/criaturas: MonstruoOscuro, Strategy, EstadoCriatura"]
+    V["dominio/vigilancia: SensorRuido, Observer, CentroVigilancia, receptores"]
     P --> A
-    P -. "Composición inicial de entidades" .-> E
-    P -. "Carga de escenario fijo" .-> M
-    P -. "Configura las estrategias" .-> C
+    P -. "construye escenario" .-> E
+    P -. "construye mapa" .-> M
+    P -. "configura Strategy" .-> C
+    P -. "conecta vigilancia" .-> V
     A --> E
-    A --> C
+    A --> M
+    A --> V
     E --> M
     E --> C
     C --> M
+    V --> M
 ~~~
 
-- **La presentación depende de aplicación y dominio** solo porque construye el grafo inicial de objetos (*composition root*); no debe conocer cómo validar internamente una salida.
-- **La aplicación depende del dominio**, coordina casos de uso y convierte rechazos esperados en resultados entendibles.
-- **El dominio no depende de presentación ni aplicación**, tampoco de `Scanner`, red, archivos o framework.
-- **No hay dependencia entre el proyecto integrado y las 23 demos encapsuladas.** La relación entre ambas es **documental/normativa**.
-- Todavía no hay `infraestructura/`; crear un puerto de almacenamiento sería una abstracción prematura cuando todo está en memoria.
+El dominio **no importa** clases de aplicación ni de presentación. La presentación depende de varias capas porque crea el grafo inicial de objetos (*composition root*); no gobierna sus invariantes. La aplicación adapta resultados y conecta el dispositivo de vigilancia, sin decidir las salidas del mapa.
 
-## 2. UML de relaciones principales (código de etapas 1 y 2)
+Esto es un monolito Java 21 **organizado por paquetes y responsabilidades**, no módulos JPMS. No hay contenedores de inyección, MVC, repositorios ni infraestructura vacía. Tampoco hay imports desde los 23 ejemplos GoF aislados.
+
+## 2. UML principal — identidades y Strategy
 
 ~~~mermaid
 classDiagram
@@ -38,16 +42,8 @@ classDiagram
         +int x
         +int y
     }
-    class Direccion {
-        <<enumeration>>
-        NORTE
-        SUR
-        ESTE
-        OESTE
-    }
     class Habitacion {
         -String id
-        -String nombre
         -Posicion posicion
     }
     class Salida {
@@ -56,44 +52,49 @@ classDiagram
         -Habitacion destino
         -Direccion direccion
     }
+    class Direccion {
+        <<enumeration>>
+        NORTE
+        SUR
+        ESTE
+        OESTE
+    }
     class MapaLiminal {
-        -String id
         -Map~String,Habitacion~ habitacionesPorId
         -Map~Posicion,Habitacion~ habitacionesPorPosicion
         -Map~String,Salida~ salidasPorId
         +agregarHabitacion()
         +agregarSalida()
-        +habitacion()
-        +salidaDesde()
         +destinosDesde()
+        +salidaDesde()
     }
     class Explorador {
-        -String id
         -MapaLiminal mapa
         -Habitacion ubicacion
         ~mover(Direccion) Habitacion
     }
     class Expedicion {
-        -String id
+        -MapaLiminal mapa
         -Explorador explorador
         -Habitacion meta
-        -MapaLiminal mapa
         -MonstruoOscuro criatura
         -int turnos
-        -boolean finalizada
-        +incorporarCriatura(MonstruoOscuro)
-        +avanzar(Direccion) Habitacion
+        +incorporarCriatura(String, Habitacion, EstrategiaMovimiento)
+        +cambiarEstrategiaCriatura(EstrategiaMovimiento)
+        +estadoCriatura() Optional~EstadoCriatura~
+        +avanzar(Direccion) AvanceExpedicion
     }
-    class ProcesarTurno {
-        +procesar(Direccion) ResultadoTurno
-    }
-    class ResultadoTurno {
+    class AvanceExpedicion {
         <<record>>
-        +boolean aceptado
-        +String habitacionId
-        +int turnos
-        +boolean finalizada
-        +String mensaje
+        +Habitacion habitacion
+        +EstadoCriatura criatura
+        +boolean criaturaSeMovio
+        +boolean criaturaRechazada
+    }
+    class EstadoCriatura {
+        <<record>>
+        +String id
+        +Habitacion ubicacion
     }
     class MonstruoOscuro {
         -String id
@@ -110,65 +111,79 @@ classDiagram
     class Patrullar
     class Perseguir
     class Esperar
+    MapaLiminal --> "0..*" Habitacion : registra
+    MapaLiminal --> "0..*" Salida : registra
+    Habitacion --> "1" Posicion : usa valor
+    Salida --> "2" Habitacion : conecta
+    Salida --> Direccion
+    Explorador --> MapaLiminal : valida
+    Explorador --> "1" Habitacion : ubicación
+    Expedicion --> "1" Explorador : participante
+    Expedicion --> "0..1" MonstruoOscuro : instancia privada
+    Expedicion ..> EstadoCriatura : publica vista
+    Expedicion ..> AvanceExpedicion : devuelve resultado
+    MonstruoOscuro --> EstrategiaMovimiento : conducta
+    MonstruoOscuro --> MapaLiminal : comprueba salida
     EstrategiaMovimiento <|.. Patrullar
     EstrategiaMovimiento <|.. Perseguir
     EstrategiaMovimiento <|.. Esperar
-    MonstruoOscuro --> EstrategiaMovimiento : comportamiento activo
-    MonstruoOscuro --> MapaLiminal : valida rutas
-    MonstruoOscuro --> "1" Habitacion : ubicación actual
-    Expedicion --> "0..1" MonstruoOscuro : registra
-    ProcesarTurno ..> MonstruoOscuro : solicita acción posterior
-
-    MapaLiminal --> "0..*" Habitacion : registra
-    MapaLiminal --> "0..*" Salida : registra
-    Habitacion --> "1" Posicion : coordenada
-    Salida --> Direccion : dirección
-    Salida --> "1" Habitacion : origen
-    Salida --> "1" Habitacion : destino
-    Explorador --> "1" MapaLiminal : conoce
-    Explorador --> "1" Habitacion : ubicación actual
-    Expedicion --> "1" Explorador : participante
-    Expedicion --> "1" Habitacion : meta
-    ProcesarTurno ..> Expedicion : ejecuta caso de uso
-    ProcesarTurno ..> ResultadoTurno : devuelve valor
 ~~~
 
-**Precaución UML:** la flecha indica navegación/uso de referencias según el modelo, **no composición**. El proyecto no necesita rombos negros para resultar profesional. `ResultadoTurno` y `Posicion` son datos/valores y pueden ser records; `Explorador`, `MapaLiminal`, `Habitacion`, `Expedicion` y `MonstruoOscuro` son entidades. La asociación de la sesión hacia la criatura **no implica propiedad UML ni borrado automático de su ciclo de vida**.
+**Encapsulamiento:** `Expedicion` construye internamente a `MonstruoOscuro`, controla las acciones del turno y solo devuelve un `Optional<EstadoCriatura>` con una fotografía inmutable; no entrega su referencia mutable. El cliente pide cambios de Strategy mediante la sesión. Un `MonstruoOscuro` creado por separado puede seguir probándose públicamente, pero **no es el mismo objeto** que conserva la sesión.
 
-## 3. Paquetes concretos de las dos etapas
+**UML:** una asociación Java privada **no prueba composición UML** ni implica destrucción física de la criatura. `Posicion`, `AvanceExpedicion` y `EstadoCriatura` son valores/records; `Habitacion` y `MonstruoOscuro` son entidades. El método `Explorador.mover` tiene acceso de paquete (`~`).
 
-~~~text
-src/main/java/liminal/integrado/
-├── dominio/
-│   ├── mundo/
-│   │   ├── Posicion.java               // valor
-│   │   ├── Direccion.java              // enum
-│   │   ├── Habitacion.java             // entidad
-│   │   ├── Salida.java                 // conexión dirigida
-│   │   └── MapaLiminal.java            // valida índices y topología
-│   ├── exploracion/
-│   │   ├── Explorador.java             // ubicación e identidad
-│   │   └── Expedicion.java             // meta, turnos y criatura
-│   └── criaturas/
-│       ├── MonstruoOscuro.java         // entidad y validación de propuestas
-│       ├── EstrategiaMovimiento.java   // contrato Strategy
-│       ├── Patrullar.java              // primera ruta disponible
-│       ├── Perseguir.java              // objetivo vecino
-│       └── Esperar.java                // permanecer inmóvil
-├── aplicacion/
-│   ├── ProcesarTurno.java              // orquestación/transformación del resultado
-│   └── ResultadoTurno.java             // dato de salida
-└── presentacion/
-    └── ClienteExpedicion.java          // escena narrativa determinista
+## 3. UML de vigilancia — Observer y Mediator
 
-src/test/java/liminal/integrado/
-├── PruebasExpedicion.java              // núcleo y regresiones
-└── PruebasCriaturas.java               // Strategy y coordinación de turnos
+~~~mermaid
+classDiagram
+    direction LR
+    class SensorRuido {
+        -String id
+        -Habitacion habitacionVigilada
+        -Map~String,ObservadorRuido~ observadores
+        +suscribir(ObservadorRuido)
+        +desuscribir(String)
+        +detectarMovimiento(Habitacion)
+    }
+    class ObservadorRuido {
+        <<interface>>
+        +id() String
+        +alDetectar(EventoRuido)
+    }
+    class EventoRuido {
+        <<record>>
+        +String sensorId
+        +String habitacionId
+    }
+    class CentroVigilancia {
+        -String id
+        -String sensorAutorizado
+        -LuzAlerta luz
+        -Alarma alarma
+        +alDetectar(EventoRuido)
+    }
+    class LuzAlerta {
+        -boolean encendida
+        +encender()
+    }
+    class Alarma {
+        -int avisos
+        -EventoRuido ultimo
+        +avisar(EventoRuido)
+    }
+    SensorRuido --> "0..*" ObservadorRuido : notifica
+    CentroVigilancia ..|> ObservadorRuido
+    SensorRuido --> Habitacion : vigila
+    SensorRuido ..> EventoRuido : publica
+    CentroVigilancia --> LuzAlerta : coordina
+    CentroVigilancia --> Alarma : coordina
+    Alarma --> EventoRuido : último aviso
 ~~~
 
-**Implementación actual:** estos archivos existen. `Explorador.mover()` tiene **acceso de paquete**: la aplicación y el cliente no pueden invocarlo directamente para evitar saltarse los turnos de `Expedicion`. Los índices por ID y por coordenadas son de `MapaLiminal`, no copias de las habitaciones.
+Observer describe cómo el sensor avisa sin conocer receptores concretos. Mediator describe cómo `CentroVigilancia` coordina `LuzAlerta` y `Alarma`. No son el mismo patrón ni se solapan sus responsabilidades. `sensorAutorizado` es una regla local por ID, **no autenticación ni seguridad de red**.
 
-## 4. Flujo de responsabilidades de un turno con criatura
+## 4. Secuencia real de un turno válido con vigilancia
 
 ~~~mermaid
 sequenceDiagram
@@ -176,62 +191,94 @@ sequenceDiagram
     participant Caso as ProcesarTurno
     participant Sesion as Expedicion
     participant Exp as Explorador
-    participant Mapa as MapaLiminal
-    participant Monstruo as MonstruoOscuro
+    participant M as MonstruoOscuro
     participant Estrategia as EstrategiaMovimiento
+    participant Mapa as MapaLiminal
+    participant Sensor as SensorRuido
+    participant Centro as CentroVigilancia
+    participant Luz as LuzAlerta
+    participant Alarma
     Cliente->>Caso: procesar(ESTE)
     Caso->>Sesion: avanzar(ESTE)
     Sesion->>Exp: mover(ESTE)
-    Exp->>Mapa: salidaDesde(ubicacion, ESTE)
-    Mapa-->>Exp: Salida con destino válido
-    Exp-->>Sesion: nueva Habitacion
+    Exp->>Mapa: salidaDesde(...)
+    Mapa-->>Exp: salida válida
+    Exp-->>Sesion: nueva habitación
     Sesion->>Sesion: turnos++, evaluar meta
-    Sesion-->>Caso: estado confirmado
-    Caso->>Sesion: criatura()
-    Sesion-->>Caso: M-01 (si hay criatura)
-    Caso->>Monstruo: avanzar(nuevaHabitacion)
-    Monstruo->>Mapa: destinosDesde(ubicacion)
-    Mapa-->>Monstruo: destinos válidos e inmodificables
-    Monstruo->>Estrategia: elegirDestino(actual, objetivo, destinos)
-    Estrategia-->>Monstruo: destino propuesto
-    Monstruo->>Monstruo: validar antes de mutar
-    Monstruo-->>Caso: ubicación del monstruo
-    Caso-->>Cliente: ResultadoTurno aceptado + indicio de criatura
+    opt existe criatura
+        Sesion->>M: avanzar(nuevaHabitacion)
+        M->>Mapa: destinosDesde(...)
+        M->>Estrategia: elegirDestino(...)
+        Estrategia-->>M: propuesta
+        M->>M: validar antes de cambiar ubicación
+        M-->>Sesion: ubicación actual
+    end
+    Sesion-->>Caso: AvanceExpedicion
+    opt criaturaSeMovio y sensor vigila destino
+        Caso->>Sensor: detectarMovimiento(habitacion)
+        Sensor->>Centro: alDetectar(EventoRuido)
+        Centro->>Luz: encender()
+        Centro->>Alarma: avisar(EventoRuido)
+    end
+    Caso-->>Cliente: ResultadoTurno
 ~~~
 
-Si no hay salida para el explorador, el dominio rechaza **antes** de cambiar ubicación: no se incrementa el turno ni se consulta la estrategia. Si el explorador avanza correctamente, la aplicación solicita una acción posterior de criatura, incluso cuando se alcanza la meta. Si la estrategia propone un destino imposible, la criatura no se mueve y **solo su acción** se rechaza: el paso anterior del explorador sigue aceptado. El flujo es síncrono y **no afirma atomicidad global de ambas acciones**.
+**Rechazos:** sin salida válida, no hay turno, criatura ni aviso. Una propuesta inválida de Strategy rechaza solo el movimiento del monstruo y conserva la acción confirmada del explorador. Si un observador falla **después** del turno, la excepción inesperada puede propagarse; no existe rollback del evento ni reintentos automáticos. Es un límite explícito, no un defecto ocultado con un `catch` genérico.
 
-## 5. Decisiones arquitectónicas y sus alternativas
+## 5. Paquetes y archivos de las tres etapas
 
-| Decisión | Justificación | Qué sería un mal olor aquí |
+~~~text
+src/main/java/liminal/integrado/
+├── dominio/
+│   ├── mundo/
+│   │   ├── Posicion.java, Direccion.java, Habitacion.java
+│   │   └── Salida.java, MapaLiminal.java
+│   ├── exploracion/
+│   │   ├── Explorador.java, Expedicion.java
+│   │   └── AvanceExpedicion.java
+│   ├── criaturas/
+│   │   ├── MonstruoOscuro.java, EstadoCriatura.java
+│   │   ├── EstrategiaMovimiento.java
+│   │   └── Patrullar.java, Perseguir.java, Esperar.java
+│   └── vigilancia/
+│       ├── SensorRuido.java, ObservadorRuido.java, EventoRuido.java
+│       └── CentroVigilancia.java, LuzAlerta.java, Alarma.java
+├── aplicacion/
+│   └── ProcesarTurno.java, ResultadoTurno.java
+└── presentacion/
+    └── ClienteExpedicion.java
+
+src/test/java/liminal/integrado/
+├── PruebasExpedicion.java
+├── PruebasCriaturas.java
+└── PruebasVigilancia.java
+~~~
+
+## 6. Decisiones arquitectónicas y malos olores evitados
+
+| Decisión | Principio / beneficio | Evita |
 | --- | --- | --- |
-| Paquetes por capacidad del dominio | Permiten ubicar reglas y colaborar sin organizar todo por nombres de patrones | 23 paquetes artificiales `strategy`, `observer`, etc. |
-| `Posicion` como `record` | Igualdad de valores y coordenadas inmutables | Convertir entidades con ID y comportamiento en records por ahorrar código |
-| `MapaLiminal` valida salidas | La integridad del grafo pertenece al mapa, no al cliente | Vista o cliente manipulando directamente colecciones internas |
-| `Explorador` controla ubicación | La entidad no deja su posición modificable desde cualquier parte | Setter público que salta el mapa |
-| `Expedicion` conserva turno/meta y referencia a criatura | La sesión valida una criatura del mismo mapa sin convertirse en un motor gráfico | Un único `MotorJuego` con mapa, terminal y estrategias |
-| `ProcesarTurno` coordina dos acciones independientes | Conserva los rechazos locales y no inventa una transacción de rollback | Capturar todo en un `catch` que marque un paso ya ejecutado como fallido |
-| `ClienteExpedicion` crea el escenario | Deja explícitas las dependencias para aprender | DI container o factoría general de todo el universo innecesarios |
-| `EstrategiaMovimiento` + tres políticas | Strategy/OCP permite cambiar el algoritmo sin cambiar la identidad de la criatura; `MonstruoOscuro` protege su invariante | Un `switch` creciente en la entidad, movimiento calculado en la consola o teletransporte silencioso |
-| Introducir patrones **después** del problema | OCP/SRP/DIP donde realmente aportan, no como ritual | Una interfaz por objeto o Singleton global sin necesidad |
+| Sesión construye su propia criatura y publica `EstadoCriatura` | Encapsulamiento de invariantes | Referencia mutable que permite saltar turnos |
+| Mapa valida conexiones dirigidas | Cohesión y SRP | Cliente manipulando posiciones y rutas |
+| `Posicion` como `record`, `Habitacion` como `class` | Valor vs. identidad | Confundir una coordenada con una entidad |
+| Strategy intercambiable con validación de destino | OCP y comportamiento polimórfico | Condicionales crecientes, teletransporte |
+| Sensor depende de `ObservadorRuido` | Desacoplamiento / DIP justificado | Sensor dependiente de la central o de la alarma |
+| Mediador coordina luz y alarma | Responsabilidad de colaboración concreta | Todos los dispositivos dependiendo de todos |
+| `ProcesarTurno` conecta dominio y sensor | Separación aplicación/dominio | Monstruo con referencias a la vista y los receptores |
+| Cliente prepara dependencias directamente | Composition root sencilla | Contenedor DI, puertos o servicios sin necesidad |
 
-## 6. Estrategia de pruebas e integración CI
+No se reclama una demostración formal de los cinco SOLID. SRP/OCP y dependencia hacia contratos resultan observables; ISP está representado modestamente por interfaces pequeñas. Ningún principio obliga a inventar interfaces para todos los objetos.
 
-**Primero el dominio**, luego el caso de uso y por último el relato de consola:
+## 7. Patrones integrados, pruebas y suficiencia
 
-1. Mapa: límites, IDs/celdas únicas, salidas existentes y dirigidas, rechazo de diagonal y duplicados.
-2. Explorador: identidad estable, ubicación inicial y movimiento válido; rechazo no mueve.
-3. Expedición: cuatro éxitos, una solicitud inválida con cero costo, finalización, rechazo posterior.
-4. Caso de uso: estados/resultados útiles sin depender de captura de consola.
-5. Reproducibilidad: mismo escenario produce los mismos resultados.
-6. Compilación Java 21, pruebas en Linux y Windows **sin usar el computador del estudiante**.
+| GoF | Problema que resuelve | Prueba |
+| --- | --- | --- |
+| **Strategy** | Variar patrulla, persecución y espera de una criatura | [PruebasCriaturas.java](../src/test/java/liminal/integrado/PruebasCriaturas.java) |
+| **Observer** | Entregar eventos del sensor a sus observadores | [PruebasVigilancia.java](../src/test/java/liminal/integrado/PruebasVigilancia.java) |
+| **Mediator** | Activar luz y alarma por coordinación central | [PruebasVigilancia.java](../src/test/java/liminal/integrado/PruebasVigilancia.java) |
 
-Se creó `scripts/verificar.sh`: compila solo este proyecto con Java 21, ejecuta `PruebasExpedicion` **y `PruebasCriaturas`** y verifica el resultado de consola. El [workflow dedicado](../../../.github/workflows/expedicion-liminal-integrada.yml) ejecuta ese script en Ubuntu y Windows. El workflow general conserva sus tareas anteriores. **Compilar no equivale a probar**, por eso hay ambas verificaciones.
+Los otros **20 GoF** se conservan en los [23 ejemplos liminales autónomos](../../../colecciones/liminal/MATRIZ_ALINEACION.md). No son requisitos pendientes de este simulador.
 
-## 7. Definición de suficiente
+**Verificación:** `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh` compila Java 21, ejecuta tres pruebas y comprueba salida de consola. El [workflow propio](../../../.github/workflows/expedicion-liminal-integrada.yml) corre en Ubuntu y Windows; el workflow general preserva los otros proyectos.
 
-**Etapa 1 ya implementada:** las reglas R-INT-01…R-INT-06 y el guion de [ESCENARIO_01.md](ESCENARIO_01.md) están representados en Java y en pruebas. Esta base es **suficiente como laboratorio de capas y dominio**.
-
-**Etapa 2 completada:** el integrador usa Strategy con tres políticas, mantiene la identidad y las rutas, narra encuentros sin combate y verifica la expedición completa. Esto es **suficiente para cerrar el proyecto integrador académico básico**. Los eventos, cámaras, inventarios y otros GoF son extensiones **opcionales**, no deuda técnica por llenar cuotas.
-
-**No se requieren** interacción manual, gráficos, persistencia, física, batalla, Spring Boot, JavaFX, Maven ni todos los 23 GoF integrados.
+**Definición de suficiente:** reglas coherentes, expedición completa, tres GoF justificados que colaboran, código y UML correspondientes, pruebas aprobadas y límites documentados. No se exige interacción manual, gráficos, persistencia ni todos los GoF integrados.
