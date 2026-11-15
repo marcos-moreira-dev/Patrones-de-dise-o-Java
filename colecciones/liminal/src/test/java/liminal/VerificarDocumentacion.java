@@ -88,6 +88,15 @@ public final class VerificarDocumentacion {
             comprobarUml(diagramas, "composite.svg", "~ agregar(objeto): void");
             comprobarUml(diagramas, "facade.svg", "~ cruzar(destino): void", "~ salida(origen, destino)");
             comprobarUml(diagramas, "flyweight.svg", "~ obtener(...): Textura");
+            comprobarUml(diagramas, "abstractfactory.svg", "~ descripcion(): String");
+            comprobarUml(diagramas, "command.svg", "~ pulsar(): String");
+            comprobarUml(diagramas, "interpreter.svg", "~ analizar(texto): Expresion");
+            comprobarUml(diagramas, "iterator.svg", "~ id(): String");
+            comprobarUml(diagramas, "mediator.svg", "~ avisar()");
+            comprobarUml(diagramas, "memento.svg", "~ guardar(linterna)", "~ restaurar(recuerdo)");
+            comprobarUml(diagramas, "observer.svg", "~ suscribir(observador): void");
+            comprobarUml(diagramas, "state.svg", "~ desbloquear(llave): void");
+            comprobarUml(diagramas, "strategy.svg", "~ cambiarEstrategia(nueva)");
             comprobarUml(diagramas, "abstractfactory.svg",
                     "LuzAmarilla", "LuzPiscinas", "PuertaAmarilla", "PuertaPiscinas",
                     "FabricaAmarilla", "FabricaPiscinas");

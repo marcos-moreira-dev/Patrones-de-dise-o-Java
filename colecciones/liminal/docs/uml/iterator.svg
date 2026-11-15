@@ -49,6 +49,6 @@
 <rect class="box" x="405" y="565" width="400" height="115" rx="3"/>
 <text class="title" x="605" y="602">Habitacion</text>
 <path class="sep" d="M405 620 H805"/>
-<text class="body" x="419" y="653">+ id(): String</text>
+<text class="body" x="419" y="653">~ id(): String</text>
 <text class="note" x="700" y="726">Los dos contratos Iterable e Iterator son de Java; las listas almacenan referencias a objetos.</text>
 </svg>

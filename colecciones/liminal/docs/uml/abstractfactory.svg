@@ -24,7 +24,7 @@
 <path class="sep" d="M415 125 H795"/>
 <text class="body" x="433" y="158">- luz: LuzDelNivel</text>
 <text class="body" x="433" y="187">- puerta: PuertaDelNivel</text>
-<text class="body" x="433" y="216">+ descripcion(): String</text>
+<text class="body" x="433" y="216">~ descripcion(): String</text>
 <rect class="interface" x="885" y="65" width="430" height="193" rx="4"/>
 <text class="title" x="1100" y="102">«interface» FabricaAmbiente</text>
 <path class="sep" d="M885 120 H1315"/>

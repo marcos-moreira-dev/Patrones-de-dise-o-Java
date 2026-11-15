@@ -12,6 +12,6 @@
 <rect x="485" y="60" width="370" height="160" rx="3" class="iface"/><text class="title" x="670" y="94">«interface» Mediador</text><path class="sep" d="M485 112 H855"/><text class="body" x="499" y="143">+ notificarRuido(id)</text>
 <rect x="170" y="342" width="350" height="139" rx="3" class="box"/><text class="title" x="345" y="376">SensorRuido</text><path class="sep" d="M170 394 H520"/><text class="body" x="184" y="425">- mediador: Mediador</text>
 <rect x="720" y="316" width="375" height="165" rx="3" class="box"/><text class="title" x="907.5" y="350">CentroControl</text><path class="sep" d="M720 368 H1095"/><text class="body" x="734" y="399">- luz: Luz</text><text class="body" x="734" y="424">- alarma: Alarma</text>
-<rect x="1145" y="100" width="212" height="119" rx="3" class="box"/><text class="title" x="1251" y="134">Luz</text><path class="sep" d="M1145 152 H1357"/><text class="body" x="1159" y="183">+ encender()</text>
-<rect x="1135" y="350" width="230" height="119" rx="3" class="box"/><text class="title" x="1250" y="384">Alarma</text><path class="sep" d="M1135 402 H1365"/><text class="body" x="1149" y="433">+ avisar()</text>
+<rect x="1145" y="100" width="212" height="119" rx="3" class="box"/><text class="title" x="1251" y="134">Luz</text><path class="sep" d="M1145 152 H1357"/><text class="body" x="1159" y="183">~ encender()</text>
+<rect x="1135" y="350" width="230" height="119" rx="3" class="box"/><text class="title" x="1250" y="384">Alarma</text><path class="sep" d="M1135 402 H1365"/><text class="body" x="1149" y="433">~ avisar()</text>
 <text class="note" x="700" y="627">El sensor no tiene referencias a Luz ni a Alarma; solo conoce Mediador.</text></svg>

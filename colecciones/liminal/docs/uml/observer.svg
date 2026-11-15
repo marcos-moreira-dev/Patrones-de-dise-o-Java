@@ -21,8 +21,8 @@
 <path class="separador" d="M394 140 H865"/>
 <text class="detalle" x="412" y="176">- observadores: Map&lt;String,</text>
 <text class="detalle" x="429" y="203">ObservadorInterruptor&gt;</text>
-<text class="detalle" x="412" y="241">+ suscribir(observador): void</text>
-<text class="detalle" x="412" y="268">+ pulsar(): void</text>
+<text class="detalle" x="412" y="241">~ suscribir(observador): void</text>
+<text class="detalle" x="412" y="268">~ pulsar(): void</text>
 <!-- Contrato -->
 <rect class="interfaz" x="960" y="80" width="465" height="165" rx="3"/>
 <text class="titulo" x="1192.5" y="119">«interface» ObservadorInterruptor</text>

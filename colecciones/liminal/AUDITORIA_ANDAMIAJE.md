@@ -164,3 +164,11 @@ La revisión transversal identificó llamadas de **acceso de paquete** represent
 **Razonamiento:** enseñar `+` como público cuando Java no lo es desorienta al estudiante sobre el contrato real. Se dejan intactos el código de las clases y su estructura de roles GoF. `VerificarDocumentacion` incorpora aserciones de cadenas para estas visibilidades. Los tests estructurales no sustituyen la inspección visual de flechas ni de solapamientos.
 
 **Avance UML:** revisiones de visibilidad aplicadas a Factory Method, Chain, Template Method y a estos siete diagramas adicionales; quedan por inspeccionar las visibilidades del resto de diagramas de comportamiento y los laboratorios.
+
+## 16. UML — visibilidad de los patrones de comportamiento
+
+Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **Abstract Factory, Command, Interpreter, Iterator, Mediator, Memento, Observer, State y Strategy**. Los diagramas marcaban como públicos (`+`) algunos métodos **sin modificador** que en Java tienen acceso **de paquete** (`~`). Se corrigieron: `Escena.descripcion`; `PanelBotones.pulsar` y los receptores de Command; el analizador y el contexto de Interpreter; `Habitacion.id` en Iterator; receptores de Mediator; operaciones del originador/cuidador Memento; suscripción y pulsación Observer; operaciones de la puerta de State; y cambios de estrategia y consultas a mapa en Strategy.
+
+**Sin cambios de código Java:** los diagramas representan el acceso real, no prescriben que se vuelva `public` toda la implementación. No se agregaron tipos ni capas. `VerificarDocumentacion` comprueba los símbolos principales. Para los demás cuatro diagramas sin modificación en este lote (Builder, Decorator, Proxy y Visitor), las operaciones dibujadas coinciden con su visibilidad de interfaz o método público en la revisión dirigida.
+
+**Límite:** esta es la revisión textual de visibilidad de operaciones representadas; queda pendiente cotejar exhaustivamente las relaciones gráficas (sentido, multiplicidades, intersecciones y cobertura de tipos), variantes y laboratorios.
