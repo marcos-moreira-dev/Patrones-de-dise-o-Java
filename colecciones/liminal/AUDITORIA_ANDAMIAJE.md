@@ -16,7 +16,7 @@
 
 ## 2. Inventario de la colección auditada
 
-Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **290 archivos** en la instantánea revisada. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
+Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **291 archivos** en el inventario actualizado al plan integrador del 15 de noviembre de 2026. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
 
 | Área dentro de `colecciones/liminal/` | Archivos |
 | --- | ---: |
@@ -24,9 +24,9 @@ Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **290 archivos
 | `src/test/java/` — pruebas de la colección | 34 |
 | `docs/` — fichas, UML y laboratorios | 60 |
 | `assets/` — arte de apoyo | 5 |
-| Documentos Markdown en la raíz liminal | 8 |
+| Documentos Markdown en la raíz liminal | 9 |
 | `scripts/` — verificación específica de Liminal | 2 |
-| **Total** | **290** |
+| **Total** | **291** |
 
 El conteo es un inventario de estructura, **no una certificación semántica**. La auditoría sigue el recorrido de las clases de los **23 patrones GoF liminales, siete variantes, dos laboratorios y su documentación asociada**, sin intervenir en los demás proyectos.
 
@@ -81,13 +81,13 @@ Para cada uno de los **23 patrones de Expedición Liminal**, siete variantes y d
 
 Registrar hallazgos con **ruta → rol → consumidor → coste → propuesta → prueba de regresión**. No borrar clases por nombre, cantidad de líneas o intuición. Toda poda requiere compilar Java 21, ejecutar pruebas, revisar UML y verificar enlaces.
 
-**Alcance demostrado hasta ahora:** estructura de Liminal, revisión de declaraciones `record` del catálogo y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 290 archivos liminales.**
+**Alcance demostrado hasta ahora:** estructura de Liminal, revisión de declaraciones `record` del catálogo y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 291 archivos liminales.**
 
 [Plan de variantes](PLAN_VARIANTES.md) · [Contrato del dominio](DOMINIO.md) · [Guía de lectura](GUIA_LECTURA_CODIGO.md).
 
 ## 8. Segunda pasada semántica — revisión dirigida de las siete variantes
 
-Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 290 archivos liminales.**
+Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 291 archivos liminales.**
 
 | Área y ruta | Rol / consumidor | Evidencia y criterio |
 | --- | --- | --- |
@@ -183,7 +183,7 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 
 ## 18. Estado de cierre y siguientes pasos (inventario actualizado)
 
-**Instantánea del árbol: 290 archivos en `colecciones/liminal/`**: 181 fuentes Java principales, 34 Java de prueba, 60 documentos/diagramas bajo `docs/`, cinco activos, ocho documentos raíz y dos scripts. El incremento de nueve archivos principales proviene de **separar los mismos nueve tipos existentes** en el laboratorio UML; no se agregaron nueve clases.
+**Inventario actualizado: 291 archivos en `colecciones/liminal/`**: 181 fuentes Java principales, 34 Java de prueba, 60 documentos/diagramas bajo `docs/`, cinco activos, **nueve documentos raíz** y dos scripts. El incremento previo de nueve archivos principales proviene de **separar los mismos nueve tipos existentes** en el laboratorio UML; no se agregaron nueve clases. El documento raíz número nueve es `PLAN_INTEGRADOR.md`: **solo planificación**, no nuevas clases ni nuevo proyecto implementado.
 
 | Frente exclusivo de Expedición Liminal | Evidencia de esta etapa | Estado |
 | --- | --- | --- |
@@ -302,3 +302,7 @@ Se recorrieron **los 41 archivos Markdown bajo `colecciones/liminal/`**: ocho do
 **Regla de parada para evitar sobreingeniería:** si el nivel 1 está satisfecho y no queda ningún error reproducible que altere roles GoF, reglas de identidad/movimiento, ejemplos visibles, pruebas o enlaces, **se declara suficiente y se deja de agregar andamiaje**. Más clases, controles, abstracciones, variantes o pruebas no equivalen necesariamente a mejor material didáctico.
 
 **Estado de esta pasada:** lectura dirigida de los colaboradores principales creacionales, estructurales y de comportamiento con énfasis en identidad, referencias, acceso, movimiento y contratos de colección. Las correcciones puntuales ya documentadas no justifican rediseñar las familias de patrones. Es importante no presentar esta pasada como verificación manual exhaustiva de los 181 archivos Java principales, que incluyen variantes y laboratorios. Si CI confirma el cambio, no hay bloqueador técnico conocido para el nivel 1.
+
+## 27. Referencia de planificación para el tercer bloque (15 de noviembre de 2026)
+
+Se creó [PLAN_INTEGRADOR.md](PLAN_INTEGRADOR.md), enlazado desde README y PLAN, para registrar sin ambigüedades **tres bloques didácticos separados**: patrones técnicos clásicos, 23 patrones liminales encapsulados y futuro proyecto integrador. El nuevo archivo delimita arquitectura centrada en el dominio, simulación determinista, mapa bidimensional con salidas dirigidas, etapas y reglas de suficiencia, además de una **pista editorial independiente** de alineación de los 23 ejemplos existentes. Esta actualización es exclusivamente documental: el simulador todavía no existe y no se modificaron clases Java, pruebas, scripts ni proyectos ajenos.
