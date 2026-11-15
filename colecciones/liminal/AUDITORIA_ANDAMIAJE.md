@@ -16,17 +16,17 @@
 
 ## 2. Inventario de la colección auditada
 
-Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **281 archivos** en la instantánea revisada. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
+Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **290 archivos** en la instantánea revisada. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
 
 | Área dentro de `colecciones/liminal/` | Archivos |
 | --- | ---: |
-| `src/main/java/` — Java de producción | 172 |
+| `src/main/java/` — Java de producción | 181 |
 | `src/test/java/` — pruebas de la colección | 34 |
 | `docs/` — fichas, UML y laboratorios | 60 |
 | `assets/` — arte de apoyo | 5 |
 | Documentos Markdown en la raíz liminal | 8 |
 | `scripts/` — verificación específica de Liminal | 2 |
-| **Total** | **281** |
+| **Total** | **290** |
 
 El conteo es un inventario de estructura, **no una certificación semántica**. La auditoría sigue el recorrido de las clases de los **23 patrones GoF liminales, siete variantes, dos laboratorios y su documentación asociada**, sin intervenir en los demás proyectos.
 
@@ -81,13 +81,13 @@ Para cada uno de los **23 patrones de Expedición Liminal**, siete variantes y d
 
 Registrar hallazgos con **ruta → rol → consumidor → coste → propuesta → prueba de regresión**. No borrar clases por nombre, cantidad de líneas o intuición. Toda poda requiere compilar Java 21, ejecutar pruebas, revisar UML y verificar enlaces.
 
-**Alcance demostrado hasta ahora:** estructura de Liminal, revisión de declaraciones `record` del catálogo y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 281 archivos liminales.**
+**Alcance demostrado hasta ahora:** estructura de Liminal, revisión de declaraciones `record` del catálogo y revisión dirigida de implementaciones. **No equivale todavía a una auditoría semántica exhaustiva de los 290 archivos liminales.**
 
 [Plan de variantes](PLAN_VARIANTES.md) · [Contrato del dominio](DOMINIO.md) · [Guía de lectura](GUIA_LECTURA_CODIGO.md).
 
 ## 8. Segunda pasada semántica — revisión dirigida de las siete variantes
 
-Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 281 archivos liminales.**
+Se examinaron las clases que contienen las responsabilidades principales de las siete demostraciones, junto con sus pruebas representativas. **Esta revisión dirigida no equivale a leer línea por línea los 290 archivos liminales.**
 
 | Área y ruta | Rol / consumidor | Evidencia y criterio |
 | --- | --- | --- |
@@ -99,7 +99,7 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 | `chainofresponsibility/variantes/pipeline/` | P: validadores enlazados | **Defecto corregido:** se podían crear ciclos indirectos que producirían recursión indefinida. `ValidadorCruce.enlazar` ahora verifica aciclicidad antes de alterar el enlace, con pruebas para ciclos de 2 y 3 nodos y autoenlace |
 | `observer/variantes/pushpull/` | P: emisor y observadores | **Defecto corregido:** iterar directamente el mapa fallaba si un receptor se daba de baja durante el aviso. Se toma una instantánea previa de cada grupo y se prueba el auto-retiro. El orden push y luego pull es determinista, no orden global de suscripción |
 
-**Decisión de poda:** ninguna clase de estas variantes se elimina en este lote: los tipos revisados conservan roles didácticos o de dominio identificables. Las clases cliente y de prueba siguen separadas. **La regresión de la cadena pasó GitHub Actions (commit `ceb2c044`) con Java 21.** La regresión de auto-retiro de Observer requiere la misma comprobación de CI.
+**Decisión de poda:** ninguna clase de estas variantes se elimina en este lote: los tipos revisados conservan roles didácticos o de dominio identificables. Las clases cliente y de prueba siguen separadas. **La regresión de la cadena pasó GitHub Actions (commit `ceb2c044`) con Java 21.** La regresión de auto-retiro de Observer también pasó GitHub Actions con Java 21 (commit `4c7e708c`).
 
 **Siguiente alcance aún abierto:** auditoría semántica de las 23 implementaciones base, correspondencia de flechas y multiplicidades en todos los UML liminales, laboratorios y utilidades de esta colección. Mantener la distinción entre esta revisión dirigida y una certificación total.
 
@@ -180,3 +180,22 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 **Corrección:** se trasladaron los nueve tipos superiores a nueve archivos `.java` con sus nombres, manteniendo paquetes, nombres, visibilidad y comportamiento. `ClienteRelacionesUml.java` queda dedicado al recorrido visible del ejemplo. **No hay clases nuevas.** `RegistroExpedicion.EntradaRegistro` sigue anidada y privada, porque restringir quién puede crearla es una parte pedagógica de la composición R-09; no se separa artificialmente.
 
 **Pruebas y documentación:** `VerificarDocumentacion` comprueba que cada colaborador tiene su propio archivo con un solo tipo superior; las pruebas `PruebaRelacionesUml` y la demostración de consola siguen validando referencias, equipos compartidos y cierre lógico. La ficha proporciona enlaces directos al código de cada participante. CI valida compilación y ejecución con Java 21, sin requerir instalaciones del estudiante.
+
+## 18. Estado de cierre y siguientes pasos (inventario actualizado)
+
+**Instantánea del árbol: 290 archivos en `colecciones/liminal/`**: 181 fuentes Java principales, 34 Java de prueba, 60 documentos/diagramas bajo `docs/`, cinco activos, ocho documentos raíz y dos scripts. El incremento de nueve archivos principales proviene de **separar los mismos nueve tipos existentes** en el laboratorio UML; no se agregaron nueve clases.
+
+| Frente exclusivo de Expedición Liminal | Evidencia de esta etapa | Estado |
+| --- | --- | --- |
+| 23 clientes pedagógicos y 23 fichas | Lectura y contraste de la ruta principal | Revisado editorialmente |
+| 23 UML de clases principales | XML/enlaces por CI, lectura textual de etiquetas, correcciones de visibilidad `public/protected/package` | Revisión textual terminada; inspección visual completa pendiente |
+| 23 patrones: clases colaboradoras | Revisión dirigida y pruebas positivas/negativas; hallazgos y correcciones puntuales | Pendiente lectura semántica exhaustiva de todas las clases |
+| Siete variantes | Roles de diseño, pruebas de cada variante y salidas de consola contrastados; CI | Revisadas; no se recomienda añadir variantes por cantidad |
+| Laboratorio `class` frente a `record` | Clase y valor separados; mapa y equivalencia probados | Revisado |
+| Laboratorio de relaciones UML | Tipos navegables, composición local y referencias independientes; CI tras división de archivos | Revisado |
+| Andamiaje técnico **dentro de Liminal** | Verificadores específicos examinados; separación de los clientes y pruebas | Pendiente cierre de posibles redundancias locales |
+| CI Java 21 | Trabajo en GitHub Actions, sin tocar la PC del estudiante | Aprobado en Linux y Windows para la división del laboratorio |
+
+**Próximos pasos hasta la auditoría cerrada:** (1) comparar cada relación UML significativa con las referencias, multiplicidades y restricciones del código, incluyendo inspección gráfica; (2) terminar la lectura semántica de las clases colaboradoras de los 23 patrones y documentar solo hallazgos reproducibles; (3) revisar la relación coste-beneficio de los verificadores/scripts locales; (4) ejecutar la comprobación integral final y emitir un dictamen de cierre sin prometer corrección de cuestiones fuera del alcance.
+
+**Restricción de alcance:** no se auditan ni modifican Arena Java, MiniSO, la colección técnica original ni el workflow global. La CI compartida puede ejecutarlos automáticamente, pero eso no los incorpora a este encargo.

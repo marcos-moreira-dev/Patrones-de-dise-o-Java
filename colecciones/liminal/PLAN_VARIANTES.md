@@ -167,7 +167,7 @@ Las descripciones pedagógicas largas van en Markdown; comentarios Java cortos. 
 
 **Cobertura editorial completada:** los 17 patrones sin segunda implementación incluyen una sección breve «Otras implementaciones (sin código extra)». La [auditoría de andamiaje](AUDITORIA_ANDAMIAJE.md) tiene clasificación y candidatos de simplificación.
 
-**Aún no demostrado por esta etapa:** una auditoría semántica línea por línea de los **281 archivos de `colecciones/liminal/`**, o una auditoría visual exhaustiva de sus diagramas UML. No mezclar esas tareas con la verificación de compilación.
+**Aún no demostrado por esta etapa:** una auditoría semántica línea por línea de los **290 archivos de `colecciones/liminal/`**, o una auditoría visual exhaustiva de sus diagramas UML. No mezclar esas tareas con la verificación de compilación.
 
 ### Etapas de implementación originalmente planificadas
 
