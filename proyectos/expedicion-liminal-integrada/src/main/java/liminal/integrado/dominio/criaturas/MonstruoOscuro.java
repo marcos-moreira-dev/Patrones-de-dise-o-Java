@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import liminal.integrado.dominio.mundo.Habitacion;
 import liminal.integrado.dominio.mundo.MapaLiminal;
+import liminal.integrado.dominio.mundo.MovimientoRechazadoException;
 
 /** Entidad que conserva su identidad y valida los destinos propuestos por Strategy. */
 public final class MonstruoOscuro {
@@ -42,7 +43,7 @@ public final class MonstruoOscuro {
         // Strategy elige, pero esta entidad valida antes de mutar:
         // una implementación defectuosa no puede teletransportar a la criatura.
         if (propuesta != ubicacion && !opciones.contains(propuesta)) {
-            throw new IllegalStateException("La estrategia propuso una salida inexistente");
+            throw new MovimientoRechazadoException("La estrategia propuso una salida inexistente");
         }
         ubicacion = propuesta;
         return ubicacion;
