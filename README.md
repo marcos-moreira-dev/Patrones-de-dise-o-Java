@@ -94,12 +94,15 @@ FCFS, Round Robin y prioridad. Son **ticks simulados**, no benchmarks del PC.
 
 ```
 Patrones-de-dise-o-Java/
-├── creacionales/
-├── estructurales/
-├── comportamiento/
+├── creacionales/                      (GoF técnicos)
+├── estructurales/                     (GoF técnicos)
+├── comportamiento/                    (GoF técnicos)
+├── colecciones/
+│   └── liminal/                       (23 GoF aislados y variantes)
 ├── proyectos/
 │   ├── arena-java/
-│   └── miniso/
+│   ├── miniso/
+│   └── expedicion-liminal-integrada/  (tercer bloque GoF, etapa 1)
 ├── App.java
 ├── Main.java
 ├── README.md
@@ -113,6 +116,7 @@ Patrones-de-dise-o-Java/
   de arquitectura (`dominio`, `aplicacion`, etc.). Ninguno requiere Maven para
   *definir* esos paquetes.
 * `Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
+* El **integrador liminal** se verifica por separado con `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh`; tiene un workflow propio en Linux y Windows y no altera la ejecución de los ejemplos clásicos, las 23 demos liminales, Arena Java ni MiniSO.
 
 ---
 
