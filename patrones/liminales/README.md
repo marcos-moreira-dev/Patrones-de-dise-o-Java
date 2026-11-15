@@ -81,18 +81,18 @@ Sin JavaFX, Maven, redes ni frameworks. Desde la **raíz del repositorio**:
 En Git Bash o Linux:
 
 ~~~bash
-bash colecciones/liminal/scripts/verificar.sh
-java -cp colecciones/liminal/out liminal.DemoLiminal todos
-java -cp colecciones/liminal/out liminal.DemoLiminal creacionales
-java -cp colecciones/liminal/out liminal.DemoLiminal strategy
-java -cp colecciones/liminal/out liminal.DemoLiminal visitor
+bash patrones/liminales/scripts/verificar.sh
+java -cp patrones/liminales/out liminal.DemoLiminal todos
+java -cp patrones/liminales/out liminal.DemoLiminal creacionales
+java -cp patrones/liminales/out liminal.DemoLiminal strategy
+java -cp patrones/liminales/out liminal.DemoLiminal visitor
 ~~~
 
 En PowerShell:
 
 ~~~powershell
 powershell -ExecutionPolicy Bypass -File .\colecciones\liminal\scripts\verificar.ps1
-java -cp colecciones/liminal/out liminal.DemoLiminal todos
+java -cp patrones/liminales/out liminal.DemoLiminal todos
 ~~~
 
 Los scripts compilan código y pruebas, ejecutan las **23 verificaciones** y muestran las demostraciones por consola. También se ejecutan en la [verificación principal](../../scripts/verificar.sh) y en GitHub Actions, sin intervención del usuario.

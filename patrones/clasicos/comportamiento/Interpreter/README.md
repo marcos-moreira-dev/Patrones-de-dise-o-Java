@@ -1,6 +1,6 @@
 # Interpreter — un lenguaje mínimo de precios
 
-Este ejemplo pertenece a la **colección técnica original** de los patrones GoF. Complementa la [versión visual de Expedición Liminal](../../colecciones/liminal/docs/patrones/comportamiento/interpreter.md), pero utiliza un dominio comercial sencillo: calcular precios a partir de instrucciones escritas.
+Este ejemplo pertenece a la **colección técnica original** de los patrones GoF. Complementa la [versión visual de Expedición Liminal](../../../liminales/docs/patrones/comportamiento/interpreter.md), pero utiliza un dominio comercial sencillo: calcular precios a partir de instrucciones escritas.
 
 ## 1. Problema y pequeña gramática
 
@@ -98,7 +98,7 @@ El analizador construye el árbol; las llamadas `interpretar(contexto)` recorren
 Desde la raíz del repositorio:
 
 ```bash
-javac --release 21 -encoding UTF-8 -d out/clasicos comportamiento/Interpreter/*.java
+javac --release 21 -encoding UTF-8 -d out/clasicos patrones/clasicos/comportamiento/Interpreter/*.java
 java -cp out/clasicos comportamiento.Interpreter.ClienteInterpreter
 ```
 
@@ -106,4 +106,4 @@ También se ejecuta desde `ProbarComportamiento.probarInterpreter()` y forma par
 
 **Cuándo no usar Interpreter:** si solamente quieres elegir entre dos o tres botones, un `switch` o Command puede ser suficiente. Este patrón cobra valor cuando tienes **una gramática definida que produce expresiones componibles** y quieres separar análisis de interpretación.
 
-[Volver al README principal](../../README.md) · [Guía UML general](../../UML_GUIDE.md).
+[Volver al README principal](../../../../README.md) · [Guía UML general](../../../../UML_GUIDE.md).

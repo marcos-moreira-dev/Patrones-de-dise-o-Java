@@ -15,6 +15,11 @@ estudiar también las fases de construcción con Maven sin frameworks.
 
 **[Cierre académico 1.0 y ruta de lectura de los tres bloques](docs/CIERRE_ACADEMICO_GOF.md)**: estado verificado, decisiones de ingeniería, alcance de las auditorías y qué se deja expresamente fuera.
 
+### Acceso rápido
+
+- **Patrones GoF:** [catálogo clásico](patrones/clasicos/README.md) y [colección liminal](patrones/liminales/README.md); consulta el [índice de patrones](patrones/README.md).
+- **Proyectos independientes:** [Arena Java](proyectos/arena-java/README.md), [MiniSO](proyectos/miniso/README.md) y [Expedición Liminal Integrada](proyectos/expedicion-liminal-integrada/README.md), reunidos en [proyectos/](proyectos/README.md).
+
 ### Cómo estudiar este laboratorio
 
 1. Empieza por el problema que resuelve el patrón (puede ser un ejemplo cotidiano, un videojuego o un negocio).
@@ -28,31 +33,31 @@ La [guía UML](UML_GUIDE.md) explica los símbolos, la lectura de multiplicidade
 
 Además de los ejemplos técnicos existentes, se ha completado una segunda colección **visual y narrativa** de los **23 patrones GoF**, ambientada en habitaciones, puertas, linternas y criaturas liminales. Cada patrón tiene demostración Java 21 por consola, prueba, diagrama UML SVG y ficha Markdown. La colección incluye tres imágenes atmosféricas originales y una lámina con puerta, linterna, interruptor y monstruo oscuro; nuevas láminas serían una ampliación opcional.
 
-Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](colecciones/liminal/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](colecciones/liminal/PLAN.md). Empieza por el [README de la colección liminal](colecciones/liminal/README.md).
+Antes de escribirlos se fijan las reglas del mundo y la metodología para derivarlas: [cómo definir un dominio](docs/modelado/COMO_DEFINIR_UN_DOMINIO.md), [contrato de Expedición Liminal](patrones/liminales/DOMINIO.md) y [plan de implementación, UML, pruebas e imágenes](patrones/liminales/PLAN.md). Empieza por el [README de la colección liminal](patrones/liminales/README.md).
 
-La ampliación **está implementada**: [siete variantes GoF de ingeniería y laboratorio `class` frente a `record`](colecciones/liminal/PLAN_VARIANTES.md). Los 23 ejercicios principales siguen siendo la ruta de entrada; [la auditoría del andamiaje](colecciones/liminal/AUDITORIA_ANDAMIAJE.md) distingue clases del dominio, roles GoF y herramientas de verificación.
+La ampliación **está implementada**: [siete variantes GoF de ingeniería y laboratorio `class` frente a `record`](patrones/liminales/PLAN_VARIANTES.md). Los 23 ejercicios principales siguen siendo la ruta de entrada; [la auditoría del andamiaje](patrones/liminales/AUDITORIA_ANDAMIAJE.md) distingue clases del dominio, roles GoF y herramientas de verificación.
 
-![Pasillo amarillo inspirado en espacios liminales, con luces fluorescentes y alfombra](colecciones/liminal/assets/ambientes/pasillo-amarillo.webp)
+![Pasillo amarillo inspirado en espacios liminales, con luces fluorescentes y alfombra](patrones/liminales/assets/ambientes/pasillo-amarillo.webp)
 
-**[Ver el atlas visual de los escenarios](colecciones/liminal/GUIA_VISUAL.md)** · [Galería de ilustraciones originales](colecciones/liminal/assets/README.md).
+**[Ver el atlas visual de los escenarios](patrones/liminales/GUIA_VISUAL.md)** · [Galería de ilustraciones originales](patrones/liminales/assets/README.md).
 
-**[Laboratorio complementario de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md)**: composición, agregación y ciclo de vida, con diagramas y pruebas Java.
+**[Laboratorio complementario de relaciones UML](patrones/liminales/docs/laboratorios/relaciones-uml.md)**: composición, agregación y ciclo de vida, con diagramas y pruebas Java.
 
-**[Guía de lectura del código liminal](colecciones/liminal/GUIA_LECTURA_CODIGO.md)**: la misma organización de clases y clientes que en los ejemplos clásicos, con archivos individuales para cada tipo y pruebas separadas.
+**[Guía de lectura del código liminal](patrones/liminales/GUIA_LECTURA_CODIGO.md)**: la misma organización de clases y clientes que en los ejemplos clásicos, con archivos individuales para cada tipo y pruebas separadas.
 
-Los directorios técnicos actuales y los microproyectos permanecen donde están; la nueva ruta los complementa, no los sustituye. Para comprobar el catálogo completo: `bash colecciones/liminal/scripts/verificar.sh` (Java 21).
+Los dos catálogos GoF están reunidos en `patrones/`; los tres proyectos independientes se encuentran en `proyectos/`. Para comprobar el catálogo completo: `bash patrones/liminales/scripts/verificar.sh` (Java 21).
 
 ### Dos colecciones y un laboratorio UML
 
-La **colección técnica original** también está completa con los **23 patrones GoF**. Su nuevo [Interpreter de precios](comportamiento/Interpreter/README.md) analiza un lenguaje mínimo y construye un árbol de expresiones con descuentos y recargos anidados.
+La **colección técnica original** también está completa con los **23 patrones GoF**. Su nuevo [Interpreter de precios](patrones/clasicos/comportamiento/Interpreter/README.md) analiza un lenguaje mínimo y construye un árbol de expresiones con descuentos y recargos anidados.
 
-En la colección liminal incorporamos además un [laboratorio de relaciones UML](colecciones/liminal/docs/laboratorios/relaciones-uml.md), independiente de GoF, para distinguir composición, agregación compartida, asociación y dependencia. Los 23 patrones siguen contando como 23, no 24.
+En la colección liminal incorporamos además un [laboratorio de relaciones UML](patrones/liminales/docs/laboratorios/relaciones-uml.md), independiente de GoF, para distinguir composición, agregación compartida, asociación y dependencia. Los 23 patrones siguen contando como 23, no 24.
 
 ### Tercera ruta GoF: arquitectura liminal integrada (3 patrones y auditoría final)
 
 El **[proyecto integrador Expedición Liminal](proyectos/expedicion-liminal-integrada/README.md)** tiene un [escenario de exploración reproducible](proyectos/expedicion-liminal-integrada/docs/ESCENARIO_01.md), reglas de [dominio](proyectos/expedicion-liminal-integrada/DOMINIO.md) y una [arquitectura en capas con UML](proyectos/expedicion-liminal-integrada/docs/ARQUITECTURA.md). Las etapas de estudio están implementadas en Java 21 con cuatro clientes deterministas, [pruebas del dominio](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasExpedicion.java), [Strategy](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasCriaturas.java) y [Observer/Mediator](proyectos/expedicion-liminal-integrada/src/test/java/liminal/integrado/PruebasVigilancia.java). El monstruo cambia comportamiento sin violar el mapa y un sensor alerta a la central. El integrador incluye también [tres guiones adicionales](proyectos/expedicion-liminal-integrada/docs/ESCENARIOS_02_04.md) sobre piscinas, radio y luces. Consulta la [auditoría arquitectónica final](proyectos/expedicion-liminal-integrada/docs/AUDITORIA_FINAL.md) y la [auditoría de comportamientos reales](proyectos/expedicion-liminal-integrada/docs/AUDITORIA_COMPORTAMIENTOS.md). Los ejemplos GoF clásicos y liminales aislados permanecen separados.
 
-### Microproyectos con arquitectura real
+### Tres proyectos independientes
 
 El primer microproyecto es **[Arena Java](proyectos/arena-java/README.md)**:
 un juego pequeño de combate por turnos, con dos escenarios, renderizado ASCII,
@@ -80,7 +85,7 @@ siguen sin requerir Maven.
 La [guía para contribuir](CONTRIBUTING.md) explica preparación, pruebas,
 revisión de PR y **criterios de terminado**. En Git Bash, desde la raíz del
 repositorio, basta este comando para comprobar los patrones clásicos,
-construir y probar ambos microproyectos y comprobar que sus JAR arrancan:
+verificar Arena, MiniSO y el integrador liminal, además de los dos JAR Maven:
 
 ```bash
 bash scripts/verificar.sh
@@ -94,37 +99,43 @@ FCFS, Round Robin y prioridad. Son **ticks simulados**, no benchmarks del PC.
 
 ## 📁 Estructura del proyecto
 
-```
+```text
 Patrones-de-dise-o-Java/
-├── creacionales/                      (GoF técnicos)
-├── estructurales/                     (GoF técnicos)
-├── comportamiento/                    (GoF técnicos)
-├── colecciones/
-│   └── liminal/                       (23 GoF aislados y variantes)
+├── patrones/
+│   ├── clasicos/
+│   │   ├── creacionales/
+│   │   ├── estructurales/
+│   │   ├── comportamiento/
+│   │   ├── App.java
+│   │   └── Main.java
+│   └── liminales/
+│       ├── src/                 (23 GoF aislados, variantes y pruebas)
+│       ├── docs/                (fichas, UML y laboratorios)
+│       └── assets/              (ilustraciones)
 ├── proyectos/
 │   ├── arena-java/
 │   ├── miniso/
-│   └── expedicion-liminal-integrada/  (tercer bloque GoF, 3 patrones)
-├── App.java
-├── Main.java
+│   └── expedicion-liminal-integrada/
+├── docs/
+├── scripts/verificar.sh
 ├── README.md
 └── Tree.md
 ```
 
 * Los ejemplos clásicos **sí declaran paquetes Java** (`creacionales.SingletonInstance`,
-  `estructurales.Adapter`, etc.); únicamente `App.java` y `Main.java` permanecen
+  `estructurales.Adapter`, etc.); únicamente `patrones/clasicos/App.java` y `patrones/clasicos/Main.java` permanecen
   en el paquete predeterminado para iniciar el menú.
 * Los microproyectos también tienen paquetes, agrupados por responsabilidades
   de arquitectura (`dominio`, `aplicacion`, etc.). Ninguno requiere Maven para
   *definir* esos paquetes.
-* `Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
+* `patrones/clasicos/Main.java` actúa como **orquestador** de los ejemplos clásicos, no de los microproyectos.
 * El **integrador liminal** se verifica por separado con `bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh`; tiene un workflow propio en Linux y Windows y no altera la ejecución de los ejemplos clásicos, las 23 demos liminales, Arena Java ni MiniSO.
 
 ---
 
 ## ⚙️ Compilación y ejecución desde consola
 
-### Opción recomendada: verificar los tres componentes del laboratorio
+### Opción recomendada: verificar las dos colecciones y los tres proyectos
 
 Desde la **raíz del repositorio**, en Git Bash (Windows) o Linux:
 
@@ -132,8 +143,8 @@ Desde la **raíz del repositorio**, en Git Bash (Windows) o Linux:
 bash scripts/verificar.sh
 ```
 
-Compila y ejecuta el menú de patrones clásicos, prueba Arena y MiniSO,
-construye sus dos JAR y verifica que arrancan. Consulta
+Compila las dos colecciones GoF, prueba Arena y MiniSO, construye sus dos JAR,
+verifica su arranque y ejecuta las pruebas de los cuatro guiones del integrador. Consulta
 [CONTRIBUTING.md](CONTRIBUTING.md) para los criterios de aceptación.
 
 ### Compilar solo los patrones clásicos con `javac`
@@ -142,8 +153,8 @@ En Git Bash o Linux, desde la **raíz**:
 
 ```bash
 mkdir -p out/clasicos
-find creacionales estructurales comportamiento -name '*.java' -print0 \
-  | xargs -0 javac -encoding UTF-8 -d out/clasicos App.java Main.java
+find patrones/clasicos/creacionales patrones/clasicos/estructurales patrones/clasicos/comportamiento -name '*.java' -print0 \
+  | xargs -0 javac -encoding UTF-8 -d out/clasicos patrones/clasicos/App.java patrones/clasicos/Main.java
 java -cp out/clasicos Main
 ```
 
@@ -151,8 +162,8 @@ En PowerShell, también desde la **raíz**:
 
 ```powershell
 New-Item -ItemType Directory -Force out\clasicos | Out-Null
-$fuentes = Get-ChildItem .\creacionales, .\estructurales, .\comportamiento -Recurse -Filter *.java | ForEach-Object FullName
-javac -encoding UTF-8 -d out\clasicos .\App.java .\Main.java $fuentes
+$fuentes = Get-ChildItem .\patrones\clasicos\creacionales, .\patrones\clasicos\estructurales, .\patrones\clasicos\comportamiento -Recurse -Filter *.java | ForEach-Object FullName
+javac -encoding UTF-8 -d out\clasicos .\patrones\clasicos\App.java .\patrones\clasicos\Main.java $fuentes
 java -cp out\clasicos Main
 ```
 
@@ -163,7 +174,7 @@ selecciona `1` (creacionales), `2` (estructurales), `3` (comportamiento)
 o `0` para salir. Una entrada inválida vuelve a solicitar la opción.
 
 Por ejemplo, `SingletonInstance` está en
-`creacionales/SingletonInstance/SingletonInstance.java` y **no tiene
+`patrones/clasicos/creacionales/SingletonInstance/SingletonInstance.java` y **no tiene
 `main` propio**: para verlo funcionar, ejecuta `Main` y elige `1`.
 El compilador respeta los paquetes sin necesitar Maven o Gradle.
 

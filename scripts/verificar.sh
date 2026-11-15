@@ -23,10 +23,10 @@ if ! mvn -version | grep -Eq 'Java version:[[:space:]]*21([.]|$)'; then
     exit 1
 fi
 
-printf '\n[1/6] Patrones clasicos: compilar y recorrer el menu\n'
+printf '\n[1/7] Patrones clasicos: compilar y recorrer el menu\n'
 mkdir -p out/clasicos
-find creacionales estructurales comportamiento -name '*.java' -print0 \
-    | xargs -0 javac -encoding UTF-8 -d out/clasicos App.java Main.java
+find patrones/clasicos/creacionales patrones/clasicos/estructurales patrones/clasicos/comportamiento -name '*.java' -print0 \
+    | xargs -0 javac -encoding UTF-8 -d out/clasicos patrones/clasicos/App.java patrones/clasicos/Main.java
 salida_clasicos="$(printf 'opcion-invalida\n1\n2\n3\n0\n' | java -cp out/clasicos Main)"
 # Comprobar fragmentos ASCII: la codificacion de stdout puede diferir entre
 # Git Bash/Java en Windows y Bash/Java en Linux, aunque ambos ejecuten bien.
@@ -45,20 +45,20 @@ comprobar_menu '[Interpreter]'
 comprobar_menu 'Total calculado: $94.50'
 comprobar_menu 'Saliendo del programa'
 
-printf '\n[2/6] Arena Java: compilar, probar y empaquetar\n'
+printf '\n[2/7] Arena Java: compilar, probar y empaquetar\n'
 mvn -B -ntp -f proyectos/arena-java/pom.xml clean verify
 
-printf '\n[3/6] MiniSO: compilar, probar y empaquetar\n'
+printf '\n[3/7] MiniSO: compilar, probar y empaquetar\n'
 mvn -B -ntp -f proyectos/miniso/pom.xml clean verify
 
-printf '\n[4/6] Smoke test: arrancar JAR de Arena Java\n'
+printf '\n[4/7] Smoke test: arrancar JAR de Arena Java\n'
 salida_arena="$(printf '0\n' | java -jar proyectos/arena-java/target/arena-java-1.0.0-SNAPSHOT.jar)"
 if [[ "$salida_arena" != *'=== ARENA JAVA ==='* ]] || [[ "$salida_arena" != *'1 Arena'* ]]; then
     printf 'ERROR: no se observo la pantalla inicial de Arena Java\n' >&2
     exit 1
 fi
 
-printf '\n[5/6] Smoke test: planificar y consultar metricas en MiniSO\n'
+printf '\n[5/7] Smoke test: planificar y consultar metricas en MiniSO\n'
 salida_miniso="$(printf '2\ncrear demo 2 5 4\ntick 2\nestado\nmetricas\ncomparar\nsalir\n' | java -jar proyectos/miniso/target/miniso-1.0.0-SNAPSHOT.jar)"
 if [[ "$salida_miniso" != *'PID 1 termino y libero memoria'* ]] \
         || [[ "$salida_miniso" != *'memoria=0/32 KiB'* ]] \
@@ -68,7 +68,10 @@ if [[ "$salida_miniso" != *'PID 1 termino y libero memoria'* ]] \
     exit 1
 fi
 
-printf '\n[6/6] Expedicion Liminal: 23 patrones y laboratorio UML\n'
-bash colecciones/liminal/scripts/verificar.sh
+printf '\n[6/7] Expedicion Liminal: 23 patrones y laboratorio UML\n'
+bash patrones/liminales/scripts/verificar.sh
 
-printf '\nVERIFICACION COMPLETA: 23 patrones clasicos, 23 patrones liminales, laboratorio UML y 2 microproyectos.\n'
+printf '\n[7/7] Expedicion Liminal Integrada: compilar, probar y recorrer cuatro guiones\n'
+bash proyectos/expedicion-liminal-integrada/scripts/verificar.sh
+
+printf '\nVERIFICACION COMPLETA: 23 patrones clasicos, 23 patrones liminales, laboratorio UML y 3 proyectos.\n'

@@ -1,6 +1,6 @@
 # Contrato del dominio — Expedición Liminal Integrada
 
-> **Estado:** reglas **R-INT-01…R-INT-12 implementadas y probadas** en Java 21. Strategy, Observer y Mediator colaboran sin combate, IA compleja ni persistencia. Rige primero el [dominio liminal común](../../colecciones/liminal/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
+> **Estado:** reglas **R-INT-01…R-INT-12 implementadas y probadas** en Java 21. Strategy, Observer y Mediator colaboran sin combate, IA compleja ni persistencia. Rige primero el [dominio liminal común](../../patrones/liminales/DOMINIO.md), reglas **R-00…R-14**. Estas reglas adicionales son decisiones locales **del integrador**, no afirmaciones de un canon de Backrooms.
 
 ## 1. Lenguaje ubicuo y alcance
 

@@ -32,9 +32,9 @@ Patrones-de-dise-o-Java/
 ├── docs/
 │   └── modelado/
 │       └── COMO_DEFINIR_UN_DOMINIO.md
-├── creacionales/                     # Colección técnica EXISTENTE: se conserva
-├── estructurales/                    # Colección técnica EXISTENTE: se conserva
-├── comportamiento/                   # Colección técnica EXISTENTE: se conserva
+├── patrones/clasicos/creacionales/                     # Colección técnica EXISTENTE: se conserva
+├── patrones/clasicos/estructurales/                    # Colección técnica EXISTENTE: se conserva
+├── patrones/clasicos/comportamiento/                   # Colección técnica EXISTENTE: se conserva
 ├── proyectos/
 │   ├── arena-java/                   # Microproyecto EXISTENTE
 │   └── miniso/                       # Microproyecto EXISTENTE
@@ -51,15 +51,15 @@ Patrones-de-dise-o-Java/
         │   └── patrones/
         ├── src/main/java/liminal/    # FUTURO: Java 21
         │   ├── comun/                # Mínimo núcleo compartido, si aporta valor
-        │   ├── creacionales/
-        │   ├── estructurales/
-        │   ├── comportamiento/
+        │   ├── patrones/clasicos/creacionales/
+        │   ├── patrones/clasicos/estructurales/
+        │   ├── patrones/clasicos/comportamiento/
         │   └── DemoLiminal.java
         ├── src/test/java/liminal/    # Pruebas separadas de clientes, Java 21
         └── scripts/                  # FUTURO: ejecutar/verificar en consola
 ```
 
-**Regla de migración:** NO mover los directorios técnicos existentes a `colecciones/tecnica/` durante esta iniciativa: eso alteraría paquetes, imports, scripts y enlaces sin aportar al objetivo inicial. En la navegación los llamaremos «colección técnica existente», mientras el código nuevo vive en `colecciones/liminal/`.
+**Regla de migración:** NO mover los directorios técnicos existentes a `colecciones/tecnica/` durante esta iniciativa: eso alteraría paquetes, imports, scripts y enlaces sin aportar al objetivo inicial. En la navegación los llamaremos «colección técnica existente», mientras el código nuevo vive en `patrones/liminales/`.
 
 **Aislamiento:** cada patrón tiene un paquete propio y una clase cliente explícita (`Ejemplo<Patron>` o equivalente). Los ejemplos pueden utilizar conceptos del glosario, pero **no deben depender entre sí**. El directorio `comun` contendrá solo tipos que simplifiquen realmente el aprendizaje; evitar un mini-framework.
 
@@ -132,7 +132,7 @@ javac --release 21 -encoding UTF-8 -d out $(find src/main/java -name '*.java')
 java -cp out liminal.DemoLiminal
 ```
 
-El script de verificación es **ejecutable** con JDK 21: `bash colecciones/liminal/scripts/verificar.sh`. También existe `colecciones/liminal/scripts/verificar.ps1` para PowerShell. Los dos se prueban en GitHub Actions.
+El script de verificación es **ejecutable** con JDK 21: `bash patrones/liminales/scripts/verificar.sh`. También existe `patrones/liminales/scripts/verificar.ps1` para PowerShell. Los dos se prueban en GitHub Actions.
 
 ## 6. Estrategia de UML
 
@@ -225,6 +225,6 @@ Un patrón se marca **Terminado** cuando están su ficha, reglas citadas, implem
 - Detalles visuales finales (composición, encuadre, cromatismo, resolución).
 - Herramienta exacta de renderizado de UML (siempre resultado final legible, preferiblemente SVG).
 - Si se comparte una pequeñísima biblioteca de tipos entre los 23 patrones; decidir tras el piloto, evitando acoplamiento.
-- `Interpreter` ya se agregó a la colección técnica sin reorganizar paquetes, con [su guía independiente](../../comportamiento/Interpreter/README.md).
+- `Interpreter` ya se agregó a la colección técnica sin reorganizar paquetes, con [su guía independiente](../clasicos/comportamiento/Interpreter/README.md).
 
 **Regla para cualquier cambio:** revisar primero si afecta `DOMINIO.md`. Si afecta, editar y versionar su regla, actualizar pruebas y UML; **no corregir solo el código**.

@@ -4,7 +4,7 @@
 
 ## 1. Comparación directa con la colección técnica
 
-En el Builder técnico original aparecen [`Response.java`](../../creacionales/Builder/Response.java) y [`ResponseBuilder.java`](../../creacionales/Builder/ResponseBuilder.java). Son los dos roles esenciales: producto y constructor por pasos.
+En el Builder técnico original aparecen [`Response.java`](../clasicos/creacionales/Builder/Response.java) y [`ResponseBuilder.java`](../clasicos/creacionales/Builder/ResponseBuilder.java). Son los dos roles esenciales: producto y constructor por pasos.
 
 En el Builder liminal tienen sus equivalentes:
 
@@ -37,7 +37,7 @@ Primero `construirHabitacion()` configura `ConstructorHabitacion`; su `construir
 Cada patrón tiene su propia carpeta y **un tipo superior Java por archivo**:
 
 ```text
-colecciones/liminal/
+patrones/liminales/
 ├── src/main/java/liminal/
 │   ├── DemoLiminal.java               ← lanzador con métodos por categoría
 │   ├── creacionales/
@@ -80,12 +80,12 @@ public static void ejecutarTodos() {
 
 Además, dispone de `probarBuilder()`, `probarState()`, `probarObserver()` y los demás métodos por patrón. Se puede ejecutar todo o elegir un solo tema.
 
-Una vez compilado con `bash colecciones/liminal/scripts/verificar.sh`, desde la raíz del repositorio:
+Una vez compilado con `bash patrones/liminales/scripts/verificar.sh`, desde la raíz del repositorio:
 
 ```bash
-java -cp colecciones/liminal/out liminal.DemoLiminal builder
-java -cp colecciones/liminal/out liminal.DemoLiminal creacionales
-java -cp colecciones/liminal/out liminal.creacionales.builder.ClienteBuilder
+java -cp patrones/liminales/out liminal.DemoLiminal builder
+java -cp patrones/liminales/out liminal.DemoLiminal creacionales
+java -cp patrones/liminales/out liminal.creacionales.builder.ClienteBuilder
 ```
 
 ## 4. Mismo dominio conceptual, ejemplos independientes

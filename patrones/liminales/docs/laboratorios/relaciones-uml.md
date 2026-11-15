@@ -74,7 +74,7 @@ boolean mismaInstancia = e.ubicacion() == pasillo; // true
 Una vez compilado con el verificador de la colección, ejecuta desde la raíz del repositorio:
 
 ```bash
-java -cp colecciones/liminal/out liminal.laboratorios.relaciones.ClienteRelacionesUml
+java -cp patrones/liminales/out liminal.laboratorios.relaciones.ClienteRelacionesUml
 ```
 
 Salida esperada:

@@ -71,10 +71,10 @@ Este laboratorio **no es un patrón número 24**. El `Map` contiene asociaciones
 - [Habitacion.java](../../../src/main/java/liminal/laboratorios/java/classvsrecord/Habitacion.java)
 - [PruebaClassVsRecord.java](../../../src/test/java/liminal/laboratorios/java/classvsrecord/PruebaClassVsRecord.java)
 
-Después de compilar la colección con `bash colecciones/liminal/scripts/verificar.sh`, desde la raíz del repositorio:
+Después de compilar la colección con `bash patrones/liminales/scripts/verificar.sh`, desde la raíz del repositorio:
 
 ```bash
-java -cp colecciones/liminal/out liminal.laboratorios.java.classvsrecord.ClienteClassVsRecord
+java -cp patrones/liminales/out liminal.laboratorios.java.classvsrecord.ClienteClassVsRecord
 ```
 
 [Reglas normativas del mundo](../../../DOMINIO.md) · [Plan de variantes](../../../PLAN_VARIANTES.md) · [Guía de modelado de dominio](../../../../../docs/modelado/COMO_DEFINIR_UN_DOMINIO.md).

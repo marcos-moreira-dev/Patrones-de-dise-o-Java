@@ -18,9 +18,9 @@
 
 ## 2. Inventario de la colección auditada
 
-Se verificó el árbol de GitHub bajo **`colecciones/liminal/`**: **292 archivos** en el inventario actualizado tras incorporar la matriz de alineación el 15 de noviembre de 2026. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
+Se verificó el árbol de GitHub bajo **`patrones/liminales/`**: **292 archivos** en el inventario actualizado tras incorporar la matriz de alineación el 15 de noviembre de 2026. No se incluye ningún archivo de las colecciones técnicas ni de los microproyectos.
 
-| Área dentro de `colecciones/liminal/` | Archivos |
+| Área dentro de `patrones/liminales/` | Archivos |
 | --- | ---: |
 | `src/main/java/` — Java de producción | 181 |
 | `src/test/java/` — pruebas de la colección | 34 |
@@ -42,7 +42,7 @@ El conteo es un inventario de estructura, **no una certificación semántica**. 
 | `EscenaGrabada`, contadores de cámara real | E | Simulan un coste medible para Proxy sin red ni cronómetros; no son parte obligatoria del mundo |
 | `ClienteX.java` y `DemoLiminal.java` | E | Trazabilidad humana: mostrar qué se crea, en qué orden y qué ocurre |
 | `PruebaX.java`, `PruebasLiminal.java`, `VerificarDocumentacion.java` | T | Pruebas; no deben confundirse con clases del patrón |
-| `colecciones/liminal/scripts/verificar.sh` y `verificar.ps1` | T | Compilan y verifican con Java 21 sin pedir pruebas al usuario |
+| `patrones/liminales/scripts/verificar.sh` y `verificar.ps1` | T | Compilan y verifican con Java 21 sin pedir pruebas al usuario |
 | Fichas MD, UML, escenarios WebP y secuencias SVG | E | Contexto, no nuevas reglas del dominio |
 | `PLAN.md` y `PLAN_VARIANTES.md` | E | Orientación exclusiva de la colección liminal; revisar indicaciones históricas obsoletas |
 
@@ -109,7 +109,7 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 ## 9. Segunda pasada semántica — Memento: aislar el originador
 
-**Ruta → rol → consumidor:** `comportamiento/memento/Historial.java` (cuidador P) guarda instantáneas opacas de `Linterna` (originador D), utilizadas por `ClienteMemento` y `PruebaMemento`. También se inspeccionaron Facade, Iterator, State, Strategy, Composite, Mediator, Abstract Factory e Interpreter; se preservan sus colaboraciones actuales sin poda especulativa.
+**Ruta → rol → consumidor:** `patrones/clasicos/comportamiento/memento/Historial.java` (cuidador P) guarda instantáneas opacas de `Linterna` (originador D), utilizadas por `ClienteMemento` y `PruebaMemento`. También se inspeccionaron Facade, Iterator, State, Strategy, Composite, Mediator, Abstract Factory e Interpreter; se preservan sus colaboraciones actuales sin poda especulativa.
 
 **Defecto reproducido de forma independiente en OpenJDK 21:** guardar una instantánea de la linterna A y llamar `historial.deshacer(B)` **cambiaba la linterna B** y consumía la instantánea de A. La configuración restaurada era válida (0..10), pero no pertenecía al objeto sobre el que se intentaba deshacer. Se ejecutó un harness aislado que imprimió `DEFECTO: historial de A restauro B a intensidad 4`.
 
@@ -119,7 +119,7 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 ## 10. Segunda pasada semántica — Facade: mapa de procedencia
 
-**Ruta → rol → consumidor:** `estructurales/facade/Explorador.java` (entidad D) y `FachadaCruce.java` (rol Facade P), consumidos por `ClienteFacade` y `PruebaFacade`.
+**Ruta → rol → consumidor:** `patrones/clasicos/estructurales/facade/Explorador.java` (entidad D) y `FachadaCruce.java` (rol Facade P), consumidos por `ClienteFacade` y `PruebaFacade`.
 
 **Defecto reproducido localmente con OpenJDK 21:** era posible crear un explorador en el mapa A (`H-01`) y una fachada con el mapa B (con `H-01` y `H-99`), cruzar hacia `H-99` y dejar al explorador **fuera de su mapa original**, vulnerando R-03. El programa aislado mostró `DEFECTO: explorador fuera de su mapa = true`.
 
@@ -129,7 +129,7 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 ## 11. Segunda pasada semántica — Factory Method: postcondiciones del creador
 
-**Ruta → rol → consumidor:** `creacionales/factorymethod/GeneradorCriatura.java` (creador abstracto P), sus productos `Criatura` (P/D) y `RegistroApariciones` (D), utilizados por `ClienteFactoryMethod` y `PruebaFactoryMethod`.
+**Ruta → rol → consumidor:** `patrones/clasicos/creacionales/factorymethod/GeneradorCriatura.java` (creador abstracto P), sus productos `Criatura` (P/D) y `RegistroApariciones` (D), utilizados por `ClienteFactoryMethod` y `PruebaFactoryMethod`.
 
 **Defecto reproducido en OpenJDK 21:** `aparecer("M-01", "H-01", registro)` permitía que una subclase devolviera una criatura con ID `M-99` y ubicación `H-02`, siempre que esos valores también fueran válidos para el registro; el registro pasaba a contener la criatura distinta. La salida del harness aislado antes del cambio fue `SOLICITUD=M-01/H-01 RESULTADO=M-99/H-02 REGISTRADOS=1`. Se vulneraba la postcondición implícita de la solicitud y el control de identidad de R-01/R-08.
 
@@ -139,7 +139,7 @@ Se examinaron las clases que contienen las responsabilidades principales de las 
 
 ## 12. Criterio editorial ratificado: claridad humana
 
-Esta auditoría **no busca maximizar defensas, capas o clases auxiliares**. En cada uno de los 23 ejemplos se debe poder abrir `ClienteX.java`, seguir sus métodos con nombres del dominio, reconocer los participantes GoF, contrastar su UML y ejecutar una prueba separada. Una clase adicional solo se justifica si representa un rol real, una entidad necesaria o una decisión de ingeniería demostrable. Un `record` como valor puede permanecer si se justifica; no se introduce en roles GoF por ahorrar sintaxis. **No se modifica el código de proyectos ajenos a `colecciones/liminal/`.**
+Esta auditoría **no busca maximizar defensas, capas o clases auxiliares**. En cada uno de los 23 ejemplos se debe poder abrir `ClienteX.java`, seguir sus métodos con nombres del dominio, reconocer los participantes GoF, contrastar su UML y ejecutar una prueba separada. Una clase adicional solo se justifica si representa un rol real, una entidad necesaria o una decisión de ingeniería demostrable. Un `record` como valor puede permanecer si se justifica; no se introduce en roles GoF por ahorrar sintaxis. **No se modifica el código de proyectos ajenos a `patrones/liminales/`.**
 
 ## 13. Revisión transversal de las 23 rutas de lectura y los 23 UML principales
 
@@ -185,7 +185,7 @@ Se contrastaron las **firmas Java** con los elementos textuales de los SVG de **
 
 ## 18. Estado de cierre y siguientes pasos (inventario actualizado)
 
-**Inventario actualizado: 292 archivos en `colecciones/liminal/`**: 181 fuentes Java principales, 34 Java de prueba, 60 documentos/diagramas bajo `docs/`, cinco activos, **diez documentos raíz** y dos scripts. El incremento previo de nueve archivos principales proviene de **separar los mismos nueve tipos existentes** en el laboratorio UML; no se agregaron nueve clases. Los documentos raíz noveno y décimo son `PLAN_INTEGRADOR.md` y `MATRIZ_ALINEACION.md`: **solo planificación y trazabilidad editorial**, no un proyecto integrador implementado.
+**Inventario actualizado: 292 archivos en `patrones/liminales/`**: 181 fuentes Java principales, 34 Java de prueba, 60 documentos/diagramas bajo `docs/`, cinco activos, **diez documentos raíz** y dos scripts. El incremento previo de nueve archivos principales proviene de **separar los mismos nueve tipos existentes** en el laboratorio UML; no se agregaron nueve clases. Los documentos raíz noveno y décimo son `PLAN_INTEGRADOR.md` y `MATRIZ_ALINEACION.md`: **solo planificación y trazabilidad editorial**, no un proyecto integrador implementado.
 
 | Frente exclusivo de Expedición Liminal | Evidencia de esta etapa | Estado |
 | --- | --- | --- |
@@ -280,7 +280,7 @@ En `VerificarDocumentacion` la presencia de la palabra «mermaid» ya no es sufi
 
 ## 25. Inventario de enlaces y estado al cierre de este bloque
 
-Se recorrieron **los 41 archivos Markdown bajo `colecciones/liminal/`**: ocho documentos raíz, la guía de activos, 23 fichas de patrones, siete fichas de variantes y dos laboratorios. Se identificaron **407 vínculos Markdown** (internos y externos); para los vínculos **relativos al repositorio**, se normalizó su destino y se comprobó que exista como archivo o directorio en el árbol de GitHub. **No se identificaron destinos relativos inexistentes.** Esto no verifica el contenido, las anclas internas ni el acceso actual de URLs externas.
+Se recorrieron **los 41 archivos Markdown bajo `patrones/liminales/`**: ocho documentos raíz, la guía de activos, 23 fichas de patrones, siete fichas de variantes y dos laboratorios. Se identificaron **407 vínculos Markdown** (internos y externos); para los vínculos **relativos al repositorio**, se normalizó su destino y se comprobó que exista como archivo o directorio en el árbol de GitHub. **No se identificaron destinos relativos inexistentes.** Esto no verifica el contenido, las anclas internas ni el acceso actual de URLs externas.
 
 **Validación de código y documentación:** el commit `1e3f1042` aprobó GitHub Actions en **Java 21, Ubuntu y Windows**; la ejecución verificó los 23 GoF liminales, siete variantes, dos laboratorios y verificaciones de enlaces, documentos y sintaxis Mermaid añadidas. No se exigió ejecutar pruebas en el equipo del estudiante.
 
@@ -311,7 +311,7 @@ Se creó [PLAN_INTEGRADOR.md](PLAN_INTEGRADOR.md), enlazado desde README y PLAN,
 
 ## 28. Alineación editorial de los 23 patrones encapsulados
 
-Se añadió la [matriz de alineación](MATRIZ_ALINEACION.md) con **23/23 filas** (escena, restricción R-XX, decisión de ingeniería, riesgo y enlace al punto de código), y una guía de lectura por responsabilidades. Se insertaron o precisaron **17 comentarios locales** en colaboradores reales de los ejemplos: nueve creacionales/estructurales y ocho de comportamiento. En otros seis patrones, la ficha y el Javadoc existente ya cubren la decisión; no se añadieron comentarios forzados. Los comentarios exponen **por qué se usa una solución** (acoplamiento, propiedad UML, estado, validaciones, excepciones y tipos) en lugar de describir instrucciones evidentes.
+Se añadió la [matriz de alineación](MATRIZ_ALINEACION.md) con **23/23 filas** (escena, restricción R-XX, decisión de ingeniería, riesgo y enlace al punto de código), y una guía de lectura por responsabilidades. Se insertaron o precisaron **17 comentarios locales** en colaboradores reales de los ejemplos: nueve patrones/clasicos/creacionales/estructurales y ocho de comportamiento. En otros seis patrones, la ficha y el Javadoc existente ya cubren la decisión; no se añadieron comentarios forzados. Los comentarios exponen **por qué se usa una solución** (acoplamiento, propiedad UML, estado, validaciones, excepciones y tipos) en lugar de describir instrucciones evidentes.
 
 **Alcance:** no se modificaron las operaciones Java, pruebas, UML, jerarquías ni paquetes; no se creó el integrador; ningún otro proyecto se incluyó. El inventario de 292 se debe exclusivamente a **un nuevo Markdown raíz**. CI del último commit determina el cierre técnico de esta pasada. La matriz sirve para estudiar y recordar pendientes, no demuestra una auditoría exhaustiva de cada línea del código fuente.
 
