@@ -88,6 +88,13 @@ public final class PruebasCriaturas {
                 "M-03", escena.mapa, escena.observacion, new Esperar());
         esperarFallo(IllegalStateException.class,
                 () -> expedicion.incorporarCriatura(otraValida));
+        // También se rechaza una incorporación tardía cuando aún no había criatura:
+        // el problema es el turno iniciado, no un duplicado previo.
+        Expedicion sesionTardia = new Expedicion("EXP-TARDIA", escena.mapa,
+                new Explorador("EX-TARDIO", escena.mapa, escena.inicio), escena.oficinas);
+        sesionTardia.avanzar(Direccion.ESTE);
+        esperarFallo(IllegalStateException.class,
+                () -> sesionTardia.incorporarCriatura(otraValida));
 
         monstruo.cambiarEstrategia(new Perseguir());
         ResultadoTurno segundo = caso.procesar(Direccion.ESTE);
